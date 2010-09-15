@@ -97,7 +97,6 @@ class SignupForm(forms.Form):
         username = self.cleaned_data["username"]
         email = self.cleaned_data["email"]
         password = self.cleaned_data["password1"]
-        college = self.cleaned_data["college"]
 
         if self.cleaned_data["confirmation_key"]:
             from friends.models import JoinInvitation # @@@ temporary fix for issue 93
