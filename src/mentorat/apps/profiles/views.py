@@ -15,8 +15,8 @@ from friends.models import FriendshipInvitation, Friendship
 
 from microblogging.models import Following
 
-from profiles.models import Profile
-from profiles.forms import ProfileForm
+from profiles.models import *
+from profiles.forms import *
 
 from avatar.templatetags.avatar_tags import avatar
 
@@ -128,6 +128,10 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
         "is_friend": is_friend,
         "is_following": is_following,
         "other_user": other_user,
+        "allow_private": is_me, # can see private fields
+        "allow_restricted": True, # can see restricted fields
+        "student": other_user.get_profile().as_student(),
+        "mentor": other_user.get_profile().as_mentor(),
         "other_friends": other_friends,
         "invite_form": invite_form,
         "previous_invitations_to": previous_invitations_to,
@@ -147,6 +151,12 @@ def profile_edit(request, form_class=ProfileForm, **kwargs):
         )
     
     profile = request.user.get_profile()
+    if profile.as_student():
+        profile = profile.as_student()
+        form_class = StudentProfileForm
+    elif profile.as_mentor():
+        profile = profile.as_mentor()
+        form_class = MentorProfileForm
     
     if request.method == "POST":
         profile_form = form_class(request.POST, instance=profile)

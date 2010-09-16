@@ -1,0 +1,33 @@
+{% load i18n %}
+<br/>
+<p class="publicinfo"><b>{% trans "Account type" %}</b>: {% trans "Student" %}</p>
+<br/>
+<div class="profile-info-region">
+    <h2>{% trans "General information" %}</h2>
+    <p class="publicinfo"><b>{% trans "Firstname" %}</b>: {{ student.firstname }}</p>
+    <p class="publicinfo"><b>{% trans "Surname" %}</b>: {{ student.surname }}</p>
+    {% if student.previous_surname %}
+        <p class="publicinfo"><b>{% trans "Surname befora marriage" %}</b>: {{ student.previous_surname }}</p>
+    {% endif %}
+    {% if allow_private %}
+        <p class="privateinfo"><b>{% trans "CNP" %}</b>: {{ student.CNP }}</p>
+    {% endif %}
+    {% if student.birthplace %}
+        <p class="publicinfo"><b>{% trans "Birth place" %}</b>: {{ student.birthplace }}</p>
+    {% endif %}
+    {% if student.age %}
+        <p class="publicinfo"><b>{% trans "Age" %}</b>: {{ student.age }}</p>
+    {% endif %}
+    <p class="publicinfo"><b>{% trans "Faculty" %}</b>: {{ student.faculty }}</p>
+    <p class="publicinfo"><b>{% trans "Year of study" %}</b>: {{ student.year_of_study }}</p>
+    <p class="publicinfo"><b>{% trans "Faculty major" %}</b>: {{ student.major }}</p>
+    {% if allow_restricted %}
+        <p class="restrictedinfo"><b>{% trans "Email" %}</b>: {{ student.email }}</p>
+    {% endif %}
+    {% if allow_restricted %}
+        <p class="restrictedinfo"><b>{% trans "Telephone" %}</b>: {{ student.telephone }}</p>
+    {% endif %}
+    {% if allow_private %}
+        <p class="privateinfo"><b>{% trans "Address" %}</b>: {{ student.address }}</p>
+    {% endif %}
+</div>
