@@ -5,13 +5,6 @@ from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 
 
-class FieldOfInterest(models.Model):
-    name = models.CharField(max_length=100, verbose_name=_('field name'))
-    
-    def __unicode__(self):
-        return self.name
-    
-
 class Profile(models.Model):
     user = models.ForeignKey(User, unique=True, verbose_name=_('user'))
     
@@ -29,7 +22,7 @@ class Profile(models.Model):
     home_town = models.CharField(max_length=50, blank=False, verbose_name=_('home town'))
     graduated_college = models.CharField(max_length=100, blank=False, verbose_name=_('graduated college'))
     # volunteer = models.ManyToOneRel(VolunteerOrganization)    
-    fields_of_interest = models.ManyToManyField(FieldOfInterest, related_name='profiles', null=True, blank=False)
+    # fields_of_interest = models.ManyToManyField(FieldOfInterest, related_name='profiles', null=True, blank=False)
     
     # Additional information
     hobbies = models.TextField(blank=True, verbose_name=_('hobbies'))
@@ -38,7 +31,7 @@ class Profile(models.Model):
     extra_info = models.TextField(blank=True, verbose_name=_('additional information'))
 
     def __unicode__(self):
-        return self.firstname + ' ' + self.surname
+        return self.user.username
 
     def get_absolute_url(self):
         return ('profile_detail', None, {'username': self.user.username})
@@ -93,6 +86,9 @@ class StudentProfile(Profile):
     def as_mentor(self):
         return None
     
+    def __unicode__(self):
+        return 'Student(' + self.user.username + ')'
+    
     
 class MentorProfile(Profile):
     """Additional profile information for mentors"""    
@@ -119,28 +115,55 @@ class MentorProfile(Profile):
     
     def as_student(self):
         return None
-
+    
+    def __unicode__(self):
+        return 'Mentor(' + self.user.username + ')'
+    
+    
+class FieldOfInterest(models.Model):
+    name = models.CharField(max_length=100, verbose_name=_('field name'))
+    
+    def __unicode__(self):
+        return self.name
+    
+    
+class FieldOfInterest_Profile(models.Model):
+    profile = models.ForeignKey(Profile, related_name='fields_of_interest')
+    field = models.ForeignKey(FieldOfInterest, related_name='profile')
+    
+    def __unicode__(self):
+        return self.field.name + ' ' + self.profile.user.username
+       
 
 class VolunteerOrganization(models.Model):
     profile = models.ForeignKey(Profile, related_name='volunteer', null=True, verbose_name=_('profile'))
     name = models.CharField(max_length=50, blank=False, verbose_name=_('organization name'))
     field = models.CharField(max_length=100, blank=True, verbose_name=_('working field'))
+    
+    def __unicode__(self):
+        return self.name
 
 
 class StudentEmployment(models.Model):
     student = models.ForeignKey(StudentProfile, related_name='work_experience', verbose_name=_('student'))
     internship = models.BooleanField(default=False, null=False, verbose_name=_('was internship'))
     employer_name = models.CharField(max_length=50, blank=False, verbose_name=_('employer name'))
-    position = models.CharField(max_length=100, blank=False, verbose_name=_('position held'))
+    position = models.CharField(max_length=100, blank=False, verbose_name=_('pos    ition held'))
     duties = models.TextField(blank=True, verbose_name=_('duties'))
     start_date = models.DateField(verbose_name=_('starting date'))
     end_date = models.DateField(verbose_name=_('ending date'))
+    
+    def __unicode__(self):
+        return self.employer_name
 
 
 class StudentResearch(models.Model):
     student = models.ForeignKey(StudentProfile, related_name='research')
     field = models.CharField(max_length=100, blank=False, verbose_name=_('field of research'))
     duties = models.TextField(blank=False, verbose_name=_('duties'))
+    
+    def __unicode__(self):
+        return self.field
 
 
 class MentorshipActivities(models.Model):
@@ -148,15 +171,24 @@ class MentorshipActivities(models.Model):
     name = models.CharField(max_length=100, blank=False, verbose_name=_('mentorship activities'))
     description = models.TextField(blank=True, verbose_name=_('activity description'))
     
+    def __unicode__(self):
+        return self.name
+    
     
 class CommunicationMethod(models.Model):
     name = models.CharField(max_length=100, verbose_name=_('name'))
+    
+    def __unicode__(self):
+        return self.name
     
 
 class CommunicationRating(models.Model):
     profile = models.ForeignKey(Profile, related_name='communication_ratings')
     ratting = models.IntegerField(default=0, verbose_name=_('ratting'))
     method = models.ForeignKey(CommunicationMethod, related_name='ratings')
+    
+    def __unicode__(self):
+        return self.method.name + '(' + str(self.ratting) + ')' 
 
 
 def create_profile(sender, instance=None, **kwargs):
