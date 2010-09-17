@@ -167,12 +167,16 @@ class StudentResearch(models.Model):
 
 
 class MentorshipActivities(models.Model):
-    mentor = models.ForeignKey(MentorProfile, related_name='mentorship_activities')
     name = models.CharField(max_length=100, blank=False, verbose_name=_('mentorship activities'))
     description = models.TextField(blank=True, verbose_name=_('activity description'))
     
     def __unicode__(self):
         return self.name
+
+
+class MentorshipActivities_Mentor(models.Model):
+    mentor = models.ForeignKey(MentorProfile, related_name='mentorship_activities')
+    activity = models.ForeignKey(MentorshipActivities, related_name='mentor')
     
     
 class CommunicationMethod(models.Model):

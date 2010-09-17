@@ -1,0 +1,136 @@
+{% load i18n %}
+{% load range %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}profiles/css/profile-info.css" />
+
+<br/>
+<p class="public-info"><b>{% trans "Account type" %}</b>: {% trans "Mentor" %}</p>
+<div class="profile-info-region">
+    <h2 class="profile-info-region-header">{% trans "General information" %}</h2>
+    <p class="public-info"><b>{% trans "Firstname" %}</b>: {{ mentor.firstname }}</p>
+    <p class="public-info"><b>{% trans "Surname" %}</b>: {{mentor.surname }}</p>
+{% if mentor.previous_surname %}
+    <p class="public-info"><b>{% trans "Surname before marriage" %}</b>: {{mentor.previous_surname}}</p>
+{% endif %}
+{% if allow_private %}
+    <p class="private-info"><b>{% trans "CNP" %}</b>: {{ mentor.CNP }}</p>
+{% endif %}
+{% if mentor.age %}
+    <p class="public-info"><b>{% trans "Age" %}</b>: {{ mentor.age }}</p>
+{% endif %}
+{% if mentor.graduated_faculty %}
+    <p class="public-info"><b>{% trans "Graduated faculty" %}</b>: {{ mentor.graduated_faculty }}</p>
+{% endif %}
+{% if mentor.graduated_major %}
+    <p class="public-info"><b>{% trans "Graduated major" %}</b>: {{ mentor.graduated_major }}</p>
+{% endif %}
+{% if mentor.graduation_date %}
+    <p class="public-info"><b>{% trans "Graduation date" %}</b>: {{ mentor.graduation_date }}</p>
+{% endif %}
+{% if allow_private or allow_restricted %}
+    <p class="restricted-info"><b>{% trans "Email" %}</b>: {{ mentor.email }}</p>
+{% endif %}
+{% if allow_private or allow_restricted %}
+    <p class="restricted-info"><b>{% trans "Telephone" %}</b>: {{ mentor.telephone }}</p>
+{% endif %}
+{% if mentor.address and allow_private %}
+    <p class="private-info"><b>{% trans "Address" %}</b>: {{mentor.address }}</p>
+{% endif %}
+{% if mentor.mentorship_place %}
+    <p class="public-info"><b>{% trans "City and country of interest for mentorship" %}</b>: {{ mentor.mentorship_place }}</p>
+{% endif %}
+</div>
+{% if mentor.employer_name or mentor.employee_position %} 
+    <div class="profile-info-region">
+        <h2 class="profile-info-region-header">{% trans "Current employment" %}</h2>
+    {% if mentor.employer_name %}
+        <p class="public-info"><b>{% trans "Employer name" %}</b>: {{ mentor.employer_name }}</p>
+    {% endif %}
+    {% if mentor.employer_address and allow_private %}
+        <p class="private-info"><b>{% trans "Employer address" %}</b>: {{ mentor.employer_address }}</p>
+    {% endif %}
+    {% if mentor.employee_position %}
+        <p class="public-info"><b>{% trans "Position held" %}</b>: {{ mentor.employee_position }}</p>
+    {% endif %}
+    {% if mentor.employee_duties %}
+        <p class="public-info"><b>{% trans "Duties" %}</b>:
+            <div class="multiline-info">{{ mentor.employee_duties }}</div>
+        </p>
+    {% endif %}
+    </div>
+{% endif %}
+<div class="profile-info-region">
+    <h2 class="profile-info-region-header">{% trans "Academic and professional information" %}</h2>
+{% if mentor.home_town %}
+    <p class="public-info"><b>{% trans "Home town" %}</b>: {{ mentor.home_town }}</p>
+{% endif %}
+{% if mentor.graduated_college %}
+    <p class="public-info"><b>{% trans "Graduated college" %}</b>: {{ mentor.graduated_college }}</p>
+{% endif %}
+{% if mentor.volunteer.count %}
+    <p class="public-info">
+        <b>{% trans "Organizations in which (s)he is/was a volunteer" %}</b>:
+        <ul class="info-list">
+        {% for organization in mentor.volunteer.all %}
+            <li class="info-list-item">{% include "profiles/profile-types/parts/volunteer-organization.html" %}</li>
+        {% endfor %}
+        </ul>
+     </p>
+{% endif %}
+{% if mentor.post_bachelors_studies %}
+    <p class="public-info"><b>{% trans "Post bachelor's studies" %}</b>:
+        <div class="multiline-info">{{ mentor.post_bachelors_studies }}</div>
+    </p>
+{% endif %}
+{% if mentor.fields_of_interest.count %}
+    <p class="public-info"><b>{% trans "Fields of interest for mentorship" %}</b>:
+        <ul class="info-list">
+        {% for field in mentor.fields_of_interest.all %}
+            <li class="info-list-item">{{ field.field.name }}</li>
+        {% endfor %}
+        </ul>
+    </p>
+{% endif %}
+{% if mentor.professional_experience %}
+    <p class="public-info"><b>{% trans "Professional experience" %}</b>:
+        <div class="multiline-info">{{ mentor.professional_experience }}</div>
+    </p>
+{% endif %}
+{% if mentor.mentorship_activities.count %}
+    <p class="public-info"><b>{% trans "Activities of interest for the mentorship program" %}</b>:
+        <ul class="info-list">
+        {% for activity in mentor.mentorship_activities.all %}
+            <li class="info-list-item">{% include "profiles/profile-types/parts/mentorship-activities.html" %}</li>
+        {% endfor %}
+        {% if mentor.other_mentorship_activities %}
+            <li class="info-list-item">{% trans "other" %}: {{ mentor.other_mentorship_activities }}</li>
+        {% endif %}
+        </ul>
+    </p>
+{% endif %}
+</div>
+<div>
+    <h2 class="profile-info-region-header">{% trans "Additional information" %}</h2>
+{% if mentor.hobbies %}
+    <p class="public-info"><b>{% trans "Hobbies" %}</b>:<div class="multiline-info">{{ mentor.hobbies }}</div></p>
+{% endif %}
+{% if mentor.self_evaluation %}
+    <p class="public-info"><b>{% trans "How would you describe yourself as a colleague?" %}</b>
+        <div class="multiline-info">{{ mentor.self_evaluation }}</div>
+    </p>
+{% endif %}
+{% if mentor.extra_info %}
+    <p class="public-info"><b>{% trans "Additional informations" %}</b>:
+        <div class="multiline-info">{{mentor.extra_info}}</div>
+    </p>
+{% endif %}
+{% if mentor.communication_ratings.count %}
+    <p class="public-info"><b>{% trans "Preffered communication methods" %}</b>:
+        <ul class="info-list">
+        {% for ratting in mentor.communication_ratings.all %}
+             <li class="info-list-item">{{ ratting.method.name }} {% for x in ratting.ratting|get_range %}<img src="{{ STATIC_URL }}profiles/img/star.gif"/>{% endfor %}</li>
+        {% endfor %}
+        </ul>
+    </p>
+{% endif %}
+</div>
+

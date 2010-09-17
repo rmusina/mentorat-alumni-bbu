@@ -34,9 +34,11 @@
             {% endif %}
             
             <div class="profile_info">
-                {% if student %} {% include "profiles/profile-student.html" %}
-                {% else %}{% if mentor %} {% include "profiles/profile-mentor.html" %}
-                {% endif %}{% endif %}
+                {% if student %} {% include "profiles/profile-types/profile-student.html" %}
+                {% else %}{% if mentor %} {% include "profiles/profile-types/profile-mentor.html" %}
+                {% else %}{% if other_user.is_staff or other_user.is_superuser %} {% include "profiles/profile-types/profile-admin.html" %}
+                {% else %}{% include "profiles/profile-types/profile-other.html" %}
+                {% endif %}{% endif %}{% endif %}
             </div>
             
             {% if is_me %}
