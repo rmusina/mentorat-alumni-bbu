@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 
 from friends.models import *
-from friends.forms import JoinRequestForm
+from friends.forms import JoinRequestForm, FriendshipInvitation
 from friends_app.forms import ImportVCardForm
 from account.forms import SignupForm
 from friends.importer import import_yahoo, import_google
@@ -40,11 +40,20 @@ def friends(request, form_class=JoinRequestForm,
             except FriendshipInvitation.DoesNotExist:
                 pass
             join_request_form = form_class()
+        elif request.POST["action"] == "pending":
+            try:
+                invitation = FriendshipInvitation.objects.get(id=invitation_id)
+                if invitation.to_user == request.user:
+                    invitation.pending()
+                    request.user.message_set.create(message=_("You have chosen to overview this request %(from_user)s") % {'from_user': invitation.from_user})
+            except FriendshipInvitation.DoesNotExist:
+                pass
+            join_request_form = form_class()
     else:
         join_request_form = form_class()
     
-    invites_received = request.user.invitations_to.invitations().order_by("-sent")
-    invites_sent = request.user.invitations_from.invitations().order_by("-sent")
+    invites_received = request.user.invitations_to.invitationsAll().order_by("-sent")
+    invites_sent = request.user.invitations_from.invitationsAll().order_by("-sent")
     joins_sent = request.user.join_from.all().order_by("-sent")
     
     return render_to_response(template_name, {
