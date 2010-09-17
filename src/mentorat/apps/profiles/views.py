@@ -114,6 +114,15 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
                             other_friends = Friendship.objects.friends_for_user(other_user)
                     except FriendshipInvitation.DoesNotExist:
                         pass
+                elif request.POST.get("action") == "pending": # @@@ perhaps the form should just post to friends and be redirected here
+                    try:
+                        invitation = FriendshipInvitation.objects.get(id=invitation_id)
+                        if invitation.to_user == request.user:
+                            invitation.pending()
+                            request.user.message_set.create(message=_("You have chosen to review the request from %(from_user)s") % {'from_user': invitation.from_user})
+                            other_friends = Friendship.objects.friends_for_user(other_user)
+                    except FriendshipInvitation.DoesNotExist:
+                        pass
         else:
             invite_form = InviteFriendForm(request.user, {
                 'to_user': username,
