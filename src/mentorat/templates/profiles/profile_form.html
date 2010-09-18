@@ -1,10 +1,10 @@
 {% load uni_form %}
 
-<form class="uniForm" method="POST" action="{% url profile_edit %}">
+<form class="uniForm" method="POST" action="{{ post_url }}">
     <fieldset>
         {{ profile_form|as_uni_form }}
         <div class="form_block">
-            <input type="submit" value="update" />
+            <input type="submit" value="Save changes" />
             or <a href="{% url profile_detail profile.user.username %}">cancel</a>
         </div>
     </fieldset>

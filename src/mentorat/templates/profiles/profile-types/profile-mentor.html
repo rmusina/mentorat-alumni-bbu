@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load range %}
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}profiles/css/profile-info.css" />
-
+{% autoescape on %}
 <br/>
 <p class="public-info"><b>{% trans "Account type" %}</b>: {% trans "Mentor" %}</p>
 <div class="profile-info-region">
@@ -133,4 +133,4 @@
     </p>
 {% endif %}
 </div>
-
+{% endautoescape %}

@@ -1,11 +1,13 @@
 {% load i18n %}
 {% load range %}
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}profiles/css/profile-info.css" />
-
+{% autoescape on %}
 <br/>
 <p class="public-info"><b>{% trans "Account type" %}</b>: {% trans "Student" %}</p>
 <div class="profile-info-region">
-    <h2 class="profile-info-region-header">{% trans "General information" %}</h2>
+    <h2 class="profile-info-region-header">{% trans "General information" %}
+{% if is_me %}<small><small><a href='{% url profile_edit_general %}'><sup>[{% trans 'Edit' %}]</sup></a></small></small>{% endif %}
+    </h2>
     <p class="public-info"><b>{% trans "Firstname" %}</b>: {{ student.firstname }}</p>
     <p class="public-info"><b>{% trans "Surname" %}</b>: {{ student.surname }}</p>
     {% if student.previous_surname %}
@@ -36,10 +38,14 @@
         <p class="public-info"><b>{% trans "Town of study" %}</b>: {{ student.town_of_study }}</p>
     {% endif %}
 </div>
-{% if student.employer_name %}
+{% if student.employer_name or student.employer_position or student.employee_duties or student.employer_address %}
     <div class="profile-info-region">
-        <h2 class="profile-info-region-header">{% trans "Current employment" %}</h2>
-        <p class="public-info"><b>{% trans "Employer name" %}</b>: {{ student.employer_name }}</p>
+        <h2 class="profile-info-region-header">{% trans "Current employment" %}
+{% if is_me %}<small><small><a href='{% url profile_edit_employment %}'><sup>[{% trans 'Edit' %}]</sup></a></small></small>{% endif %}
+        </h2>
+        {% if student.employer_name %}
+            <p class="public-info"><b>{% trans "Employer name" %}</b>: {{ student.employer_name }}</p>
+        {% endif %}
         {% if student.employer_address and allow_private %}
             <p class="private-info"><b>{% trans "Employer address" %}</b>: {{ student.employer_address }}</p>
         {% endif %}
@@ -50,9 +56,17 @@
             <p class="pubicinfo"><b>{% trans "Duties" %}</b>:<div class="multiline-info">{{ student.employee_duties }}</div></p>
         {% endif %}
     </div>
+{% else %}
+    {% if is_me %}
+        <br/>
+        <a href='{% url profile_edit_employment %}'>{% trans 'Add current employment information' %}</a>
+        <br/>
+    {% endif %}
 {% endif %}
 <div class="profile-info-region">
-    <h2 class="profile-info-region-header">{% trans "Academic and professional information" %}</h2>
+    <h2 class="profile-info-region-header">{% trans "Academic and professional information" %}
+{% if is_me %}<small><small><a href='{% url profile_edit_professional %}'><sup>[{% trans 'Edit' %}]</sup></a></small></small>{% endif %}
+    </h2>
     {% if student.home_town %}
         <p class="public-info"><b>{% trans "Home town" %}</b>: {{ student.home_town }}</p>
     {% endif %}
@@ -93,7 +107,9 @@
     {% endif %}
 </div>
 <div class="profile-info-region">
-    <h2 class="profile-info-region-header">{% trans "Additional information" %}</h2>
+    <h2 class="profile-info-region-header">{% trans "Additional information" %}
+{% if is_me %}<small><small><a href='{% url profile_edit_additional %}'><sup>[{% trans 'Edit' %}]</sup></a></small></small>{% endif %}
+    </h2>
     {% if student.hobbies %}
         <p class="public-info"><b>{% trans "Hobbies" %}</b>:<div class="multiline-info">{{ student.hobbies }}</div></p>
     {% endif %}
@@ -118,4 +134,4 @@
     {% endif %}
 </div>
 <br/>
-
+{% endautoescape %}

@@ -1,7 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, Http404
 from django.conf import settings
 
 from django.contrib.auth.decorators import login_required
@@ -149,9 +149,9 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
 
 
 @login_required
-def profile_edit(request, form_class=ProfileForm, **kwargs):
-    
+def profile_edit(request, form_class=GeneralInfoForm, **kwargs):
     template_name = kwargs.get("template_name", "profiles/profile_edit.html")
+    section = kwargs.get('section')
     
     if request.is_ajax():
         template_name = kwargs.get(
@@ -160,12 +160,36 @@ def profile_edit(request, form_class=ProfileForm, **kwargs):
         )
     
     profile = request.user.get_profile()
+    student=False
+    mentor=False
     if profile.as_student():
         profile = profile.as_student()
-        form_class = StudentProfileForm
+        student=True
     elif profile.as_mentor():
         profile = profile.as_mentor()
-        form_class = MentorProfileForm
+        mentor=True
+    else:
+        raise Http404
+
+    section_verbose_name = ''
+    post_url = ''
+    if section == 'general':
+        if student:
+            form_class = StudentGeneralInfoForm
+        else:
+            form_class = MentorGeneralInfoForm
+        section_verbose_name = _('General information')
+        post_url = reverse('profile_edit_general')
+    elif section == 'employment':
+        if student:
+            form_class = StudentEmploymentForm
+        else:
+            form_class = MentorEmploymentForm
+        section_verbose_name = _('Current employment')
+        post_url = reverse('profile_edit_employment')
+    else:
+        raise Http404
+
     
     if request.method == "POST":
         profile_form = form_class(request.POST, instance=profile)
@@ -180,4 +204,7 @@ def profile_edit(request, form_class=ProfileForm, **kwargs):
     return render_to_response(template_name, {
         "profile": profile,
         "profile_form": profile_form,
+        "section": section,
+        'section_verbose_name': section_verbose_name
+
     }, context_instance=RequestContext(request))
