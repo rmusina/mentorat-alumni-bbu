@@ -98,7 +98,7 @@ class MentorProfile(Profile):
     graduation_date = models.DateField(blank=False, verbose_name=_('graduation date'))    
     employer_name = models.CharField(max_length=50, blank=False, verbose_name=_('employer name'))
     employer_address = models.CharField(max_length=100, blank=False, verbose_name=_('employer address'))
-    employee_position = models.CharField(max_length=100, blank=False, verbose_name=_('position held in current emplyment'))
+    employee_position = models.CharField(max_length=100, blank=False, verbose_name=_('position held in current employment'))
     employee_duties = models.TextField(blank=False, verbose_name=_('duties at current work place'))    
     mentorship_place = models.TextField(blank=False, verbose_name=_('city and country for mentorship'))
     

@@ -17,9 +17,9 @@ from microblogging.models import Following
 
 from profiles.models import *
 from profiles.forms import *
+from profiles.forms_parts import *
 
 from avatar.templatetags.avatar_tags import avatar
-
 
 if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
@@ -171,6 +171,7 @@ def profile_edit(request, form_class=GeneralInfoForm, **kwargs):
     else:
         raise Http404
 
+    # select for type
     section_verbose_name = ''
     post_url = ''
     if section == 'general':
@@ -187,6 +188,20 @@ def profile_edit(request, form_class=GeneralInfoForm, **kwargs):
             form_class = MentorEmploymentForm
         section_verbose_name = _('Current employment')
         post_url = reverse('profile_edit_employment')
+    elif section == 'professional':
+        if student:
+            form_class = StudentProfessionalForm
+        else:
+            form_class = MentorProfessionalForm
+        section_verbose_name = _('Academic and professional information')
+        post_url = reverse('profile_edit_employment')
+    elif section == 'additional':
+        if student:
+            form_class = StudentAdditionalForm
+        else:
+            form_class = MentorAdditionalForm
+        section_verbose_name = _('Additional information')
+        post_url = reverse('profile_edit_additional')
     else:
         raise Http404
 
@@ -208,3 +223,219 @@ def profile_edit(request, form_class=GeneralInfoForm, **kwargs):
         'section_verbose_name': section_verbose_name
 
     }, context_instance=RequestContext(request))
+
+@login_required
+def volunteer_remove(request, id):
+    profile=request.user.get_profile()
+    org = VolunteerOrganization.objects.filter(pk=id)
+    if len(org):
+        org = org[0]
+        if org.profile == profile:
+            org.delete()
+    return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
+
+@login_required
+def volunteer_add_or_edit(request, **kargs):
+    add = kargs['type'] == 'add'
+    if not add and kargs['type'] != 'edit':
+        raise Http404
+    
+    page_title = _('Volunteer organization')
+    post_url = ''
+    submit_name = ''
+    page_name = ''
+    profile_url = reverse('profile_detail', args=[request.user.username])
+    form = None
+    if add:
+        if request.method == 'POST':
+            form = VolunteerForm(request.POST, instance=VolunteerOrganization())
+            if form.is_valid():
+                volunteer = form.save(commit=False)
+                volunteer.profile = request.user.get_profile()
+                volunteer.save()
+                return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
+        else:
+            form = VolunteerForm()
+        post_url = reverse('volunteer_add')
+        submit_name = _('Add')
+        page_name = _('Add a volunteer organization in which you were a member')
+    else: # edit
+        id = kargs['id']
+        orgs = VolunteerOrganization.objects.filter(pk=id)
+        org = None
+        good = True
+        if len(orgs) == 0:
+            good = False
+        else:
+            org = orgs[0]
+        if good and org.profile != request.user.get_profile():
+            good = False
+        if not good:
+            return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
+        
+        if request.method == 'POST':
+            form = VolunteerForm(request.POST, instance=org)
+            if form.is_valid():
+                org = form.save(commit=False)
+                org.profile = request.user.get_profile()
+                org.save()
+                return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
+        else:
+            form = VolunteerForm(instance=org)            
+        
+        post_url = reverse('volunteer_edit', args=[id])
+        submit_name = _('Save')
+        page_name = _('Update information about a volunteer organization')
+    
+    return render_to_response('profiles/profile-types/parts/form.html', 
+                              {'form': form, 'post_url': post_url, 'submit_name': submit_name, 
+                               'profile_url': profile_url, 'page_name': page_name, 'page_title': page_title},
+                              context_instance=RequestContext(request))
+    
+@login_required
+def employment_remove(request, id):
+    student=request.user.get_profile().as_student()
+    if student:
+        job = StudentEmployment.objects.filter(pk=id)
+        if len(job):
+            job = job[0]
+            if job.student == student:
+                job.delete()
+    return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
+    
+    
+@login_required
+def employment_add_or_edit(request, **kargs):
+    student = request.user.get_profile().as_student()
+    if not student:
+        return HttpResponseRedirect(reverse('profile_detail'), args=[request.user.username])
+    add = kargs['type'] == 'add'
+    if not add and kargs['type'] != 'edit':
+        raise Http404
+    
+    page_title = _('Work experience')
+    post_url = ''
+    submit_name = ''
+    page_name = ''
+    profile_url = reverse('profile_detail', args=[request.user.username])
+    form = None
+    if add:
+        if request.method == 'POST':
+            form = EmploymentForm(request.POST, instance=StudentEmployment())
+            if form.is_valid():
+                employment = form.save(commit=False)
+                employment.student = student
+                employment.save()
+                return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
+        else:
+            form = EmploymentForm()
+        post_url = reverse('employment_add')
+        submit_name = _('Add')
+        page_name = _('Add information about your work experience')
+    else: # edit
+        id = kargs['id']
+        employments = StudentEmployment.objects.filter(pk=id)
+        now = None
+        good = True
+        if len(employments) == 0:
+            good = False
+        else:
+            now = employments[0]
+        if good and now.student != student:
+            good = False
+        if not good:
+            return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
+        
+        if request.method == 'POST':
+            form = EmploymentForm(request.POST, instance=now)
+            if form.is_valid():
+                now = form.save(commit=False)
+                now.student = student
+                now.save()
+                return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
+        else:
+            form = EmploymentForm(instance=now)            
+        
+        post_url = reverse('employment_edit', args=[id])
+        submit_name = _('Save')
+        page_name = _('Update the information about you work experience')
+    
+    return render_to_response('profiles/profile-types/parts/form.html', 
+                              {'form': form, 'post_url': post_url, 'submit_name': submit_name, 
+                               'profile_url': profile_url, 'page_name': page_name, 'page_title': page_title},
+                              context_instance=RequestContext(request))
+    
+@login_required
+def research_remove(request, id):
+    student=request.user.get_profile().as_student()
+    if student:
+        research = StudentResearch.objects.filter(pk=id)
+        if len(research):
+            research = research[0]
+            if research.student == student:
+                research.delete()
+    return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
+    
+    
+@login_required
+def research_add_or_edit(request, **kargs):
+    student = request.user.get_profile().as_student()
+    if not student:
+        return HttpResponseRedirect(reverse('profile_detail'), args=[request.user.username])
+    add = kargs['type'] == 'add'
+    if not add and kargs['type'] != 'edit':
+        raise Http404
+    
+    page_title = _('Research')
+    post_url = ''
+    submit_name = ''
+    page_name = ''
+    profile_url = reverse('profile_detail', args=[request.user.username])
+    form = None
+    if add:
+        if request.method == 'POST':
+            form = ResearchForm(request.POST, instance=StudentResearch())
+            if form.is_valid():
+                research = form.save(commit=False)
+                research.student = student
+                research.save()
+                return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
+        else:
+            form = ResearchForm()
+        post_url = reverse('research_add')
+        submit_name = _('Add')
+        page_name = _('Add information about your research activities')
+    else: # edit
+        id = kargs['id']
+        researches = StudentResearch.objects.filter(pk=id)
+        now = None
+        good = True
+        if len(researches) == 0:
+            good = False
+        else:
+            now = researches[0]
+        if good and now.student != student:
+            good = False
+        if not good:
+            return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
+        
+        if request.method == 'POST':
+            form = ResearchForm(request.POST, instance=now)
+            if form.is_valid():
+                now = form.save(commit=False)
+                now.student = student
+                now.save()
+                return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
+        else:
+            form = ResearchForm(instance=now)            
+        
+        post_url = reverse('research_edit', args=[id])
+        submit_name = _('Save')
+        page_name = _('Update the information about your research activities')
+    
+    return render_to_response('profiles/profile-types/parts/form.html', 
+                              {'form': form, 'post_url': post_url, 'submit_name': submit_name, 
+                               'profile_url': profile_url, 'page_name': page_name, 'page_title': page_title},
+                              context_instance=RequestContext(request))
+    
+    
