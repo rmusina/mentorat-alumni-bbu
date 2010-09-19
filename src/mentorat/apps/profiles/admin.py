@@ -1,15 +1,48 @@
 from django.contrib import admin
 from profiles.models import *
 
-admin.site.register(Profile)
-admin.site.register(StudentProfile)
-admin.site.register(MentorProfile)
-admin.site.register(VolunteerOrganization)
-admin.site.register(StudentEmployment)
-admin.site.register(FieldOfInterest)
-admin.site.register(FieldOfInterest_Profile)
-admin.site.register(CommunicationMethod)
-admin.site.register(CommunicationRating)
-admin.site.register(MentorshipActivities)
-admin.site.register(MentorshipActivities_Mentor)
-admin.site.register(StudentResearch)
+class VolunteerOrganizationInline(admin.StackedInline):
+    model = VolunteerOrganization
+    fk_name = 'profile'
+    extra = 0
+
+class CommunicationRatingInline(admin.StackedInline):
+    model = CommunicationRating
+    fk_name = 'profile'
+    extra = 0
+
+class FieldOfInterest_ProfileInline(admin.StackedInline):
+    model = FieldOfInterest_Profile
+    fk_name = 'profile'
+    extra = 0
+
+class ProfileAdmin(admin.ModelAdmin):
+    inlines = [
+        VolunteerOrganizationInline,
+        CommunicationRatingInline,
+        FieldOfInterest_ProfileInline,
+    ]
+
+class StudentEmploymentInline(admin.StackedInline):
+    model = StudentEmployment
+    fk_name = 'student'
+    extra = 0
+
+class StudentProfileAdmin(admin.ModelAdmin):
+    inlines = [
+        StudentEmploymentInline,
+    ]
+
+class MentorshipActivities_MentorInline(admin.StackedInline):
+    model = MentorshipActivities_Mentor
+    fk_name = 'mentor'
+    extra = 0
+
+class MentorProfileAdmin(admin.ModelAdmin):
+    inlines = [
+        MentorshipActivities_MentorInline,
+    ]
+
+admin.site.register(Profile, ProfileAdmin)
+admin.site.register(StudentProfile, StudentProfileAdmin)
+admin.site.register(MentorProfile, MentorProfileAdmin)
