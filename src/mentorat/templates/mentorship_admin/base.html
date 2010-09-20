@@ -1,0 +1,19 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block body_class %}admin{% endblock %}
+
+{% block subnav %}
+    {% if user.is_staff %}
+        <ul>
+            <li><a href="{% url admin_profiles %} ">{% trans "Search" %}</a></li>
+            <li><a href="{% url admin_invite_users %} ">{% trans "Invite users" %}</a></li>
+        </ul>
+    {% else %}
+        &nbsp;
+    {% endif %}
+{% endblock %}
+
+
+
