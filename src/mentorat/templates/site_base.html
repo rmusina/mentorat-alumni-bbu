@@ -57,6 +57,9 @@
             <li id="tab_swaps"><a href="{% url offer_list_all %}">{% trans "Swaps" %}</a></li>
             <li id="tab_locations"><a href="{% url loc_yours %}">{% trans "Locations" %}</a></li>
             <li id="tab_inbox"><a href="{% url messages_inbox %}">{% trans "Inbox" %} ({{ combined_inbox_count }})</a></li>
+            {% if user.is_staff %}
+                <li id="tab_mentorship_admin"><a href="{% url admin_invite_users %}">{% trans "Admin" %}</a></li>
+            {% endif %}
         {% endspaceless %}</ul>
     {% endif %}
 {% endblock %}

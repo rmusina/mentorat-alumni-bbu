@@ -111,9 +111,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
-    
+
     "pinax.core.context_processors.pinax_settings",
-    
+
     "notification.context_processors.notification",
     "announcements.context_processors.site_wide_announcements",
     "account.context_processors.openid",
@@ -138,7 +138,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.markup',
     'pinax.templatetags',
-    
+
     # external
     'notification', # must be first
     'django_openid',
@@ -173,7 +173,7 @@ INSTALLED_APPS = (
     'django_sorting',
     'django_markup',
     'staticfiles',
-    
+
     # internal (for now)
     'analytics',
     'profiles',
@@ -184,9 +184,11 @@ INSTALLED_APPS = (
     'tag_app',
     'topics',
     'groups',
-    
+
     'django.contrib.admin',
 
+    # mentorship exclusive
+    'mentorship_admin'
 )
 
 ABSOLUTE_URL_OVERRIDES = {
