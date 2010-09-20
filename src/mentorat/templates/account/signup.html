@@ -1,0 +1,21 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Sign Up" %}</h1>
+    
+    {% if user.is_authenticated %}
+        <p>{% trans "You are already logged in." %}</p>
+    {% else %}
+        <p>{% trans "Already have an account?" %} <a href="{% url acct_login %}">{% trans "Log In" %}</a>!</p>
+        <p>
+            <a href="{% url signup_student %}">{% trans "Student sign up form."%}</a><br/>
+            <a href="{% url signup_mentor %}">{% trans "Mentor sign up form."%}</a>
+        </p>        
+    {% endif %}
+{% endblock %}
+

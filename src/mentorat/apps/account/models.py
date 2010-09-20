@@ -14,7 +14,6 @@ from timezones.fields import TimeZoneField
 from emailconfirmation.signals import email_confirmed
 
 class Account(models.Model):
-
     user = models.ForeignKey(User, unique=True, verbose_name=_('user'))
 
     timezone = TimeZoneField(_('timezone'))
@@ -66,7 +65,7 @@ def create_account(sender, instance=None, **kwargs):
         return
     account, created = Account.objects.get_or_create(user=instance)
 
-post_save.connect(create_account, sender=User)
+# post_save.connect(create_account, sender=User)
 
 
 # @@@ move to emailconfirmation app?

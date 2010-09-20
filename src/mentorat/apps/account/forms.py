@@ -2,20 +2,27 @@ import re
 
 from django import forms
 from django.template.loader import render_to_string
+from django.shortcuts import render_to_response
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _, ugettext
 from django.utils.encoding import smart_unicode
 from django.utils.hashcompat import sha_constructor
+from django.contrib.formtools.wizard import FormWizard
 
 from pinax.core.utils import get_send_mail
+from django.template.context import RequestContext
+from django.core.urlresolvers import reverse
 send_mail = get_send_mail()
 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
+from django.http import Http404 , HttpResponseRedirect
 
 from emailconfirmation.models import EmailAddress
 from account.models import Account
+from profiles.models import *
+from profiles.forms import *
 
 from timezones.forms import TimeZoneField
 
@@ -379,3 +386,85 @@ class TwitterForm(UserForm):
             twitter_password = get_twitter_password(settings.SECRET_KEY, self.cleaned_data['password']),
         )
         self.user.message_set.create(message=ugettext(u"Successfully authenticated."))
+
+
+
+
+class SignupFormForWizard(forms.Form):
+
+    username = forms.CharField(label=_("Username"), max_length=30, widget=forms.TextInput())
+    password1 = forms.CharField(label=_("Password"), widget=forms.PasswordInput(render_value=False))
+    password2 = forms.CharField(label=_("Password (again)"), widget=forms.PasswordInput(render_value=False))
+
+    def clean_username(self):
+        if not alnum_re.search(self.cleaned_data["username"]):
+            raise forms.ValidationError(_("Usernames can only contain letters, numbers and underscores."))
+        try:
+            user = User.objects.get(username__iexact=self.cleaned_data["username"])
+        except User.DoesNotExist:
+            return self.cleaned_data["username"]
+        raise forms.ValidationError(_("This username is already taken. Please choose another."))
+
+    def clean(self):
+        if "password1" in self.cleaned_data and "password2" in self.cleaned_data:
+            if self.cleaned_data["password1"] != self.cleaned_data["password2"]:
+                raise forms.ValidationError(_("You must type the same password each time."))
+        return self.cleaned_data
+
+    def save(self):
+        username = self.cleaned_data["username"]
+        password = self.cleaned_data["password1"]
+
+        new_user = User.objects.create_user(username, "", password)
+        
+        if settings.ACCOUNT_EMAIL_VERIFICATION:
+            new_user.is_active = False
+            new_user.save()
+            
+        return new_user
+
+
+class SignUpWizard(FormWizard):
+    def get_template(self, step):
+        return 'account/signup-wizard.html'
+    
+    def get_section_name(self, step):
+        section_names = [_('Account information'), _('General information'), _('Current employment'), _('Academic and professional information'),
+                         _('Additional information')]
+        return section_names[step]
+    
+    def get_next_text(self, now, max):
+        if now == max:
+            return _('Submit')
+        return _('Next')
+    
+    def render_template(self, request, form, previous_fields, step, context=None):
+        context = context or {}
+        context.update(self.extra_context)
+        return render_to_response(self.get_template(step), dict(context,
+                                                                step_field=self.step_field_name,
+                                                                step0=step,
+                                                                step=step + 1,
+                                                                step_count=self.num_steps(),
+                                                                form=form,
+                                                                previous_fields=previous_fields,
+                                                                section_name=self.get_section_name(step),
+                                                                next_text=self.get_next_text(step+1, self.num_steps())),
+                                  context_instance=RequestContext(request))
+    
+    def done(self, request, form_list):
+        ProfileClass = None
+        if isinstance(form_list[1], StudentGeneralInfoForm):
+            ProfileClass = StudentProfile
+        elif isinstance(form_list[1], MentorGeneralInfoForm):
+            ProfileClass = MentorProfile
+        else:
+            raise Http404
+        user = form_list[0].save()
+        profile = ProfileClass.objects.create(user=user)
+        for form in form_list[1:]:
+            form.instance = profile
+            form.save(commit=False)
+        user.save()
+        profile.save()
+        return HttpResponseRedirect(reverse('signedup', args=[profile.email]))

@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
+import datetime
 
 
 class Profile(models.Model):
@@ -95,7 +96,7 @@ class MentorProfile(Profile):
     # Specific general informations
     graduated_faculty = models.CharField(max_length=100, blank=False, verbose_name=_('graduated faculty'))
     graduated_major = models.CharField(max_length=100, blank=False, verbose_name=_('graduated major'))
-    graduation_date = models.DateField(blank=False, verbose_name=_('graduation date'))    
+    graduation_date = models.DateField(null=True, blank=False, verbose_name=_('graduation date'), default=datetime.datetime.now())    
     employer_name = models.CharField(max_length=50, blank=False, verbose_name=_('employer name'))
     employer_address = models.CharField(max_length=100, blank=False, verbose_name=_('employer address'))
     employee_position = models.CharField(max_length=100, blank=False, verbose_name=_('position held in current employment'))
@@ -194,11 +195,3 @@ class CommunicationRating(models.Model):
     def __unicode__(self):
         return self.method.name + '(' + str(self.ratting) + ')' 
 
-
-def create_profile(sender, instance=None, **kwargs):
-    if instance is None:
-        return
-    profile, created = Profile.objects.get_or_create(user=instance)
-
-
-post_save.connect(create_profile, sender=User)

@@ -1,0 +1,26 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+        <h1>{% trans "Sign Up" %}</h1>
+        <p>{% trans "You are already logged in." %}</p>
+    {% else %}
+        <h1>{% trans "Sign Up" %}<small><small> {% trans "Step" %} {{ step }} {% trans "of" %} {{ step_count }}</small>: {{ section_name }}</small></h1>
+        <p>{% trans "Already have an account?" %} <a href="{% url acct_login %}">{% trans "Log In" %}</a>!</p>
+        <form class="signup uniForm" id="signup_form" method="post" action=".">
+            <fieldset>
+                {{ form|as_uni_form }}
+                <div  class="form_blick">
+                    <input type="submit" value="{{ next_text }} &raquo;" />
+                </div>
+            </fieldset>
+            <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
+            {{ previous_fields|safe }}
+        </form>
+    {% endif %}
+{% endblock %}

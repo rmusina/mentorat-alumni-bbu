@@ -49,31 +49,11 @@ def login(request, form_class=LoginForm, template_name="account/login.html",
         context_instance = RequestContext(request)
     )
 
-def signup(request, form_class=SignupForm,
-        template_name="account/signup.html", success_url=None):
-    if success_url is None:
-        success_url = get_default_redirect(request)
-    if request.method == "POST":
-        form = form_class(request.POST)
-        if form.is_valid():
-            username, password = form.save()
-            if settings.ACCOUNT_EMAIL_VERIFICATION:
-                return render_to_response("account/verification_sent.html", {
-                    "email": form.cleaned_data["email"],
-                }, context_instance=RequestContext(request))
-            else:
-                user = authenticate(username=username, password=password)
-                auth_login(request, user)
-                request.user.message_set.create(
-                    message=_("Successfully logged in as %(username)s.") % {
-                    'username': user.username
-                })
-                return HttpResponseRedirect(success_url)
-    else:
-        form = form_class()
-    return render_to_response(template_name, {
-        "form": form,
-    }, context_instance=RequestContext(request))
+def signup(request):
+    return render_to_response('account/signup.html', {}, context_instance=RequestContext(request))
+    
+def signedup(request, email):
+    return render_to_response('account/signup_complete.html', {'email': email}, context_instance=RequestContext(request))
 
 @login_required
 def email(request, form_class=AddEmailForm,

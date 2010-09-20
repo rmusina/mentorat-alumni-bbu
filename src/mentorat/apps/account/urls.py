@@ -1,9 +1,9 @@
 from django.conf.urls.defaults import *
 from account.forms import *
+from profiles.forms import *
 
 urlpatterns = patterns('',
     url(r'^email/$', 'account.views.email', name="acct_email"),
-    url(r'^signup/$', 'account.views.signup', name="acct_signup"),
     url(r'^login/$', 'account.views.login', name="acct_login"),
     url(r'^login/openid/$', 'account.views.login', {'associate_openid': True},
         name="acct_login_openid"),
@@ -25,6 +25,10 @@ urlpatterns = patterns('',
 
     # Setting the permanent password after getting a key by email
     url(r'^password_reset_key/(\w+)/$', 'account.views.password_reset_from_key', name="acct_passwd_reset_key"),
+    url(r'^signup/$', 'account.views.signup', name="signup"),
+    url(r'^signup/student/$', SignUpWizard([SignupFormForWizard, StudentGeneralInfoForm, StudentEmploymentForm, StudentProfessionalForm, StudentAdditionalForm]), name='signup_student'),
+    url(r'^signup/mentor/$', SignUpWizard([SignupFormForWizard, MentorGeneralInfoForm, MentorEmploymentForm, MentorProfessionalForm, MentorAdditionalForm]), name='signup_mentor'),
+    url(r'^signedup/(?P<email>.+)/$', 'account.views.signedup', name='signedup'),
 
     # ajax validation
     (r'^validate/$', 'ajax_validation.views.validate', {'form_class': SignupForm}, 'signup_form_validate'),

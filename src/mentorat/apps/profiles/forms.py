@@ -8,8 +8,8 @@ def is_valid_cnp(value):
         return False
     if value[0] != '1' and value[0] != '2':
         return False
-    month = eval(value[3:5])
-    day = eval(value[5:7])
+    month = int(value[3:5])
+    day = int(value[5:7])
     if month < 1 or month > 12 or day < 1 or day > 31:
         return False
     if month in months_with_30 and day == 30:
@@ -27,8 +27,8 @@ class GeneralInfoForm(forms.ModelForm):
     previous_surname = forms.CharField(label=_('Surname before marriage (is applicable)'), error_messages=error_messages_charfields,
                                        max_length=30, required=False)
     CNP = forms.CharField(label=_('CNP'), error_messages={'required': _('This field is required'),
-                                                          'min_length': _('The CNP is %d digits long'),
-                                                          'max_length': _('The CNP is %d digits long')}, min_length=13, max_length=13)
+                                                          'min_length': _('The CNP is 13 digits long'),
+                                                          'max_length': _('The CNP is 13 digits long')}, min_length=13, max_length=13)
     age = forms.IntegerField(required=False, label=_('Age (optional)'),
                              error_messages={'invalid': _('Enter a valid age'), 'max_value': _('Are you really that old? You can\'t be older than %d.'), 'min_value': _('You are too young to be a student. You must be at least %d.')},
                              min_value=15, max_value=100)
