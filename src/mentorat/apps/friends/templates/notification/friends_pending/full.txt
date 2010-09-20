@@ -1,1 +1,1 @@
-{% load i18n %}{% blocktrans with invitation.to_user as invitation_to_user %}{{ invitation_to_user }} is studying your request{% endblocktrans %}
+{% load i18n %}{% blocktrans with invitation.to_user as invitation_to_user %}{{ invitation_to_user }} is studying your mentorship request{% endblocktrans %}

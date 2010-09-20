@@ -14,7 +14,9 @@
         {% endif %}
     </div>
     <div class="friends">
-        <h2>{% trans "Your Friends" %}</h2>
+        {% if student %} <h2>{% trans "Your Mentors" %}</h2>
+		{% else %} <h2>{% trans "Your Mentees" %}</h2>
+		{% endif %}
         {% if other_friends %}
             <table width="100%">
                 {% for friendship in other_friends %}

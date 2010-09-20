@@ -76,11 +76,11 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
         if request.method == "POST":
             if request.POST.get("action") == "remove": # @@@ perhaps the form should just post to friends and be redirected here
                 Friendship.objects.remove(request.user, other_user)
-                request.user.message_set.create(message=_("You have removed %(from_user)s from friends") % {'from_user': other_user})
+                request.user.message_set.create(message=_("You have removed %(from_user)s from mentor contacts") % {'from_user': other_user})
                 is_friend = False
                 invite_form = InviteFriendForm(request.user, {
                     'to_user': username,
-                    'message': ugettext("Let's be friends!"),
+                    'message': ugettext("Please review my cv and accept my request!"),
                 })
     
     else:
@@ -92,7 +92,7 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
             else:
                 invite_form = InviteFriendForm(request.user, {
                     'to_user': username,
-                    'message': ugettext("Let's be friends!"),
+                    'message': ugettext("Please review my cv and accept my request!"),
                 })
                 invitation_id = request.POST.get("invitation", None)
                 if request.POST.get("action") == "accept": # @@@ perhaps the form should just post to friends and be redirected here
@@ -100,7 +100,7 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
                         invitation = FriendshipInvitation.objects.get(id=invitation_id)
                         if invitation.to_user == request.user:
                             invitation.accept()
-                            request.user.message_set.create(message=_("You have accepted the friendship request from %(from_user)s") % {'from_user': invitation.from_user})
+                            request.user.message_set.create(message=_("You have accepted the mentorship request from %(from_user)s") % {'from_user': invitation.from_user})
                             is_friend = True
                             other_friends = Friendship.objects.friends_for_user(other_user)
                     except FriendshipInvitation.DoesNotExist:
@@ -110,7 +110,7 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
                         invitation = FriendshipInvitation.objects.get(id=invitation_id)
                         if invitation.to_user == request.user:
                             invitation.decline()
-                            request.user.message_set.create(message=_("You have declined the friendship request from %(from_user)s") % {'from_user': invitation.from_user})
+                            request.user.message_set.create(message=_("You have declined the mentorship request from %(from_user)s") % {'from_user': invitation.from_user})
                             other_friends = Friendship.objects.friends_for_user(other_user)
                     except FriendshipInvitation.DoesNotExist:
                         pass
@@ -119,18 +119,24 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
                         invitation = FriendshipInvitation.objects.get(id=invitation_id)
                         if invitation.to_user == request.user:
                             invitation.pending()
-                            request.user.message_set.create(message=_("You have chosen to review the request from %(from_user)s") % {'from_user': invitation.from_user})
+                            request.user.message_set.create(message=_("You have chosen to review the mentorship request from %(from_user)s") % {'from_user': invitation.from_user})
                             other_friends = Friendship.objects.friends_for_user(other_user)
                     except FriendshipInvitation.DoesNotExist:
                         pass
         else:
             invite_form = InviteFriendForm(request.user, {
                 'to_user': username,
-                'message': ugettext("Let's be friends!"),
+                'message': ugettext("Please review my cv and accept my request!"),
             })
     
     previous_invitations_to = FriendshipInvitation.objects.invitations(to_user=other_user, from_user=request.user)
     previous_invitations_from = FriendshipInvitation.objects.invitations(to_user=request.user, from_user=other_user)
+    previous_denied_invitation_to =  FriendshipInvitation.objects.invitationsDenied(to_user=request.user, from_user=other_user)
+    
+    if request.user.get_profile().as_student() == None or other_user.get_profile().as_mentor() == None:
+        deny_mentor_request = True
+    else: 
+        deny_mentor_request = False
     
     return render_to_response(template_name, dict({
         "is_me": is_me,
@@ -139,12 +145,14 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
         "other_user": other_user,
         "allow_private": is_me, # can see private fields
         "allow_restricted": True, # can see restricted fields
+        "deny_mentor_request": deny_mentor_request, #can see the 'add as a friend' field
         "student": other_user.get_profile().as_student(),
         "mentor": other_user.get_profile().as_mentor(),
         "other_friends": other_friends,
         "invite_form": invite_form,
         "previous_invitations_to": previous_invitations_to,
         "previous_invitations_from": previous_invitations_from,
+        "previous_denied_invitation_to": previous_denied_invitation_to,
     }, **extra_context), context_instance=RequestContext(request))
 
 

@@ -18,7 +18,7 @@ class Profile(models.Model):
     email = models.CharField(max_length=50, blank=False, verbose_name=_('email'))
     telephone = models.CharField(max_length=20, blank=False, verbose_name=_('telephone'))
     address = models.CharField(max_length=100, blank=False, verbose_name=_('address'))
-    
+
     # Academic and professional information
     home_town = models.CharField(max_length=50, blank=False, verbose_name=_('home town'))
     graduated_college = models.CharField(max_length=100, blank=False, verbose_name=_('graduated college'))

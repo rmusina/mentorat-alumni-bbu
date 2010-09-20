@@ -169,8 +169,11 @@ class FriendshipInvitationManager(models.Manager):
     def invitationsAll(self, *args, **kwargs):
         return self.filter(*args, **kwargs).exclude(status__in=["7", "8"])
     
-    def invitationsSentPending(self, *args, **kwargs):
-        return self.filter(*args, **kwargs).exclude(status__in=["7", "8"])
+    def invitationsDenied(self, *args, **kwargs):
+        return self.filter(*args, **kwargs).filter(status="6")
+    
+    def invitationsDeleted(self, *args, **kwargs):
+        return self.filter(*args, **kwargs).filter(status="5")
 
 class FriendshipInvitation(models.Model):
     """
