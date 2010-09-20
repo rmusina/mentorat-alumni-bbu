@@ -42,26 +42,10 @@
             </div>
             
             {% if user.is_authenticated %}
-                <p>
-                    <a href="{% url tweet_followers other_user %}">{% trans "Followers" %}</a>: {% follower_count other_user %}
-                    <a href="{% url tweet_following other_user %}">{% trans "Following" %}</a>: {% following_count other_user %}
-                </p>
-                
                 {% if is_me %}
 				{% else %}
 					{% if deny_mentor_request %}
 		            {% else %}
-		                {# @@@ this could be done with ajax, or at the very least turned into an inclusion tag #}
-		                <div>
-		                    <form method="POST" action="{% url toggle_follow other_user %}">
-		                        {% if is_following %}
-		                            <input type="hidden" name="action" value="unfollow" /><input type="submit" value="{% trans "unfollow" %}"/>
-		                        {% else %}
-		                            <input type="hidden" name="action" value="follow" /><input type="submit" value="{% trans "follow tweets" %}"/>
-		                        {% endif %}
-		                    </form>
-		                </div>
-		                
 		                {# @@@ this should be an inclusion tag #}
 		                {% if is_friend %}
 		                    <p>{% blocktrans %}You are connected with {{ other_user }}.{% endblocktrans %} <a href="{% url messages_compose %}{{ other_user }}/">{% trans "Send a message" %}</a>.</p>
@@ -150,30 +134,6 @@
                     <p>{% trans "No wiki articles yet." %}</p>
                 {% endif %}
                 
-                <h2>{% trans "Bookmarks" %}</h2>
-                
-                {% if other_user.saved_bookmarks.all %}
-                    <table class="bookmarks narrow">
-                        {% for bookmark_instance in other_user.saved_bookmarks.all.select_related %}
-                            <tr class="{% cycle odd,even %} xfolkentry">
-                                <td class="meta">
-                                    {{ bookmark_instance.saved|date }}
-                                    {# add who originally added it and when #}
-                                </td>
-                                <td>
-                                    <h2><a class="taggedlink" href="{{ bookmark_instance.bookmark.url }}">{{ bookmark_instance.description }}</a></h2>
-                                    <div class="url">{% if bookmark_instance.bookmark.get_favicon_url %}<img src="{{ bookmark_instance.bookmark.get_favicon_url }}" height="16" width="16"/> {% endif %}{{ bookmark_instance.bookmark.url }}</div>
-                                    <div class="body description">{{ bookmark_instance.note|linebreaks }}</div>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                {% else %}
-                    {% url add_bookmark as add_bookmark_url %}
-                    <p>{% blocktrans %}You haven't added any <a href="{{ add_bookmark_url }}">bookmarks</a> yet.{% endblocktrans %}</p>
-                {% endif %}
-                
-                
                 <h2>{% trans "Blog Posts" %}</h2>
                 
                 {% if other_user.added_posts.all %}
@@ -182,32 +142,6 @@
                     {% endfor %}
                 {% else %}
                     {% trans "No blog posts yet." %}
-                {% endif %}
-                
-                
-                <h2>{% trans "Tweets" %}</h2>
-                
-                {% if user.is_authenticated and is_me %}
-                    {% sent_tweet_listing user 0 is_me %}
-                {% else %}
-                    {% sent_tweet_listing other_user 0 is_me %}
-                {% endif %}
-                
-                
-                <h2>{% trans "Photos" %}</h2>
-                
-                {% public_photos for other_user as photos %}
-                
-                {% if photos %}
-                    <div class="clearfix">
-                    {% for photo in photos %}
-                        <div class="gallery-photo-thumb">
-                            <a href="/photos/details/{{ photo.id }}/"><img src="{{ photo.get_thumbnail_url }}" alt="{{ photo.title }}"/></a>
-                        </div>
-                    {% endfor %}
-                    </div>
-                {% else %}
-                   {% trans "No photos uploaded yet." %}
                 {% endif %}
                 
             {% else %} {# not user.is_authenticated #}

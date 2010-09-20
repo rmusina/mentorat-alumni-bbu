@@ -156,12 +156,10 @@ INSTALLED_APPS = (
     'threadedcomments',
     'threadedcomments_extras',
     'wiki',
-    'swaps',
     'timezones',
     'voting',
     'voting_extras',
     'tagging',
-    'bookmarks',
     'blog',
     'ajax_validation',
     'photologue',
@@ -216,7 +214,7 @@ EMAIL_DEBUG = DEBUG
 CONTACT_EMAIL = "feedback@example.com"
 SITE_NAME = "Pinax"
 LOGIN_URL = "/account/login/"
-LOGIN_REDIRECT_URLNAME = "what_next"
+LOGIN_REDIRECT_URLNAME = "home"
 
 INTERNAL_IPS = (
     '127.0.0.1',
