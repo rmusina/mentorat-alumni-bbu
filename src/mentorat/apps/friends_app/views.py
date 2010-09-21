@@ -49,6 +49,7 @@ def friends(request, form_class=JoinRequestForm,
             except FriendshipInvitation.DoesNotExist:
                 pass
             join_request_form = form_class()
+            
     else:
         join_request_form = form_class()
     
@@ -56,8 +57,14 @@ def friends(request, form_class=JoinRequestForm,
     invites_sent = request.user.invitations_from.invitationsAll().order_by("-sent")
     joins_sent = request.user.join_from.all().order_by("-sent")
     
+    if request.user.get_profile().as_mentor() != None and FriendshipInvitation.objects.countAccepts(to_user = request.user) < 3:
+        mentor_can_accept = True
+    else:
+        mentor_can_accept = False
+        
     return render_to_response(template_name, {
         "join_request_form": join_request_form,
+        "mentor_can_accept": mentor_can_accept,
         "invites_received": invites_received,
         "invites_sent": invites_sent,
         "joins_sent": joins_sent,
