@@ -101,7 +101,8 @@ INVITE_STATUS = (
     ("6", "Declined"),
     ("7", "Joined Independently"),
     ("8", "Deleted"),
-    ("9", "Pending")
+    ("9", "Pending"),
+    ("10", "Accepted By Other Mentor")
 )
 
 class JoinInvitationManager(models.Manager):
@@ -172,8 +173,20 @@ class FriendshipInvitationManager(models.Manager):
     def invitationsDenied(self, *args, **kwargs):
         return self.filter(*args, **kwargs).filter(status="6")
     
-    def invitationsDeleted(self, *args, **kwargs):
-        return self.filter(*args, **kwargs).filter(status="5")
+    def otherInvitations(self, *args, **kwargs):
+        return self.filter(*args, **kwargs).filter(status="6")
+    
+    def sent_invitations(self, *args, **kwargs):
+        return self.filter(*args, **kwargs).filter(status="2")
+    
+    def hasMentor(self, *args, **kwargs):
+        return self.filter(*args, **kwargs).filter(status="5").count() > 0
+    
+    def countRequests(self, *args, **kwargs):
+        return self.filter(*args, **kwargs).exclude(status__in=["7", "8"]).count()
+    
+    def countAccepts(self, *args, **kwargs):
+        return self.filter(*args, **kwargs).filter(status="5").count()
 
 class FriendshipInvitation(models.Model):
     """
@@ -195,6 +208,13 @@ class FriendshipInvitation(models.Model):
             friendship.save()
             self.status = "5"
             self.save()
+            
+            #notify other mentors for which the user has applied
+            for invitation in FriendshipInvitation.objects.invitations(from_user=self.from_user).exclude(to_user=self.to_user):
+                invitation.status = "10"
+                invitation.save()
+                notification.send([invitation.to_user], "friends_other_mentor", {"invitation": invitation})
+            
             if notification:
                 notification.send([self.from_user], "friends_accept", {"invitation": self})
                 notification.send([self.to_user], "friends_accept_sent", {"invitation": self})
@@ -211,9 +231,19 @@ class FriendshipInvitation(models.Model):
         if not Friendship.objects.are_friends(self.to_user, self.from_user):
             self.status = "9"
             self.save()     
+            
             if notification:
                 notification.send([self.from_user], "friends_pending", {"invitation": self})
                 notification.send([self.to_user], "friends_pending_sent", {"invitation": self})   
+    
+    def renounce(self):
+        if not Friendship.objects.are_friends(self.to_user, self.from_user):
+            self.status = "8"
+            self.save()     
+             
+            if notification:
+                notification.send([self.to_user], "friends_renounce", {"invitation": self})
+                notification.send([self.from_user], "friends_renounce_sent", {"invitation": self})
             
 class FriendshipInvitationHistory(models.Model):
     """

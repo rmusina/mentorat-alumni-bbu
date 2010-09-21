@@ -49,11 +49,21 @@
                             <p>From <a href="{% url profile_detail invitation.from_user.username %}">{{ invitation.from_user }}</a>
                                 ({{ invitation.sent }}):</p>
                             <p class="invitation_message">{{ invitation.message }}</p>
-                            <form method="post" action="">
-                                <input type="hidden" name="invitation" value="{{ invitation.id }}"/>
-                                <input type="hidden" name="action" value="accept"/>
-                                <input type="submit" value="{% trans 'accept' %}" />
-                            </form>
+                            
+							{% if mentor_can_accept %} 
+								<form method="post" action="">
+								  	<input type="hidden" name="invitation" value="{{ invitation.id }}"/>
+								    <input type="hidden" name="action" value="accept"/>
+									<input type="submit" value="{% trans 'accept' %}" />
+								</form>
+							{% else %}
+							    <form method="post" action="">
+								    <input type="hidden" name="invitation" value="{{ invitation.id }}"/>
+							        <input type="hidden" name="action" value="accept"/>
+							        <input type="submit" value="{% trans 'accept' %}" disabled="disabled"/>
+								</form>
+							{% endif %}
+
                             <form method="post" action="">
                                 <input type="hidden" name="invitation" value="{{ invitation.id }}"/>
                                 <input type="hidden" name="action" value="decline"/>
@@ -73,11 +83,21 @@
                             <p>From <a href="{% url profile_detail invitation.from_user.username %}">{{ invitation.from_user }}</a>
                                 ({{ invitation.sent }}):</p>
                             <p class="invitation_message">{{ invitation.message }}</p>
-                            <form method="post" action="">
-                                <input type="hidden" name="invitation" value="{{ invitation.id }}"/>
-                                <input type="hidden" name="action" value="accept"/>
-                                <input type="submit" value="{% trans 'accept' %}" />
-                            </form>
+
+                            {% if mentor_can_accept %} 
+								<form method="post" action="">
+								  	<input type="hidden" name="invitation" value="{{ invitation.id }}"/>
+								    <input type="hidden" name="action" value="accept"/>
+									<input type="submit" value="{% trans 'accept' %}" />
+								</form>
+							{% else %}
+							    <form method="post" action="">
+								    <input type="hidden" name="invitation" value="{{ invitation.id }}"/>
+							        <input type="hidden" name="action" value="accept"/>
+							        <input type="submit" value="{% trans 'accept' %}" disabled="disabled"/>
+								</form>
+							{% endif %}
+
                             <form method="post" action="">
                                 <input type="hidden" name="invitation" value="{{ invitation.id }}"/>
                                 <input type="hidden" name="action" value="decline"/>

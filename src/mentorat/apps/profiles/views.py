@@ -82,13 +82,17 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
                     'to_user': username,
                     'message': ugettext("Please review my cv and accept my request!"),
                 })
-    
     else:
         if request.user.is_authenticated() and request.method == "POST":
             if request.POST.get("action") == "invite": # @@@ perhaps the form should just post to friends and be redirected here
                 invite_form = InviteFriendForm(request.user, request.POST)
                 if invite_form.is_valid():
                     invite_form.save()
+            elif request.POST["action"] == "renounce":
+                invitation = FriendshipInvitation.objects.sent_invitations(to_user=other_user, from_user=request.user)[0]
+                invitation.renounce()
+                request.user.message_set.create(message=_("You have chosen to renounce this request %(from_user)s") % {'from_user': invitation.from_user})
+                invite_form = None
             else:
                 invite_form = InviteFriendForm(request.user, {
                     'to_user': username,
@@ -122,7 +126,7 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
                             request.user.message_set.create(message=_("You have chosen to review the mentorship request from %(from_user)s") % {'from_user': invitation.from_user})
                             other_friends = Friendship.objects.friends_for_user(other_user)
                     except FriendshipInvitation.DoesNotExist:
-                        pass
+                        pass                
         else:
             invite_form = InviteFriendForm(request.user, {
                 'to_user': username,
@@ -131,12 +135,19 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
     
     previous_invitations_to = FriendshipInvitation.objects.invitations(to_user=other_user, from_user=request.user)
     previous_invitations_from = FriendshipInvitation.objects.invitations(to_user=request.user, from_user=other_user)
-    previous_denied_invitation_to =  FriendshipInvitation.objects.invitationsDenied(to_user=request.user, from_user=other_user)
+    previous_denied_invitation_to =  FriendshipInvitation.objects.invitationsDenied(to_user=other_user, from_user=request.user)
     
     if request.user.get_profile().as_student() == None or other_user.get_profile().as_mentor() == None:
         deny_mentor_request = True
     else: 
         deny_mentor_request = False
+    
+    consumed_all_requests = FriendshipInvitation.objects.countRequests(from_user = request.user) >= 3
+    
+    if request.user.get_profile().as_mentor() != None and FriendshipInvitation.objects.countAccepts(to_user = request.user) < 3:
+        mentor_can_accept = True
+    else:
+        mentor_can_accept = False
     
     return render_to_response(template_name, dict({
         "is_me": is_me,
@@ -145,9 +156,12 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
         "other_user": other_user,
         "allow_private": is_me, # can see private fields
         "allow_restricted": True, # can see restricted fields
+        "has_mentor": FriendshipInvitation.objects.hasMentor(from_user = request.user),
         "deny_mentor_request": deny_mentor_request, #can see the 'add as a friend' field
+        "consumed_all_requests": consumed_all_requests,
         "student": other_user.get_profile().as_student(),
         "mentor": other_user.get_profile().as_mentor(),
+        "mentor_can_accept": mentor_can_accept,
         "other_friends": other_friends,
         "invite_form": invite_form,
         "previous_invitations_to": previous_invitations_to,
