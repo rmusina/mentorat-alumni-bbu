@@ -1,7 +1,7 @@
 from django.conf import settings
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
@@ -12,6 +12,36 @@ from signup_codes.models import check_signup_code
 from signup_codes.forms import SignupForm, InviteUserForm
 
 from profiles.models import StudentProfile, MentorProfile
+
+@staff_member_required
+def admin_set_profile_visibility(request, username, visibility, template_name="mentorship_admin/admin_set_profile_visibility.html", extra_context=None):
+    if extra_context == None:
+        extra_context = {}
+
+    other_user = get_object_or_404(User,username=username)
+    if visibility == 'activate':
+        if other_user.is_active == False:
+            other_user.is_active = True
+    elif visibility == 'deactivate':
+        if other_user.is_active == True:
+            other_user.is_active = False
+    elif visibility == 'status':
+        pass
+    else:
+        raise Http404
+
+    if other_user.is_active == True:
+        other_user_status = "active"
+    else:
+        other_user_status = "inactive"
+
+    other_user.save()
+
+    return render_to_response(template_name, dict({
+        'user': other_user,
+        'status': other_user_status,
+    }, **extra_context), context_instance=RequestContext(request))
+
 
 @staff_member_required
 def admin_profiles(request, template_name="mentorship_admin/admin_search_profiles.html", extra_context=None):
