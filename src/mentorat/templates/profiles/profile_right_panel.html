@@ -68,8 +68,10 @@
         {% endif %}
     </div>
     <div class="friends">
-        <h2>{% blocktrans %}{{ other_user }}'s Friends{% endblocktrans %}</h2>
-        <table width="100%">
+		{% if student %} <h2>{% blocktrans %}{{ other_user }}'s Mentor{% endblocktrans %}</h2>
+		{% else %} <h2>{% blocktrans %}{{ other_user }}'s Mentees{% endblocktrans %}</h2>
+		{% endif %}        
+		<table width="100%">
             {% for friendship in other_friends %}
                 {% if forloop.counter0|divisibleby:"3" %}<tr>{% endif %}
                 <td>

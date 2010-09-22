@@ -183,7 +183,7 @@ class FriendshipInvitationManager(models.Manager):
         return self.filter(*args, **kwargs).filter(status="5").count() > 0
     
     def countRequests(self, *args, **kwargs):
-        return self.filter(*args, **kwargs).exclude(status__in=["7", "8"]).count()
+        return self.filter(*args, **kwargs).exclude(status__in=["6", "8"]).count()
     
     def countAccepts(self, *args, **kwargs):
         return self.filter(*args, **kwargs).filter(status="5").count()

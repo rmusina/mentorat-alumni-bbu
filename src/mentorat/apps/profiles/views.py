@@ -19,6 +19,8 @@ from profiles.models import *
 from profiles.forms import *
 from profiles.forms_parts import *
 
+from messages.forms import ComposeForm
+
 from avatar.templatetags.avatar_tags import avatar
 
 if "notification" in settings.INSTALLED_APPS:
@@ -88,7 +90,7 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
                 invite_form = InviteFriendForm(request.user, request.POST)
                 if invite_form.is_valid():
                     invite_form.save()
-            elif request.POST["action"] == "renounce":
+            elif request.POST.get("action")  == "renounce":
                 invitation = FriendshipInvitation.objects.sent_invitations(to_user=other_user, from_user=request.user)[0]
                 invitation.renounce()
                 request.user.message_set.create(message=_("You have chosen to renounce this request %(from_user)s") % {'from_user': invitation.from_user})
@@ -114,8 +116,10 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
                         invitation = FriendshipInvitation.objects.get(id=invitation_id)
                         if invitation.to_user == request.user:
                             invitation.decline()
-                            request.user.message_set.create(message=_("You have declined the mentorship request from %(from_user)s") % {'from_user': invitation.from_user})
+                            request.user.message_set.create(message=_("You have declined the mentorship request from %(from_user)s. Please write a message to this user motivating your decision.") % {'from_user': invitation.from_user})
                             other_friends = Friendship.objects.friends_for_user(other_user)
+                                   
+                        return HttpResponseRedirect(reverse('messages.views.compose', kwargs={'recipient':invitation.from_user}))
                     except FriendshipInvitation.DoesNotExist:
                         pass
                 elif request.POST.get("action") == "pending": # @@@ perhaps the form should just post to friends and be redirected here
@@ -137,17 +141,18 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
     previous_invitations_from = FriendshipInvitation.objects.invitations(to_user=request.user, from_user=other_user)
     previous_denied_invitation_to =  FriendshipInvitation.objects.invitationsDenied(to_user=other_user, from_user=request.user)
     
-    if request.user.get_profile().as_student() == None or other_user.get_profile().as_mentor() == None:
-        deny_mentor_request = True
-    else: 
-        deny_mentor_request = False
+    deny_mentor_request = False
+    consumed_all_requests = False
+    mentor_can_accept = False
     
-    consumed_all_requests = FriendshipInvitation.objects.countRequests(from_user = request.user) >= 3
+    if request.user.is_authenticated and not request.user.is_staff:
+        if request.user.get_profile().as_student() == None or other_user.get_profile().as_mentor() == None:
+            deny_mentor_request = True
+        
+        consumed_all_requests = FriendshipInvitation.objects.countRequests(from_user = request.user) >= 3
     
-    if request.user.get_profile().as_mentor() != None and FriendshipInvitation.objects.countAccepts(to_user = request.user) < 3:
-        mentor_can_accept = True
-    else:
-        mentor_can_accept = False
+        if request.user.get_profile().as_mentor() != None and FriendshipInvitation.objects.countAccepts(to_user = request.user) < 3:
+            mentor_can_accept = True
     
     return render_to_response(template_name, dict({
         "is_me": is_me,

@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -22,21 +23,24 @@ def friends(request, form_class=JoinRequestForm,
                 invitation = FriendshipInvitation.objects.get(id=invitation_id)
                 if invitation.to_user == request.user:
                     invitation.accept()
-                    request.user.message_set.create(message=_("Accepted friendship request from %(from_user)s") % {'from_user': invitation.from_user})
+                    request.user.message_set.create(message=_("Accepted mentorship request from %(from_user)s") % {'from_user': invitation.from_user})
             except FriendshipInvitation.DoesNotExist:
                 pass
             join_request_form = form_class()
         elif request.POST["action"] == "invite": # invite to join
             join_request_form = form_class(request.POST)
+            
             if join_request_form.is_valid():
                 join_request_form.save(request.user)
                 join_request_form = form_class() # @@@
+            
         elif request.POST["action"] == "decline":
             try:
                 invitation = FriendshipInvitation.objects.get(id=invitation_id)
                 if invitation.to_user == request.user:
                     invitation.decline()
-                    request.user.message_set.create(message=_("Declined friendship request from %(from_user)s") % {'from_user': invitation.from_user})
+                    request.user.message_set.create(message=_("Declined mentorship request from %(from_user)s. Please write a message to this user motivating your decision.") % {'from_user': invitation.from_user})
+                return HttpResponseRedirect(reverse('messages.views.compose', kwargs={'recipient':invitation.from_user}))
             except FriendshipInvitation.DoesNotExist:
                 pass
             join_request_form = form_class()

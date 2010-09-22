@@ -46,7 +46,7 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = False
+USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -212,7 +212,7 @@ ACCOUNT_EMAIL_VERIFICATION = True
 EMAIL_CONFIRMATION_DAYS = 2
 EMAIL_DEBUG = DEBUG
 CONTACT_EMAIL = "feedback@example.com"
-SITE_NAME = "Pinax"
+SITE_NAME = "UBB Alumni"
 LOGIN_URL = "/account/login/"
 LOGIN_REDIRECT_URLNAME = "home"
 
@@ -223,6 +223,7 @@ INTERNAL_IPS = (
 ugettext = lambda s: s
 LANGUAGES = (
     ('en', u'English'),
+    ('ro', u'Romana'),
 )
 
 # URCHIN_ID = "ua-..."
