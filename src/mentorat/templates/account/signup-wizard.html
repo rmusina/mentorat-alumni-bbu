@@ -21,6 +21,21 @@
             </fieldset>
             <input type="hidden" name="{{ step_field }}" value="{{ step0 }}" />
             {{ previous_fields|safe }}
+            {% if form.rating_fields %}
+		    <div>
+		        <script type="text/javascript" src="{{ STATIC_URL }}js/starbox.js"></script>
+		        <div id="hidden" style="visibility:hidden">
+		            <img src="{{ STATIC_URL }}img/star-empty.png" id="star-empty"/>
+		            <img src="{{ STATIC_URL }}img/star-full.png" id="star-full"/>
+		        </div>
+		        <h3>{% trans "Prefered methods of communication" %}:</h3>
+		        <table>
+		        {% for field in form.rating_fields %}
+		            {% include "common/starbox.html" %}
+		        {% endfor %}
+		        </table>
+		    </div>
+            {% endif %}
         </form>
     {% endif %}
 

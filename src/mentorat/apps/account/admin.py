@@ -6,7 +6,7 @@ from profiles.models import Profile
 admin.site.register(OtherServiceInfo)
 
 class AccountAdmin(admin.ModelAdmin):
-    list_display = ('user', 'timezone', 'language')
+    list_display = ('user', 'language')
 
 class PasswordResetAdmin(admin.ModelAdmin):
     list_display = ('user', 'temp_key', 'timestamp', 'reset')

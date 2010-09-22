@@ -10,13 +10,11 @@ from django.utils.translation import get_language_from_request, ugettext_lazy as
 
 from emailconfirmation.models import EmailAddress, EmailConfirmation
 
-from timezones.fields import TimeZoneField
 from emailconfirmation.signals import email_confirmed
 
 class Account(models.Model):
     user = models.ForeignKey(User, unique=True, verbose_name=_('user'))
-
-    timezone = TimeZoneField(_('timezone'))
+    
     language = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE)
 
     def __unicode__(self):
@@ -65,7 +63,7 @@ def create_account(sender, instance=None, **kwargs):
         return
     account, created = Account.objects.get_or_create(user=instance)
 
-# post_save.connect(create_account, sender=User)
+post_save.connect(create_account, sender=User)
 
 
 # @@@ move to emailconfirmation app?
@@ -88,7 +86,6 @@ post_save.connect(superuser_email_address, sender=User)
 class AnonymousAccount(object):
     def __init__(self, request=None):
         self.user = AnonymousUser()
-        self.timezone = settings.TIME_ZONE
         if request is not None:
             self.language = get_language_from_request(request)
         else:

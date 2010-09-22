@@ -66,7 +66,7 @@ class StudentGeneralInfoForm(GeneralInfoForm):
 
     class Meta:
         model = StudentProfile
-        fields = [ 'firstname', 'surname', 'previous_surname', 'CNP', 'birthplace', 'age', 'faculty', 'year_of_study', 'major', 'email', 'telephone', 'address', 'town_of_study']
+        fields = [ 'firstname', 'surname', 'previous_surname', 'CNP', 'birthplace', 'age', 'faculty', 'current_degree', 'year_of_study', 'major', 'email', 'telephone', 'address', 'town_of_study']
 
 
 class StudentEmploymentForm(forms.ModelForm):    
@@ -130,6 +130,18 @@ class StudentProfessionalForm(BaseProfessionalForm):
         fields = ['home_town', 'graduated_college', 'future_plans', 'fields_of_interest', 'how_mentor_can_help']
 
 
+class Communication:
+    name = ''
+    id = ''
+    value = 0
+    
+    def __init__(self, name, id, value):
+        self.name = name
+        self.id = id
+        self.value = value
+        
+
+
 class BaseAdditionalForm(forms.ModelForm):
     hobbies = forms.CharField(widget=forms.Textarea, required=False, label=_('What are you hobbies?'), error_messages={'required': _('This field is required')})
     self_evaluation = forms.CharField(widget=forms.Textarea, label=_('How would you describe yourself as a colleague?'), error_messages={'required': _('This field is required')})
@@ -137,6 +149,45 @@ class BaseAdditionalForm(forms.ModelForm):
                                  label=_('Do you have any additional information you might want to share with a possible mentor?'), 
                                  error_messages={'required': _('This field is required')})
     # TODO: add communication ratings
+    
+    def rating_fields(self):
+        ret = []
+        for field in self.hidden_fields():
+            if field.name.startswith('starbox'):
+                ret.append(field)
+        return ret
+        
+    
+    def save(self, commit=True):
+        ret = super(BaseAdditionalForm, self).save(commit=commit)
+        for field in self.hidden_fields():
+            if field.name.startswith('starbox'):
+                id = int(field.name[len('starbox-'):])
+                value = self.cleaned_data[field.name]
+                
+                if value:
+                    (com, created) = CommunicationRating.objects.get_or_create(profile=self.instance, method=CommunicationMethod.objects.get(pk=id))
+                    com.ratting = value
+                    com.save()
+                else:
+                    lst = CommunicationRating.objects.filter(profile=self.instance, method=CommunicationMethod.objects.get(pk=id))
+                    if len(lst):
+                        lst[0].delete()
+        return ret
+                    
+            
+    
+    def __init__(self, *args, **keywords):
+        forms.ModelForm.__init__(self, *args, **keywords)
+        
+        if not self.rating_fields():
+            for communication in CommunicationMethod.objects.all():
+                rating = 0
+                if self.instance:
+                    obj = CommunicationRating.objects.filter(profile=self.instance, method=communication)
+                    if len(obj):
+                        rating = obj[0].ratting                    
+                self.fields['starbox-'+str(communication.pk)] = forms.IntegerField(widget=forms.HiddenInput, label=communication.name, initial=rating)
 
 class StudentAdditionalForm(BaseAdditionalForm):
     mentor_expectations = forms.CharField(widget=forms.Textarea, label=_('What are you expectations of a mentor?'), error_messages={'required': _('This field is required')})

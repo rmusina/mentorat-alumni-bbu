@@ -5,9 +5,9 @@ from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 import datetime
 
-
 class Profile(models.Model):
     user = models.ForeignKey(User, unique=True, verbose_name=_('user'))
+    active = models.BooleanField(default=True, null=False, verbose_name=_('active'))
     
     # General information
     firstname = models.CharField(max_length=30, blank=False, verbose_name=_('first name'))
@@ -28,7 +28,12 @@ class Profile(models.Model):
     # Additional information
     hobbies = models.TextField(blank=True, verbose_name=_('hobbies'))
     self_evaluation = models.TextField(blank=False, verbose_name=_('self evaluation as colleague'))
+
     # communication_ratings
+    def sorted_communication_ratings(self):
+        ret = CommunicationRating.objects.filter(profile=self).order_by('-ratting')
+        return ret
+
     extra_info = models.TextField(blank=True, verbose_name=_('additional information'))
 
     def __unicode__(self):
@@ -54,12 +59,14 @@ class Profile(models.Model):
             return mentors[0]
         return None
         
-        
+
+degree_choices = ( ('bs', _('Bachelor\'s')), ('ms', _('Master\'s')), ('phd', _('PhD')) )
 class StudentProfile(Profile):
     """Additional profile information for students"""
     # Specific general informations
     birthplace = models.CharField(max_length=50, blank=False, verbose_name=_('place of birth'))    
     faculty = models.CharField(max_length=100, blank=False, verbose_name=_('current faculty'))
+    current_degree = models.CharField(max_length=10, blank=False, verbose_name=_('current pursued degree'), choices=degree_choices, default='bs')
     year_of_study = models.IntegerField(default=1, blank=False, verbose_name=_('year of study'))    
     major = models.CharField(max_length=100, blank=False, verbose_name=_('major'))    
     town_of_study = models.CharField(max_length=50, blank=False, verbose_name=_('city of study'))
@@ -78,6 +85,15 @@ class StudentProfile(Profile):
         
     mentor_expectations = models.TextField(blank=False, verbose_name=_('what are your expectation for a mentor'))
     
+    def points(self):
+        pts = 0
+        for event in StudentEvent.objects.filter(student=self):
+            pts += event.points()
+        return pts
+            
+    def recent_events(self):
+        return StudentEvent.objects.filter(student=self).order_by('-date')[:10]
+            
     class Meta():
         verbose_name = _('student profile')
         
@@ -194,4 +210,31 @@ class CommunicationRating(models.Model):
     
     def __unicode__(self):
         return self.method.name + '(' + str(self.ratting) + ')' 
+
+
+class Event(models.Model):
+    name = models.TextField(blank=False, verbose_name=_('event name'))
+    points = models.IntegerField(default=1, verbose_name=_('points'))
+    date = models.DateField(blank=False, verbose_name=_('date'))
+    
+    def __unicode__(self):
+        return self.name
+    
+    
+class StudentEvent(models.Model):
+    student = models.ForeignKey(StudentProfile, related_name='student_events')
+    date = models.DateField(blank=False, verbose_name=_('date'))
+    event = models.ForeignKey(Event, related_name='student_events')
+    
+    def points(self):
+        return self.event.points
+    
+    def name(self):
+        return self.event.name
+    
+    def event_date(self):
+        return self.event.date
+    
+    def __unicode__(self):
+        return self.student.user.username + ' ' + self.event.name
 

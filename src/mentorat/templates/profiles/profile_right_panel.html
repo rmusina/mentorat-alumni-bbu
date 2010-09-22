@@ -1,6 +1,27 @@
 {% load i18n %}
 {% load avatar_tags %}
 
+{% if user.is_staff %}
+{% endif %}
+
+{% if student %}
+    <div class="groups">
+        <h2>{% trans "Rating" %}: {{ student.points }}</h2>
+        {% if student.recent_events %}
+            <table width="100%">
+                <thead><td><big><b>{% trans "Recent events" %}:</b></big></td></thead>
+                {% for event in student.recent_events %}
+                <tr>
+                    <td>{{ event.name }}</td>
+                    <td style="float:left">{{ event.points }}</td>
+                </tr>
+                {% endfor %}           
+                <td style="text-align:right" colspan="2"><a href="{% url profile_events student.user.username %}">{% trans "see all" %}</a></td>
+            </table>
+        {% endif %}
+    </div>
+{% endif %}
+
 {% if is_me %}
     <div class="groups">
         <h2>{% trans "Your Tribes" %}</h2>

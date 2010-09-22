@@ -459,5 +459,62 @@ def research_add_or_edit(request, **kargs):
                               {'form': form, 'post_url': post_url, 'submit_name': submit_name, 
                                'profile_url': profile_url, 'page_name': page_name, 'page_title': page_title},
                               context_instance=RequestContext(request))
+
+COUNT_ON_PAGE = 50;
+    
+@login_required
+def events(request, username):
+    user = User.objects.filter(username=username)
+    if not user:
+        raise Http404
+    user = user[0]
+    student = StudentProfile.objects.get(user=user)
+    events = StudentEvent.objects.filter(student=student)
+    max = events.count()
+    
+    if 'offset' in request.GET:
+        try:
+            offset = int(request.GET['offset'])
+        except:
+            offset = 0
+    else:
+        offset = 0
+    
+    if offset < 0:
+        offset = 0
+        return HttpResponseRedirect(reverse('profile_events', args=[username]))
+    
+    if offset >= max and max:
+        newoffset = int(max / COUNT_ON_PAGE) * COUNT_ON_PAGE
+        if newoffset == max:
+            newoffset -= COUNT_ON_PAGE
+        else:
+            newoffset -= 1
+        return HttpResponseRedirect(reverse('profile_events', args=[username])+'?offset='+str(newoffset))
+    
+    prev = False
+    next = False
+    prev_offset = 0
+    next_offset = 0
+    last_offset = int(max / COUNT_ON_PAGE) * COUNT_ON_PAGE
+    if last_offset == max: last_offset -= COUNT_ON_PAGE
+    else: last_offset -= 1
+     
+    if offset:
+        prev = True
+        prev_offset = offset - COUNT_ON_PAGE
+        if prev_offset < 0:
+            prev_offset = 0
+            
+    if offset + COUNT_ON_PAGE < max:
+        next = True
+        next_offset = offset + COUNT_ON_PAGE
+
+    return render_to_response('profiles/profile_events.html',
+                              {'username': username, 'events': events[offset:offset+COUNT_ON_PAGE], 'prev_offset': prev_offset,
+                               'next_offset': next_offset, 'last_offset': last_offset, 'prev': prev, 'next': next},
+                               context_instance=RequestContext(request))
+        
+          
     
     

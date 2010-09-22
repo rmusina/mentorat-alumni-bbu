@@ -1,11 +1,26 @@
 {% load uni_form %}
+{% load i18n %}
 
 <form class="uniForm" method="POST" action="{{ post_url }}">
     <fieldset>
         {{ profile_form|as_uni_form }}
+        {% if profile_form.rating_fields %}
+            <div>
+                <script type="text/javascript" src="{{ STATIC_URL }}js/starbox.js"></script>
+                <div id="hidden" style="visibility:hidden">
+                    <img src="{{ STATIC_URL }}img/star-empty.png" id="star-empty"/>
+                    <img src="{{ STATIC_URL }}img/star-full.png" id="star-full"/>
+                </div>
+                <h3>{% trans "Prefered methods of communication" %}</h3>
+                <table>
+                {% for field in profile_form.rating_fields %}
+                    {% include "common/starbox.html" %}
+                {% endfor %}
+                </table>
+            </div>
+        {% endif %}
         <div class="form_block">
-            <input type="submit" value="Save changes" />
-            or <a href="{% url profile_detail profile.user.username %}">cancel</a>
+            <input type="submit" value="Save changes" /> or <a href="{% url profile_detail profile.user.username %}">cancel</a>
         </div>
     </fieldset>
 </form>

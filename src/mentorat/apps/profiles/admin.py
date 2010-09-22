@@ -46,3 +46,8 @@ class MentorProfileAdmin(admin.ModelAdmin):
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(StudentProfile, StudentProfileAdmin)
 admin.site.register(MentorProfile, MentorProfileAdmin)
+admin.site.register(FieldOfInterest)
+admin.site.register(CommunicationMethod)
+admin.site.register(Event)
+admin.site.register(MentorshipActivities)
+admin.site.register(StudentEvent)
