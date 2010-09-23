@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-22 19:46+0300\n"
+"POT-Creation-Date: 2010-09-23 11:42-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -55,7 +56,7 @@ msgstr "Parola (repetare)"
 #: apps/account/forms.py:217 apps/account/forms.py:273
 #: apps/profiles/forms.py:35
 #: templates/profiles/profile-types/profile-mentor.html:32
-#: templates/profiles/profile-types/profile-student.html:29
+#: templates/profiles/profile-types/profile-student.html:30
 msgid "Email"
 msgstr "Email"
 
@@ -155,27 +156,27 @@ msgstr "Autentificat cu succes."
 msgid "Account information"
 msgstr "Informatii despre cont"
 
-#: apps/account/forms.py:432 apps/profiles/views.py:209
+#: apps/account/forms.py:432 apps/profiles/views.py:221
 #: templates/profiles/profile-types/profile-mentor.html:8
 #: templates/profiles/profile-types/profile-student.html:8
 msgid "General information"
 msgstr "Informatii generale"
 
-#: apps/account/forms.py:432 apps/profiles/views.py:216
+#: apps/account/forms.py:432 apps/profiles/views.py:228
 #: templates/profiles/profile-types/profile-mentor.html:46
-#: templates/profiles/profile-types/profile-student.html:43
+#: templates/profiles/profile-types/profile-student.html:44
 msgid "Current employment"
 msgstr "Angajator curent"
 
-#: apps/account/forms.py:432 apps/profiles/views.py:223
+#: apps/account/forms.py:432 apps/profiles/views.py:235
 #: templates/profiles/profile-types/profile-mentor.html:72
-#: templates/profiles/profile-types/profile-student.html:67
+#: templates/profiles/profile-types/profile-student.html:68
 msgid "Academic and professional information"
 msgstr "Informatii academice si profesionale"
 
-#: apps/account/forms.py:433 apps/profiles/views.py:230
+#: apps/account/forms.py:433 apps/profiles/views.py:242
 #: templates/profiles/profile-types/profile-mentor.html:128
-#: templates/profiles/profile-types/profile-student.html:135
+#: templates/profiles/profile-types/profile-student.html:136
 msgid "Additional information"
 msgstr "Informatii aditionale"
 
@@ -187,36 +188,32 @@ msgstr "Trimite"
 msgid "Next"
 msgstr "Urmatoarea"
 
-#: apps/account/models.py:17 apps/account/models.py:30
-#: apps/account/models.py:103 apps/profiles/models.py:10
+#: apps/account/models.py:16 apps/account/models.py:28
+#: apps/account/models.py:100 apps/profiles/models.py:9
 msgid "user"
 msgstr "utilizator"
 
-#: apps/account/models.py:19
-msgid "timezone"
-msgstr "fus orar"
-
-#: apps/account/models.py:20
+#: apps/account/models.py:18
 msgid "language"
 msgstr "limba"
 
-#: apps/account/models.py:31
+#: apps/account/models.py:29
 msgid "Other Service Info Key"
 msgstr ""
 
-#: apps/account/models.py:32
+#: apps/account/models.py:30
 msgid "Other Service Info Value"
 msgstr ""
 
-#: apps/account/models.py:105
+#: apps/account/models.py:102
 msgid "temp_key"
 msgstr ""
 
-#: apps/account/models.py:106
+#: apps/account/models.py:103
 msgid "timestamp"
 msgstr ""
 
-#: apps/account/models.py:107
+#: apps/account/models.py:104
 msgid "reset yet?"
 msgstr "resetati?"
 
@@ -407,8 +404,8 @@ msgstr "%(invitation_from_user)s a renuntat la solicitare."
 #: apps/friends/templates/notification/friends_renounce_sent/notice.html:2
 #, fuzzy, python-format
 msgid ""
-"you have renounced your application for <a href=\"%(user_url)s\">%"
-"(invitation_to_user)s</a>"
+"you have renounced your application for <a href=\"%(user_url)s\">"
+"%(invitation_to_user)s</a>"
 msgstr "ati renuntat la solicitarea trimisa trimisa de %(invitation_to_user)s."
 
 #: apps/friends/templates/notification/join_accept/notice.html:2
@@ -445,19 +442,19 @@ msgstr "%(total)s vCards gasite, %(imported)s contacte importate."
 msgid "%(total)s people with email found, %(imported)s contacts imported."
 msgstr "%(total)s persoane cu email gasite, %(imported)s contacte importate."
 
-#: apps/mentorship_admin/views.py:72 apps/signup_codes/views.py:68
+#: apps/mentorship_admin/views.py:102 apps/signup_codes/views.py:68
 #, python-format
 msgid "An e-mail has been sent to %(email)s."
 msgstr "Un e-mail a fost trimis catre %(email)s."
 
-#: apps/mentorship_admin/views.py:77 apps/signup_codes/views.py:73
+#: apps/mentorship_admin/views.py:107 apps/signup_codes/views.py:73
 msgid "Invite user"
 msgstr "Invita utilizator"
 
 #: apps/profiles/forms.py:21 apps/profiles/forms.py:29
-#: apps/profiles/forms.py:35 apps/profiles/forms.py:134
-#: apps/profiles/forms.py:135 apps/profiles/forms.py:138
-#: apps/profiles/forms.py:142 apps/profiles/forms.py:154
+#: apps/profiles/forms.py:35 apps/profiles/forms.py:146
+#: apps/profiles/forms.py:147 apps/profiles/forms.py:150
+#: apps/profiles/forms.py:193 apps/profiles/forms.py:205
 #: apps/profiles/forms_parts.py:6 apps/profiles/forms_parts.py:20
 #: apps/profiles/forms_parts.py:22
 msgid "This field is required"
@@ -519,13 +516,13 @@ msgstr "Adresa de email este invalida"
 
 #: apps/profiles/forms.py:37
 #: templates/profiles/profile-types/profile-mentor.html:35
-#: templates/profiles/profile-types/profile-student.html:32
+#: templates/profiles/profile-types/profile-student.html:33
 msgid "Telephone"
 msgstr "Telefon"
 
 #: apps/profiles/forms.py:39
 #: templates/profiles/profile-types/profile-mentor.html:38
-#: templates/profiles/profile-types/profile-student.html:35
+#: templates/profiles/profile-types/profile-student.html:36
 msgid "Address"
 msgstr "Adresa"
 
@@ -543,7 +540,7 @@ msgid "Current faculty"
 msgstr "Facultatea curenta"
 
 #: apps/profiles/forms.py:59
-#: templates/profiles/profile-types/profile-student.html:26
+#: templates/profiles/profile-types/profile-student.html:27
 msgid "Year of study"
 msgstr "Anul de studiu"
 
@@ -570,7 +567,7 @@ msgid "Major"
 msgstr "Specializare"
 
 #: apps/profiles/forms.py:64
-#: templates/profiles/profile-types/profile-student.html:38
+#: templates/profiles/profile-types/profile-student.html:39
 msgid "Town of study"
 msgstr "Oras de studiu"
 
@@ -592,13 +589,13 @@ msgstr "Indatoriri (optional)"
 
 #: apps/profiles/forms.py:90
 #: templates/profiles/profile-types/profile-mentor.html:76
-#: templates/profiles/profile-types/profile-student.html:71
+#: templates/profiles/profile-types/profile-student.html:72
 msgid "Home town"
 msgstr "Oras natal"
 
 #: apps/profiles/forms.py:92
 #: templates/profiles/profile-types/profile-mentor.html:79
-#: templates/profiles/profile-types/profile-student.html:74
+#: templates/profiles/profile-types/profile-student.html:75
 msgid "Graduated college"
 msgstr "Liceu absolvit"
 
@@ -615,7 +612,7 @@ msgid "You may choose at most 3 fields of interest"
 msgstr "Puteti sa alegeti maxim 3 domenii de interes"
 
 #: apps/profiles/forms.py:124
-#: templates/profiles/profile-types/profile-student.html:122
+#: templates/profiles/profile-types/profile-student.html:123
 msgid "Plans for the following year"
 msgstr "Planuri pentru anul urmator"
 
@@ -623,17 +620,17 @@ msgstr "Planuri pentru anul urmator"
 msgid "How can a mentor help in the student's development?"
 msgstr "Cum poate un mentor sa ajute in dezvoltarea unui student?"
 
-#: apps/profiles/forms.py:134
+#: apps/profiles/forms.py:146
 msgid "What are you hobbies?"
 msgstr "Care sunt hobbiurile dumneavoastra?"
 
-#: apps/profiles/forms.py:135
+#: apps/profiles/forms.py:147
 #: templates/profiles/profile-types/profile-mentor.html:135
-#: templates/profiles/profile-types/profile-student.html:142
+#: templates/profiles/profile-types/profile-student.html:143
 msgid "How would you describe yourself as a colleague?"
 msgstr "Cum v-ati descrie in ipostaza de coleg?"
 
-#: apps/profiles/forms.py:137
+#: apps/profiles/forms.py:149
 msgid ""
 "Do you have any additional information you might want to share with a "
 "possible mentor?"
@@ -641,29 +638,29 @@ msgstr ""
 "Aveti si alte informatii pe care ati dori sa le impartasiti cu un eventual "
 "mentor?"
 
-#: apps/profiles/forms.py:142
+#: apps/profiles/forms.py:193
 msgid "What are you expectations of a mentor?"
 msgstr "Care sunt asteptarile unui mentor?"
 
-#: apps/profiles/forms.py:151
+#: apps/profiles/forms.py:202
 #: templates/profiles/profile-types/profile-mentor.html:23
 msgid "Graduated faculty"
 msgstr "Facultatea absolvita"
 
-#: apps/profiles/forms.py:153
+#: apps/profiles/forms.py:204
 #: templates/profiles/profile-types/profile-mentor.html:26
 msgid "Graduated major"
 msgstr "Specializarea absolvita"
 
-#: apps/profiles/forms.py:154
+#: apps/profiles/forms.py:205
 msgid "Graduation date (year-month-day)"
 msgstr "Anul de absolvire (da-luna-zi)"
 
-#: apps/profiles/forms.py:154
+#: apps/profiles/forms.py:205
 msgid "You have entered an invalid date"
 msgstr "Ati introdus o data invalida"
 
-#: apps/profiles/forms.py:155
+#: apps/profiles/forms.py:206
 msgid ""
 "In which city and country will you be during the mentorship period? (You can "
 "include more than one)"
@@ -671,30 +668,30 @@ msgstr ""
 "In ce tara o sa fiti pe durata perioadei de mentorizare? (Puteti include mai "
 "multe intrari)"
 
-#: apps/profiles/forms.py:164 apps/profiles/forms_parts.py:17
+#: apps/profiles/forms.py:215 apps/profiles/forms_parts.py:17
 msgid "Employer's name"
 msgstr "Numele angajatorului"
 
-#: apps/profiles/forms.py:165
+#: apps/profiles/forms.py:216
 msgid "Employer's address"
 msgstr "Adresa angajatorului"
 
-#: apps/profiles/forms.py:166
+#: apps/profiles/forms.py:217
 #: templates/profiles/profile-types/profile-mentor.html:56
-#: templates/profiles/profile-types/profile-student.html:53
+#: templates/profiles/profile-types/profile-student.html:54
 msgid "Position held"
 msgstr "Functie detinuta"
 
-#: apps/profiles/forms.py:167 apps/profiles/forms_parts.py:19
+#: apps/profiles/forms.py:218 apps/profiles/forms_parts.py:19
 #: apps/profiles/forms_parts.py:32
 #: templates/profiles/profile-types/profile-mentor.html:59
-#: templates/profiles/profile-types/profile-student.html:56
-#: templates/profiles/profile-types/profile-student.html:112
+#: templates/profiles/profile-types/profile-student.html:57
+#: templates/profiles/profile-types/profile-student.html:113
 #: templates/profiles/profile-types/parts/student-employment.html:5
 msgid "Duties"
 msgstr "Indatoriri"
 
-#: apps/profiles/forms.py:189
+#: apps/profiles/forms.py:240
 msgid ""
 "Did you continue your studies after completing your Bachelor's? If yes, what "
 "are they, what university did you study in?"
@@ -702,7 +699,7 @@ msgstr ""
 "V-ati continuat studiile dupa terminarea facultatii? Daca da, ce "
 "specializari postuniversitare ati urmat si la ce facultate"
 
-#: apps/profiles/forms.py:192
+#: apps/profiles/forms.py:243
 msgid ""
 "What is your professional experience relevant for the mentorship program? "
 "Provide details if you can."
@@ -710,11 +707,11 @@ msgstr ""
 "Care este experienta profesionala relevanta pentru programul de mentorat? "
 "Daca e posibil furnizati detalii."
 
-#: apps/profiles/forms.py:194
+#: apps/profiles/forms.py:245
 msgid "Other activities (if not in the above choice list)"
 msgstr "Alte activitati (daca nu sunt in lista de optiuni de mai sus)"
 
-#: apps/profiles/forms.py:195
+#: apps/profiles/forms.py:246
 msgid "Activities you are interested in doing during the mentorship program:"
 msgstr ""
 "Selectati din lista acele activitati pe care sunteti interesat sa le "
@@ -729,7 +726,7 @@ msgid "Organization name"
 msgstr "Numele organizatiei"
 
 #: apps/profiles/forms_parts.py:9
-#: templates/profiles/profile-types/profile-student.html:111
+#: templates/profiles/profile-types/profile-student.html:112
 #: templates/profiles/profile-types/parts/volunteer-organization.html:3
 msgid "Field"
 msgstr "Domeniu"
@@ -760,6 +757,10 @@ msgstr "Data terminarii (an-luna-zi)"
 #: apps/profiles/forms_parts.py:31
 msgid "Field of research"
 msgstr "Domenii de cercetare"
+
+#: apps/profiles/models.py:10
+msgid "active"
+msgstr ""
 
 #: apps/profiles/models.py:13
 msgid "first name"
@@ -805,191 +806,220 @@ msgstr "hobbie-uri"
 msgid "self evaluation as colleague"
 msgstr "autoevaluare ca si coleg"
 
-#: apps/profiles/models.py:32
+#: apps/profiles/models.py:37
 msgid "additional information"
 msgstr "informatii aditionale"
 
-#: apps/profiles/models.py:42 apps/profiles/models.py:140
+#: apps/profiles/models.py:47 apps/profiles/models.py:156
 msgid "profile"
 msgstr "profil"
 
-#: apps/profiles/models.py:43
+#: apps/profiles/models.py:48
 msgid "profiles"
 msgstr "profiluri"
 
-#: apps/profiles/models.py:61
+#: apps/profiles/models.py:63
+msgid "Bachelor's"
+msgstr ""
+
+#: apps/profiles/models.py:63
+msgid "Master's"
+msgstr ""
+
+#: apps/profiles/models.py:63
+msgid "PhD"
+msgstr ""
+
+#: apps/profiles/models.py:67
 msgid "place of birth"
 msgstr "locul nasterii"
 
-#: apps/profiles/models.py:62
+#: apps/profiles/models.py:68
 msgid "current faculty"
 msgstr "facultatea curenta"
 
-#: apps/profiles/models.py:63
+#: apps/profiles/models.py:69
+msgid "current pursued degree"
+msgstr ""
+
+#: apps/profiles/models.py:70
 msgid "year of study"
 msgstr "an de studiu"
 
-#: apps/profiles/models.py:64
+#: apps/profiles/models.py:71
 msgid "major"
 msgstr "specializare"
 
-#: apps/profiles/models.py:65
+#: apps/profiles/models.py:72
 msgid "city of study"
 msgstr "oras de studiu"
 
-#: apps/profiles/models.py:68
+#: apps/profiles/models.py:75
 msgid "name of current employer"
 msgstr "numele angajatorului curent"
 
-#: apps/profiles/models.py:69
+#: apps/profiles/models.py:76
 msgid "address of current employer"
 msgstr "adresa angajatorului curent"
 
-#: apps/profiles/models.py:70
+#: apps/profiles/models.py:77
 msgid "position help in current employment"
 msgstr "functii detinute la actualul locu de munca "
 
-#: apps/profiles/models.py:71 apps/profiles/models.py:103
+#: apps/profiles/models.py:78 apps/profiles/models.py:119
 msgid "duties at current work place"
 msgstr "indatoriri la actualul loc de munca"
 
-#: apps/profiles/models.py:76
+#: apps/profiles/models.py:83
 msgid "plans the following year"
 msgstr "planuri pentru anul urmator"
 
-#: apps/profiles/models.py:77
+#: apps/profiles/models.py:84
 msgid "how can a mentor help"
 msgstr "cum poate un mentor sa ajute"
 
-#: apps/profiles/models.py:79
+#: apps/profiles/models.py:86
 msgid "what are your expectation for a mentor"
 msgstr "care sunt asteptarile dumneavoastra de la un mentor"
 
-#: apps/profiles/models.py:82
+#: apps/profiles/models.py:98
 msgid "student profile"
 msgstr "profil student"
 
-#: apps/profiles/models.py:97
+#: apps/profiles/models.py:113
 msgid "graduated faculty"
 msgstr "facultatea absolvita"
 
-#: apps/profiles/models.py:98
+#: apps/profiles/models.py:114
 msgid "graduated major"
 msgstr "specializarea absolvita"
 
-#: apps/profiles/models.py:99
+#: apps/profiles/models.py:115
 msgid "graduation date"
 msgstr "data absolvirii"
 
-#: apps/profiles/models.py:100 apps/profiles/models.py:151
+#: apps/profiles/models.py:116 apps/profiles/models.py:167
 msgid "employer name"
 msgstr "numele angajatorului"
 
-#: apps/profiles/models.py:101
+#: apps/profiles/models.py:117
 msgid "employer address"
 msgstr "adresa angajatorului"
 
-#: apps/profiles/models.py:102
+#: apps/profiles/models.py:118
 msgid "position held in current employment"
 msgstr "functia detinuta la actualul loc de munca"
 
-#: apps/profiles/models.py:104
+#: apps/profiles/models.py:120
 msgid "city and country for mentorship"
 msgstr "orasul si tara programului de mentorat"
 
-#: apps/profiles/models.py:106
+#: apps/profiles/models.py:122
 msgid "post bachelor's studies"
 msgstr "studii postuniversitare"
 
-#: apps/profiles/models.py:107
+#: apps/profiles/models.py:123
 msgid "professional experience"
 msgstr "experienta profesionala"
 
-#: apps/profiles/models.py:109
+#: apps/profiles/models.py:125
 msgid "other mentorship activities"
 msgstr "alte activitati de mentorat"
 
-#: apps/profiles/models.py:112
+#: apps/profiles/models.py:128
 msgid "mentor profile"
 msgstr "profilul mentor"
 
-#: apps/profiles/models.py:125
+#: apps/profiles/models.py:141
 msgid "field name"
 msgstr "nume domeniu"
 
-#: apps/profiles/models.py:141
+#: apps/profiles/models.py:157
 msgid "organization name"
 msgstr "nume organizatie"
 
-#: apps/profiles/models.py:142
+#: apps/profiles/models.py:158
 msgid "working field"
 msgstr "domeniul ocupatiei"
 
-#: apps/profiles/models.py:149
+#: apps/profiles/models.py:165
 msgid "student"
 msgstr ""
 
-#: apps/profiles/models.py:150
+#: apps/profiles/models.py:166
 msgid "was internship"
 msgstr "a fost internship"
 
-#: apps/profiles/models.py:152
+#: apps/profiles/models.py:168
 msgid "pos    ition held"
 msgstr "functie ocupata"
 
-#: apps/profiles/models.py:153 apps/profiles/models.py:164
+#: apps/profiles/models.py:169 apps/profiles/models.py:180
 msgid "duties"
 msgstr "indatoriri"
 
-#: apps/profiles/models.py:154
+#: apps/profiles/models.py:170
 msgid "starting date"
 msgstr "data inceperii"
 
-#: apps/profiles/models.py:155
+#: apps/profiles/models.py:171
 msgid "ending date"
 msgstr "data terminarii"
 
-#: apps/profiles/models.py:163
+#: apps/profiles/models.py:179
 msgid "field of research"
 msgstr "domeniu de cercetare"
 
-#: apps/profiles/models.py:171
+#: apps/profiles/models.py:187
 msgid "mentorship activities"
 msgstr "activitati de mentorat"
 
-#: apps/profiles/models.py:172
+#: apps/profiles/models.py:188
 msgid "activity description"
 msgstr "descrierea activitatii"
 
-#: apps/profiles/models.py:184
+#: apps/profiles/models.py:200
 msgid "name"
 msgstr "nume"
 
-#: apps/profiles/models.py:192
+#: apps/profiles/models.py:208
 msgid "ratting"
 msgstr "rating"
 
-#: apps/profiles/views.py:81
+#: apps/profiles/models.py:216
+#, fuzzy
+msgid "event name"
+msgstr "numele angajatorului"
+
+#: apps/profiles/models.py:217
+msgid "points"
+msgstr ""
+
+#: apps/profiles/models.py:218 apps/profiles/models.py:226
+msgid "date"
+msgstr ""
+
+#: apps/profiles/views.py:90
 #, python-format
 msgid "You have removed %(from_user)s from mentor contacts"
 msgstr "L-ati eliminat pe %(from_user)s din contactele de mentorat"
 
-#: apps/profiles/views.py:85 apps/profiles/views.py:101
-#: apps/profiles/views.py:137
+#: apps/profiles/views.py:94 apps/profiles/views.py:110
+#: apps/profiles/views.py:146
 msgid "Please review my cv and accept my request!"
 msgstr "Va rog sa imi studiati cv-ul si sa acceptati solicitarea!"
 
-#: apps/profiles/views.py:96
+#: apps/profiles/views.py:105
 #, python-format
 msgid "You have chosen to renounce this request %(from_user)s"
 msgstr "Ati ales sa renuntati la solicitarea %(from_user)s"
 
-#: apps/profiles/views.py:109
+#: apps/profiles/views.py:118
 #, python-format
 msgid "You have accepted the mentorship request from %(from_user)s"
 msgstr "Ati acceptat solicitarea de mentorat de la %(from_user)s"
 
-#: apps/profiles/views.py:119
+#: apps/profiles/views.py:128
 #, python-format
 msgid ""
 "You have declined the mentorship request from %(from_user)s. Please write a "
@@ -998,56 +1028,56 @@ msgstr ""
 "Ati refuzat solicitarea de mentorat din partea %(from_user)s. Va rugam sa "
 "scrieti un mesaj in care sa va motivati decizia."
 
-#: apps/profiles/views.py:130
+#: apps/profiles/views.py:139
 #, python-format
 msgid "You have chosen to review the mentorship request from %(from_user)s"
 msgstr "Ati ales sa studiati solicitarea de mentorat din partea %(from_user)s"
 
-#: apps/profiles/views.py:270
+#: apps/profiles/views.py:282
 msgid "Volunteer organization"
 msgstr "Organizatie non-guvernamentala"
 
-#: apps/profiles/views.py:287 apps/profiles/views.py:360
-#: apps/profiles/views.py:433 templates/admin/index.html:29
+#: apps/profiles/views.py:299 apps/profiles/views.py:372
+#: apps/profiles/views.py:445 templates/admin/index.html:29
 msgid "Add"
 msgstr "Adaugati"
 
-#: apps/profiles/views.py:288
+#: apps/profiles/views.py:300
 msgid "Add a volunteer organization in which you were a member"
 msgstr "Adaugati un ONG in care ati fost membru"
 
-#: apps/profiles/views.py:314 apps/profiles/views.py:387
-#: apps/profiles/views.py:460
+#: apps/profiles/views.py:326 apps/profiles/views.py:399
+#: apps/profiles/views.py:472
 msgid "Save"
 msgstr "Salvati"
 
-#: apps/profiles/views.py:315
+#: apps/profiles/views.py:327
 msgid "Update information about a volunteer organization"
 msgstr "Updatari informatiile despre un ONG"
 
-#: apps/profiles/views.py:343
-#: templates/profiles/profile-types/profile-student.html:92
+#: apps/profiles/views.py:355
+#: templates/profiles/profile-types/profile-student.html:93
 msgid "Work experience"
 msgstr "Experienta profesionala"
 
-#: apps/profiles/views.py:361
+#: apps/profiles/views.py:373
 msgid "Add information about your work experience"
 msgstr "Adaugati informatii despre experienta dumneavoastra profesionala"
 
-#: apps/profiles/views.py:388
+#: apps/profiles/views.py:400
 msgid "Update the information about you work experience"
 msgstr "Updatati informatii despre experienta dumneavoastra profesionala"
 
-#: apps/profiles/views.py:416
-#: templates/profiles/profile-types/profile-student.html:106
+#: apps/profiles/views.py:428
+#: templates/profiles/profile-types/profile-student.html:107
 msgid "Research"
 msgstr "Cercetare"
 
-#: apps/profiles/views.py:434
+#: apps/profiles/views.py:446
 msgid "Add information about your research activities"
 msgstr "Adaugati informatii despre activitatea dumneavoastra de cercetare"
 
-#: apps/profiles/views.py:461
+#: apps/profiles/views.py:473
 msgid "Update the information about your research activities"
 msgstr "Updatati informatii despre activitatea dumneavoastra de cercetare"
 
@@ -1197,24 +1227,25 @@ msgstr ""
 #: apps/tasks/templates/notification/tasks_assignment/notice.html:4
 #, python-format
 msgid ""
-"<a href=\"%(user_url)s\">%(user)s</a> has assigned task '<a href=\"%"
-"(task_url)s\">%(task)s</a>' in '<a href=\"%(group_url)s\">%(group)s</a>' to "
-"<a href=\"%(assignee_url)s\">%(assignee)s</a>."
+"<a href=\"%(user_url)s\">%(user)s</a> has assigned task '<a href="
+"\"%(task_url)s\">%(task)s</a>' in '<a href=\"%(group_url)s\">%(group)s</a>' "
+"to <a href=\"%(assignee_url)s\">%(assignee)s</a>."
 msgstr ""
 
 #: apps/tasks/templates/notification/tasks_assignment/notice.html:6
 #, python-format
 msgid ""
-"<a href=\"%(user_url)s\">%(user)s</a> has assigned task '<a href=\"%"
-"(task_url)s\">%(task)s</a>' to <a href=\"%(assignee_url)s\">%(assignee)s</a>."
+"<a href=\"%(user_url)s\">%(user)s</a> has assigned task '<a href="
+"\"%(task_url)s\">%(task)s</a>' to <a href=\"%(assignee_url)s\">%(assignee)s</"
+"a>."
 msgstr ""
 
 #: apps/tasks/templates/notification/tasks_change/notice.html:4
 #, python-format
 msgid ""
 "<a href=\"%(user_url)s\">%(user)s</a> has marked task '<a href=\"%(task_url)s"
-"\">%(task)s</a>' in '<a href=\"%(group_url)s\">%(group)s</a>' as %(new_state)"
-"s."
+"\">%(task)s</a>' in '<a href=\"%(group_url)s\">%(group)s</a>' as "
+"%(new_state)s."
 msgstr ""
 
 #: apps/tasks/templates/notification/tasks_change/notice.html:6
@@ -1231,36 +1262,36 @@ msgstr ""
 #: apps/tasks/templates/notification/tasks_comment/notice.html:4
 #, python-format
 msgid ""
-"<a href=\"%(user_url)s\">%(user)s</a> has commented on task '<a href=\"%"
-"(task_url)s\">%(task)s</a>' in '<a href=\"%(group_url)s\">%(group)s</a>'."
+"<a href=\"%(user_url)s\">%(user)s</a> has commented on task '<a href="
+"\"%(task_url)s\">%(task)s</a>' in '<a href=\"%(group_url)s\">%(group)s</a>'."
 msgstr ""
 
 #: apps/tasks/templates/notification/tasks_comment/notice.html:6
 #, python-format
 msgid ""
-"<a href=\"%(user_url)s\">%(user)s</a> has commented on task '<a href=\"%"
-"(task_url)s\">%(task)s</a>'."
+"<a href=\"%(user_url)s\">%(user)s</a> has commented on task '<a href="
+"\"%(task_url)s\">%(task)s</a>'."
 msgstr ""
 
 #: apps/tasks/templates/notification/tasks_new/notice.html:3
 #, python-format
 msgid ""
-"<a href=\"%(creator_url)s\">%(creator)s</a> has added a task '<a href=\"%"
-"(task_url)s\">%(task)s</a>' in '<a href=\"%(group_url)s\">%(group)s</a>'."
+"<a href=\"%(creator_url)s\">%(creator)s</a> has added a task '<a href="
+"\"%(task_url)s\">%(task)s</a>' in '<a href=\"%(group_url)s\">%(group)s</a>'."
 msgstr ""
 
 #: apps/tasks/templates/notification/tasks_new/notice.html:5
 #, python-format
 msgid ""
-"<a href=\"%(creator_url)s\">%(creator)s</a> has added a task '<a href=\"%"
-"(task_url)s\">%(task)s</a>'."
+"<a href=\"%(creator_url)s\">%(creator)s</a> has added a task '<a href="
+"\"%(task_url)s\">%(task)s</a>'."
 msgstr ""
 
 #: apps/tasks/templates/notification/tasks_nudge/notice.html:3
 #, python-format
 msgid ""
-"<a href=\"%(user_url)s\">%(nudger)s</a> has nudged you on task '<a href=\"%"
-"(task_url)s\">%(task)s</a>'."
+"<a href=\"%(user_url)s\">%(nudger)s</a> has nudged you on task '<a href="
+"\"%(task_url)s\">%(task)s</a>'."
 msgstr ""
 
 #: apps/tasks/templates/notification/tasks_status/notice.html:4
@@ -1378,8 +1409,8 @@ msgstr "V-ati alaturat deja grupului %(tribe_name)s"
 #: apps/tribes/templates/notification/tribes_new_member/notice.html:2
 #, python-format
 msgid ""
-"<a href=\"%(user_url)s\">%(user)s</a> has joined the tribe <a href=\"%"
-"(tribe_url)s\">%(tribe)s</a>."
+"<a href=\"%(user_url)s\">%(user)s</a> has joined the tribe <a href="
+"\"%(tribe_url)s\">%(tribe)s</a>."
 msgstr ""
 
 #: apps/tribes/templates/notification/tribes_new_tribe/notice.html:2
@@ -1441,7 +1472,7 @@ msgstr ""
 msgid "You can <a href=\"%(login_url)s\">Log in</a> to try out the site."
 msgstr ""
 
-#: templates/site_base.html:30
+#: templates/site_base.html:30 templates/profiles/profile_right_panel.html:9
 msgid "Account"
 msgstr ""
 
@@ -1509,8 +1540,8 @@ msgstr ""
 #: templates/about/what_next.html:43
 #, python-format
 msgid ""
-"Start by <a href=\"%(signup_url)s\">signing up</a> and <a href=\"%(login_url)"
-"s\">logging in</a>."
+"Start by <a href=\"%(signup_url)s\">signing up</a> and <a href="
+"\"%(login_url)s\">logging in</a>."
 msgstr ""
 
 #: templates/about/what_next.html:45
@@ -1640,8 +1671,8 @@ msgstr ""
 #, python-format
 msgid ""
 "We have sent you an e-mail to <b>%(email)s</b>. If you do not receive it "
-"within a few minutes, contact us at <a href=\"mailto:%(CONTACT_EMAIL)s\">%"
-"(CONTACT_EMAIL)s</a>."
+"within a few minutes, contact us at <a href=\"mailto:%(CONTACT_EMAIL)s\">"
+"%(CONTACT_EMAIL)s</a>."
 msgstr ""
 
 #: templates/account/signup-wizard.html:6 templates/account/signup.html:6
@@ -1668,6 +1699,11 @@ msgstr ""
 
 #: templates/account/signup-wizard.html:14 templates/account/signup.html:14
 msgid "Already have an account?"
+msgstr ""
+
+#: templates/account/signup-wizard.html:31
+#: templates/profiles/profile_form.html:14
+msgid "Prefered methods of communication"
 msgstr ""
 
 #: templates/account/signup.html:16
@@ -1782,7 +1818,7 @@ msgid "Someone with this email address has already joined:"
 msgstr "Adresa dumneavoastra de email a fost deja verificata."
 
 #: templates/friends_app/invitations.html:36
-#: templates/profiles/profile.html:131
+#: templates/profiles/profile.html:124
 msgid "invite"
 msgstr ""
 
@@ -1794,20 +1830,20 @@ msgstr ""
 #: templates/friends_app/invitations.html:63
 #: templates/friends_app/invitations.html:91
 #: templates/friends_app/invitations.html:97
-#: templates/profiles/profile.html:66 templates/profiles/profile.html.py:72
+#: templates/profiles/profile.html:59 templates/profiles/profile.html.py:65
 msgid "accept"
 msgstr ""
 
 #: templates/friends_app/invitations.html:70
 #: templates/friends_app/invitations.html:104
-#: templates/profiles/profile.html:78
+#: templates/profiles/profile.html:71
 #, fuzzy
 msgid "decline"
 msgstr "Refuz trimis"
 
 #: templates/friends_app/invitations.html:75
 #: templates/friends_app/invitations.html:109
-#: templates/profiles/profile.html:84 templates/profiles/profile.html.py:90
+#: templates/profiles/profile.html:77 templates/profiles/profile.html.py:83
 #, fuzzy
 msgid "pending"
 msgstr "data terminarii"
@@ -1864,6 +1900,7 @@ msgid "Order by:"
 msgstr ""
 
 #: templates/mentorship_admin/admin_search_profiles.html:25
+#: templates/profiles/profile_events.html:29
 #: templates/profiles/profiles.html:27
 #: templates/profiles/profile-types/parts/student-employment.html:6
 #, fuzzy
@@ -1886,6 +1923,27 @@ msgstr ""
 #: templates/mentorship_admin/admin_search_profiles.html:37
 #: templates/profiles/profiles.html:37
 msgid "MONTH_DAY_FORMAT"
+msgstr ""
+
+#: templates/mentorship_admin/admin_set_profile_visibility.html:7
+#: templates/mentorship_admin/admin_set_profile_visibility.html:10
+msgid "User visibility"
+msgstr ""
+
+#: templates/mentorship_admin/admin_set_profile_visibility.html:13
+msgid " is active."
+msgstr ""
+
+#: templates/mentorship_admin/admin_set_profile_visibility.html:14
+msgid "Deactivate"
+msgstr ""
+
+#: templates/mentorship_admin/admin_set_profile_visibility.html:16
+msgid " is inactive."
+msgstr ""
+
+#: templates/mentorship_admin/admin_set_profile_visibility.html:17
+msgid "Activate"
 msgstr ""
 
 #: templates/mentorship_admin/base.html:10
@@ -1933,86 +1991,101 @@ msgstr "profiluri"
 msgid "Profile for %(other_user)s"
 msgstr ""
 
-#: templates/profiles/profile.html:31
+#: templates/profiles/profile.html:24
 #, python-format
 msgid "Profile for <span class=\"nickname\">%(other_user)s</span>"
 msgstr ""
 
-#: templates/profiles/profile.html:33
+#: templates/profiles/profile.html:26
 #, python-format
 msgid "Profile for <span class=\"fn nickname\">%(other_user)s</span>"
 msgstr ""
 
-#: templates/profiles/profile.html:49
+#: templates/profiles/profile.html:42
 #, fuzzy
 msgid "Mentorship request"
 msgstr "activitati de mentorat"
 
-#: templates/profiles/profile.html:53
+#: templates/profiles/profile.html:46
 #, python-format
 msgid "You are connected with %(other_user)s."
 msgstr ""
 
-#: templates/profiles/profile.html:53
+#: templates/profiles/profile.html:46
 msgid "Send a message"
 msgstr ""
 
-#: templates/profiles/profile.html:56
+#: templates/profiles/profile.html:49
 #, fuzzy, python-format
 msgid "%(other_user)s has requested mentorship."
 msgstr "%(invitation_to_user)s a refuzat solicitarea dumneavoastra."
 
-#: templates/profiles/profile.html:101
+#: templates/profiles/profile.html:94
 msgid "Mentoring request renounced."
 msgstr ""
 
-#: templates/profiles/profile.html:104
+#: templates/profiles/profile.html:97
 msgid "Mentoring request is being processed."
 msgstr ""
 
-#: templates/profiles/profile.html:106
+#: templates/profiles/profile.html:99
 msgid "Mentoring request sent."
 msgstr ""
 
-#: templates/profiles/profile.html:109
+#: templates/profiles/profile.html:102
 #, fuzzy
 msgid "renounce application"
 msgstr "un student a renuntat la solicitarea sa."
 
-#: templates/profiles/profile.html:116
+#: templates/profiles/profile.html:109
 msgid "You already have a mentor."
 msgstr ""
 
-#: templates/profiles/profile.html:119
+#: templates/profiles/profile.html:112
 msgid "Mentoring request previously refused."
 msgstr ""
 
-#: templates/profiles/profile.html:122
+#: templates/profiles/profile.html:115
 msgid "You cannot send more than 3 requests."
 msgstr ""
 
-#: templates/profiles/profile.html:125
+#: templates/profiles/profile.html:118
 msgid "Mentor request form"
 msgstr ""
 
-#: templates/profiles/profile.html:132
+#: templates/profiles/profile.html:125
 #, fuzzy, python-format
 msgid "%(other_user)s to be your mentor."
 msgstr "%(invitation_to_user)s a acceptat sa va fie mentor."
 
-#: templates/profiles/profile.html:146
+#: templates/profiles/profile.html:139
 msgid "Blog Posts"
 msgstr ""
 
-#: templates/profiles/profile.html:153
+#: templates/profiles/profile.html:146
 msgid "No blog posts yet."
 msgstr ""
 
-#: templates/profiles/profile.html:160
+#: templates/profiles/profile.html:153
 #, python-format
 msgid ""
 "<a href=\"%(signup_url)s\">Sign up</a> and <a href=\"%(login_url)s\">log in "
 "</a> to add this person as a friend and see their tweets and blog posts."
+msgstr ""
+
+#: templates/profiles/profile_404.html:4
+#, fuzzy
+msgid "Profile 404"
+msgstr "profil"
+
+#: templates/profiles/profile_404.html:7
+msgid "Profile not found"
+msgstr ""
+
+#: templates/profiles/profile_404.html:9
+msgid ""
+"The user whose profile you are trying to view either doesn't exist or he "
+"deactivated his profile page."
 msgstr ""
 
 #: templates/profiles/profile_edit.html:6
@@ -2023,53 +2096,94 @@ msgstr ""
 #: templates/profiles/profile-types/profile-mentor.html:88
 #: templates/profiles/profile-types/profile-mentor.html:129
 #: templates/profiles/profile-types/profile-student.html:9
-#: templates/profiles/profile-types/profile-student.html:44
-#: templates/profiles/profile-types/profile-student.html:68
-#: templates/profiles/profile-types/profile-student.html:83
-#: templates/profiles/profile-types/profile-student.html:97
-#: templates/profiles/profile-types/profile-student.html:114
-#: templates/profiles/profile-types/profile-student.html:136
+#: templates/profiles/profile-types/profile-student.html:45
+#: templates/profiles/profile-types/profile-student.html:69
+#: templates/profiles/profile-types/profile-student.html:84
+#: templates/profiles/profile-types/profile-student.html:98
+#: templates/profiles/profile-types/profile-student.html:115
+#: templates/profiles/profile-types/profile-student.html:137
 msgid "Edit"
 msgstr ""
 
-#: templates/profiles/profile_right_panel.html:6
+#: templates/profiles/profile_events.html:5
+#: templates/profiles/profile_events.html:10
+msgid "Events of"
+msgstr ""
+
+#: templates/profiles/profile_events.html:29
+msgid "Event"
+msgstr ""
+
+#: templates/profiles/profile_events.html:29
+msgid "Points"
+msgstr ""
+
+#: templates/profiles/profile_right_panel.html:11
+#, fuzzy
+msgid "Deactivate profile"
+msgstr "profilul mentor"
+
+#: templates/profiles/profile_right_panel.html:13
+#, fuzzy
+msgid "Activate profile"
+msgstr "profil student"
+
+#: templates/profiles/profile_right_panel.html:15
+#, fuzzy
+msgid "Change password"
+msgstr "Parola noua"
+
+#: templates/profiles/profile_right_panel.html:21
+#, fuzzy
+msgid "Rating"
+msgstr "rating"
+
+#: templates/profiles/profile_right_panel.html:24
+msgid "Recent events"
+msgstr ""
+
+#: templates/profiles/profile_right_panel.html:31
+msgid "see all"
+msgstr ""
+
+#: templates/profiles/profile_right_panel.html:39
 msgid "Your Tribes"
 msgstr ""
 
-#: templates/profiles/profile_right_panel.html:13
+#: templates/profiles/profile_right_panel.html:46
 #, python-format
 msgid "You are not yet a member of any <a href=\"%(tribe_url)s\">tribes</a>."
 msgstr ""
 
-#: templates/profiles/profile_right_panel.html:17
+#: templates/profiles/profile_right_panel.html:50
 msgid "Your Mentors"
 msgstr ""
 
-#: templates/profiles/profile_right_panel.html:18
+#: templates/profiles/profile_right_panel.html:51
 msgid "Your Mentees"
 msgstr ""
 
-#: templates/profiles/profile_right_panel.html:33
+#: templates/profiles/profile_right_panel.html:66
 msgid ""
 "None. You should look at the list of <a href=\"/profiles/\">profiles</a> and "
 "see if there's anyone you know."
 msgstr ""
 
-#: templates/profiles/profile_right_panel.html:40
+#: templates/profiles/profile_right_panel.html:73
 #, python-format
 msgid "%(other_user)s's Tribes"
 msgstr ""
 
-#: templates/profiles/profile_right_panel.html:46
+#: templates/profiles/profile_right_panel.html:79
 msgid "Not yet a member of any tribes."
 msgstr ""
 
-#: templates/profiles/profile_right_panel.html:50
+#: templates/profiles/profile_right_panel.html:83
 #, python-format
 msgid "%(other_user)s's Mentor"
 msgstr ""
 
-#: templates/profiles/profile_right_panel.html:51
+#: templates/profiles/profile_right_panel.html:84
 #, python-format
 msgid "%(other_user)s's Mentees"
 msgstr ""
@@ -2117,39 +2231,39 @@ msgid "City and country of interest for mentorship"
 msgstr "orasul si tara programului de mentorat"
 
 #: templates/profiles/profile-types/profile-mentor.html:50
-#: templates/profiles/profile-types/profile-student.html:47
+#: templates/profiles/profile-types/profile-student.html:48
 #, fuzzy
 msgid "Employer name"
 msgstr "Numele angajatorului"
 
 #: templates/profiles/profile-types/profile-mentor.html:53
-#: templates/profiles/profile-types/profile-student.html:50
+#: templates/profiles/profile-types/profile-student.html:51
 #, fuzzy
 msgid "Employer address"
 msgstr "Adresa angajatorului"
 
 #: templates/profiles/profile-types/profile-mentor.html:67
-#: templates/profiles/profile-types/profile-student.html:62
+#: templates/profiles/profile-types/profile-student.html:63
 #, fuzzy
 msgid "Add current employment information"
 msgstr "Angajator curent"
 
 #: templates/profiles/profile-types/profile-mentor.html:83
-#: templates/profiles/profile-types/profile-student.html:78
+#: templates/profiles/profile-types/profile-student.html:79
 msgid "Organizations in which (s)he is/was a volunteer"
 msgstr ""
 
 #: templates/profiles/profile-types/profile-mentor.html:88
-#: templates/profiles/profile-types/profile-student.html:83
-#: templates/profiles/profile-types/profile-student.html:97
-#: templates/profiles/profile-types/profile-student.html:114
+#: templates/profiles/profile-types/profile-student.html:84
+#: templates/profiles/profile-types/profile-student.html:98
+#: templates/profiles/profile-types/profile-student.html:115
 msgid "remove"
 msgstr ""
 
 #: templates/profiles/profile-types/profile-mentor.html:91
-#: templates/profiles/profile-types/profile-student.html:86
-#: templates/profiles/profile-types/profile-student.html:100
-#: templates/profiles/profile-types/profile-student.html:117
+#: templates/profiles/profile-types/profile-student.html:87
+#: templates/profiles/profile-types/profile-student.html:101
+#: templates/profiles/profile-types/profile-student.html:118
 msgid "Add another"
 msgstr ""
 
@@ -2159,7 +2273,7 @@ msgid "Post bachelor's studies"
 msgstr "studii postuniversitare"
 
 #: templates/profiles/profile-types/profile-mentor.html:101
-#: templates/profiles/profile-types/profile-student.html:125
+#: templates/profiles/profile-types/profile-student.html:126
 #, fuzzy
 msgid "Fields of interest for mentorship"
 msgstr "Domenii de interes pentru mentorizare (intre 1 si 3)"
@@ -2181,7 +2295,7 @@ msgid "other"
 msgstr ""
 
 #: templates/profiles/profile-types/profile-mentor.html:132
-#: templates/profiles/profile-types/profile-student.html:139
+#: templates/profiles/profile-types/profile-student.html:140
 #, fuzzy
 msgid "Hobbies"
 msgstr "hobbie-uri"
@@ -2192,7 +2306,7 @@ msgid "Additional informations"
 msgstr "Informatii aditionale"
 
 #: templates/profiles/profile-types/profile-mentor.html:145
-#: templates/profiles/profile-types/profile-student.html:152
+#: templates/profiles/profile-types/profile-student.html:153
 msgid "Preffered communication methods"
 msgstr ""
 
@@ -2200,22 +2314,26 @@ msgstr ""
 msgid "Student"
 msgstr ""
 
-#: templates/profiles/profile-types/profile-student.html:27
+#: templates/profiles/profile-types/profile-student.html:26
+msgid "Current pursued degree"
+msgstr ""
+
+#: templates/profiles/profile-types/profile-student.html:28
 #, fuzzy
 msgid "Faculty major"
 msgstr "Specializarea absolvita"
 
-#: templates/profiles/profile-types/profile-student.html:131
+#: templates/profiles/profile-types/profile-student.html:132
 #, fuzzy
 msgid "How can a mentor help in the student's  development?"
 msgstr "Cum poate un mentor sa ajute in dezvoltarea unui student?"
 
-#: templates/profiles/profile-types/profile-student.html:146
+#: templates/profiles/profile-types/profile-student.html:147
 #, fuzzy
 msgid "Expectation of mentor"
 msgstr "Care sunt asteptarile unui mentor?"
 
-#: templates/profiles/profile-types/profile-student.html:149
+#: templates/profiles/profile-types/profile-student.html:150
 #, fuzzy
 msgid "Addtional informations"
 msgstr "Informatii aditionale"
@@ -2274,6 +2392,9 @@ msgstr ""
 #, python-format
 msgid "All Wiki Articles Matching <i>%(tag)s</i>"
 msgstr ""
+
+#~ msgid "timezone"
+#~ msgstr "fus orar"
 
 #~ msgid ""
 #~ "%(user)s has joined the tribe %(tribe)s.\n"

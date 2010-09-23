@@ -215,7 +215,7 @@ class CommunicationRating(models.Model):
 class Event(models.Model):
     name = models.TextField(blank=False, verbose_name=_('event name'))
     points = models.IntegerField(default=1, verbose_name=_('points'))
-    date = models.DateField(blank=False, verbose_name=_('date'))
+    date = models.DateTimeField(blank=False, verbose_name=_('date'))
     
     def __unicode__(self):
         return self.name
@@ -223,7 +223,7 @@ class Event(models.Model):
     
 class StudentEvent(models.Model):
     student = models.ForeignKey(StudentProfile, related_name='student_events')
-    date = models.DateField(blank=False, verbose_name=_('date'))
+    date = models.DateTimeField(blank=False, verbose_name=_('date'))
     event = models.ForeignKey(Event, related_name='student_events')
     
     def points(self):

@@ -22,6 +22,8 @@ from profiles.forms_parts import *
 from messages.forms import ComposeForm
 
 from avatar.templatetags.avatar_tags import avatar
+from django.contrib.admin.views.decorators import staff_member_required
+import datetime
 
 if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
@@ -29,6 +31,7 @@ else:
     notification = None
 
 
+@login_required
 def profiles(request, template_name="profiles/profiles.html", extra_context=None):
     if extra_context is None:
         extra_context = {}
@@ -50,12 +53,20 @@ def profiles(request, template_name="profiles/profiles.html", extra_context=None
     }, **extra_context), context_instance=RequestContext(request))
 
 
-def profile(request, username, template_name="profiles/profile.html", extra_context=None):
-    
+def get_object_or_none(Class, **keys):
+    objs = Class.objects.filter(**keys)
+    if objs:
+        return objs[0]
+    return None
+
+@login_required
+def profile(request, username, template_name="profiles/profile.html", extra_context=None):    
     if extra_context is None:
         extra_context = {}
     
-    other_user = get_object_or_404(User, username=username)
+    other_user = get_object_or_none(User, username=username)
+    if other_user == None or other_user.is_staff or (not other_user.get_profile().active and request.user != other_user and not request.user.is_staff) or (not other_user.is_active and not request.user.is_staff):
+        return render_to_response('profiles/profile_404.html', context_instance=RequestContext(request))
     
     if request.user.is_authenticated():
         is_friend = Friendship.objects.are_friends(request.user, other_user)
@@ -153,6 +164,9 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
     
         if request.user.get_profile().as_mentor() != None and FriendshipInvitation.objects.countAccepts(to_user = request.user) < 3:
             mentor_can_accept = True
+    
+    allow_private = is_me or request.user.is_staff
+    allow_restricted = True # TODO: Check if the users know each other
     
     return render_to_response(template_name, dict({
         "is_me": is_me,
@@ -466,7 +480,7 @@ def research_add_or_edit(request, **kargs):
                               context_instance=RequestContext(request))
 
 COUNT_ON_PAGE = 50;
-    
+
 @login_required
 def events(request, username):
     user = User.objects.filter(username=username)
@@ -519,7 +533,121 @@ def events(request, username):
                               {'username': username, 'events': events[offset:offset+COUNT_ON_PAGE], 'prev_offset': prev_offset,
                                'next_offset': next_offset, 'last_offset': last_offset, 'prev': prev, 'next': next},
                                context_instance=RequestContext(request))
-        
-          
+
+
+class AdminEvent:
+    id = 0
+    name = ''
+    date = ''
+    points = 0
+    participated = False
     
+    def __init__(self, id, name, date, points, participated):
+        self.id = id
+        self.name = name
+        self.date = date
+        self.points = points
+        self.participated = participated
+
+
+@staff_member_required
+def admin_events(request, username):
+    user = get_object_or_404(User, username=username)
+    if user.is_staff or not user.get_profile().as_student():
+        raise Http404
+    student = user.get_profile().as_student()    
+    items = Event.objects.order_by('-date')
+    
+    # find number of objects and current offset
+    count = items.count()
+    offset = 0
+    if 'offset' in request.GET:
+        try:
+            offset = int(request.GET['offset'])
+        except:
+            offset = 0
+            
+    # check validity of offset and redirect on invalid
+    if offset and offset >= count:
+        offset = max(0, count - COUNT_ON_PAGE)
+        return HttpResponseRedirect(reverse('profile_admin_edit', args=[username])+'?offset='+str(offset))
+    if offset < 0:
+        return HttpResponseRedirect(reverse('profile_admin_edit', args=[username]))
+    
+    # compute next, previous, first and last offsets
+    has_next = has_prev = False
+    next = prev = 0
+    last = max(0, count - COUNT_ON_PAGE)
+    if offset > 0:
+        prev = max(0, offset - COUNT_ON_PAGE)
+        has_prev = True  
+    if offset + COUNT_ON_PAGE < count:
+        next = offset + COUNT_ON_PAGE
+        has_next = True
+        
+    # on post save data
+    save_message = None
+    if request.method == "POST":
+        ids = []
+        checked = []
+        for name in request.POST.keys():
+            if name.startswith('event-'):
+                try:
+                    id = int(request.POST[name])
+                    checked.append(id)
+                except:
+                    continue
+            else:
+                if name.startswith('id-event-'):
+                    try:
+                        id = int(request.POST[name])
+                        ids.append(id)
+                    except:
+                        continue
+                    
+        for id in checked:
+            event = get_object_or_none(Event, pk=id)
+            if event != None:
+                stud_event = get_object_or_none(StudentEvent, student=student, event=event)
+                if stud_event == None:
+                    stud_event = StudentEvent(student=student, event=event, date=datetime.datetime.now())
+                    stud_event.save()
+            ids.remove(id)
+            
+        for id in ids:
+            obj = get_object_or_none(StudentEvent, student=student, event=get_object_or_none(Event, pk=id))
+            if obj != None:
+                obj.delete()
+                      
+        save_message = _('Changes were successfully saved')
+        
+    if 'redirect' in request.GET:
+        return HttpResponseRedirect(request.GET['redirect'])
+    
+    # build the list of items to return
+    items = items[offset: offset + COUNT_ON_PAGE]
+    page_items = []
+    for item in items:
+        page_items.append(AdminEvent(item.pk, item.name, item.date, item.points, StudentEvent.objects.filter(student=student, event=item).count() > 0))
+        
+    return render_to_response('profiles/admin/events.html',
+                              {'has_next': has_next, 'has_prev': has_prev, 
+                               'next': next, 'last': last,
+                               'prev': prev,
+                               'offset': offset,
+                               'username': username,
+                               'save_message': save_message, 
+                               'items': page_items}, context_instance = RequestContext(request))
+
+        
+@login_required  
+def activate(request, state):
+    print state
+    if state == 'on':
+        request.user.get_profile().active = True
+    else:
+        request.user.get_profile().active = False
+    request.user.get_profile().save()
+        
+    return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
     

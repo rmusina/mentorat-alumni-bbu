@@ -1,0 +1,12 @@
+{% extends "profiles/base.html" %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Profile 404" %}{% endblock %}
+
+{% block body %}
+<h1>{% trans "Profile not found" %}</h1>
+<p>
+{% trans "The user whose profile you are trying to view either doesn't exist or he deactivated his profile page." %}
+</p>
+{% endblock %}
+

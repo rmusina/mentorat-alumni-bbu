@@ -1,7 +1,49 @@
 {% load i18n %}
 {% load avatar_tags %}
+{% load events_admin %}
 
 {% if user.is_staff %}
+    <div class="groups">
+        <h2>{% trans "Administration" %}</h2>
+        {% if other_user.is_active %}
+            <a href="{% url admin_set_visibility other_user.username 'deactivate' %}">{% trans "Deactivate account" %}</a>
+        {% else %}
+            <a href="{% url admin_set_visibility other_user.username 'activate' %}">{% trans "Activate account" %}</a>
+        {% endif %}
+        <h3>{% trans "Edit user events" %}</h3>
+        {% load_recent_events 10 for other_user in events %}
+        {% if events %}
+        <form method="POST" action="{% url profile_admin_events other_user.username %}?redirect={% url profile_detail other_user.username %}">
+            {% csrf_token %}
+            <table class="event-table" style="width:100%">
+                {% for item in events %}
+                <tr>
+                    <td style="width:25px"><input type="checkbox" name="event-{{ item.id }}" {% if item.participated %}checked="true"{% endif %} value="{{ item.id }}"/>
+                    <input type="hidden" name="id-event-{{ item.id }}" value="{{ item.id }}"/></td>
+                    <td>{{ item.name }}</td>
+                    <td style="text-align:right;">{{ item.points }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br/>
+            <table width="100%">
+                <tr><td style="text-align:left"><input type="submit" value="{% trans 'save' %}"></td>
+                <td style="text-align:right"><a href="{% url profile_admin_events other_user.username %}">{% trans "see all" %}</a></td></tr>
+            </table>
+        {% else %}<p><i>{% trans "There are no user events available" %}</i><p>{% endif %}
+    </div>
+{% endif %}
+
+{% if is_me %}
+    <div class="groups">
+        <h2>{% trans "Account" %}</h2>
+        {% if other_user.get_profile.active %}
+            <a href="{% url profile_deactivate %}">{% trans "Deactivate profile" %}</a>
+        {% else %}
+            <a href="{% url profile_activate %}">{% trans "Activate profile" %}</a>
+        {% endif %}<br/>
+        <a href="{% url acct_passwd %}">{% trans "Change password" %}</a>
+    </div>
 {% endif %}
 
 {% if student %}
