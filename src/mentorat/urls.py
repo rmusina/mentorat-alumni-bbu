@@ -10,8 +10,6 @@ from blog.feeds import BlogFeedAll, BlogFeedUser
 from bookmarks.feeds import BookmarkFeed
 from microblogging.feeds import TweetFeedAll, TweetFeedUser, TweetFeedUserWithFriends
 
-
-
 blogs_feed_dict = {"feed_dict": {
     'all': BlogFeedAll,
     'only': BlogFeedUser,
@@ -39,7 +37,6 @@ urlpatterns = patterns('',
     (r'^bbauth/', include('bbauth.urls')),
     (r'^authsub/', include('authsub.urls')),
     (r'^profiles/', include('profiles.urls')),
-    (r'^blog/', include('blog.urls')),
     (r'^tags/', include('tag_app.urls')),
     (r'^invitations/', include('friends_app.urls')),
     (r'^notices/', include('notification.urls')),
@@ -54,18 +51,14 @@ urlpatterns = patterns('',
     (r'^swaps/', include('swaps.urls')),
     (r'^flag/', include('flag.urls')),
     (r'^locations/', include('locations.urls')),
-
+    (r'^wiki/', include('wiki.urls')),
+    
     (r'^feeds/posts/(.*)/$', 'django.contrib.syndication.views.feed', blogs_feed_dict),
 )
 
+
 ## @@@ for now, we'll use friends_app to glue this stuff together
 
-from blog.models import Post
-
-friends_blogs_kwargs = {
-    "template_name": "blog/friends_posts.html",
-    "friends_objects_function": lambda users: Post.objects.filter(author__in=users),
-}
 
 from microblogging.models import Tweet
 
@@ -73,10 +66,6 @@ friends_tweets_kwargs = {
     "template_name": "microblogging/friends_tweets.html",
     "friends_objects_function": lambda users: Tweet.objects.filter(sender_id__in=[user.id for user in users], sender_type__name='user'),
 }
-
-urlpatterns += patterns('',
-    url('^blog/friends_blogs/$', 'friends_app.views.friends_objects', kwargs=friends_blogs_kwargs, name="friends_blogs"),
-)
 
 if settings.SERVE_MEDIA:
     urlpatterns += patterns('',

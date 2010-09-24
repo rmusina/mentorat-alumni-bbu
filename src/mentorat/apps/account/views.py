@@ -112,6 +112,19 @@ def language_change(request, form_class=ChangeLanguageForm,
     }, context_instance=RequestContext(request))
 
 @login_required
+def timezone_change(request, form_class=ChangeTimezoneForm,
+        template_name="account/timezone_change.html"):
+    if request.method == "POST":
+        form = form_class(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = form_class(request.user)
+    return render_to_response(template_name, {
+        "form": form,
+    }, context_instance=RequestContext(request))
+
+@login_required
 def other_services(request, template_name="account/other_services.html"):
     from microblogging.utils import twitter_verify_credentials
     twitter_form = TwitterForm(request.user)

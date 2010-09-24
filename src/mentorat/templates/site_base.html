@@ -8,7 +8,6 @@
 {% block extra_head_base %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/site_tabs.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/avatar.css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/blogs.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/comments.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/friends.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/groups.css" />
@@ -47,8 +46,8 @@
     {% if user.is_authenticated %}
         <ul class="tabs">{% spaceless %}
             <li id="tab_profile"><a href="{% url profile_detail user %}">{% trans "Profile" %}</a></li>
-            <li id="tab_blogs"><a href="{% url blog_list_all %}">{% trans "Blogs" %}</a></li>
             <li id="tab_tribes"><a href="{% url tribe_list %}">{% trans "Tribes" %}</a></li>
+            <li id="tab_wikis"><a href="{% url wiki_list %}">{% trans "Wikis" %}</a></li>
             <li id="tab_locations"><a href="{% url loc_yours %}">{% trans "Locations" %}</a></li>
             <li id="tab_inbox"><a href="{% url messages_inbox %}">{% trans "Inbox" %} ({{ combined_inbox_count }})</a></li>
             {% if user.is_staff %}

@@ -11,11 +11,13 @@ from django.utils.translation import get_language_from_request, ugettext_lazy as
 from emailconfirmation.models import EmailAddress, EmailConfirmation
 
 from emailconfirmation.signals import email_confirmed
+from timezones.fields import TimeZoneField
 
 class Account(models.Model):
     user = models.ForeignKey(User, unique=True, verbose_name=_('user'))
     
     language = models.CharField(_('language'), max_length=10, choices=settings.LANGUAGES, default=settings.LANGUAGE_CODE)
+    timezone = TimeZoneField(_('timezone'), default="Europe/Bucharest")
 
     def __unicode__(self):
         return self.user.username
