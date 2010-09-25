@@ -11,7 +11,7 @@ from account.utils import get_default_redirect
 from signup_codes.models import check_signup_code
 from signup_codes.forms import SignupForm, InviteUserForm
 
-from profiles.models import StudentProfile, MentorProfile
+from profiles.models import StudentProfile, MentorProfile, FieldOfInterest
 
 @staff_member_required
 def admin_set_profile_visibility(request, username, visibility, template_name="mentorship_admin/admin_set_profile_visibility.html", extra_context=None):
@@ -51,6 +51,15 @@ def admin_profiles(request, template_name="mentorship_admin/admin_search_profile
     users = User.objects.all().order_by("-date_joined")
     search_terms = request.GET.get('search', '')
     order = request.GET.get('order')
+    selected_field_index = request.GET.get('field')
+    if (selected_field_index == "None"):
+        selected_field_index = None
+
+    nr_fields = FieldOfInterest.objects.count()
+    selected_field_of_interest = None
+    if selected_field_index:
+        if 1 <= int(selected_field_index) <= nr_fields:
+            selected_field_of_interest = FieldOfInterest.objects.get(pk=selected_field_index).name
 
     if not order:
         order = 'name'
@@ -66,6 +75,8 @@ def admin_profiles(request, template_name="mentorship_admin/admin_search_profile
                 Q(profile__studentprofile__faculty__icontains=search_terms)
             )
 
+    if selected_field_of_interest:
+        users = users.filter(profile__fields_of_interest__field__name__iexact=selected_field_of_interest)
     # order by date
     if order == 'date':
         users = users.order_by("-date_joined")
@@ -81,10 +92,14 @@ def admin_profiles(request, template_name="mentorship_admin/admin_search_profile
         mentor_list = [m.pk for m in MentorProfile.objects.all()]
         users = users.filter(profile__pk__in=mentor_list)
 
+    fields_of_interest = FieldOfInterest.objects.all()
+
     return render_to_response(template_name, dict({
         'users': users,
         'order': order,
         'search_terms': search_terms,
+        'fields_of_interest': fields_of_interest,
+        'field': selected_field_index,
     }, **extra_context), context_instance=RequestContext(request))
 
 
