@@ -1,5 +1,7 @@
 /* SITE-SPECIFIC TAB STYLING */
 
+body.mentorship_admin #tab_mentorship_admin a,
+body.wiki #tab_wiki a,
 body.profile #tab_profile a,
 body.blogs #tab_blogs a,
 body.swaps #tab_swaps a,
@@ -12,6 +14,8 @@ body.inbox #tab_inbox a
 {
     color: #000; /* selected tab text colour */
 }
+body.mentorship_admin #tab_mentorship_admin,
+body.wiki #tab_wiki,
 body.profile #tab_profile,
 body.blogs #tab_blogs,
 body.swaps #tab_swaps,
