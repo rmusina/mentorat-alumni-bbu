@@ -13,12 +13,59 @@
         {{ form|as_uni_form }}
     </fieldset>
     <div id="fields">
+        <input type="hidden" id="next_field_id" value="{{ fields|length }}"/>
+    {% for field in fields %}
+        <div class="ctrlHolder{% if not field.is_valid %} error{% endif %}" id="field-{{ field.index }}-holder">
+            {% for error in field.errors %}<p class="errorField">{{ error }}</p>{% endfor %}
+        {% if field.istext %}
+            <h3>{% trans "Text field" %}</h3>
+            <input type="hidden" name="field-{{ field.index }}-type" value="text"/>
+            <label for="field-{{ field.index }}-name">{% trans "Field name" %}*</label>
+            <input type="text" name="field-{{ field.index }}-name" class="textinput" value="{{ field.name }}"/>
+            <br/>
+            <input type="checkbox" name="field-{{ field.index }}-required" value="yes" {% if field.required %}checked{% endif %} class="checkboxinput"/>
+            <label for="field-{{ field.index }}-required">{% trans "Required" %}</label>
+        {% else %}{% if field.isbool %}
+            <h3>{% trans "Checkbox" %}</h3>
+            <input type="hidden" name="field-{{ field.index }}-type" value="bool" />
+            <label for="field-{{ field.index }}-name">{% trans "Field name" %}*</label>
+            <input type="text" name="field-{{ field.index }}-name" class="textinput" value="{{ field.name }}"/>
+            <br/>
+        {% else %}{% if field.ischoice %}
+            <h3>{% trans "Choice field" %}</h3>
+            <input type="hidden" name="field-{{ field.index }}-type" value="choice"/>
+            <label for="field-{{ field.index }}-name">{% trans "Field name" %}*</label>
+            <input type="text" name="field-{{ field.index }}-name" class="textinput" value="{{ field.name }}"/>
+            <br/>
+            <input type="checkbox" name="field-{{ field.index }}-multichoice" value="yes" class="checkboxinput" {% if field.multichoice %}checked{% endif %}/>
+            <label for"field-{{ field.index }}-multichoice">{% trans "Multichoice" %}</label>
+            <input type="checkbox" name="field-{{ field.index }}-required" value="yes" class="checkboxinput" {% if field.required %}checked{% endif %}/>
+            <label for="field-{{ field.index }}-required">{% trans "Required" %}</label>
+            <div id="field-{{ field.index }}-choices-holder" style="position: relative; left: 30px">
+                <h4>{% trans "Choices" %}</h4>
+                <input type="hidden" id="field-{{ field.index }}-choices-counter" value="{{ field.choices|length }}" />
+                {% for choice in field.choices %}
+                <div class="ctrlHolder" id="field-{{ field.index }}-choices-{{ forloop.counter0 }}-holder">
+                    <label for="field-{{ field.index }}-choices-{{ forloop.counter0 }}">{% trans "Choice name" %}*</label>
+                    <input type="text" name="field-{{ field.index }}-choices-{{ forloop.counter0 }}" value="{{ choice }}" />
+                    <button type="button" onclick="remove_field('field-{{ field.index }}-choices-{{ forloop.counter0 }}-holder', 'field-{{ field.index }}-choices-holder')">{% trans "Remove choice" %}</button>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="button" onclick="add_choice('field-{{ field.index }}-choices-holder', 'field-{{ field.index }}-choices-', '{% trans "Choice name" %}', '{% trans "Remove choice" %}')">{% trans "Add choice" %}</button>
+        {% endif %}{% endif %}{% endif %}
+            <button type="button" onclick="remove_field('field-{{ field.index }}-holder', 'fields')">{% trans "Remove field" %}</button>
+        </div>
+    {% endfor %}
     </div>
-    <input type="submit" value="{% trans 'Add survey' %}" />
-    <button type="button" onclick="add_textfield('fields', '{% trans "Text field" %}', '{% trans "Field name" %}', '{% trans "Requried" %}', '{% trans "Remove field" %}')">{% trans "Add text field" %}</button>
+    <br/>
+    <input type="submit" value="{% trans 'Save survey' %}" />
+    <button type="button" onclick="add_textfield('fields', '{% trans "Text field" %}', '{% trans "Field name" %}', '{% trans "Required" %}', '{% trans "Remove field" %}')">{% trans "Add text field" %}</button>
     <button type="button" onclick="add_booleanfield('fields', '{% trans "Checkbox" %}', '{% trans "Field name" %}', '{% trans "Remove field" %}')">{% trans "Add checkbox" %}</button>
-    <button type="button" onclick="add_choicefield('fields', '{% trans "Choice field" %}', '{% trans "Field name" %}', '{% trans "Multichoice" %}', '{% trans "Required" %}', 
-                                                    '{% trans "Choices" %}', '{% trans "Add choice" %}', '{% trans "Remove field" %}', '{% trans "Choice name" %}', '{% trans "Remove choice" %}')">{% trans "Add choice field" %}</button>
+    <button type="button" onclick="add_choicefield('fields', '{% trans "Choice field" %}', '{% trans "Field name" %}', 
+                                                   '{% trans "Multichoice" %}', '{% trans "Required" %}', 
+                                                    '{% trans "Choices" %}', '{% trans "Add choice" %}', '{% trans "Remove field" %}', 
+                                                    '{% trans "Choice name" %}', '{% trans "Remove choice" %}')">{% trans "Add choice field" %}</button>
 </form>
 </div>
 {% endblock %}

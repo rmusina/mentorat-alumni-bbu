@@ -1,4 +1,9 @@
-next_id = 1
+function get_next_id()
+{
+    nid = parseInt(document.getElementById('next_field_id').getAttribute('value'));
+    document.getElementById('next_field_id').setAttribute('value', nid + 1);
+    return nid;
+}
 
 function remove_field(id, pid)
 {
@@ -24,6 +29,7 @@ function addRemoveButton(div, text, parent_id)
  */
 function add_textfield(holder_name, head_text, fname, req, rm_text)
 {
+    var next_id = get_next_id()
     names = "field-" + next_id + "-";
 
     div = document.createElement("div");
@@ -66,7 +72,6 @@ function add_textfield(holder_name, head_text, fname, req, rm_text)
     addRemoveButton(div, rm_text, holder_name);
 
     document.getElementById(holder_name).appendChild(div);    
-    ++ next_id;
 }
 
 /*
@@ -78,6 +83,7 @@ function add_textfield(holder_name, head_text, fname, req, rm_text)
  */
 function add_booleanfield(holder_name, head_text, fname, rm_text)
 {
+    var next_id = get_next_id()
     names = "field-" + next_id + "-";
 
     div = document.createElement("div");
@@ -108,7 +114,6 @@ function add_booleanfield(holder_name, head_text, fname, rm_text)
     addRemoveButton(div, rm_text, holder_name);
 
     document.getElementById(holder_name).appendChild(div);
-    ++ next_id;
 }
 
 function add_choice(pid, name, choice_name, rm_choice)
@@ -141,7 +146,6 @@ function add_choicediv(to, name, choice_text, add_text, choice_name, rm_choice)
     var div = document.createElement("div");
     div.setAttribute("id", name+"holder");
     div.setAttribute("style", "position: relative; left:30px");
-    div.setAttribute("class", "ctrlHolder");
 
     head = document.createElement("h4");
     head.appendChild(document.createTextNode(choice_text));
@@ -175,6 +179,7 @@ function add_choicediv(to, name, choice_text, add_text, choice_name, rm_choice)
  */
 function add_choicefield(holder_name, head_text, fname, multi, req, choice_text, add_text, rm_text, choice_name, rm_choice)
 {
+    var next_id = get_next_id()
     names = "field-" + next_id + "-";
 
     div = document.createElement("div");
@@ -229,5 +234,4 @@ function add_choicefield(holder_name, head_text, fname, multi, req, choice_text,
     addRemoveButton(div, rm_text, holder_name);
 
     document.getElementById(holder_name).appendChild(div);
-    ++ next_id;
 }
