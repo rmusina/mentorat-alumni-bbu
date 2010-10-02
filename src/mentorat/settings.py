@@ -185,7 +185,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
     # mentorship exclusive
-    'mentorship_admin'
+    'mentorship_admin',
+    'surveys',
 )
 
 ABSOLUTE_URL_OVERRIDES = {
