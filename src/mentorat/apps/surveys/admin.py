@@ -19,4 +19,9 @@ class SurveyAdmin(admin.ModelAdmin):
     inlines = [ TextInline, BooleanInline, ChoicesInline ]
 
 admin.site.register(Survey, SurveyAdmin)
+admin.site.register(Choice)
+admin.site.register(TextFieldAnswer)
+admin.site.register(BooleanFieldAnswer)
+admin.site.register(UserChoice)
+admin.site.register(CompletedSurvey)
 

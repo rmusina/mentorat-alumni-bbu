@@ -3,8 +3,11 @@ from django.shortcuts import *
 from django.http import *
 from django.template import *
 from surveys.forms import *
+from surveys.models import *
 import re
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 
 class TextValidator:
     def __init__(self, id, post, verbose=True):
@@ -119,6 +122,7 @@ class ChoiceValidator:
     def is_valid(self):
         return self.valid
 
+@staff_member_required
 def add_survey(request):  
     form = None
     validated = []
@@ -152,14 +156,66 @@ def add_survey(request):
                 validated.append(tmp)
                 valid = valid and tmp.is_valid()
             else:
-                pass #not a valid type of field
+                print 'Invalid field type:', requst.POST[field]
 
         if valid:
-            raise Exception
+            survey = form.save()
+            for field in validated:
+                if isinstance(field, TextValidator):
+                    text = TextField()
+                    text.index = field.index
+                    text.survey = survey
+                    text.name = field.name
+                    text.required = field.required
+                    text.save()
+                elif isinstance(field, BooleanValidator):
+                    bool = BooleanField()
+                    bool.index = field.index
+                    bool.survey = survey
+                    bool.name = field.name
+                    bool.save()
+                elif isinstance(field, ChoiceValidator):
+                    choice = ChoiceField()
+                    choice.index = field.index
+                    choice.survey = survey
+                    choice.name = field.name
+                    choice.multichoice = field.multichoice
+                    choice.required = field.required
+                    choice.save()
+                    for choicename in field.choices:
+                        ch = Choice()
+                        ch.field = choice
+                        ch.name = choicename
+                        ch.save()
+                else:
+                    print 'Invalid field type:', field
+            return HttpResponseRedirect(reverse('survey_add_success'))
     else:
         form = AddSurveyForm()
 
     return render_to_response('surveys/add.html', { 'form': form, 'fields': validated }, context_instance=RequestContext(request))
 
+@staff_member_required
 def rm_survey(request, id):
     pass 
+
+@login_required
+def survey(request, id):
+    survey = get_object_or_404(Survey, pk=id)
+    if CompletedSurvey.objects.filter(survey=survey, user=request.user).count() != 0:
+        raise Http404
+    if request.user.is_staff or (request.user.get_profile().as_student() and not survey.for_students) or (request.user.get_profile().as_mentor() and not survey.for_mentors):
+        raise Http404
+
+    if request.method == 'POST':
+        form = SurveyForm(survey, request.POST)
+        if form.is_valid():
+            form.save(survey, request.user)
+            return HttpResponseRedirect(reverse('survey_take_success'))
+    else:
+        form = SurveyForm(survey)
+
+    return render_to_response('surveys/survey_form.html', { 'survey': survey, 'form': form }, context_instance=RequestContext(request))
+
+
+

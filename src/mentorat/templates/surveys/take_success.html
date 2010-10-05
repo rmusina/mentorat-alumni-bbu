@@ -1,0 +1,10 @@
+{% extends 'surveys/base.html' %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Survey done" %}{% endblock %}
+{% block body %}
+<h2>{% trans "Survey complete" %}</h2>
+<p>
+{% trans "You have successfully completed the survey." %}
+</p>
+{% endblock %}
