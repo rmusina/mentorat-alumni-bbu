@@ -172,7 +172,6 @@ def article_list(request,
                                   context_instance=RequestContext(request))
     return HttpResponseNotAllowed(['GET'])
 
-
 @login_required
 def view_article(request, title,
                  ArticleClass=Article, # to create an unsaved instance

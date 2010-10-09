@@ -213,9 +213,11 @@ class CommunicationRating(models.Model):
 
 
 class Event(models.Model):
-    name = models.TextField(blank=False, verbose_name=_('event name'))
-    points = models.IntegerField(default=1, verbose_name=_('points'))
-    date = models.DateTimeField(blank=False, verbose_name=_('date'))
+    name = models.CharField(max_length=30,  blank=False, verbose_name=_('Event Name'))
+    points = models.IntegerField(default=1, verbose_name=_('Event Points'))
+    date = models.DateTimeField(default=datetime.datetime.now(), blank=False, verbose_name=_('Event Time and Date'))
+    location = models.CharField(max_length=50, blank=False, verbose_name=_('Event Location'))
+    description = models.TextField(verbose_name=_('Event DescripTion'))
     
     def __unicode__(self):
         return self.name

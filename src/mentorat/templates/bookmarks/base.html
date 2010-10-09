@@ -1,0 +1,12 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block body_class %}News{% endblock %}
+
+{% block subnav %}
+	<ul>
+    	<li><a href="{% url all_bookmarks %} ">{% trans "News" %}</a></li>
+        <li><a href="{% url event_calendar %} ">{% trans "Events" %}</a></li>
+    </ul>
+{% endblock %}

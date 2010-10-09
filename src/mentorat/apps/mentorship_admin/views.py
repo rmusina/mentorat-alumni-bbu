@@ -12,6 +12,8 @@ from signup_codes.models import check_signup_code
 from signup_codes.forms import SignupForm, InviteUserForm
 
 from profiles.models import StudentProfile, MentorProfile, FieldOfInterest
+from forms import EventsForm
+from django.utils.translation import ugettext_lazy as _
 
 @staff_member_required
 def admin_set_profile_visibility(request, username, visibility, template_name="mentorship_admin/admin_set_profile_visibility.html", extra_context=None):
@@ -120,6 +122,26 @@ def admin_invite_users(request, form_class = InviteUserForm,
         form = form_class()
     return render_to_response(template_name, {
         "title": ugettext("Invite user"),
+        "form": form,
+    }, context_instance = RequestContext(request))
+
+@staff_member_required
+def admin_events(request, form_class = EventsForm,
+        template_name="mentorship_admin/admin_events.html"):
+    """
+    View that controls the admin add events forms
+    """
+    
+    if request.method == 'POST':
+        form = form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            request.user.message_set.create(message=_("Event %(event)s has been created.") % {'event':form.cleaned_data["name"]})
+        form = form_class()
+    else:
+        form = form_class()
+   
+    return render_to_response(template_name, {
         "form": form,
     }, context_instance = RequestContext(request))
 

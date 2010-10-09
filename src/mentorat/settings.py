@@ -181,6 +181,7 @@ INSTALLED_APPS = (
     'tag_app',
     'topics',
     'groups',
+    'bookmarks',
 
     'django.contrib.admin',
 

@@ -72,7 +72,7 @@ class Article(models.Model):
     created_at = models.DateTimeField(default=datetime.now)
     last_update = models.DateTimeField(blank=True, null=True)
     removed = models.BooleanField(_("Is removed?"), default=False)
-
+    
     content_type = models.ForeignKey(ContentType, null=True)
     object_id = models.PositiveIntegerField(null=True)
     group = generic.GenericForeignKey('content_type', 'object_id')

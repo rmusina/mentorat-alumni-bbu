@@ -1,0 +1,105 @@
+/*
+  +------------------------------------------------------------------+
+  | Green-Beast.com                                                  |
+  | CSS: List Calendar                                               |
+  | Cascading Style Sheet                                            |
+  | Copyright March 2006                                             |
+  | Use with attribution by visible link please!                     |
+  | Attribute to: <a href="http://green-beast.com/">Mike Cherim</a>  |
+  +------------------------------------------------------------------+
+*/ 
+
+/* 
+  NOTE: To get this to work properly, margin and padding must be set
+  to 0 (zero). This can be done site-wide or simply for the container
+  used to hold this calandar and its elements where needed.
+ 
+  Site wide:
+  * {
+    margin : 0;
+    padding : 0;
+  }
+
+  Play around with it and you'll get it right.
+*/
+
+
+/* div for the calendar markup - text must be centered */
+
+div#calendar {
+  margin : 0 auto;
+  padding : 10px;
+  text-align : center;
+  width : 21em;
+  border : 1px solid #ccc;
+}
+
+/* calendar heading color */
+h2.calendar {
+  color : #669900;
+  font-weight : normal;
+}
+
+/* list info - monospace font must be used */
+ul#days, ul.weeks {
+  font-family : 'courier new', monospace;
+  list-style-type : none;
+  margin : 20px 0 20px 0;
+}
+
+/* day-box span styles - adjust with padding */ 
+ul#days li span {
+  background-color : #669900;
+  border : 1px solid #000;
+  cursor : help;
+  font-weight : bold;
+  color : #fff;
+  padding : 5px;
+}
+
+/* active links boxes default state - adjust with padding */
+ul.weeks li a.al, ul.weeks li a.na  { 
+  color : #666;
+  text-decoration : none;
+  background-color : #ffffcc;
+  border : 1px solid #999;
+  padding : 5px;
+}
+
+/* all states of not-used links */
+ul.weeks li a.na, ul.weeks li a.na:hover, ul.weeks li a.na:focus, ul.weeks li a.na:active   { 
+  background : transparent;
+  color : #666;
+  cursor : default;
+}
+
+/* hover and focus state of active links */
+ul.weeks li a.al:hover, ul.weeks li a.al:focus, ul.weeks li a.al:active {
+  color : #000;
+  background-color : #eecc11;
+  border : 1px solid #000;
+  text-decoration : none;
+  cursor : pointer;
+}
+
+/* not used link boxes - color and background should match - adjust with padding */
+ul.weeks li a.nu { 
+  color : #eee;
+  padding : 5px;
+  border : 1px solid #ccc;
+  background-color : #eee;
+  cursor : default;
+}
+
+/* to hide link separators */
+span.sep {
+  display : none;
+}
+
+/* this needs to be in conditional comment for IE only */
+div#calendar {
+  font-size : 0.9em;
+  letter-spacing : 0.001em;
+}
+
+/* End Styles */
