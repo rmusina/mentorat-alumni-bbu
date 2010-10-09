@@ -1,0 +1,24 @@
+{% extends 'surveys/base.html' %}
+{% load i18n %}
+{% load survey_tags %}
+
+{% block head_title %}{% trans 'Surveys' %}{% endblock %}
+{% block body %}
+    <ul>
+    {% for object in object_list %}
+        <li>
+        {% if object|for_user:user %}
+        <a href="{% if not user.is_staff %}
+                        {% if object|completedSurvey:user %}
+                            {% url survey_user_input object.pk,user.username %}
+                        {% else %}
+                            {% url survey_take object.pk %}
+                        {% endif %}
+                     {% else %}
+                        {% url survey_stats object.pk %}
+                     {% endif %}">{% endif %}{{ object.name }}
+        {% if object|for_user:user %}</a>{% endif %}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+

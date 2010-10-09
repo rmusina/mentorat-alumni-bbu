@@ -8,6 +8,7 @@ import re
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
+from django.views.generic.list_detail import object_list
 
 class TextValidator:
     def __init__(self, id, post, verbose=True):
@@ -218,4 +219,118 @@ def survey(request, id):
     return render_to_response('surveys/survey_form.html', { 'survey': survey, 'form': form }, context_instance=RequestContext(request))
 
 
+def user_input_sortkey(object):
+    return object.index
 
+class UserInput:
+    def __init__(self, name):
+        self.name = name
+	
+    def text(self, text):
+        self.isText = True
+        self.text = text
+	
+    def bool(self, checked):
+        self.isBool = True
+        self.checked = checked
+
+    def choice(self, choice):
+        self.isChoice = True
+        self.choice = choice
+
+    def mchoice(self, choices):
+        self.isMultiChoice = True
+        self.choices = choices
+
+    def __unicode__(self):
+        ret = self.name + ' '
+        if self.isText:
+            ret += self.text
+        elif self.isBool:
+            ret += str(self.checked)
+        elif self.isChoice:
+            ret += str(self.choice)
+        else:
+            ret += str(self.choices)
+        return ret
+
+    def __str__(self):
+        return self.__unicode__
+
+
+
+@login_required
+def view_user_input(request, id, username):
+    if not request.user.is_staff and request.user.username != username:
+        raise Http404
+
+    userSurvey = get_object_or_404(CompletedSurvey, survey__pk=id, user__username=username)
+    survey = userSurvey.survey
+    user = userSurvey.user
+	
+    fields = []
+    for field in TextField.objects.filter(survey=survey):
+        fields.append(field)
+    for field in BooleanField.objects.filter(survey=survey):
+        fields.append(field)
+    for field in ChoiceField.objects.filter(survey=survey):
+        fields.append(field)
+
+    fields = sorted(fields, key=user_input_sortkey)
+
+    userInput = []
+    for field in fields:
+        answer = None
+        if isinstance(field, TextField):
+            input = TextFieldAnswer.objects.filter(user=user, field=field)
+            if input.count():
+                answer = UserInput(field.name)
+                answer.text(input[0].answer)
+        elif isinstance(field, BooleanField):
+            input = BooleanFieldAnswer.objects.filter(user=user, field=field)
+            answer = UserInput(field.name)
+            answer.bool(input.count() > 0)
+        elif isinstance(field, ChoiceField):
+            choices = UserChoice.objects.filter(choice__field=field, user=user)
+            if choices.count():
+                answer = UserInput(field.name)
+                if not field.multichoice:
+                    answer.choice(choices[0].choice.name)
+                else:
+                    choice_names = []
+                    for x in choices:
+                        choice_names.append(x.choice.name)
+                    answer.mchoice(choice_names)
+        if answer != None:
+            userInput.append(answer)
+
+    return render_to_response('surveys/view_user_input.html', 
+                              { 'other_user': user, 'survey': survey, 'inputs': userInput }, 
+                              context_instance=RequestContext(request))
+
+@login_required
+def survey_list(request, *args, **kargs):
+    kargs['queryset'] = Survey.objects.all().order_by('-created')
+    kargs['paginate_by'] = 50
+    kargs['template_name'] = 'surveys/survey_list.html'
+
+    return object_list(request, *args, **kargs)
+    
+@staff_member_required
+def stats(request, id):
+    survey = get_object_or_404(Survey, pk=id)
+
+    return render_to_response('surveys/survey_stats.html', { 'survey': survey }, context_instance=RequestContext(request))
+
+@staff_member_required
+def stats_userlist(request, *args, **kargs):
+    id = kargs['id']
+    kargs.pop('id')
+    survey = get_object_or_404(Survey, pk=id)
+
+    kargs['queryset'] = CompletedSurvey.objects.filter(survey=survey).order_by('-date')
+    kargs['paginate_by'] = 50
+    kargs['template_name'] = 'surveys/survey_stats_users.html'
+    kargs['extra_context'] = { 'survey': survey }
+
+    return object_list(request, *args, **kargs)

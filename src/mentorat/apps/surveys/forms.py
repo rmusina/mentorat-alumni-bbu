@@ -77,7 +77,7 @@ class SurveyForm(forms.Form):
             index = int(field[6:])
             currentField = fields[index]
 
-            if isinstance(currentField, TextField):
+            if isinstance(currentField, TextField) and value:
                 (answer, created) = TextFieldAnswer.objects.get_or_create(field=currentField, user=user)
                 answer.answer = value
                 answer.save()

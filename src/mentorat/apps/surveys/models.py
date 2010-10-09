@@ -7,6 +7,7 @@ class Survey(models.Model):
     description = models.TextField(blank=True, verbose_name=_('description'))
     for_students = models.BooleanField(default=True, verbose_name=_('student survey'))
     for_mentors = models.BooleanField(default=False, verbose_name=_('mentor survey'))
+    created = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return self.name
@@ -73,6 +74,7 @@ class UserChoice(models.Model):
 class CompletedSurvey(models.Model):
     survey = models.ForeignKey(Survey)
     user = models.ForeignKey(User)
+    date = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return '%s - %s' % (self.user.username, str(self.survey))

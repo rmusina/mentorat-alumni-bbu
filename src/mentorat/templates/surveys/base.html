@@ -7,7 +7,8 @@
 {% block subnav %}
     {% if user.is_authenticated %}
         <ul>
-            <li><a href="{% url add_survey %} ">{% trans "Add survey" %}</a></li>
+            <li><a href="{% url survey_list %}">{% trans "All surveys" %}</a></li>
+            {% if user.is_staff %}<li><a href="{% url add_survey %} ">{% trans "Add survey" %}</a></li>{% endif %}
         </ul>
     {% else %}
         &nbsp;

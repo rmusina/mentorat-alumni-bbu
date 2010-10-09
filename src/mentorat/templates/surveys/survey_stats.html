@@ -1,0 +1,10 @@
+{% extends 'surveys/base.html' %}
+{% load i18n %}
+{% load survey_tags %}
+
+{% block head_title %}{% trans 'Survey stats' %}: {{ survey.name }}{% endblock %}
+{% block body %}
+{{ survey.name }}<br/>
+<a href="{% url survey_stats_users survey.pk %}">{% trans 'Completed surveys'%}</a>
+{% endblock %}
+
