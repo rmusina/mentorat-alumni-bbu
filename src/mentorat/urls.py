@@ -52,6 +52,7 @@ urlpatterns = patterns('',
     (r'^flag/', include('flag.urls')),
     (r'^locations/', include('locations.urls')),
     (r'^wiki/', include('wiki.urls')),
+    (r'^news', include('bookmarks.urls')),
     (r'^survey/', include('surveys.urls')),
     
     (r'^feeds/posts/(.*)/$', 'django.contrib.syndication.views.feed', blogs_feed_dict),
