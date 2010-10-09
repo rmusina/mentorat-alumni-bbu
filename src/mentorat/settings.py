@@ -73,7 +73,8 @@ STATICFILES_DIRS = (
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = posixpath.join(STATIC_URL, "admin/")
+# TODO(Vasi) remove hack on launch
+ADMIN_MEDIA_PREFIX = "http://localhost:8000/site_media/static/admin/"
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 't5*mt1qfvkwbbk4^$_lx1k=#i+d1%=f4u-#4+4^r$&wm++#2jb'
