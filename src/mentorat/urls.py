@@ -31,6 +31,7 @@ urlpatterns = patterns('',
     url(r'^admin/invite_user/$', 'signup_codes.views.admin_invite_user', name="admin_invite_user"),
     url(r'^account/signup/$', signup_view, name="acct_signup"),
 
+    (r'^grappelli/', include('grappelli.urls')),
     (r'^mentorship_admin/', include('mentorship_admin.urls')),
     (r'^about/', include('about.urls')),
     (r'^account/', include('account.urls')),
@@ -54,7 +55,7 @@ urlpatterns = patterns('',
     (r'^wiki/', include('wiki.urls')),
     (r'^news', include('bookmarks.urls')),
     (r'^survey/', include('surveys.urls')),
-    
+
     (r'^feeds/posts/(.*)/$', 'django.contrib.syndication.views.feed', blogs_feed_dict),
 )
 
