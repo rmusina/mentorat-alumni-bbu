@@ -219,8 +219,19 @@ def survey(request, id):
     return render_to_response('surveys/survey_form.html', { 'survey': survey, 'form': form }, context_instance=RequestContext(request))
 
 
-def user_input_sortkey(object):
+def field_sortkey(object):
     return object.index
+
+def get_ordered_fields(survey):
+    fields = []
+    for field in TextField.objects.filter(survey=survey):
+        fields.append(field)
+    for field in BooleanField.objects.filter(survey=survey):
+        fields.append(field)
+    for field in ChoiceField.objects.filter(survey=survey):
+        fields.append(field)
+    return sorted(fields, key=field_sortkey)
+
 
 class UserInput:
     def __init__(self, name):
@@ -258,7 +269,6 @@ class UserInput:
         return self.__unicode__
 
 
-
 @login_required
 def view_user_input(request, id, username):
     if not request.user.is_staff and request.user.username != username:
@@ -268,15 +278,7 @@ def view_user_input(request, id, username):
     survey = userSurvey.survey
     user = userSurvey.user
 	
-    fields = []
-    for field in TextField.objects.filter(survey=survey):
-        fields.append(field)
-    for field in BooleanField.objects.filter(survey=survey):
-        fields.append(field)
-    for field in ChoiceField.objects.filter(survey=survey):
-        fields.append(field)
-
-    fields = sorted(fields, key=user_input_sortkey)
+    fields = get_ordered_fields(survey)
 
     userInput = []
     for field in fields:
@@ -315,12 +317,76 @@ def survey_list(request, *args, **kargs):
     kargs['template_name'] = 'surveys/survey_list.html'
 
     return object_list(request, *args, **kargs)
+
+
+class BooleanStats:
+    def __init__(self, name, yes, no):
+        self.is_bool = True
+        self.name = name
+        self.YesCount = yes
+        self.NoCount = no
+        self.YesPercent = yes * 100.0 / (yes + no)
+        self.NoPercent = 100.0 - self.YesPercent
+
+class ChoiceData:
+    def __init__(self, name, value):
+        self.name = name
+        self.value = value
+        self.percent = 1
+
+    def evaluate(self, total):
+        if total > 0:
+            self.percent = self.value * 100.0 / total
+
+def choice_sortkey(obj):
+    return - obj.value
+
+class ChoiceStats:
+    def __init__(self, name, multi=False):
+        if not multi:
+            self.is_choice = True
+        else:
+            self.is_multi = True
+
+        self.name = name
+        self.choices = []
+
+    def evaluate(self):
+
+        total = 0
+        max = 0
+        for choice in self.choices:
+            total += choice.value
+            if choice.value > max:
+                max = choice.value
+
+        length = len(self.choices)
+        for choice in self.choices:
+            choice.evaluate(total)
+
+        self.max = max
     
 @staff_member_required
 def stats(request, id):
     survey = get_object_or_404(Survey, pk=id)
+    
+    fields = get_ordered_fields(survey)
 
-    return render_to_response('surveys/survey_stats.html', { 'survey': survey }, context_instance=RequestContext(request))
+    completed = CompletedSurvey.objects.filter(survey = survey).count()
+    stats = []
+    for field in fields:
+       if isinstance(field, BooleanField):
+           yes = BooleanFieldAnswer.objects.filter(field=field).count()
+           stats.append(BooleanStats(field.name, yes, completed - yes))
+       elif isinstance(field, ChoiceField):
+           stat = ChoiceStats(field.name, field.multichoice)
+           for choice in Choice.objects.filter(field=field):
+               stat.choices.append(ChoiceData(choice.name, UserChoice.objects.filter(choice=choice).count()))
+           
+           stat.evaluate()
+           stats.append(stat)
+
+    return render_to_response('surveys/survey_stats.html', { 'survey': survey, 'stats': stats }, context_instance=RequestContext(request))
 
 @staff_member_required
 def stats_userlist(request, *args, **kargs):

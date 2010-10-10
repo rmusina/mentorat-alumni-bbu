@@ -4,7 +4,23 @@
 
 {% block head_title %}{% trans 'Survey stats' %}: {{ survey.name }}{% endblock %}
 {% block body %}
-{{ survey.name }}<br/>
-<a href="{% url survey_stats_users survey.pk %}">{% trans 'Completed surveys'%}</a>
+<h2>{% trans "Survey statistics for" %}: {{ survey.name }}</h2> <a href="{% url survey_stats_users survey.pk %}">see user input</a>
+<ul class="chart-list" style="list-style-type:none">
+{% for item in stats %}
+   <li>
+    <h3>{{ item.name }}</h3>
+    {% if item.is_bool %}
+        <img src="http://chart.apis.google.com/chart?chs=480x300&cht=p&chco=FF9900|000000&chd=t:{{ item.YesPercent }},{{ item.NoPercent }}&chdl={% trans "Yes" %}|{% trans "No" %}&chdlp=b&chp=1.57&chl={{ item.YesCount }}+({{ item.YesPercent }}+%25)|{{ item.NoCount }}+({{ item.NoPercent }}+%25)"
+             width="480" height="300" alt="" />
+    {% else %} {% if item.is_choice %}
+        <img src="http://chart.apis.google.com/chart?chs=560x300&cht=p&chco=0303FC&chd=t:{% for choice in item.choices %}{{ choice.percent }}{% if not forloop.last %},{% endif %}{% endfor %}&chdl={% for choice in item.choices %}{{ choice.name }}{% if not forloop.last %}|{% endif %}{% endfor %}&chl={% for choice in item.choices %}{{ choice.value }}+({{ choice.percent }}+%25){% if not forloop.last %}|{% endif %}{% endfor %}"
+             width="560" height="300" alt="" />    
+    {% else %} {% if item.is_multi %}
+        <img src="http://chart.apis.google.com/chart?chxr=0,0,{{ item.max }},{{ item.max|chart_step }}&chxt=y&chbh=a&chs=600x300&cht=bvg&chco={{ item.choices|length|chart_colors:"215715" }}&chds={% for choice in item.choices %}0,{{ item.max }}{% if not forloop.last %},{% endif %}{% endfor %}&chd=t:{% for choice in item.choices %}{{ choice.value }}{% if not forloop.last %}|{% endif %}{% endfor %}&chdl={% for choice in item.choices %}{{ choice.name }}+({{ choice.value }}){% if not forloop.last %}|{% endif %}{% endfor %}"
+             width="600" height="300" alt="Vertical bar chart" />
+    {% endif %}{% endif %} {% endif %}
+    </li>
+{% endfor %}
+</ul>
 {% endblock %}
 

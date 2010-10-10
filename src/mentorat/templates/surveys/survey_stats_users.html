@@ -4,6 +4,7 @@
 
 {% block head_title %}{% trans 'Completed surveys' %}: {{ survey.name }}{% endblock %}
 {% block body %}
+{% if user.is_staff %}<a href="{% url survey_stats survey.id %}">{% trans 'All stats' %}</a>{% endif %}
     <ul>
     {% for object in object_list %}
         <li><a href="{% url survey_user_input survey.id,object.user.username %}">{{ object.user.username }}</a></li>
