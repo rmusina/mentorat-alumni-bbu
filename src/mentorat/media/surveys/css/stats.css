@@ -1,0 +1,23 @@
+h2
+{
+    color: #336;
+    border-bottom: 1px solid #ccc;
+}
+
+div.chart
+{
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 30px;
+}
+
+div.chart-name
+{
+    font-family: 'Arial';
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+div.stat-region
+{
+    border-bottom: 1px solid #ccc;
+}

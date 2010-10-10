@@ -9,6 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.views.generic.list_detail import object_list
+from profiles.models import *
 
 class TextValidator:
     def __init__(self, id, post, verbose=True):
@@ -320,7 +321,8 @@ def survey_list(request, *args, **kargs):
 
 
 class BooleanStats:
-    def __init__(self, name, yes, no):
+    def __init__(self, pk, name, yes, no):
+        self.pk = pk
         self.is_bool = True
         self.name = name
         self.YesCount = yes
@@ -342,12 +344,13 @@ def choice_sortkey(obj):
     return - obj.value
 
 class ChoiceStats:
-    def __init__(self, name, multi=False):
+    def __init__(self, pk, name, multi=False):
         if not multi:
             self.is_choice = True
         else:
             self.is_multi = True
 
+        self.pk = pk
         self.name = name
         self.choices = []
 
@@ -377,16 +380,19 @@ def stats(request, id):
     for field in fields:
        if isinstance(field, BooleanField):
            yes = BooleanFieldAnswer.objects.filter(field=field).count()
-           stats.append(BooleanStats(field.name, yes, completed - yes))
+           stats.append(BooleanStats(field.pk, field.name, yes, completed - yes))
        elif isinstance(field, ChoiceField):
-           stat = ChoiceStats(field.name, field.multichoice)
+           stat = ChoiceStats(field.pk, field.name, field.multichoice)
            for choice in Choice.objects.filter(field=field):
                stat.choices.append(ChoiceData(choice.name, UserChoice.objects.filter(choice=choice).count()))
            
            stat.evaluate()
            stats.append(stat)
 
-    return render_to_response('surveys/survey_stats.html', { 'survey': survey, 'stats': stats }, context_instance=RequestContext(request))
+    all_studs = StudentProfile.objects.all().count()
+    all_mentors = MentorProfile.objects.all().count()
+
+    return render_to_response('surveys/survey_stats.html', { 'survey': survey, 'stats': stats, 'all_studs': all_studs, 'all_mentors': all_mentors}, context_instance=RequestContext(request))
 
 @staff_member_required
 def stats_userlist(request, *args, **kargs):
