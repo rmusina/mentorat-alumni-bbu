@@ -26,8 +26,11 @@
 <h1>{{ survey.name }} {% trans 'statistics' %}</h1>
 <div class="stat-region">
     <h2>{% trans "Summary" %}</h2>
+    <div class="summary"><b>{% trans "Completed by" %}:</b> {{ completed_count }} {% trans "users of" %} {{ user_count }}</div>
+    <div class="summary"><b>{% trans "User inputs" %}:</b> <a href="{% url survey_stats_users survey.pk %}">{% trans "see all" %}</a></div>
+    <br/>
 </div>
-<div class="stat-region" style="border-bottom: 0px">
+<div class="stat-region">
     <h2>{% trans "Field statistics" %}</h2>
     {% for item in stats %}
         <div class="chart">

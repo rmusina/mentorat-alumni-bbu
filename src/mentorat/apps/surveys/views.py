@@ -11,6 +11,9 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.list_detail import object_list
 from profiles.models import *
 
+
+PAGINATE_BY = 20
+
 class TextValidator:
     def __init__(self, id, post, verbose=True):
         self.index = id
@@ -313,8 +316,13 @@ def view_user_input(request, id, username):
 
 @login_required
 def survey_list(request, *args, **kargs):
-    kargs['queryset'] = Survey.objects.all().order_by('-created')
-    kargs['paginate_by'] = 50
+    if request.user.is_staff:
+        kargs['queryset'] = Survey.objects.all().order_by('-created')
+    elif request.user.get_profile().as_student():
+        kargs['queryset'] = Survey.objects.filter(for_students=True).order_by('-created')
+    else:
+        kargs['queryset'] = Survey.objects.filter(for_mentors=True).order_by('-created')
+    kargs['paginate_by'] = PAGINATE_BY
     kargs['template_name'] = 'surveys/survey_list.html'
 
     return object_list(request, *args, **kargs)
@@ -389,10 +397,17 @@ def stats(request, id):
            stat.evaluate()
            stats.append(stat)
 
-    all_studs = StudentProfile.objects.all().count()
-    all_mentors = MentorProfile.objects.all().count()
+    user_count = 0
+    if survey.for_students:
+        user_count += StudentProfile.objects.count()
+    if survey.for_mentors:
+        user_count += MentorProfile.objects.count()
 
-    return render_to_response('surveys/survey_stats.html', { 'survey': survey, 'stats': stats, 'all_studs': all_studs, 'all_mentors': all_mentors}, context_instance=RequestContext(request))
+    completed_count = CompletedSurvey.objects.filter(survey=survey).count()
+
+    return render_to_response('surveys/survey_stats.html', { 'survey': survey, 'stats': stats, 
+                                                             'user_count': user_count,
+                                                             'completed_count': completed_count}, context_instance=RequestContext(request))
 
 @staff_member_required
 def stats_userlist(request, *args, **kargs):
@@ -401,7 +416,7 @@ def stats_userlist(request, *args, **kargs):
     survey = get_object_or_404(Survey, pk=id)
 
     kargs['queryset'] = CompletedSurvey.objects.filter(survey=survey).order_by('-date')
-    kargs['paginate_by'] = 50
+    kargs['paginate_by'] = PAGINATE_BY
     kargs['template_name'] = 'surveys/survey_stats_users.html'
     kargs['extra_context'] = { 'survey': survey }
 

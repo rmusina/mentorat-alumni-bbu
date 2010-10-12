@@ -58,7 +58,9 @@ class Profile(models.Model):
         if len(mentors):
             return mentors[0]
         return None
-        
+    
+    def whole_name(self):
+        return self.firstname + ' ' + self.surname
 
 degree_choices = ( ('bs', _('Bachelor\'s')), ('ms', _('Master\'s')), ('phd', _('PhD')) )
 class StudentProfile(Profile):
