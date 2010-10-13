@@ -7,74 +7,19 @@
 {% block body %}
 	<link rel="stylesheet" href="/site_media/media/calendar_style.css" />
 	
+	<h1>{% trans "Event Calendar" %}</h1> <p></p>
+	<table width="100%">
+	    <tr>
+	        <td width="20%" align="left">
+	          &lt;&lt; <a href="{% url event_calendar pYear=PreviousYear,pMonth=PreviousMonth %}">{{PreviousMonthName}} {{PreviousYear}}</a>
+	        </td>
+	        <td width="20%" align="right">
+	          <a href="{% url event_calendar pYear=NextYear,pMonth=NextMonth %}">{{NextMonthName}} {{NextYear}}</a> &gt;&gt;
+	        </td>
+	    </tr>
+	</table>
+	
 	<div id="calendar">
-	 <h2 class="calendar">March, 2006</h2>
-	   <ul id="days">
-	    <li>
-	     <span title="Sunday">SU</span> <span class="sep">|</span>
-	     <span title="Monday">MO</span> <span class="sep">|</span>
-	     <span title="Tuesday">TU</span> <span class="sep">|</span>
-	     <span title="Wednesday">WE</span> <span class="sep">|</span>
-	     <span title="Thursday">TH</span> <span class="sep">|</span>
-	     <span title="Friday">FR</span> <span class="sep">|</span>
-	     <span title="Saturday">SA</span>
-	    </li>
-	   </ul>
-	<!-- On links Below: NU = Not Used; NA = Not Active; AL = Active Link -->
-	   <ul class="weeks">
-	    <li>
-	     <a class="nu" href="#" title="">--</a> <span class="sep">|</span>
-	     <a class="nu" href="#" title="">--</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">01</a> <span class="sep">|</span>
-	     <a class="al" href="#" title="Active Date Link">02</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">03</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">04</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">05</a>
-	    </li>
-	   </ul>
-	   <ul class="weeks">
-	    <li>
-	     <a class="na" href="#" title="">06</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">07</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">08</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">09</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">10</a> <span class="sep">|</span>
-	     <a class="al" href="#" title="Active Date Link">11</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">12</a>
-	    </li>
-	   </ul>
-	   <ul class="weeks">
-	    <li>
-	     <a class="al" href="#" title="Active Date Link">13</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">14</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">15</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">16</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">17</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">18</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">19</a>
-	    </li>
-	   </ul>
-	   <ul class="weeks">
-	    <li>
-	     <a class="na" href="#" title="">20</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">21</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">22</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">23</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">24</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">25</a> <span class="sep">|</span>
-	     <a class="al" href="#" title="Active Date Link">26</a>
-	    </li>
-	   </ul>
-	   <ul class="weeks">
-	    <li>
-	     <a class="na" href="#" title="">27</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">28</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">29</a> <span class="sep">|</span>
-	     <a class="al" href="#" title="Active Date Link">30</a> <span class="sep">|</span>
-	     <a class="na" href="#" title="">31</a> <span class="sep">|</span>
-	     <a class="nu" href="#" title="">--</a> <span class="sep">|</span>
-	     <a class="nu" href="#" title="">--</a>
-	    </li>
-	   </ul>
-	</div><!--calendar-->
+  		{{calendar}}
+	</div>
 {% endblock %}

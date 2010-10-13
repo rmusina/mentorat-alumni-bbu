@@ -1,18 +1,22 @@
-from datetime import datetime
+from datetime import datetime, date
 import urlparse
 import urllib2
 
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 
 from django.utils.translation import ugettext_lazy as _
 
-from bookmarks.models import Bookmark, BookmarkInstance
+from bookmarks.models import Bookmark, BookmarkInstance, EventCalendar
 from bookmarks.forms import BookmarkInstanceForm
+from django.utils.safestring import mark_safe
+
+from profiles.models import Event
+from calendar import monthrange
 
 def bookmarks(request):
     bookmarks = Bookmark.objects.all().order_by("-added")
@@ -62,15 +66,19 @@ def add(request):
             bookmark.favicon_checked = datetime.now() 
             bookmark.save()
             
+            if bookmark.url == "":
+                bookmark.url = reverse('news_details', kwargs={'newsId':bookmark.id}) 
+                bookmark.save()
+                
             if bookmark_form.should_redirect():
                 return HttpResponseRedirect(bookmark.url)
             else:
-                request.user.message_set.create(message=_("You have saved bookmark '%(description)s'") % {'description': bookmark_instance.description})
+                request.user.message_set.create(message=_("You have saved news '%(description)s'") % {'description': bookmark_instance.description})
                 return HttpResponseRedirect(reverse("bookmarks.views.bookmarks"))
     else:
         initial = {}
         if "url" in request.GET:
-            initial["url"] = request.GET["url"]
+            initial["url"] = request.GET["url"]   
         if "description" in request.GET:
             initial["description"] = request.GET["description"].strip()
         if "redirect" in request.GET:
@@ -95,7 +103,7 @@ def delete(request, bookmark_instance_id):
     bookmark_instance = get_object_or_404(BookmarkInstance, id=bookmark_instance_id)
     if request.user == bookmark_instance.user:
         bookmark_instance.delete()
-        request.user.message_set.create(message="Bookmark Deleted")
+        request.user.message_set.create(message=_("News Post Deleted"))
         
     if "next" in request.GET:
         next = request.GET["next"]
@@ -103,7 +111,74 @@ def delete(request, bookmark_instance_id):
         next = reverse("bookmarks.views.bookmarks")
     
     return HttpResponseRedirect(next)
+
+def named_month(pMonthNumber):
+    """
+    Return the name of the month, given the month number
+    """
+    return date(1900, pMonthNumber, 1).strftime('%B')
+
+def events_thisMonth(request):
+    now = datetime.now()
+    return events(request, now.year, now.month)
+
+def news_details(request, newsId):
     
-def events(request):
+    news = Bookmark.objects.get(id=newsId)
+    title = news.description
+    description = news.note
+    date = news.added.date()
     
-    return render_to_response("bookmarks/event_calendar.html", {}, context_instance=RequestContext(request));
+    return render_to_response("bookmarks/news_details.html", 
+                              {'title': title,
+                               'date': date,
+                               'description': description,}, 
+                              context_instance=RequestContext(request));
+
+def events(request, pYear, pMonth):
+    pYear = int(pYear)
+    pMonth = int(pMonth)
+    if (pMonth > 12 or pMonth < 1):
+        raise Http404
+        
+    my_events = Event.objects.order_by('date').filter(date__year=pYear, date__month=pMonth)
+    
+    cal = EventCalendar(my_events).formatmonth(pYear, pMonth)
+    
+    lPreviousYear = pYear
+    lPreviousMonth = pMonth - 1
+    
+    if lPreviousMonth == 0:
+        lPreviousMonth = 12
+        lPreviousYear = pYear - 1
+    
+    lNextYear = pYear
+    lNextMonth = pMonth + 1
+    
+    if lNextMonth == 13:
+        lNextMonth = 1
+        lNextYear = pYear + 1
+
+    return render_to_response("bookmarks/event_calendar.html", 
+                              {'calendar': mark_safe(cal),
+                               'Month' : pMonth,
+                               'MonthName' : named_month(pMonth),
+                               'Year' : pYear,
+                               'PreviousMonth' : lPreviousMonth,
+                               'PreviousMonthName' : named_month(lPreviousMonth),
+                               'PreviousYear' : lPreviousYear,
+                               'NextMonth' : lNextMonth,
+                               'NextMonthName' : named_month(lNextMonth),
+                               'NextYear' : lNextYear,}, 
+                              context_instance=RequestContext(request)); 
+    
+def event_details(request, eventId):
+
+    event = Event.objects.get(id=eventId)
+    return render_to_response("bookmarks/event_details.html",
+                              {'name': event.name,
+                               'location': event.location,
+                               'date': event.date,
+                               'description': event.description,
+                               'points': event.points},
+                              context_instance=RequestContext(request));
