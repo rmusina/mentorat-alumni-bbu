@@ -14,7 +14,7 @@ body.News #tab_news a,
 body.locations #tab_locations a,
 body.inbox #tab_inbox a
 {
-    color: #000; /* selected tab text colour */
+    color: #fff; /* selected tab text colour */
 }
 
 body.news #tab_news,
@@ -32,8 +32,10 @@ body.locations #tab_locations,
 body.inbox #tab_inbox
 {
     margin: 0; /* to compensate for border */
+	margin-left: 2px;
+
     padding: 5px 0 5px;
-    background-color: #DEF; /* selected tab colour */
+    background-color: #ac74e3; /* selected tab colour */
     border-left: 1px solid #000; /* tab border */
     border-top: 1px solid #000; /* tab border */
     border-right: 1px solid #000; /* tab border */
