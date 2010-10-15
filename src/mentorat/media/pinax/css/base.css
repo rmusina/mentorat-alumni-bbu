@@ -50,6 +50,11 @@ h1 {
 	color: #003399;
 }
 
+h2 {
+    margin-top 10px 0px;
+	color: #003399;
+}
+
 
 
 #body {
@@ -112,6 +117,7 @@ h1 {
     height: 80px;
     padding-left: 5px;
     padding-top: 0;
+	background: url('../images/logo.png') 20px center no-repeat;
 }
 #tabhead .logo img {
     width: 190px;
@@ -245,6 +251,30 @@ p.what_next {
     background: #DEF;
     border: 1px solid #9BC;
 }
+
+/* Pretty tables */
+table.prettytables {
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  width: 700px;
+ }
+  table.prettytables td {
+    padding: 4px 8px; }
+  table.prettytables tr {
+    font-size: 12px;
+    border-bottom: 1px dotted #cccccc; }
+  table.prettytables tr:hover {
+    border-bottom: 1px dotted #999999; }
+  table.prettytables th {
+    border-bottom: 2px solid #7c24d3;
+    color: #7c24d3;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 8px; }
 
 
 
