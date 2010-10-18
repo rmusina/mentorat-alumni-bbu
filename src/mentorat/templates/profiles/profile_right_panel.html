@@ -1,6 +1,7 @@
 {% load i18n %}
 {% load avatar_tags %}
 {% load events_admin %}
+{% load uni_form %}
 
 {% if user.is_staff %}
     <div class="groups">
@@ -45,6 +46,99 @@
         <a href="{% url acct_passwd %}">{% trans "Change password" %}</a>
     </div>
 {% endif %}
+
+{% if user.is_authenticated %}
+	{% if is_me %}
+	{% else %}		                
+						<div class = groups>
+						<h2>{% trans "Mentorship request" %}</h2>
+		                
+				            {# @@@ this should be an inclusion tag #}
+				            {% if is_friend %}
+				                <p>{% blocktrans %}You are connected with {{ other_user }}.{% endblocktrans %} <a href="{% url messages_compose %}{{ other_user }}/">{% trans "Send a message" %}</a>.</p>
+				            {% else %}
+				                {% if previous_invitations_from %}
+				                    <p>{% blocktrans %}{{ other_user }} has requested mentorship.{% endblocktrans %}</p>
+				                    {% for invitation in previous_invitations_from %}
+				                        <div class="friendship_request">
+				                            <p>From <a href="{% url profile_detail invitation.from_user.username %}">{{ invitation.from_user }}</a> ({{ invitation.sent }}):</p>
+				                            <p class="invitation_message">{{ invitation.message }}</p>
+											
+											{% if mentor_can_accept %} 
+												<form method="post" action="">
+								                	<input type="hidden" name="invitation" value="{{ invitation.id }}"/>
+								                    <input type="hidden" name="action" value="accept"/>
+								                    <input type="submit" value="{% trans 'accept' %}" />
+								                </form>
+											{% else %}
+										        <form method="post" action="">
+										            <input type="hidden" name="invitation" value="{{ invitation.id }}"/>
+								                    <input type="hidden" name="action" value="accept"/>
+								                    <input type="submit" value="{% trans 'accept' %}" disabled="disabled"/>
+										        </form>
+											{% endif %}
+						                    <form method="post" action="">
+						                        <input type="hidden" name="invitation" value="{{ invitation.id }}"/>
+						                        <input type="hidden" name="action" value="decline"/>
+						                        <input type="submit" value="{% trans 'decline' %}"/>
+						                    </form>
+											{% ifequal invitation.status "9" %} 
+												<form method="post" action="">
+						                            <input type="hidden" name="invitation" value="{{ invitation.id }}"/>
+						                            <input type="hidden" name="action" value="pending"/>
+						                            <input type="submit" value="{% trans 'pending' %}" disabled="disabled"/>
+						                        </form>
+											{% else %}
+										        <form method="post" action="">
+										            <input type="hidden" name="invitation" value="{{ invitation.id }}"/>
+										            <input type="hidden" name="action" value="pending"/>
+										            <input type="submit" value="{% trans 'pending' %}"/>
+										        </form>
+											{% endifequal %}
+				                        </div>
+				                    {% endfor %}
+				                {% else %}
+									{% if deny_mentor_request %}
+									{% else %}
+						                {% if previous_invitations_to %}
+											{% for invitation in previous_invitations_to %}
+												{% ifequal invitation.status "8" %}				                        
+													<p>{% trans "Mentoring request renounced." %}</p>		
+												{% else %}	
+													{% ifequal invitation.status "9" %}																		
+														<p>{% trans "Mentoring request is being processed." %}</p>
+													{% else %}															
+														<p>{% trans "Mentoring request sent." %}</p>
+														<form method="post" action="">
+													        <input type="hidden" name="action" value="renounce"/>
+													        <input type="submit" value="{% trans 'renounce application' %}" />
+													    </form>
+													{% endifequal %}
+												{% endifequal %}
+											{% endfor %}
+						                {% else %}
+											{% if has_mentor %}
+												{% trans "You already have a mentor." %}
+											{% else %}
+												{% if previous_denied_invitation_to %}
+													{% trans "Mentoring request previously refused." %}
+												{% else %}	
+													{% if consumed_all_requests %}
+														{% trans "You cannot send more than 3 requests." %}
+													{% else %}	
+														<div class="form-toggle">					
+															<a href="{% url profile_apply other_user %}"> {% trans "Request mentorship" %} </a>
+														</div>
+													{% endif %} {# consumed_all_requests #}
+											 	{% endif %} {# previous_denied_invitations #}
+											{% endif %} {# has_mentor #}
+						                {% endif %} {# previous_invitations_to #}
+									{% endif %}
+				                {% endif %} {# previous_invitations_from #}
+				            {% endif %} {# is_friend #}             
+				</div>
+			{% endif %} {# is me #} 
+		{% endif %}
 
 {% if student %}
     <div class="groups">

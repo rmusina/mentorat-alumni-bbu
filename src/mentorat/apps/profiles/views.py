@@ -30,6 +30,8 @@ if "notification" in settings.INSTALLED_APPS:
 else:
     notification = None
 
+import hashlib, zlib
+import cPickle as pickle
 
 @login_required
 def profiles(request, template_name="profiles/profiles.html", extra_context=None):
@@ -58,6 +60,7 @@ def get_object_or_none(Class, **keys):
     if objs:
         return objs[0]
     return None
+    
 
 @login_required
 def profile(request, username, template_name="profiles/profile.html", extra_context=None):    
@@ -650,4 +653,9 @@ def activate(request, state):
     request.user.get_profile().save()
         
     return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
+
+@login_required  
+def apply(request, username):
+    
+    return  profile(request, username, "profiles/apply.html") #TODO: hack - consider adapting at first iteration
     

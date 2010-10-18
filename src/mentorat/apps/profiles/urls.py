@@ -21,4 +21,5 @@ urlpatterns = patterns('',
     url(r'^research/edit/(?P<id>\d+)/$', 'profiles.views.research_add_or_edit', {'type': 'edit'}, name='research_edit'),
     url(r'^activate/$', 'profiles.views.activate', {'state': 'on'}, name='profile_activate'),
     url(r'^deactivate/$', 'profiles.views.activate', {'state': 'off'}, name='profile_deactivate'),
+    url(r'^apply/(?P<username>[\w\._-]+)', 'profiles.views.apply', name='profile_apply'),
 )
