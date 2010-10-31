@@ -154,7 +154,6 @@ INSTALLED_APPS = (
     'djangodblog',
     'pagination',
 #    'gravatar',
-    'uploadify',
     'wiki',
     'threadedcomments',
     'threadedcomments_extras',
