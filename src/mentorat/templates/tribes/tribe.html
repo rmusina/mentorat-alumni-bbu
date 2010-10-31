@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load uni_form %}
 {% load wiki_tags %}
-{% load profile_tags %}
+{% load avatar_tags %}
 {% load threadedcommentstags %}
 {% load pagination_tags %}
 {% load extra_tagging_tags %}
@@ -13,20 +13,55 @@
 {% load photo_tags %}
 {% load theme_tags %}
 {% load markup %}
-
 {% block head_title %}{{ tribe.name }}{% endblock %}
 
 {% block body %}
-    
+  
     {% if user.is_authenticated %}
-        <div class="right_panel">
-            <div class="extra">
+       
+		<div class="container" style="float:right">
+		<div class="groups" style=" width:200px;">	   
+			<div class="discussion-topics">
+                <h2>{% trans "Discussion Topics" %}</h2>
+					
+					<p> <b>{% blocktrans %}Topic count: {% endblocktrans %}</b>{{ topic_count }}</p>
+					{% get_topics_for_group tribe as topic_queryset %}
+					{% with topic_queryset|slice:":5" as topics %}
+						{% if topics %}
+							<p><b>{% trans "Topics:" %} </b><a href="{% groupurl topic_list tribe %}">{% trans " topic page" %}</a></p>
+						{% else %}
+							{% groupurl topic_list tribe as new_topic_url %}
+							<p><b>{% blocktrans %}Topics:</b> None yet. <a href="{{ new_topic_url }}">Start one...</a>{% endblocktrans %}</p>
+						{% endif %}
+					{% endwith %}
+            </div>
+		</div>
+		<div class="groups" style="width:200px;">
+			 <div class="wikis-details">
+                {% content_objects tribe "wiki.Article" as articles %}
+				<h2>{% trans "Wiki Articles" %}</h2>
+				<p> <b>{% trans "Article count:" %}</b> {{ articles|length }}</p>
+				{% if articles %}
+					<p><b>{% trans "Articles:" %}</b><a href="{% groupurl wiki_list tribe %}">{% trans " read" %}</a></p>
+				{% else %}
+					{% groupurl wiki_list tribe as wiki_url %}
+					<p>
+						{% blocktrans %}
+							<b>Articles:</b> None yet. Go to the <a href="{{ wiki_url }}" title="wiki">wiki</a> to start a new article.
+						{% endblocktrans %}
+					</p>
+				{% endif %}
+            </div>
+		</div>
+		<div class="groups" style="width:200px;">
+
+			<div class="extra">
                 <h2>{% trans "Members" %}</h2>
                 <table width="100%">
                     {% for member in tribe.members.all %}
                         {% if forloop.counter0|divisibleby:"3" %}<tr>{% endif %}
                         <td>
-                            <div class="avatar">{% profile_avatar member 40 %}</div>
+                            <div class="avatar">{% avatar member 40 %}</div>
                             <div class="details"><a href="{% url profile_detail member.username %}" title="{{ member.username }}">{{ member.username }}</a></div>
                         </td>
                         {% if forloop.counter0|add:"1"|divisibleby:"3" %}</tr>{% endif %}
@@ -34,47 +69,9 @@
                     {% if tribe.members.all|length|divisibleby:"3" %}{% else %}</tr>{% endif %}
                 </table>
             </div>
+        
         </div>
-		
-		<div class="right_panel">
-            <div class="topics">
-                <h2>{% trans "Discussion Topics" %}</h2>
-					
-					<p> {% blocktrans %}Topics count:{% endblocktrans %}{{ tribe.topics.all.count }}</p>
-					{% get_topics_for_group tribe as topic_queryset %}
-					{% with topic_queryset|slice:":5" as topics %}
-						{% if topics %}
-							<p><a href="{% groupurl topic_list tribe %}">{% trans "Go to topics..." %}</a></p>
-						{% else %}
-							{% groupurl topic_list tribe as new_topic_url %}
-							<p>{% blocktrans %}None yet. <a href="{{ new_topic_url }}">Start one...</a>{% endblocktrans %}</p>
-						{% endif %}
-					{% endwith %}
-            </div>
-        </div>
-		
-		<div class="right_panel">
-            <div class="wikis">
-                {% content_objects tribe "wiki.Article" as articles %}
-				<h2>{% trans "Wiki Articles" %}</h2>
-				<p> {% trans "Article count:" %} {{ articles|length }}</p>
-				{% if articles %}
-					<table class="topics">
-						{% for article in articles %}
-							{% show_teaser article %}
-						{% endfor %}
-					</table>
-					<p><a href="{% groupurl wiki_list tribe %}">{% trans "more..." %}</a></p>
-				{% else %}
-					{% groupurl wiki_list tribe as wiki_url %}
-					<p>
-						{% blocktrans %}
-							None yet. Go to the <a href="{{ wiki_url }}" title="wiki">wiki</a> to start a new article.
-						{% endblocktrans %}
-					</p>
-				{% endif %}
-            </div>
-        </div>
+		</div>
     {% endif %}
     
     <div style="width: 550px;">
@@ -89,7 +86,7 @@
             {% show_tags_for tribe %}
         </p>
         
-        <p>{{ tribe.description|markdown:"safe"}}</p>
+        <p>{{ tribe.description|markdown:"safe" }}</p>
         
         {% ifequal user tribe.creator %}
             <div class="form-toggle">
@@ -138,7 +135,8 @@
             {% url acct_login as login_url %}
             <p>{% blocktrans %}<a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">log in </a> to join this tribe.{% endblocktrans %}</p>
         {% endif %}
- 
+       
+            
     </div>
 
 {% endblock %}
