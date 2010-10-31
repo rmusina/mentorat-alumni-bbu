@@ -14,6 +14,7 @@
 
 {% block body %}
 	
+	
     <h1>{% spaceless %}
     {% if group %}
         {% blocktrans with group.get_absolute_url as group_url and group.name as group_name %}Topics for <a href="{{ group_url }}">{{ group_name }}</a>{% endblocktrans %}
