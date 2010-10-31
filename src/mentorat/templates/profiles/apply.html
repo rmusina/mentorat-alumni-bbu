@@ -83,16 +83,14 @@
 													{% if consumed_all_requests %}
 														{% trans "You cannot send more than 3 requests." %}
 													{% else %}	
-														<div class="form-toggle">					
-														    <form id="uniFormId" class="uniForm" method="POST" action="">
-														        <fieldset class="inlineLabels">
-														            {{ invite_form|as_uni_form }}
+														<div>					
+														    <form id="uniFormId" method="POST" action="">
+														            {{ invite_form.as_table  }}
 														            <div class="form_block">
 														                <input type="hidden" name="action" value="invite" />
 														                <input type="submit" value="{% trans "invite" %}"/>
 														                {% blocktrans %}{{ other_user }} to be your mentor.{%  endblocktrans %}
 														            </div>
-														        </fieldset>
 														    </form>
 														</div>
 													{% endif %} {# consumed_all_requests #}
