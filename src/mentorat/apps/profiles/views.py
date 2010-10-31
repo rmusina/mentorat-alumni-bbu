@@ -128,7 +128,7 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
     if other_user == None or other_user.is_staff or (not other_user.get_profile().active and request.user != other_user and not request.user.is_staff) or (not other_user.is_active and not request.user.is_staff):
         return render_to_response('profiles/profile_404.html', dict({ 'denied': False }, **extra_context), context_instance=RequestContext(request))
 
-    if other_user.get_profile().as_student() <> None and request.user.get_profile().as_student() <> None:
+    if other_user.get_profile().as_student() <> None and request.user.get_profile().as_student() <> None and other_user.username != request.user.username:
         return render_to_response('profiles/profile_404.html', dict({ 'denied': True }, **extra_context), context_instance=RequestContext(request))
 
     if request.user.is_authenticated():
