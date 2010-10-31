@@ -1,11 +1,8 @@
 from django.core.urlresolvers import reverse
-from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, Http404
 from django.conf import settings
-
-from django.db.models import Q
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -40,75 +37,21 @@ import cPickle as pickle
 def profiles(request, template_name="profiles/profiles.html", extra_context=None):
     if extra_context is None:
         extra_context = {}
-    users = User.objects.all().order_by("-date_joined").exclude(is_superuser=True).exclude(is_active=False)
+    users = User.objects.all().order_by("-date_joined")
     search_terms = request.GET.get('search', '')
     order = request.GET.get('order')
-    selected_field_index = request.GET.get('field')
-
-    current_user = request.user
-    has_profile = True
-    try:
-        current_profile = current_user.get_profile()
-    except ObjectDoesNotExist:
-        has_profile = False
-
-    if has_profile:
-        field_ids = []
-        for field in current_profile.fields_of_interest.values():
-            field_ids.append(field['field_id'])
-        fields_of_interest = FieldOfInterest.objects.filter(pk__in=field_ids)
-        # TODO commented for debug, uncomment in release
-        #users = users.filter(profile__fields_of_interest__field__pk__in=field_ids).distinct()
-    else:
-        fields_of_interest = FieldOfInterest.objects.all()
-
-    if (selected_field_index == "None"):
-        selected_field_index = None
-
-    nr_fields = fields_of_interest.count()
-    selected_field_of_interest = None
-    if selected_field_index:
-        if 1 <= int(selected_field_index) <= nr_fields:
-            selected_field_of_interest = fields_of_interest[int(selected_field_index) - 1]
-
     if not order:
-        order = 'name'
+        order = 'date'
     if search_terms:
-        if order == 'name':
-            users = users.filter(
-                Q(username__icontains=search_terms) |
-                Q(profile__firstname__icontains=search_terms) |
-                Q(profile__surname__icontains=search_terms)
-            )
-        elif order == 'faculty':
-            users = users.filter(
-                Q(profile__studentprofile__faculty__icontains=search_terms)
-            )
-
-    if selected_field_of_interest:
-        users = users.filter(profile__fields_of_interest__field__name__iexact=selected_field_of_interest)
-    # order by date
+        users = users.filter(username__icontains=search_terms)
     if order == 'date':
         users = users.order_by("-date_joined")
-    # order by username
     elif order == 'name':
         users = users.order_by("username")
-    elif order == 'faculty':
-        users = users.order_by('profile__studentprofile__faculty')
-    elif order == 'students':
-        student_list = [stud.pk for stud in StudentProfile.objects.all()]
-        users = users.filter(profile__pk__in=student_list)
-    elif order == 'mentors':
-        mentor_list = [m.pk for m in MentorProfile.objects.all()]
-        users = users.filter(profile__pk__in=mentor_list)
-
-
     return render_to_response(template_name, dict({
         'users': users,
         'order': order,
         'search_terms': search_terms,
-        'fields_of_interest': fields_of_interest,
-        'field': selected_field_index,
     }, **extra_context), context_instance=RequestContext(request))
 
 
@@ -117,20 +60,17 @@ def get_object_or_none(Class, **keys):
     if objs:
         return objs[0]
     return None
-
+    
 
 @login_required
-def profile(request, username, template_name="profiles/profile.html", extra_context=None):
+def profile(request, username, template_name="profiles/profile.html", extra_context=None):    
     if extra_context is None:
         extra_context = {}
-
+    
     other_user = get_object_or_none(User, username=username)
     if other_user == None or other_user.is_staff or (not other_user.get_profile().active and request.user != other_user and not request.user.is_staff) or (not other_user.is_active and not request.user.is_staff):
-        return render_to_response('profiles/profile_404.html', dict({ 'denied': False }, **extra_context), context_instance=RequestContext(request))
-
-    if other_user.get_profile().as_student() <> None and request.user.get_profile().as_student() <> None and other_user.username != request.user.username:
-        return render_to_response('profiles/profile_404.html', dict({ 'denied': True }, **extra_context), context_instance=RequestContext(request))
-
+        return render_to_response('profiles/profile_404.html', context_instance=RequestContext(request))
+    
     if request.user.is_authenticated():
         is_friend = Friendship.objects.are_friends(request.user, other_user)
         is_following = Following.objects.is_following(request.user, other_user)
@@ -144,7 +84,7 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
         is_friend = False
         is_me = False
         is_following = False
-
+    
     if is_friend:
         invite_form = None
         previous_invitations_to = None
@@ -192,7 +132,7 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
                             invitation.decline()
                             request.user.message_set.create(message=_("You have declined the mentorship request from %(from_user)s. Please write a message to this user motivating your decision.") % {'from_user': invitation.from_user})
                             other_friends = Friendship.objects.friends_for_user(other_user)
-
+                                   
                         return HttpResponseRedirect(reverse('messages.views.compose', kwargs={'recipient':invitation.from_user}))
                     except FriendshipInvitation.DoesNotExist:
                         pass
@@ -204,33 +144,33 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
                             request.user.message_set.create(message=_("You have chosen to review the mentorship request from %(from_user)s") % {'from_user': invitation.from_user})
                             other_friends = Friendship.objects.friends_for_user(other_user)
                     except FriendshipInvitation.DoesNotExist:
-                        pass
+                        pass                
         else:
             invite_form = InviteFriendForm(request.user, {
                 'to_user': username,
                 'message': ugettext("Please review my cv and accept my request!"),
             })
-
+    
     previous_invitations_to = FriendshipInvitation.objects.invitations(to_user=other_user, from_user=request.user)
     previous_invitations_from = FriendshipInvitation.objects.invitations(to_user=request.user, from_user=other_user)
     previous_denied_invitation_to =  FriendshipInvitation.objects.invitationsDenied(to_user=other_user, from_user=request.user)
-
+    
     deny_mentor_request = False
     consumed_all_requests = False
     mentor_can_accept = False
-
+    
     if request.user.is_authenticated and not request.user.is_staff:
         if request.user.get_profile().as_student() == None or other_user.get_profile().as_mentor() == None:
             deny_mentor_request = True
-
+        
         consumed_all_requests = FriendshipInvitation.objects.countRequests(from_user = request.user) >= 3
-
+    
         if request.user.get_profile().as_mentor() != None and FriendshipInvitation.objects.countAccepts(to_user = request.user) < 3:
             mentor_can_accept = True
-
+    
     allow_private = is_me or request.user.is_staff
     allow_restricted = True # TODO: Check if the users know each other
-
+    
     return render_to_response(template_name, dict({
         "is_me": is_me,
         "is_friend": is_friend,
@@ -256,13 +196,13 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
 def profile_edit(request, form_class=GeneralInfoForm, **kwargs):
     template_name = kwargs.get("template_name", "profiles/profile_edit.html")
     section = kwargs.get('section')
-
+    
     if request.is_ajax():
         template_name = kwargs.get(
             "template_name_facebox",
             "profiles/profile_edit_facebox.html"
         )
-
+    
     profile = request.user.get_profile()
     student=False
     mentor=False
@@ -309,7 +249,7 @@ def profile_edit(request, form_class=GeneralInfoForm, **kwargs):
     else:
         raise Http404
 
-
+    
     if request.method == "POST":
         profile_form = form_class(request.POST, instance=profile)
         if profile_form.is_valid():
@@ -319,7 +259,7 @@ def profile_edit(request, form_class=GeneralInfoForm, **kwargs):
             return HttpResponseRedirect(reverse("profile_detail", args=[request.user.username]))
     else:
         profile_form = form_class(instance=profile)
-
+    
     return render_to_response(template_name, {
         "profile": profile,
         "profile_form": profile_form,
@@ -343,7 +283,7 @@ def volunteer_add_or_edit(request, **kargs):
     add = kargs['type'] == 'add'
     if not add and kargs['type'] != 'edit':
         raise Http404
-
+    
     page_title = _('Volunteer organization')
     post_url = ''
     submit_name = ''
@@ -376,7 +316,7 @@ def volunteer_add_or_edit(request, **kargs):
             good = False
         if not good:
             return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
-
+        
         if request.method == 'POST':
             form = VolunteerForm(request.POST, instance=org)
             if form.is_valid():
@@ -385,17 +325,17 @@ def volunteer_add_or_edit(request, **kargs):
                 org.save()
                 return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
         else:
-            form = VolunteerForm(instance=org)
-
+            form = VolunteerForm(instance=org)            
+        
         post_url = reverse('volunteer_edit', args=[id])
         submit_name = _('Save')
         page_name = _('Update information about a volunteer organization')
-
-    return render_to_response('profiles/profile-types/parts/form.html',
-                              {'form': form, 'post_url': post_url, 'submit_name': submit_name,
+    
+    return render_to_response('profiles/profile-types/parts/form.html', 
+                              {'form': form, 'post_url': post_url, 'submit_name': submit_name, 
                                'profile_url': profile_url, 'page_name': page_name, 'page_title': page_title},
                               context_instance=RequestContext(request))
-
+    
 @login_required
 def employment_remove(request, id):
     student=request.user.get_profile().as_student()
@@ -406,8 +346,8 @@ def employment_remove(request, id):
             if job.student == student:
                 job.delete()
     return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
-
-
+    
+    
 @login_required
 def employment_add_or_edit(request, **kargs):
     student = request.user.get_profile().as_student()
@@ -416,7 +356,7 @@ def employment_add_or_edit(request, **kargs):
     add = kargs['type'] == 'add'
     if not add and kargs['type'] != 'edit':
         raise Http404
-
+    
     page_title = _('Work experience')
     post_url = ''
     submit_name = ''
@@ -449,7 +389,7 @@ def employment_add_or_edit(request, **kargs):
             good = False
         if not good:
             return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
-
+        
         if request.method == 'POST':
             form = EmploymentForm(request.POST, instance=now)
             if form.is_valid():
@@ -458,17 +398,17 @@ def employment_add_or_edit(request, **kargs):
                 now.save()
                 return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
         else:
-            form = EmploymentForm(instance=now)
-
+            form = EmploymentForm(instance=now)            
+        
         post_url = reverse('employment_edit', args=[id])
         submit_name = _('Save')
         page_name = _('Update the information about you work experience')
-
-    return render_to_response('profiles/profile-types/parts/form.html',
-                              {'form': form, 'post_url': post_url, 'submit_name': submit_name,
+    
+    return render_to_response('profiles/profile-types/parts/form.html', 
+                              {'form': form, 'post_url': post_url, 'submit_name': submit_name, 
                                'profile_url': profile_url, 'page_name': page_name, 'page_title': page_title},
                               context_instance=RequestContext(request))
-
+    
 @login_required
 def research_remove(request, id):
     student=request.user.get_profile().as_student()
@@ -479,8 +419,8 @@ def research_remove(request, id):
             if research.student == student:
                 research.delete()
     return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
-
-
+    
+    
 @login_required
 def research_add_or_edit(request, **kargs):
     student = request.user.get_profile().as_student()
@@ -489,7 +429,7 @@ def research_add_or_edit(request, **kargs):
     add = kargs['type'] == 'add'
     if not add and kargs['type'] != 'edit':
         raise Http404
-
+    
     page_title = _('Research')
     post_url = ''
     submit_name = ''
@@ -522,7 +462,7 @@ def research_add_or_edit(request, **kargs):
             good = False
         if not good:
             return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
-
+        
         if request.method == 'POST':
             form = ResearchForm(request.POST, instance=now)
             if form.is_valid():
@@ -531,14 +471,14 @@ def research_add_or_edit(request, **kargs):
                 now.save()
                 return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
         else:
-            form = ResearchForm(instance=now)
-
+            form = ResearchForm(instance=now)            
+        
         post_url = reverse('research_edit', args=[id])
         submit_name = _('Save')
         page_name = _('Update the information about your research activities')
-
-    return render_to_response('profiles/profile-types/parts/form.html',
-                              {'form': form, 'post_url': post_url, 'submit_name': submit_name,
+    
+    return render_to_response('profiles/profile-types/parts/form.html', 
+                              {'form': form, 'post_url': post_url, 'submit_name': submit_name, 
                                'profile_url': profile_url, 'page_name': page_name, 'page_title': page_title},
                               context_instance=RequestContext(request))
 
@@ -553,7 +493,7 @@ def events(request, username):
     student = StudentProfile.objects.get(user=user)
     events = StudentEvent.objects.filter(student=student)
     max = events.count()
-
+    
     if 'offset' in request.GET:
         try:
             offset = int(request.GET['offset'])
@@ -561,11 +501,11 @@ def events(request, username):
             offset = 0
     else:
         offset = 0
-
+    
     if offset < 0:
         offset = 0
         return HttpResponseRedirect(reverse('profile_events', args=[username]))
-
+    
     if offset >= max and max:
         newoffset = int(max / COUNT_ON_PAGE) * COUNT_ON_PAGE
         if newoffset == max:
@@ -573,7 +513,7 @@ def events(request, username):
         else:
             newoffset -= 1
         return HttpResponseRedirect(reverse('profile_events', args=[username])+'?offset='+str(newoffset))
-
+    
     prev = False
     next = False
     prev_offset = 0
@@ -581,13 +521,13 @@ def events(request, username):
     last_offset = int(max / COUNT_ON_PAGE) * COUNT_ON_PAGE
     if last_offset == max: last_offset -= COUNT_ON_PAGE
     else: last_offset -= 1
-
+     
     if offset:
         prev = True
         prev_offset = offset - COUNT_ON_PAGE
         if prev_offset < 0:
             prev_offset = 0
-
+            
     if offset + COUNT_ON_PAGE < max:
         next = True
         next_offset = offset + COUNT_ON_PAGE
@@ -604,7 +544,7 @@ class AdminEvent:
     date = ''
     points = 0
     participated = False
-
+    
     def __init__(self, id, name, date, points, participated):
         self.id = id
         self.name = name
@@ -618,9 +558,9 @@ def admin_events(request, username):
     user = get_object_or_404(User, username=username)
     if user.is_staff or not user.get_profile().as_student():
         raise Http404
-    student = user.get_profile().as_student()
+    student = user.get_profile().as_student()    
     items = Event.objects.order_by('-date')
-
+    
     # find number of objects and current offset
     count = items.count()
     offset = 0
@@ -629,25 +569,25 @@ def admin_events(request, username):
             offset = int(request.GET['offset'])
         except:
             offset = 0
-
+            
     # check validity of offset and redirect on invalid
     if offset and offset >= count:
         offset = max(0, count - COUNT_ON_PAGE)
         return HttpResponseRedirect(reverse('profile_admin_edit', args=[username])+'?offset='+str(offset))
     if offset < 0:
         return HttpResponseRedirect(reverse('profile_admin_edit', args=[username]))
-
+    
     # compute next, previous, first and last offsets
     has_next = has_prev = False
     next = prev = 0
     last = max(0, count - COUNT_ON_PAGE)
     if offset > 0:
         prev = max(0, offset - COUNT_ON_PAGE)
-        has_prev = True
+        has_prev = True  
     if offset + COUNT_ON_PAGE < count:
         next = offset + COUNT_ON_PAGE
         has_next = True
-
+        
     # on post save data
     save_message = None
     if request.method == "POST":
@@ -667,7 +607,7 @@ def admin_events(request, username):
                         ids.append(id)
                     except:
                         continue
-
+                    
         for id in checked:
             event = get_object_or_none(Event, pk=id)
             if event != None:
@@ -676,34 +616,34 @@ def admin_events(request, username):
                     stud_event = StudentEvent(student=student, event=event, date=datetime.datetime.now())
                     stud_event.save()
             ids.remove(id)
-
+            
         for id in ids:
             obj = get_object_or_none(StudentEvent, student=student, event=get_object_or_none(Event, pk=id))
             if obj != None:
                 obj.delete()
-
+                      
         save_message = _('Changes were successfully saved')
-
+        
     if 'redirect' in request.GET:
         return HttpResponseRedirect(request.GET['redirect'])
-
+    
     # build the list of items to return
     items = items[offset: offset + COUNT_ON_PAGE]
     page_items = []
     for item in items:
         page_items.append(AdminEvent(item.pk, item.name, item.date, item.points, StudentEvent.objects.filter(student=student, event=item).count() > 0))
-
+        
     return render_to_response('profiles/admin/events.html',
-                              {'has_next': has_next, 'has_prev': has_prev,
+                              {'has_next': has_next, 'has_prev': has_prev, 
                                'next': next, 'last': last,
                                'prev': prev,
                                'offset': offset,
                                'username': username,
-                               'save_message': save_message,
+                               'save_message': save_message, 
                                'items': page_items}, context_instance = RequestContext(request))
 
-
-@login_required
+        
+@login_required  
 def activate(request, state):
     print state
     if state == 'on':
@@ -711,11 +651,23 @@ def activate(request, state):
     else:
         request.user.get_profile().active = False
     request.user.get_profile().save()
-
+        
     return HttpResponseRedirect(reverse('profile_detail', args=[request.user.username]))
 
 @login_required
+def view_message(request, invitation_id):
+       
+    invitation = FriendshipInvitation.objects.get(id=invitation_id)
+   
+    if request.user == invitation.from_user or request.user == invitation.to_user:
+        return render_to_response('profiles/view_message.html',
+                              {'invitation':invitation}, 
+                              context_instance = RequestContext(request))
+    else:
+        raise Http404
+    
+@login_required  
 def apply(request, username):
-
+    
     return  profile(request, username, "profiles/apply.html") #TODO: hack - consider adapting at first iteration
-
+    

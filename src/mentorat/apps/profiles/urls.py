@@ -22,4 +22,5 @@ urlpatterns = patterns('',
     url(r'^activate/$', 'profiles.views.activate', {'state': 'on'}, name='profile_activate'),
     url(r'^deactivate/$', 'profiles.views.activate', {'state': 'off'}, name='profile_deactivate'),
     url(r'^apply/(?P<username>[\w\._-]+)', 'profiles.views.apply', name='profile_apply'),
+    url(r'^application_letters/(?P<invitation_id>\d+)/$', 'profiles.views.view_message', name='message_view'),
 )
