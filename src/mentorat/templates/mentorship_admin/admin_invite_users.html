@@ -3,6 +3,7 @@
 
 {% block head_title %}{% blocktrans %}Invite users to join using singup codes{% endblocktrans %}{% endblock %}
 {% block body %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js" type="text/javascript"></script>
 <div id="left-pannel">
     <p> {% blocktrans %} Invite users given an email address. The user will be given a signup code to create their account on this website. {% endblocktrans %}</p>
     <form method="POST" action="">
@@ -12,4 +13,5 @@
     </div>
     </form>
 </div>
+    {% load uploadify_tags %}{% multi_file_upload '/upload/' %}
 {% endblock %}

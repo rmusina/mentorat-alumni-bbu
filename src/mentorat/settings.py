@@ -73,7 +73,7 @@ STATICFILES_DIRS = (
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-# TODO(Vasi) remove hack on launch
+# TODO: remove hack on launch
 ADMIN_MEDIA_PREFIX = "http://localhost:8000/site_media/static/admin/"
 
 # Make this unique, and don't share it with anybody.
@@ -154,15 +154,15 @@ INSTALLED_APPS = (
     'djangodblog',
     'pagination',
 #    'gravatar',
+    'uploadify',
+    'wiki',
     'threadedcomments',
     'threadedcomments_extras',
-    'wiki',
     'timezones',
     'voting',
     'voting_extras',
     'tagging',
     'ajax_validation',
-    'photologue',
     'avatar',
     'flag',
     'microblogging',
@@ -173,6 +173,7 @@ INSTALLED_APPS = (
     'staticfiles',
 
     # internal (for now)
+    'photologue',
     'analytics',
     'profiles',
     'account',
@@ -191,6 +192,15 @@ INSTALLED_APPS = (
     'mentorship_admin',
     'surveys',
 )
+
+# zamtools news app settings
+NEWS_NUM_RECENT = 10
+NEWS_PAGE_SIZE = 10
+
+NEWS_FEED_TITLE = 'Recent Articles'
+NEWS_FEED_DESCRIPTION = 'Recent Articles'
+NEWS_FEED_LINK = '/news/'
+# end zamtools app settings
 
 ABSOLUTE_URL_OVERRIDES = {
     "auth.user": lambda o: "/profiles/profile/%s/" % o.username,

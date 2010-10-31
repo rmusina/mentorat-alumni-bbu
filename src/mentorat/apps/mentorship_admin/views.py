@@ -50,7 +50,7 @@ def admin_profiles(request, template_name="mentorship_admin/admin_search_profile
     if extra_context == None:
         extra_context = {}
 
-    users = User.objects.all().order_by("-date_joined")
+    users = User.objects.all().order_by("-date_joined").exclude(is_superuser=True).exclude(is_active=False)
     search_terms = request.GET.get('search', '')
     order = request.GET.get('order')
     selected_field_index = request.GET.get('field')
@@ -131,7 +131,7 @@ def admin_events(request, form_class = EventsForm,
     """
     View that controls the admin add events forms
     """
-    
+
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
@@ -140,7 +140,7 @@ def admin_events(request, form_class = EventsForm,
         form = form_class()
     else:
         form = form_class()
-   
+
     return render_to_response(template_name, {
         "form": form,
     }, context_instance = RequestContext(request))

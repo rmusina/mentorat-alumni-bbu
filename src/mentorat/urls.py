@@ -31,6 +31,7 @@ urlpatterns = patterns('',
     url(r'^admin/invite_user/$', 'signup_codes.views.admin_invite_user', name="admin_invite_user"),
     url(r'^account/signup/$', signup_view, name="acct_signup"),
 
+    (r'^uploadify/', include('uploadify.urls')),
     (r'^grappelli/', include('grappelli.urls')),
     (r'^mentorship_admin/', include('mentorship_admin.urls')),
     (r'^about/', include('about.urls')),
