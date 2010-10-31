@@ -48,7 +48,7 @@
                         <td colspan="3" class="friendship_request">
                             <p>From <a href="{% url profile_detail invitation.from_user.username %}">{{ invitation.from_user }}</a>
                                 ({{ invitation.sent }}):</p>
-                            <p class="invitation_message">{{ invitation.message }}</p>
+                            <br/><p><a href="{% url message_view invitation.id%}">{% trans "View application letter" %}</a></p><br/>
                             
 							{% if mentor_can_accept %} 
 								<form method="post" action="">
@@ -82,7 +82,7 @@
                         <td colspan="3" class="friendship_request">
                             <p>From <a href="{% url profile_detail invitation.from_user.username %}">{{ invitation.from_user }}</a>
                                 ({{ invitation.sent }}):</p>
-                            <p class="invitation_message">{{ invitation.message }}</p>
+                            <br/><p><a href="{% url message_view invitation.id%}">{% trans "View application letter" %}</a></p><br/>
 
                             {% if mentor_can_accept %} 
 								<form method="post" action="">
