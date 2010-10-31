@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, Http404
@@ -43,17 +44,23 @@ def profiles(request, template_name="profiles/profiles.html", extra_context=None
     search_terms = request.GET.get('search', '')
     order = request.GET.get('order')
     selected_field_index = request.GET.get('field')
-    selected = request.GET.get('field_test')
-    print selected
 
     current_user = request.user
-    current_profile = current_user.get_profile()
+    has_profile = True
+    try:
+        current_profile = current_user.get_profile()
+    except ObjectDoesNotExist:
+        has_profile = False
 
-    field_ids = []
-    for field in current_profile.fields_of_interest.values():
-        field_ids.append(field['field_id'])
-    fields_of_interest = FieldOfInterest.objects.filter(pk__in=field_ids)
-    users = users.filter(profile__fields_of_interest__field__pk__in=field_ids).distinct()
+    if has_profile:
+        field_ids = []
+        for field in current_profile.fields_of_interest.values():
+            field_ids.append(field['field_id'])
+        fields_of_interest = FieldOfInterest.objects.filter(pk__in=field_ids)
+        # TODO commented for debug, uncomment in release
+        #users = users.filter(profile__fields_of_interest__field__pk__in=field_ids).distinct()
+    else:
+        fields_of_interest = FieldOfInterest.objects.all()
 
     if (selected_field_index == "None"):
         selected_field_index = None
