@@ -16,7 +16,7 @@ def tags(request, tag, template_name='tags/index.html'):
     
     alltags = TaggedItem.objects.get_by_model(Post, tag).filter(status=2)
     
-    phototags = TaggedItem.objects.get_by_model(Image, tag)
+    # phototags = TaggedItem.objects.get_by_model(Image, tag)
     bookmarktags = TaggedItem.objects.get_by_model(BookmarkInstance, tag)
     
     # tribe_tags = TaggedItem.objects.get_by_model(Tribe, tag).filter(deleted=False)
@@ -28,7 +28,7 @@ def tags(request, tag, template_name='tags/index.html'):
     return render_to_response(template_name, {
         'tag': tag,
         'alltags': alltags,
-        'phototags': phototags,
+    #    'phototags': phototags,
         'bookmarktags': bookmarktags,
         # 'tribe_tags': tribe_tags,
         # 'tribe_topic_tags': tribe_topic_tags,

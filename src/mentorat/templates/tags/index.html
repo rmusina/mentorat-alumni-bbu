@@ -17,6 +17,7 @@
 {% block head_title %}{% blocktrans %}Tags{% endblocktrans %}{% endblock %}
 
 {% block body %}
+{% comment %}
     <h1>{% trans "All Photos Matching " %}<i>"{{ tag }}"</i></h1>
     
     {% if phototags %}
@@ -34,7 +35,7 @@
     {% else %}
         No photos matching tag.
     {% endif %}
-    
+{% endcomment %}
     {% if bookmarktags %}
         {% scores_for_objects bookmarktags as score_dict %}
         
@@ -62,7 +63,7 @@
         No bookmarks matching tag.
     {% endif %}
     
-    
+{% comment %}
     <h1>{% trans "All Blog Posts Matching " %}<i>"{{ tag }}"</i></h1>
     
     {% if alltags %}
@@ -81,7 +82,7 @@
             {% show_tribe tribe %}
         {% endfor %}
     </dl>
-    
+{% endcomment %}
     {% comment %}
     <h1>{% blocktrans %}All Tribe Topics Matching <i>{{ tag }}</i>{% endblocktrans %}</h1>
     

@@ -152,6 +152,7 @@ INSTALLED_APPS = (
     'announcements',
     'oembed',
     'djangodblog',
+    'blog',
     'pagination',
 #    'gravatar',
     'wiki',
