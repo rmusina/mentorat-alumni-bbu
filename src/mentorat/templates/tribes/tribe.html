@@ -23,9 +23,8 @@
 		<div class="groups" style=" width:200px;">	   
 			<div class="discussion-topics">
                 <h2>{% trans "Discussion Topics" %}</h2>
-					
-					<p> <b>{% blocktrans %}Topic count: {% endblocktrans %}</b>{{ tribe.topics.all.count }}</p>
 					{% get_topics_for_group tribe as topic_queryset %}
+					<p> <b>{% blocktrans %}Topic count: {% endblocktrans %}</b>{{ topic_queryset.count }}</p>
 					{% with topic_queryset|slice:":5" as topics %}
 						{% if topics %}
 							<p><b>{% trans "Topics:" %} </b><a href="{% groupurl topic_list tribe %}">{% trans " topic page" %}</a></p>
