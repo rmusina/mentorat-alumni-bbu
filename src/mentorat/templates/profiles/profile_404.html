@@ -6,7 +6,11 @@
 {% block body %}
 <h1>{% trans "Profile not found" %}</h1>
 <p>
-{% trans "The user whose profile you are trying to view either doesn't exist or he deactivated his profile page." %}
+{% if not denied %}
+    {% trans "The user whose profile you are trying to view either doesn't exist or he deactivated his profile page." %}
+{% else %}
+    {% trans "You do not have permissions to view this profile" %}
+{% endif %}
 </p>
 {% endblock %}
 
