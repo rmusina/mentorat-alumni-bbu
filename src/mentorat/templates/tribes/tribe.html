@@ -16,7 +16,7 @@
 {% block head_title %}{{ tribe.name }}{% endblock %}
 
 {% block body %}
-  
+
     {% if user.is_authenticated %}
        
 		<div class="container" style="float:right">
@@ -24,7 +24,7 @@
 			<div class="discussion-topics">
                 <h2>{% trans "Discussion Topics" %}</h2>
 					
-					<p> <b>{% blocktrans %}Topic count: {% endblocktrans %}</b>{{ topic_count }}</p>
+					<p> <b>{% blocktrans %}Topic count: {% endblocktrans %}</b>{{ tribe.topics.all.count }}</p>
 					{% get_topics_for_group tribe as topic_queryset %}
 					{% with topic_queryset|slice:":5" as topics %}
 						{% if topics %}
@@ -138,7 +138,7 @@
        
             
     </div>
-
+	</div>
 {% endblock %}
 
 {% block extra_body %}

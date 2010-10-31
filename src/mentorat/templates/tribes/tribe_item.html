@@ -2,13 +2,30 @@
 {% load extra_tagging_tags %}
 {% load markup %}
 
-<dt>{{ tribe.name }} (<a href="{{ tribe.get_absolute_url }}">{{ tribe.slug }}</a>)</dt>
-<dd>{{ tribe.description|markdown:"safe"|truncatewords_html:100 }} 
-    <div class="tribe_stats">
-        {% trans "Members:" %} <b>{{ tribe.member_count }}</b>
-        <br />
-        {% trans "Topics:" %} <b>{{ tribe.topic_count }}</b>
-        <br />
-        {% show_tags_for tribe %} {# @@@ #}
-    </div>
-</dd>
+<style>
+		div.tribe-item{
+			border-top-style: dashed; 
+			border-top-width: thin;
+		}
+		div.task-meta{
+			padding-top: 15px;  
+			padding-bottom: 15px;
+		}
+</style>
+
+<div class="tribe-item">
+	<div class="task-meta">
+	<dt>{{ tribe.name }} (<a href="{{ tribe.get_absolute_url }}">{{ tribe.slug }}</a>)</dt>
+	<div>
+		<div style="overflow: auto">
+			{{ tribe.description|markdown:"safe"|truncatewords_html:100 }} 
+		</div>
+		{% trans "Members:" %} <b>{{ tribe.member_count }}</b>
+		<br />
+		{% trans "Topics:" %} <b>{{ tribe.topic_count }}</b>
+		<br />
+		{% show_tags_for tribe %} {# @@@ #}
+		
+	</div>
+	</div>
+</div>
