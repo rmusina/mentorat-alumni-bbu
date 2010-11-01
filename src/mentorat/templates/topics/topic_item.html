@@ -1,5 +1,5 @@
 {% load i18n %}
-{% load avatar_tags %}
+{% load profile_tags %}
 {% load threadedcommentstags %}
 {% load extra_tagging_tags %}
 {% load group_tags %}
@@ -22,7 +22,7 @@
 <div class="topic-item">
 	
     <div class="task-meta">
-        <div class="avatar">{% avatar topic.creator 40 %}</div>
+        <div class="avatar">{% profile_avatar topic.creator 40 %}</div>
         <div class="details"><a href="{{ topic.creator.get_profile.get_absolute_url }}">{{ topic.creator }}</a></div>
         <div class="created">{{ topic.created|date }}</div>
     </div>

@@ -27,9 +27,9 @@ def profile_avatar(user, size=80):
             alt = unicode(user)
             url = ""
             if user.get_profile().as_student() <> None:
-                url = "{{ STATIC_URL }}/img/student.png"
+                url = "/site_media/static/img/student.png"
             else:
-                url = "{{ STATIC_URL }}/img/mentor.png"
+                url = "/site_media/static/img/mentor.png"
         except User.DoesNotExist:
             url = AVATAR_DEFAULT_URL
             alt = _("Default Avatar")
