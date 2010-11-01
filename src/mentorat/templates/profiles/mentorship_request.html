@@ -1,0 +1,96 @@
+{% load i18n %}
+
+{% if is_friend %}
+	<p>{% blocktrans %}You are connected with {{ other_user }}.{% endblocktrans %} <a href="{% url messages_compose %}{{ other_user }}/">{% trans "Send a message" %}</a>.</p>
+{% else %}
+				                {% if previous_invitations_from %}
+				                    <p>{% blocktrans %}{{ other_user }} has requested mentorship.{% endblocktrans %}</p>
+				                    {% for invitation in previous_invitations_from %}
+				                        <div class="friendship_request">
+				                            <p>From <a href="{% url profile_detail invitation.from_user.username %}">{{ invitation.from_user }}</a> ({{ invitation.sent }}):</p>
+				                            </br><p><a href="{% url message_view invitation.id%}">{% trans "View application letter" %}</a></p></br>
+											
+											{% if mentor_can_accept %} 
+												<form method="post" action="">
+								                	<input type="hidden" name="invitation" value="{{ invitation.id }}"/>
+								                    <input type="hidden" name="action" value="accept"/>
+								                    <input type="submit" value="{% trans 'accept' %}" />
+								                </form>
+											{% else %}
+										        <form method="post" action="">
+										            <input type="hidden" name="invitation" value="{{ invitation.id }}"/>
+								                    <input type="hidden" name="action" value="accept"/>
+								                    <input type="submit" value="{% trans 'accept' %}" disabled="disabled"/>
+										        </form>
+											{% endif %}
+						                    <form method="post" action="">
+						                        <input type="hidden" name="invitation" value="{{ invitation.id }}"/>
+						                        <input type="hidden" name="action" value="decline"/>
+						                        <input type="submit" value="{% trans 'decline' %}"/>
+						                    </form>
+											{% ifequal invitation.status "9" %} 
+												<form method="post" action="">
+						                            <input type="hidden" name="invitation" value="{{ invitation.id }}"/>
+						                            <input type="hidden" name="action" value="pending"/>
+						                            <input type="submit" value="{% trans 'pending' %}" disabled="disabled"/>
+						                        </form>
+											{% else %}
+										        <form method="post" action="">
+										            <input type="hidden" name="invitation" value="{{ invitation.id }}"/>
+										            <input type="hidden" name="action" value="pending"/>
+										            <input type="submit" value="{% trans 'pending' %}"/>
+										        </form>
+											{% endifequal %}
+				                        </div>
+				                    {% endfor %}
+				                {% else %}
+									{% if deny_mentor_request %}
+									{% else %}
+						                {% if previous_invitations_to %}
+											{% for invitation in previous_invitations_to %}
+												{% ifequal invitation.status "8" %}				                        
+													<p>{% trans "Mentoring request renounced." %}</p>		
+												{% else %}	
+													{% ifequal invitation.status "9" %}																		
+														<p>{% trans "Mentoring request is being processed." %}</p>
+													{% else %}															
+														<p>{% trans "Mentoring request sent." %}</p>
+														<form method="post" action="">
+													        <input type="hidden" name="action" value="renounce"/>
+													        <input type="submit" value="{% trans 'renounce application' %}" />
+													    </form>
+													{% endifequal %}
+												{% endifequal %}
+											{% endfor %}
+						                {% else %}
+											{% if has_mentor %}
+												{% trans "You already have a mentor." %}
+											{% else %}
+												{% if previous_denied_invitation_to %}
+													{% trans "Mentoring request previously refused." %}
+												{% else %}	
+													{% if consumed_all_requests %}
+														{% trans "You cannot send more than 3 requests." %}
+													{% else %}	
+														<div>					
+															<p> {% trans "Write a small letter of application to motivate your choice of mentor and express your plans for the possible collaboration:" %}</p>	
+														    <form id="uniFormId" method="POST" action="">
+																	<center>																            
+																		{{ invite_form  }}
+																	
+																	<br/> <br/>
+														            <div class="form_block">
+														                <input type="hidden" name="action" value="invite" />
+														                <input type="submit" value="{% trans "invite" %}"/>
+														                {% blocktrans %}{{ other_user }} to be your mentor.{%  endblocktrans %}
+														            </div>
+																	</center>	
+														    </form>
+														</div>
+													{% endif %} {# consumed_all_requests #}
+											 	{% endif %} {# previous_denied_invitations #}
+											{% endif %} {# has_mentor #}
+						                {% endif %} {# previous_invitations_to #}
+									{% endif %}
+				                {% endif %} {# previous_invitations_from #}
+				            {% endif %} {# is_friend #}             
