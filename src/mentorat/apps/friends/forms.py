@@ -41,7 +41,7 @@ if EmailAddress:
 class InviteFriendForm(UserForm):
     
     to_user = forms.CharField(widget=forms.HiddenInput)
-    message = forms.CharField(label="Message", required=False, widget=forms.Textarea(attrs = {'cols': '20', 'rows': '5'}))
+    message = forms.CharField(label="", required=False, widget=forms.Textarea(attrs = {'cols': '60', 'rows': '40'}))
     
     def clean_to_user(self):
         to_username = self.cleaned_data["to_user"]
