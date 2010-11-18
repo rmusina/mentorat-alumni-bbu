@@ -106,6 +106,7 @@ class BaseProfessionalForm(forms.ModelForm):
      
     def __init__(self, *args, **keywords):
         forms.ModelForm.__init__(self, *args, **keywords)
+	self.fields['fields_of_interest'].choices = get_field_of_interest_choice_list()
         if len(args)==0 and len(keywords)==1 and 'instance' in keywords:
             self.initial['fields_of_interest'] = get_field_of_interest_initial_values(keywords['instance'])     
             
@@ -127,7 +128,7 @@ class StudentProfessionalForm(BaseProfessionalForm):
                                         label=_('Plans for the following year'))
     how_mentor_can_help = forms.CharField(widget=forms.Textarea, error_messages=error_messages_charfields,
                                         label=_('How can a mentor help in the student\'s development?'))
-   
+
     class Meta:
         model = StudentProfile 
         fields = ['home_town', 'graduated_college', 'future_plans', 'fields_of_interest', 'how_mentor_can_help']
@@ -257,6 +258,7 @@ class MentorProfessionalForm(BaseProfessionalForm):
      
     def __init__(self, *args, **keywords):
         BaseProfessionalForm.__init__(self, *args, **keywords)
+	self.fields['mentorship_activities'].choices = get_mentorship_activities_choice_list()
         if len(args)==0 and len(keywords)==1 and 'instance' in keywords:
             self.initial['mentorship_activities'] = get_mentorship_activities_initial_values(keywords['instance'])     
             
