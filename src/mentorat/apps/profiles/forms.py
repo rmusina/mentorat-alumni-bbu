@@ -90,7 +90,10 @@ class BaseProfessionalForm(forms.ModelForm):
     home_town = forms.CharField(max_length=50, error_messages=error_messages_charfields, label=_('Home town'))
     graduated_college = forms.CharField(max_length=100, widget=forms.Textarea, error_messages=error_messages_charfields,
                                         label=_('Graduated college'))
-    fields_of_interest = forms.MultipleChoiceField(required=False, label=_('Fields of interest for mentorship (between 1 and 3)'), choices=get_field_of_interest_choice_list(), widget=forms.CheckboxSelectMultiple) 
+    fields_of_interest = forms.MultipleChoiceField(required=False,
+                                                   label=_('Fields of interest for mentorship (between 1 and 3)'),
+                                                   choices=get_field_of_interest_choice_list(),
+                                                   widget=forms.CheckboxSelectMultiple) 
     
     def clean_fields_of_interest(self):
         data = self.cleaned_data['fields_of_interest']

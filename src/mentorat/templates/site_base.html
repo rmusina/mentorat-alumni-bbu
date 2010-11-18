@@ -26,7 +26,7 @@
 
 {% block login %}
     {% if user.is_authenticated %}
-        <b>{{ user }}</b> | <a href="{% url acct_passwd %}">{% trans "Account" %}</a> | {% if user.is_staff %}<a href="/admin/">{% trans "Admin" %}</a> | {% endif %}<a href="{% url acct_logout %}">{% trans "Logout" %}</a>
+        <b>{{ user }}</b> | <a href="{% url acct_passwd %}">{% trans "Account" %}</a> | {% if user.is_staff %}<a href="/admin">{% trans "Admin" %}</a> | {% endif %}<a href="{% url acct_logout %}">{% trans "Logout" %}</a>
     {% else %}
         <a href="{% url acct_login %}">{% trans "Login" %}</a> {% ifsetting ACCOUNT_OPEN_SIGNUP %}{% trans "or" %} <a href="{% url acct_signup %}"><b>{% trans "Sign up" %}</b></a>{% endifsetting %}
     {% endif %}
