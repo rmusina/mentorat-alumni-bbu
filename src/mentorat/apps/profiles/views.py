@@ -168,24 +168,27 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
         if request.user.get_profile().as_mentor() != None and FriendshipInvitation.objects.countAccepts(to_user = request.user) < 3:
             mentor_can_accept = True
 
-    mentor = request.user.get_profile().as_mentor()
+    mentor = None
+    if not request.user.is_staff and not request.user.is_superuser:
+        mentor = request.user.get_profile().as_mentor()
     other_mentor = other_user.get_profile().as_mentor()
     if mentor != None and other_mentor != None and mentor != other_mentor:
         if not mentor.visible_to_mentors or not other_mentor.visible_to_mentors:
             raise Http404
     
-    users_know_each_other = True # TODO [Cretu]
+    users_know_each_other = Friendship.objects.are_friends(request.user, other_user)
+    print 'Friends:', users_know_each_other
 
     allow_private = is_me or request.user.is_staff
-    allow_restricted = is_me or request.user.is_staff or user_know_each_other
+    allow_restricted = is_me or request.user.is_staff or users_know_each_other
     
     return render_to_response(template_name, dict({
         "is_me": is_me,
         "is_friend": is_friend,
         "is_following": is_following,
         "other_user": other_user,
-        "allow_private": is_me, # can see private fields
-        "allow_restricted": True, # can see restricted fields
+        "allow_private": allow_private, # can see private fields
+        "allow_restricted": allow_restricted, # can see restricted fields
         "has_mentor": FriendshipInvitation.objects.hasMentor(from_user = request.user),
         "deny_mentor_request": deny_mentor_request, #can see the 'add as a friend' field
         "consumed_all_requests": consumed_all_requests,
