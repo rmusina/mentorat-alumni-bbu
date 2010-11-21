@@ -167,9 +167,17 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
     
         if request.user.get_profile().as_mentor() != None and FriendshipInvitation.objects.countAccepts(to_user = request.user) < 3:
             mentor_can_accept = True
+
+    mentor = request.user.get_profile().as_mentor()
+    other_mentor = other_user.get_profile().as_mentor()
+    if mentor != None and other_mentor != None and mentor != other_mentor:
+        if not mentor.visible_to_mentors or not other_mentor.visible_to_mentors:
+            raise Http404
     
+    users_know_each_other = True # TODO [Cretu]
+
     allow_private = is_me or request.user.is_staff
-    allow_restricted = True # TODO: Check if the users know each other
+    allow_restricted = is_me or request.user.is_staff or user_know_each_other
     
     return render_to_response(template_name, dict({
         "is_me": is_me,
@@ -670,4 +678,15 @@ def view_message(request, invitation_id):
 def apply(request, username):
     
     return  profile(request, username, "profiles/apply.html") #TODO: hack - consider adapting at first iteration
-    
+
+
+@login_required
+def hide_from_mentors(request, username, visibility):
+    if request.user.username != username or request.user.get_profile().as_mentor() == None or (visibility != 'on' and visibility != 'off'):
+        raise Http404
+
+    mentor = request.user.get_profile().as_mentor()
+    mentor.visible_to_mentors = visibility == 'on'
+    mentor.save()
+
+    return HttpResponseRedirect(reverse('profile_detail', kwargs={ 'username': username }))

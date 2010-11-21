@@ -11,6 +11,7 @@
         {% else %}
             <a href="{% url admin_set_visibility other_user.username 'activate' %}">{% trans "Activate account" %}</a>
         {% endif %}
+           
         <h3>{% trans "Edit user events" %}</h3>
         {% load_recent_events 10 for other_user in events %}
         {% if events %}
@@ -43,6 +44,13 @@
         {% else %}
             <a href="{% url profile_activate %}">{% trans "Activate profile" %}</a>
         {% endif %}<br/>
+        {% if mentor %}
+            {% if mentor.visible_to_mentors %}
+                <a href="{% url profile_mentor_visibility other_user.username 'off' %}">{% trans "Hide profile from other mentors" %}</a>
+            {% else %}
+                <a href="{% url profile_mentor_visibility other_user.username 'on' %}">{% trans "Show profile to other mentors" %}</a>
+            {% endif %}<br/>
+        {% endif %}
         <a href="{% url acct_passwd %}">{% trans "Change password" %}</a>
     </div>
 {% endif %}

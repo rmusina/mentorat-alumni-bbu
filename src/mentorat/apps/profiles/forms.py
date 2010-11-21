@@ -282,4 +282,4 @@ class MentorProfessionalForm(BaseProfessionalForm):
 class MentorAdditionalForm(BaseAdditionalForm):
     class Meta:
         model = MentorProfile
-        fields = ['hobbies',  'self_evaluation', 'extra_info']
+        fields = ['hobbies',  'self_evaluation', 'extra_info', 'visible_to_mentors']

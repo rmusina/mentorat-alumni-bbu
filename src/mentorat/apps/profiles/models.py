@@ -125,6 +125,8 @@ class MentorProfile(Profile):
     professional_experience = models.TextField(blank=False, verbose_name=_('professional experience'))
     #mentorship_activities
     other_mentorship_activities = models.TextField(blank=True, verbose_name=_('other mentorship activities'))
+
+    visible_to_mentors = models.BooleanField(blank=True, default=False, verbose_name=_('should profile be visible to other mentors?'))
     
     class Meta():
         verbose_name = _('mentor profile')
