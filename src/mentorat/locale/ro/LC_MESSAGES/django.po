@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-18 18:10+0200\n"
+"POT-Creation-Date: 2010-11-24 20:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,25 +164,25 @@ msgstr "Autentificat cu succes."
 msgid "Account information"
 msgstr "Informatii despre cont"
 
-#: apps/account/forms.py:432 apps/profiles/views.py:226
+#: apps/account/forms.py:432 apps/profiles/views.py:258
 #: templates/profiles/profile-types/profile-mentor.html:8
 #: templates/profiles/profile-types/profile-student.html:8
 msgid "General information"
 msgstr "Informatii generale"
 
-#: apps/account/forms.py:432 apps/profiles/views.py:233
+#: apps/account/forms.py:432 apps/profiles/views.py:265
 #: templates/profiles/profile-types/profile-mentor.html:46
 #: templates/profiles/profile-types/profile-student.html:44
 msgid "Current employment"
 msgstr "Angajator curent"
 
-#: apps/account/forms.py:432 apps/profiles/views.py:240
+#: apps/account/forms.py:432 apps/profiles/views.py:272
 #: templates/profiles/profile-types/profile-mentor.html:72
 #: templates/profiles/profile-types/profile-student.html:68
 msgid "Academic and professional information"
 msgstr "Informatii academice si profesionale"
 
-#: apps/account/forms.py:433 apps/profiles/views.py:247
+#: apps/account/forms.py:433 apps/profiles/views.py:279
 #: templates/profiles/profile-types/profile-mentor.html:128
 #: templates/profiles/profile-types/profile-student.html:136
 msgid "Additional information"
@@ -232,11 +232,11 @@ msgstr ""
 msgid "reset yet?"
 msgstr "resetati?"
 
-#: apps/account/views.py:144
+#: apps/account/views.py:148
 msgid "Twitter authentication failed"
 msgstr "Autenficarea cu twitter a esuat"
 
-#: apps/account/views.py:163
+#: apps/account/views.py:167
 msgid "Removed twitter account information successfully."
 msgstr ""
 
@@ -282,12 +282,12 @@ msgstr "salvat"
 msgid "%(bookmark)s for %(user)s"
 msgstr "%(bookmark)s pentru %(user)s"
 
-#: apps/bookmarks/views.py:76
+#: apps/bookmarks/views.py:77
 #, python-format
 msgid "You have saved news '%(description)s'"
 msgstr "Ati salvat stirea '%(description)"
 
-#: apps/bookmarks/views.py:106
+#: apps/bookmarks/views.py:107
 msgid "News Post Deleted"
 msgstr "Stire stearsa"
 
@@ -698,8 +698,8 @@ msgstr ""
 #: apps/grappelli/templates/admin/index_group.html:49
 #: apps/grappelli/templates/admin/index_group.html:77
 #: apps/grappelli/templates/admin/index_group.html:112
-#: apps/profiles/views.py:304 apps/profiles/views.py:377
-#: apps/profiles/views.py:450 templates/admin/index.html:29
+#: apps/profiles/views.py:336 apps/profiles/views.py:409
+#: apps/profiles/views.py:482 templates/admin/index.html:29
 msgid "Add"
 msgstr "Adaugati"
 
@@ -752,8 +752,8 @@ msgstr "%(name)s"
 
 #: apps/grappelli/templates/admin/change_list.html:101
 #: apps/grappelli/templates/admin/submit_line.html:5
-#: apps/profiles/views.py:331 apps/profiles/views.py:404
-#: apps/profiles/views.py:477 apps/wiki/templates/wiki/edit.html:23
+#: apps/profiles/views.py:363 apps/profiles/views.py:436
+#: apps/profiles/views.py:509 apps/wiki/templates/wiki/edit.html:23
 #: templates/profiles/admin/events.html:40
 msgid "Save"
 msgstr "Salvati"
@@ -972,7 +972,7 @@ msgstr ""
 #: apps/grappelli/templates/admin/includes_grappelli/header.html:41
 #: apps/grappelli/templates/registration/password_change_done.html:10
 #: apps/grappelli/templates/registration/password_change_form.html:10
-#: templates/profiles/profile_right_panel.html:46
+#: templates/profiles/profile_right_panel.html:54
 #, fuzzy
 msgid "Change password"
 msgstr "Schimbati parola"
@@ -1490,7 +1490,7 @@ msgstr "Mesaj recuperat cu succes."
 #: apps/messages/templates/messages/base.html:8
 #: apps/messages/templates/messages/inbox.html:4
 #: apps/messages/templates/messages/new_message.html:10
-#: templates/site_base.html:55 templates/messages/base.html:15
+#: templates/site_base.html:53 templates/messages/base.html:15
 #: templates/messages/inbox.html:7
 msgid "Inbox"
 msgstr "Inbox"
@@ -1635,11 +1635,11 @@ msgid ""
 msgstr ""
 
 #: apps/profiles/forms.py:21 apps/profiles/forms.py:29
-#: apps/profiles/forms.py:35 apps/profiles/forms.py:146
-#: apps/profiles/forms.py:147 apps/profiles/forms.py:150
-#: apps/profiles/forms.py:193 apps/profiles/forms.py:205
-#: apps/profiles/forms_parts.py:6 apps/profiles/forms_parts.py:20
-#: apps/profiles/forms_parts.py:22 apps/surveys/forms.py:6
+#: apps/profiles/forms.py:35 apps/profiles/forms.py:150
+#: apps/profiles/forms.py:151 apps/profiles/forms.py:154
+#: apps/profiles/forms.py:210 apps/profiles/forms_parts.py:6
+#: apps/profiles/forms_parts.py:20 apps/profiles/forms_parts.py:22
+#: apps/surveys/forms.py:6
 msgid "This field is required"
 msgstr "Acest camp este oblicatoriu"
 
@@ -1782,38 +1782,38 @@ msgstr "Oras natal"
 msgid "Graduated college"
 msgstr "Liceu absolvit"
 
-#: apps/profiles/forms.py:93
+#: apps/profiles/forms.py:94
 msgid "Fields of interest for mentorship (between 1 and 3)"
-msgstr "Domenii de interes pentru mentorizare (intre 1 si 3)"
+msgstr "Domenii de interes pentru mentorat (intre 1 si 3)"
 
-#: apps/profiles/forms.py:98
+#: apps/profiles/forms.py:101
 msgid "You have to choose at least 1 field of interest"
 msgstr "Trebuie sa alegeti cel putin 1 domeniu de interes"
 
-#: apps/profiles/forms.py:100
+#: apps/profiles/forms.py:103
 msgid "You may choose at most 3 fields of interest"
 msgstr "Puteti sa alegeti maxim 3 domenii de interes"
 
-#: apps/profiles/forms.py:124
+#: apps/profiles/forms.py:128
 #: templates/profiles/profile-types/profile-student.html:123
 msgid "Plans for the following year"
 msgstr "Planuri pentru anul urmator"
 
-#: apps/profiles/forms.py:126
+#: apps/profiles/forms.py:130
 msgid "How can a mentor help in the student's development?"
 msgstr "Cum poate un mentor sa ajute in dezvoltarea unui student?"
 
-#: apps/profiles/forms.py:146
+#: apps/profiles/forms.py:150
 msgid "What are you hobbies?"
 msgstr "Care sunt hobbiurile dumneavoastra?"
 
-#: apps/profiles/forms.py:147
+#: apps/profiles/forms.py:151
 #: templates/profiles/profile-types/profile-mentor.html:135
 #: templates/profiles/profile-types/profile-student.html:143
 msgid "How would you describe yourself as a colleague?"
 msgstr "Cum v-ati descrie in ipostaza de coleg?"
 
-#: apps/profiles/forms.py:149
+#: apps/profiles/forms.py:153
 msgid ""
 "Do you have any additional information you might want to share with a "
 "possible mentor?"
@@ -1821,51 +1821,47 @@ msgstr ""
 "Aveti si alte informatii pe care ati dori sa le impartasiti cu un eventual "
 "mentor?"
 
-#: apps/profiles/forms.py:193
-msgid "What are you expectations of a mentor?"
-msgstr "Care sunt asteptarile unui mentor?"
-
-#: apps/profiles/forms.py:202
+#: apps/profiles/forms.py:207
 #: templates/profiles/profile-types/profile-mentor.html:23
 msgid "Graduated faculty"
 msgstr "Facultatea absolvita"
 
-#: apps/profiles/forms.py:204
+#: apps/profiles/forms.py:209
 #: templates/profiles/profile-types/profile-mentor.html:26
 msgid "Graduated major"
 msgstr "Specializarea absolvita"
 
-#: apps/profiles/forms.py:205
+#: apps/profiles/forms.py:210
 msgid "Graduation date (year-month-day)"
 msgstr "Anul de absolvire (da-luna-zi)"
 
-#: apps/profiles/forms.py:205
+#: apps/profiles/forms.py:210
 msgid "You have entered an invalid date"
 msgstr "Ati introdus o data invalida"
 
-#: apps/profiles/forms.py:206
+#: apps/profiles/forms.py:211
 msgid ""
 "In which city and country will you be during the mentorship period? (You can "
 "include more than one)"
 msgstr ""
-"In ce tara o sa fiti pe durata perioadei de mentorizare? (Puteti include mai "
+"In ce tara o sa veti fi pe durata perioadei de mentorizare? (Puteti include mai "
 "multe intrari)"
 
-#: apps/profiles/forms.py:215 apps/profiles/forms_parts.py:17
+#: apps/profiles/forms.py:220 apps/profiles/forms_parts.py:17
 msgid "Employer's name"
 msgstr "Numele angajatorului"
 
-#: apps/profiles/forms.py:216
+#: apps/profiles/forms.py:221
 msgid "Employer's address"
 msgstr "Adresa angajatorului"
 
-#: apps/profiles/forms.py:217
+#: apps/profiles/forms.py:222
 #: templates/profiles/profile-types/profile-mentor.html:56
 #: templates/profiles/profile-types/profile-student.html:54
 msgid "Position held"
 msgstr "Functie detinuta"
 
-#: apps/profiles/forms.py:218 apps/profiles/forms_parts.py:19
+#: apps/profiles/forms.py:223 apps/profiles/forms_parts.py:19
 #: apps/profiles/forms_parts.py:32
 #: templates/profiles/profile-types/profile-mentor.html:59
 #: templates/profiles/profile-types/profile-student.html:57
@@ -1874,7 +1870,7 @@ msgstr "Functie detinuta"
 msgid "Duties"
 msgstr "Indatoriri"
 
-#: apps/profiles/forms.py:240
+#: apps/profiles/forms.py:245
 msgid ""
 "Did you continue your studies after completing your Bachelor's? If yes, what "
 "are they, what university did you study in?"
@@ -1882,7 +1878,7 @@ msgstr ""
 "V-ati continuat studiile dupa terminarea facultatii? Daca da, ce "
 "specializari postuniversitare ati urmat si la ce facultate"
 
-#: apps/profiles/forms.py:243
+#: apps/profiles/forms.py:248
 msgid ""
 "What is your professional experience relevant for the mentorship program? "
 "Provide details if you can."
@@ -1890,11 +1886,11 @@ msgstr ""
 "Care este experienta profesionala relevanta pentru programul de mentorat? "
 "Daca e posibil furnizati detalii."
 
-#: apps/profiles/forms.py:245
+#: apps/profiles/forms.py:250
 msgid "Other activities (if not in the above choice list)"
 msgstr "Alte activitati (daca nu sunt in lista de optiuni de mai sus)"
 
-#: apps/profiles/forms.py:246
+#: apps/profiles/forms.py:251
 msgid "Activities you are interested in doing during the mentorship program:"
 msgstr ""
 "Selectati din lista acele activitati pe care sunteti interesat sa le "
@@ -1994,7 +1990,7 @@ msgstr "autoevaluare ca si coleg"
 msgid "additional information"
 msgstr "informatii aditionale"
 
-#: apps/profiles/models.py:47 apps/profiles/models.py:158
+#: apps/profiles/models.py:47 apps/profiles/models.py:160
 msgid "profile"
 msgstr "profil"
 
@@ -2063,10 +2059,6 @@ msgstr "planuri pentru anul urmator"
 msgid "how can a mentor help"
 msgstr "cum poate un mentor sa ajute"
 
-#: apps/profiles/models.py:88
-msgid "what are your expectation for a mentor"
-msgstr "care sunt asteptarile dumneavoastra de la un mentor"
-
 #: apps/profiles/models.py:100
 msgid "student profile"
 msgstr "profil student"
@@ -2083,7 +2075,7 @@ msgstr "specializarea absolvita"
 msgid "graduation date"
 msgstr "data absolvirii"
 
-#: apps/profiles/models.py:118 apps/profiles/models.py:169
+#: apps/profiles/models.py:118 apps/profiles/models.py:171
 msgid "employer name"
 msgstr "numele angajatorului"
 
@@ -2111,116 +2103,120 @@ msgstr "experienta profesionala"
 msgid "other mentorship activities"
 msgstr "alte activitati de mentorat"
 
-#: apps/profiles/models.py:130
+#: apps/profiles/models.py:129
+msgid "should profile be visible to other mentors?"
+msgstr ""
+
+#: apps/profiles/models.py:132
 msgid "mentor profile"
 msgstr "profilul mentor"
 
-#: apps/profiles/models.py:143
+#: apps/profiles/models.py:145
 msgid "field name"
 msgstr "nume domeniu"
 
-#: apps/profiles/models.py:159
+#: apps/profiles/models.py:161
 msgid "organization name"
 msgstr "nume organizatie"
 
-#: apps/profiles/models.py:160
+#: apps/profiles/models.py:162
 msgid "working field"
 msgstr "domeniul ocupatiei"
 
-#: apps/profiles/models.py:167
+#: apps/profiles/models.py:169
 msgid "student"
 msgstr "student"
 
-#: apps/profiles/models.py:168
+#: apps/profiles/models.py:170
 msgid "was internship"
 msgstr "a fost internship"
 
-#: apps/profiles/models.py:170
+#: apps/profiles/models.py:172
 msgid "pos    ition held"
 msgstr "functie ocupata"
 
-#: apps/profiles/models.py:171 apps/profiles/models.py:182
+#: apps/profiles/models.py:173 apps/profiles/models.py:184
 msgid "duties"
 msgstr "indatoriri"
 
-#: apps/profiles/models.py:172
+#: apps/profiles/models.py:174
 msgid "starting date"
 msgstr "data inceperii"
 
-#: apps/profiles/models.py:173
+#: apps/profiles/models.py:175
 msgid "ending date"
 msgstr "data terminarii"
 
-#: apps/profiles/models.py:181
+#: apps/profiles/models.py:183
 msgid "field of research"
 msgstr "domeniu de cercetare"
 
-#: apps/profiles/models.py:189
+#: apps/profiles/models.py:191
 msgid "mentorship activities"
 msgstr "activitati de mentorat"
 
-#: apps/profiles/models.py:190
+#: apps/profiles/models.py:192
 msgid "activity description"
 msgstr "descrierea activitatii"
 
-#: apps/profiles/models.py:202
+#: apps/profiles/models.py:204
 msgid "name"
 msgstr "nume"
 
-#: apps/profiles/models.py:210
+#: apps/profiles/models.py:212
 msgid "ratting"
 msgstr "rating"
 
-#: apps/profiles/models.py:218
+#: apps/profiles/models.py:220
 #, fuzzy
 msgid "Event Name"
 msgstr "numele evenimentului"
 
-#: apps/profiles/models.py:219
+#: apps/profiles/models.py:221
 #, fuzzy
 msgid "Event Points"
 msgstr "Puncte"
 
-#: apps/profiles/models.py:220
+#: apps/profiles/models.py:222
 msgid "Event Time and Date"
 msgstr ""
 
-#: apps/profiles/models.py:221
+#: apps/profiles/models.py:223
 #, fuzzy
 msgid "Event Location"
 msgstr "Locatii"
 
-#: apps/profiles/models.py:222
+#: apps/profiles/models.py:224
 #, fuzzy
 msgid "Event DescripTion"
 msgstr "Descriere"
 
-#: apps/profiles/models.py:230
+#: apps/profiles/models.py:232
 #, fuzzy
 msgid "date"
 msgstr "Indatoriri"
 
-#: apps/profiles/views.py:95
+#: apps/profiles/views.py:116
 #, python-format
 msgid "You have removed %(from_user)s from mentor contacts"
 msgstr "L-ati eliminat pe %(from_user)s din contactele de mentorat"
 
-#: apps/profiles/views.py:99 apps/profiles/views.py:115
-#: apps/profiles/views.py:151
+#: apps/profiles/views.py:120 apps/profiles/views.py:136
+#: apps/profiles/views.py:172
 msgid "Please review my cv and accept my request!"
 msgstr "Va rog sa imi studiati cv-ul si sa acceptati solicitarea!"
 
-#: apps/profiles/views.py:110
+#: apps/profiles/views.py:131
 #, python-format
 msgid "You have chosen to renounce this request %(from_user)s"
 msgstr "Ati ales sa renuntati la solicitarea %(from_user)s"
 
-#: apps/profiles/views.py:123
+#: apps/profiles/views.py:144
 #, python-format
 msgid "You have accepted the mentorship request from %(from_user)s"
 msgstr "Ati acceptat solicitarea de mentorat de la %(from_user)s"
 
-#: apps/profiles/views.py:133
+#: apps/profiles/views.py:154
 #, python-format
 msgid ""
 "You have declined the mentorship request from %(from_user)s. Please write a "
@@ -2229,50 +2225,50 @@ msgstr ""
 "Ati refuzat solicitarea de mentorat din partea %(from_user)s. Va rugam sa "
 "scrieti un mesaj in care sa va motivati decizia."
 
-#: apps/profiles/views.py:144
+#: apps/profiles/views.py:165
 #, python-format
 msgid "You have chosen to review the mentorship request from %(from_user)s"
 msgstr "Ati ales sa studiati solicitarea de mentorat din partea %(from_user)s"
 
-#: apps/profiles/views.py:287
+#: apps/profiles/views.py:319
 msgid "Volunteer organization"
 msgstr "Organizatie non-guvernamentala"
 
-#: apps/profiles/views.py:305
+#: apps/profiles/views.py:337
 msgid "Add a volunteer organization in which you were a member"
 msgstr "Adaugati un ONG in care ati fost membru"
 
-#: apps/profiles/views.py:332
+#: apps/profiles/views.py:364
 msgid "Update information about a volunteer organization"
 msgstr "Updatari informatiile despre un ONG"
 
-#: apps/profiles/views.py:360
+#: apps/profiles/views.py:392
 #: templates/profiles/profile-types/profile-student.html:93
 msgid "Work experience"
 msgstr "Experienta profesionala"
 
-#: apps/profiles/views.py:378
+#: apps/profiles/views.py:410
 msgid "Add information about your work experience"
 msgstr "Adaugati informatii despre experienta dumneavoastra profesionala"
 
-#: apps/profiles/views.py:405
+#: apps/profiles/views.py:437
 msgid "Update the information about you work experience"
 msgstr "Updatati informatii despre experienta dumneavoastra profesionala"
 
-#: apps/profiles/views.py:433
+#: apps/profiles/views.py:465
 #: templates/profiles/profile-types/profile-student.html:107
 msgid "Research"
 msgstr "Cercetare"
 
-#: apps/profiles/views.py:451
+#: apps/profiles/views.py:483
 msgid "Add information about your research activities"
 msgstr "Adaugati informatii despre activitatea dumneavoastra de cercetare"
 
-#: apps/profiles/views.py:478
+#: apps/profiles/views.py:510
 msgid "Update the information about your research activities"
 msgstr "Updatati informatii despre activitatea dumneavoastra de cercetare"
 
-#: apps/profiles/views.py:625
+#: apps/profiles/views.py:657
 #, fuzzy
 msgid "Changes were successfully saved"
 msgstr "Parola setata cu succes."
@@ -2285,7 +2281,7 @@ msgstr "Parola setata cu succes."
 msgid "Name"
 msgstr "Nume"
 
-#: apps/profiles/templatetags/profile_tags.py:35
+#: apps/profiles/templatetags/profile_tags.py:37
 msgid "Default Avatar"
 msgstr ""
 
@@ -2987,37 +2983,46 @@ msgstr "Bine ati venit la UBB Alumni"
 #: templates/homepage.html:14
 msgid ""
 "\n"
-"        <b>UBB Alumni</b> is a web application intended to connect UBB "
-"students\n"
-"        with former graduates. \n"
-"        \n"
-"        "
+"       Dacă ai ajuns până aici, ai deja ceva ce noi căutăm: curiozitate  \n"
+"\t\t"
 msgstr ""
-"\n"
-"        <b>UBB Alumni</b> este o aplicatie web care urmareste sa puna in "
-"legaturastudenti\n"
-"        cu fosti absolventi. \n"
-"        \n"
-"        "
 
-#: templates/homepage.html:22
+#: templates/homepage.html:20 templates/about/about.html:10
 msgid ""
 "\n"
-"        For more information about the \"Babes-Bolyai\" University, see\n"
-"        <a href=\"http://ubbcluj.ro/\">http://ubbcluj.ro/</a>.\n"
+"Mentor Alumni este un program creat de studenţi UBB pentru studenţi şi "
+"absolvenţi UBB. Le permite tuturor să găsească şi să discute cu oameni "
+"preocupaţi de dezvoltarea lor profesională şi personală. \n"
+"Studenţii UBB primesc îndrumare pentru a-şi îndeplini cele mai îndrăzneţe "
+"obiective profesionale.\n"
+"Absolvenţii UBB descoperă viitori colaboratori, parteneri de cercetare sau "
+"angajaţi. \n"
+"Toţi pot participa la sesiuni de formare şi dezvoltare personală oferite de "
+"parteneri.\n"
+msgstr ""
+
+#: templates/homepage.html:29 templates/about/about.html:19
+msgid ""
+"\n"
+"Înscrie-te dacă eşti nou sau intră dacă eşti deja de-al casei! \n"
+"Dă dovadă şi de puţină răbdare şi completează toate datele, te asigurăm că "
+"merită! \n"
+msgstr ""
+
+#: templates/homepage.html:35 templates/about/about.html:25
+msgid ""
+"\n"
+"Proiectul Mentor Alumni este o initiativa a Asociatiei Absolventilor UBB si "
+"a Oficiului de Fund Raising al UBB. <b>TeamFlux</b> a transformat ideea in "
+"aceasta platforma.  \n"
 "        "
 msgstr ""
-"\n"
-"        Pentru mai multe informatii despre Universitatea \"Babes-Bolyai\", "
-"vizitati site-ul\n"
-"        <a href=\"http://ubbcluj.ro/\">http://ubbcluj.ro/</a>.\n"
-"        "
 
-#: templates/homepage.html:28
+#: templates/homepage.html:40
 msgid "About this project"
 msgstr "Despre proiect"
 
-#: templates/homepage.html:31
+#: templates/homepage.html:43
 msgid ""
 "\n"
 "        Comming soon...\n"
@@ -3027,12 +3032,12 @@ msgstr ""
 "        In curand...\n"
 "        "
 
-#: templates/homepage.html:39
+#: templates/homepage.html:51
 #, python-format
 msgid "Wondering <a href=\"%(what_next_url)s\">What Next</a>?"
 msgstr "Ce o sa <a href=\"%(what_next_url)s\">urmeze</a>??"
 
-#: templates/homepage.html:44
+#: templates/homepage.html:56
 #, python-format
 msgid ""
 "You can <a href=\"%(signup_url)s\">Sign up</a> and <a href=\"%(login_url)s"
@@ -3041,17 +3046,17 @@ msgstr ""
 "Puteti sa va <a href=\"%(signup_url)s\">Inscrieti</a> sau sa va <a href=\"%"
 "(login_url)s\">Logati</a> pentru a incerca site-ul."
 
-#: templates/homepage.html:46
+#: templates/homepage.html:58
 #, python-format
 msgid "You can <a href=\"%(login_url)s\">Log in</a> to try out the site."
 msgstr ""
 "Puteti sa va <a href=\"%(login_url)s\">Logati</a> pentru a incerca site-ul."
 
-#: templates/site_base.html:29 templates/profiles/profile_right_panel.html:40
+#: templates/site_base.html:29 templates/profiles/profile_right_panel.html:41
 msgid "Account"
 msgstr "Cont"
 
-#: templates/site_base.html:29 templates/site_base.html.py:57
+#: templates/site_base.html:29 templates/site_base.html.py:55
 msgid "Admin"
 msgstr ""
 
@@ -3081,43 +3086,725 @@ msgstr "Inscriere"
 msgid "News"
 msgstr ""
 
-#: templates/site_base.html:50
+#: templates/site_base.html:49
 #, fuzzy
 msgid "Profile"
 msgstr "Profil"
 
-#: templates/site_base.html:52 templates/tribes/tribes.html:12
+#: templates/site_base.html:50 templates/tribes/tribes.html:12
 #: templates/tribes/tribes.html.py:15
 msgid "Tribes"
 msgstr "Triburi"
 
-#: templates/site_base.html:53
+#: templates/site_base.html:51
 msgid "Wikis"
 msgstr "Wiki-uri"
 
-#: templates/site_base.html:54
+#: templates/site_base.html:52
 msgid "Locations"
 msgstr "Locatii"
 
-#: templates/site_base.html:59 templates/surveys/survey_list.html:5
+#: templates/site_base.html:57 templates/surveys/survey_list.html:5
 msgid "Surveys"
 msgstr ""
 
-#: templates/site_base.html:66
+#: templates/site_base.html:64
 msgid "&copy; 2010 UBB"
 msgstr ""
 
-#: templates/site_base.html:67
+#: templates/site_base.html:65 templates/about/about.html:5
+#: templates/about/privacy.html:5
 msgid "About"
 msgstr "Despre"
 
-#: templates/site_base.html:68
+#: templates/site_base.html:66 templates/about/terms.html:5
 msgid "Terms of Service"
 msgstr "Termenii serviciului"
 
-#: templates/site_base.html:69
+#: templates/site_base.html:67
 msgid "Privacy Policy"
 msgstr "Confidentialitate"
+
+#: templates/about/dmca.html:5
+msgid "Digital Millennium Copyright Act Notice"
+msgstr ""
+
+#: templates/about/dmca.html:8
+msgid ""
+"<p>Your <b>Digital Millennium Copyright Act Notice</b> would normally go "
+"here...</p>"
+msgstr ""
+
+#: templates/about/privacy.html:8
+msgid ""
+"\n"
+"        <div>\n"
+"    <p>\n"
+"        <b>\n"
+"            Politica de securitate a datelor\n"
+"            <p>\n"
+"            </p>\n"
+"        </b>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Datele cu caracter personal furnizate in momentul inscrierii in "
+"programul .Mentor Alumni. sunt utilizate exclusiv de catre Asociatia "
+"Absolventilor\n"
+"        Universitatii Babes-Bolyai pentru desfasurarea in conditii optime a "
+"programului .Mentor Alumni..\n"
+"        <b>\n"
+"            <p>\n"
+"            </p>\n"
+"        </b>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai nu "
+"comercializeaza adresele de email sau orice alte date oferite de membrii "
+"inscrisi.  Asociatia\n"
+"        Absolventilor Universitatii Babes-Bolyai nu divulga adresele, "
+"telefoanele sau orice alte date personale catre terte parti, cu exceptia "
+"cazurilor\n"
+"        extreme cerute de legislatia in vigoare.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Orice statistica privind traficul utilizatorilor nostri, pe care o "
+"vom oferi partenerilor, este furnizata doar ca ansamblu de date si nu "
+"include nicio\n"
+"        informatie identificabila despre niciun utilizator individual.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        In momentul in care noi primim informatiile transmise de dvs, va "
+"garantam ca vom depune toate eforturile pentru a asigura securitatea "
+"acestora in\n"
+"        sistemele noastre, conform standardelor de securitate impuse de "
+"legislatia romana in vigoare.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai nu inchiriaza, "
+"vinde sau imparte informatii cu caracter personal cu alte persoane sau site-"
+"uri, cu\n"
+"        exceptia situatiilor in care avem acordul dvs explicit.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Datele dvs personale precum CNP si datele de contact nu pot fi "
+"accesate de niciun utilizator al siteului. Membrii siteului pot folosi "
+"serviciul de\n"
+"        cautare pentru a gasi alti membri in functie de diferite criterii de "
+"selectie, precum anul absolvirii sau facultatea finalizata. Datele "
+"personale\n"
+"        introduse de dvs pe profilul dvs vor fi folosite in aceste cautari.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Despre setarile legate de vizibilitatea profilului dvs pentru alti "
+"utilizatori,\n"
+"        <u>\n"
+"            click aici.\n"
+"            <p>\n"
+"            </p>\n"
+"        </u>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <u>\n"
+"            <p>\n"
+"                 \n"
+"            </p>\n"
+"        </u>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai isi rezerva "
+"dreptul de a folosi  datele adunate din site in mod anonim in scopul de a "
+"realiza\n"
+"        statistici sau alte rapoarte ce nu afecteaza direct si individual "
+"membrii siteului.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Prin crearea unui cont pe site, va manifestati acordul expres de a "
+"primi notificari din partea Asociatiei Absolventilor Universitatii Babes-"
+"Bolyai  cu\n"
+"        privire la noi facilitati si servicii lansate pentru absolventi.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Fiind sub incidenta termenilor de utilizare a sistemului, sunteti de "
+"acord sa:\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        a.                   oferiti informatii corecte in formularul de "
+"inregistrare.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        b.                  mentineti la zi datele de inregistrare.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Daca oferiti informatii incorecte sau care nu mai sunt de "
+"actualitate, Asociatia Absolventilor Universitatii Babes-Bolyai isi rezerva "
+"drepturi depline\n"
+"        de a va suspenda sau sterge contul sau de a va refuza in viitor "
+"accesul la sistem. Prin utilizarea programului .Mentor Alumni., va asumati "
+"toate\n"
+"        consecintele introducerii de date false.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"</div>\n"
+"\n"
+"    "
+msgstr ""
+
+#: templates/about/terms.html:8
+msgid ""
+"\n"
+"<div>\n"
+"    <p>\n"
+"        Site-ul <a href=\"http://mentorat.alumni.ubbcluj.ro/\">http://"
+"mentorat.alumni.ubbcluj.ro</a> (denumit in continuare SITE) este creat si "
+"administrat de\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai, cu datele de "
+"contact:____\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Daca folositi serviciile oferite de acest site, sunteti de acord cu "
+"termenii si conditiile de mai jos. Orice viitor acces va fi considerat un "
+"accept al\n"
+"        termenilor si conditiilor din acest document. Termenii si conditiile "
+"pot suferi modificari in timp. Veti fi notificat ori de cate ori se produc\n"
+"        modificari ale termenilor si conditiilor site-ului.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <b>\n"
+"            Protectia proprietatii intelectuale\n"
+"            <p>\n"
+"            </p>\n"
+"        </b>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Continutul si designul siteului (precum si orice alt material ce are "
+"legatura cu siteul) trimis dvs prin e-mail sau orice alta modalitate "
+"(articole,\n"
+"        newslettere, alte materiale denumite in continuare Continut site) "
+"apartin siteului .acolo unde nu este specificat un alt autor . si sunt "
+"protejate de\n"
+"        legislatia in vigoare cu privire la proprietatea intelectuala. Nu "
+"puteti utiliza, reproduce sau permite nimanui sa utilizeze sau sa reproduca "
+"parti din\n"
+"        continutul siteului fara a detine o permisiune scrisa din partea "
+"Asociatiei Absolventilor Universitatii Babes-Bolyai.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Sunteti responsabil in totalitate pentru fotografiile, profilurile, "
+"mesajele, articolele, si orice alt continut incarcati, publicati sau afisati "
+"pe sau\n"
+"        prin intermediul serviciilor oferite de site , sau pe care il "
+"impartasiti cu alti utilizatori.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Nu aveti voie sa publicati, trimiteti sau impartasiti continut pe "
+"care nu l-ati creat sau asupra caruia nu aveti drept de utilizare. "
+"Dumneavoastra\n"
+"        garantati ca afisarea continutului dvs in cadrul siteului nu incalca "
+"drepturile de intimitate, drepturile de autor, drepturile contractuale sau "
+"orice\n"
+"        alte drepturi ale oricarei persoane.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <b>\n"
+"            Utilizarea continutului siteului\n"
+"            <p>\n"
+"            </p>\n"
+"        </b>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Puteti copia si printa continutul siteului doar pentru utilizare in "
+"scop personal, lipsita de intentie comerciala. In oricare alt caz, "
+"continutul\n"
+"        siteului nu poate fi reprodus, modificat si exploatat, indiferent de "
+"scopul comercial sau necomercial al acestei exploatari.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Actiunile descrise mai jos nu sunt permise in lipsa obtinerii in "
+"prealabil a unei permisiuni scrise din partea Asociatiei Absolventilor "
+"Universitatii\n"
+"        Babes-Bolyai.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        reproducerea sau stocarea continutului siteului, precum si "
+"trimiterea acestui continut catre orice alt website, server sau orice alt "
+"mijloc de stocare\n"
+"        a informatiei\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        modificarea, publicarea, transmiterea, participarea la transferul "
+"sau distributia unor materiale realizate prin reproducerea, modificarea sau "
+"afisarea\n"
+"        continutului siteului, in lipsa obtinerii in prealabil a permisiunii "
+"scrise din partea Asociatiei Absolventilor Universitatii Babes-Bolyai.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Indepartarea insemnelor care semnifica drepturile de autor ale "
+"siteului asupra continutului.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Cererile de utilizare a continutului in alte scopuri decat cele "
+"permise expres de prezentul document pot fi trimise la adresa de\n"
+"        e-mail:______________________\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <b>\n"
+"            Inregistrare si parole\n"
+"            <p>\n"
+"            </p>\n"
+"        </b>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Accesul dvs la serviciile oferite de site este protejat de o parola. "
+"Va rugam sa nu dezvaluiti nimanui aceasta parola. Va rugam sa semnati .log\n"
+"        off/sign out. din contul dvs de utilizator al siteului la sfarsitul "
+"fiecarei sesiuni. Va sfatuim de asemenea sa inchideti fereastra browser-ului "
+"in\n"
+"        care ati lucrat la sfarsitul navigarii dvs si sa fiti atent/a la "
+"accesarea siteului de pe calculatoare publice/care nu va apartin.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Fiecare inregistrare se face pentru un singur utilizator. Este "
+"interzisa partajarea datelor de acces in contul siteului. In situatia in "
+"care se\n"
+"        descopera actiuni de acest gen, siteul isi rezerva dreptul de a "
+"anula sau suspenda accesul dvs la continutul sau.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <b>\n"
+"            Politica de securitate a datelor\n"
+"            <p>\n"
+"            </p>\n"
+"        </b>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Datele cu caracter personal furnizate in momentul inscrierii in "
+"programul .Mentor Alumni. sunt utilizate exclusiv de catre Asociatia "
+"Absolventilor\n"
+"        Universitatii Babes-Bolyai pentru desfasurarea in conditii optime a "
+"programului .Mentor Alumni..\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai nu "
+"comercializeaz. adresele de email sau orice alte date oferite de membrii "
+"îcri.i. Asociatia\n"
+"        Absolventilor Universitatii Babes-Bolyai nu divulg. adresele, "
+"telefoanele sau orice alte date personale c.tre ter.e p.r.i, cu excep.ia "
+"cazurilor\n"
+"        extreme cerute de legisla.ia îvigoare.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Orice statistica privind traficul utilizatorilor nostri, pe care o "
+"vom oferi partenerilor, este furnizata doar ca ansamblu de date si nu "
+"include nicio\n"
+"        informatie identificabila despre niciun utilizator individual.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        In momentul in care noi primim informatiile transmise de dvs, va "
+"garantam ca vom depune toate eforturile pentru a asigura securitatea "
+"acestora in\n"
+"        sistemele noastre, conform standardelor de securitate impuse de "
+"legislatia romana in vigoare.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai nu inchiriaza, "
+"vinde sau imparte informatii cu caracter personal cu alte persoane sau site-"
+"uri, cu\n"
+"        exceptia situatiilor in care avem acordul dvs explicit.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Datele dvs personale precum CNP, date de contact, nu pot fi accesate "
+"de niciun utilizator al siteului. Membrii siteului pot folosi serviciul de "
+"cautare\n"
+"        pentru a gasi alti membri in functie de diferite criterii de "
+"selectie, precum anul absolvirii sau facultatea finalizata. Datele personale "
+"introduse de\n"
+"        dvs pe profilul dvs vor fi folosite in aceste cautari. Pentru "
+"vizibilitatea profilului dvs va rugam cititi sectiunea de confidentialitate "
+"a siteului.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai isi rezerva "
+"dreptul de a folosi  datele adunate din site in mod anonim in scopul de a "
+"realiza\n"
+"        statistici sau alte rapoarte ce nu afecteaza direct si individual "
+"membrii siteului.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Prin crearea unui cont pe site, va manifestati acordul expres de a "
+"primi notificari din partea Asociatiei Absolventilor Universitatii Babes-"
+"Bolyai  cu\n"
+"        privire la noi facilitati si servicii lansate pentru absolventi.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Fiind sub inciden.a termenilor de utilizare a sistemului, sunte.i de "
+"acord s.:\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <ul>\n"
+"        <li>\n"
+"            oferi.i informa.ii corecte îformularul de îegistrare.\n"
+"            <p>\n"
+"            </p>\n"
+"        </li>\n"
+"    </ul>\n"
+"    <p>\n"
+"    </p>\n"
+"    <ul>\n"
+"        <li>\n"
+"            men.ine.i la zi datele de îegistrare.\n"
+"            <p>\n"
+"            </p>\n"
+"        </li>\n"
+"    </ul>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Dac. oferi.i informa.ii incorecte sau care nu mai sunt de "
+"actualitate, Asociatia Absolventilor Universitatii Babes-Bolyai î rezerv. "
+"drepturi depline\n"
+"        de a v. suspenda sau .terge contul sau de a v. refuza îviitor "
+"accesul la sistem. Prin utilizarea programului .Mentor Alumni., v. asuma.i "
+"toate\n"
+"        consecin.ele introducerii de date false.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <strong>5. Limitarea raspunderii</strong>\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai  nu poate garanta "
+"implicit sau expres pentru continutul de pe site, pentru continutul oferit "
+"de\n"
+"        membrii inregistrati.  Asociatia Absolventilor Universitatii Babes-"
+"Bolyai  nu isi asuma raspunderea in nici un caz, pentru nici o dauna, "
+"pricinuita\n"
+"        direct sau indirect de date, informatii, imagini colectate de pe "
+"site. De asemenea, Asociatia Absolventilor Universitatii Babes-Bolyai nu "
+"garanteaza\n"
+"        acuratetea, corectitudinea sau caracterul actual al continutului ori "
+"serviciilor furnizate de site. De asemenea,<strong> </strong>Asociatia\n"
+"        Absolventilor Universitatii Babes-Bolyai  nu garanteaza faptul ca "
+"sistemele informatice sau programele folosite pentru afisarea sau "
+"transmiterea\n"
+"        informatiei pe site sau in orice alta forma nu contin virusi ori "
+"alte surse distructive de cod sau alte proprietati distructive.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Prin prezenta sunteti de acord sa exonerati de raspundere Asociatia "
+"Absolventilor Universitatii Babes-Bolyai   pentru orice actiune judiciara "
+"sau\n"
+"        extrajudiciara, care provine ca urmare a neutilizarii corecte sau "
+"frauduloase a site-ului.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <br/>\n"
+"        Pentru caz de forta majora, Asociatia Absolventilor Universitatii "
+"Babes-Bolyai  impreuna cu colaboratorii sai, este exonerata total de "
+"raspundere.\n"
+"        Cazurile de forta majora includ, dar nu se limiteaza la, erori de "
+"functionare ale echipamentului tehnic de pe site, lipsa functionarii "
+"conexiunii la\n"
+"        internet, lipsa functionarii conexiunilor de telefon, virusii "
+"informatici, accesul neautorizat in sistemele http://mentorat.alumni.ubbcluj."
+"ro , erorile\n"
+"        de operare, greva, etc.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"\t\n"
+"        <b>\n"
+"            Litigii\n"
+"            <br/> <br/>\n"
+"        </b>\n"
+"        Drepturile si obligatiile utilizatorilor siteului si toate efectele "
+"juridice pe care acceptarea le produce, sunt guvernate de legea romana in "
+"vigoare\n"
+"        si vor fi analizate si judecate de catre instanta romana.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"</div>\n"
+"\n"
+"\t"
+msgstr ""
 
 #: templates/about/what_next.html:6 templates/about/what_next.html.py:9
 msgid "What Next?"
@@ -3215,7 +3902,7 @@ msgstr "Schimbati-va contul cu acest formular."
 
 #: templates/account/other_services.html:24
 #: templates/bookmarks/friends_bookmarks.html:90
-#: templates/profiles/profile_right_panel.html:31
+#: templates/profiles/profile_right_panel.html:32
 #, fuzzy
 msgid "save"
 msgstr "Salvati"
@@ -3520,7 +4207,7 @@ msgstr "Cereri de prietenie primite"
 #: templates/friends_app/invitations.html:51
 #: templates/friends_app/invitations.html:85
 #: templates/profiles/mentorship_request.html:11
-#: templates/profiles/profile_right_panel.html:66
+#: templates/profiles/profile_right_panel.html:74
 #, fuzzy
 msgid "View application letter"
 msgstr "renunta la solicitare"
@@ -3531,15 +4218,15 @@ msgstr "renunta la solicitare"
 #: templates/friends_app/invitations.html:97
 #: templates/profiles/mentorship_request.html:17
 #: templates/profiles/mentorship_request.html:23
-#: templates/profiles/profile_right_panel.html:73
-#: templates/profiles/profile_right_panel.html:79
+#: templates/profiles/profile_right_panel.html:81
+#: templates/profiles/profile_right_panel.html:87
 msgid "accept"
 msgstr "accepta"
 
 #: templates/friends_app/invitations.html:70
 #: templates/friends_app/invitations.html:104
 #: templates/profiles/mentorship_request.html:29
-#: templates/profiles/profile_right_panel.html:85
+#: templates/profiles/profile_right_panel.html:93
 msgid "decline"
 msgstr "refuza"
 
@@ -3547,8 +4234,8 @@ msgstr "refuza"
 #: templates/friends_app/invitations.html:109
 #: templates/profiles/mentorship_request.html:35
 #: templates/profiles/mentorship_request.html:41
-#: templates/profiles/profile_right_panel.html:91
-#: templates/profiles/profile_right_panel.html:97
+#: templates/profiles/profile_right_panel.html:99
+#: templates/profiles/profile_right_panel.html:105
 #, fuzzy
 msgid "pending"
 msgstr "in curs de analiza"
@@ -3580,7 +4267,7 @@ msgid ""
 "Alumni project."
 msgstr ""
 "Informatiile cu caracter personal incluse in acest formular sunt stocate si "
-"folosite de catre Universitatea \"Babes Bolyai\" <br/>doar in scopurile "
+"folosite de catre Asociatia Absolventilor Universitatii \"Babes Bolyai\" <br/>doar in scopurile "
 "mentionate in proiectul Mentor Alumni."
 
 #: templates/mentorship_admin/admin_events.html:5
@@ -3616,23 +4303,20 @@ msgid "Order by:"
 msgstr "Ordoneaza dupa:"
 
 #: templates/mentorship_admin/admin_search_profiles.html:44
-#: templates/profiles/profiles.html:43
 #: templates/profiles/profile-types/profile-student.html:25
 msgid "Faculty"
 msgstr "Facultate"
 
 #: templates/mentorship_admin/admin_search_profiles.html:45
-#: templates/profiles/profiles.html:44
 msgid "Students"
 msgstr "Studenti"
 
 #: templates/mentorship_admin/admin_search_profiles.html:46
-#: templates/profiles/profiles.html:45
 msgid "Mentors"
 msgstr "Mentori"
 
 #: templates/mentorship_admin/admin_search_profiles.html:55
-#: templates/profiles/profiles.html:54
+#: templates/profiles/profiles.html:51
 msgid "MONTH_DAY_FORMAT"
 msgstr ""
 
@@ -3754,7 +4438,7 @@ msgid "You cannot mentor yourself :)"
 msgstr "cum poate un mentor sa ajute"
 
 #: templates/profiles/apply.html:12
-#: templates/profiles/profile_right_panel.html:54
+#: templates/profiles/profile_right_panel.html:62
 #, fuzzy
 msgid "Mentorship request"
 msgstr "Solicitare de mentorat"
@@ -3764,61 +4448,63 @@ msgstr "Solicitare de mentorat"
 msgid "Your Profile"
 msgstr "Profilul tau"
 
-#: templates/profiles/base.html:11 templates/profiles/profiles.html:9
+#: templates/profiles/base.html:11
+#: templates/profiles/not_visible_mentor.html:8
+#: templates/profiles/profiles.html:9
 #, fuzzy
 msgid "All Profiles"
 msgstr "Toate profilele"
 
 #: templates/profiles/mentorship_request.html:4
-#: templates/profiles/profile_right_panel.html:58
+#: templates/profiles/profile_right_panel.html:66
 #, python-format
 msgid "You are connected with %(other_user)s."
 msgstr "Esti conectat cu %(other_user)s."
 
 #: templates/profiles/mentorship_request.html:4
-#: templates/profiles/profile_right_panel.html:58
+#: templates/profiles/profile_right_panel.html:66
 msgid "Send a message"
 msgstr "Trimite un mesaj"
 
 #: templates/profiles/mentorship_request.html:7
-#: templates/profiles/profile_right_panel.html:61
+#: templates/profiles/profile_right_panel.html:69
 #, fuzzy, python-format
 msgid "%(other_user)s has requested mentorship."
 msgstr "%(other_user)s a solicitat mentorizare."
 
 #: templates/profiles/mentorship_request.html:52
-#: templates/profiles/profile_right_panel.html:108
+#: templates/profiles/profile_right_panel.html:116
 msgid "Mentoring request renounced."
 msgstr "Cererea de mentorat a fost abandonata."
 
 #: templates/profiles/mentorship_request.html:55
-#: templates/profiles/profile_right_panel.html:111
+#: templates/profiles/profile_right_panel.html:119
 msgid "Mentoring request is being processed."
 msgstr "Cererea de mentorat este in curs de procesare."
 
 #: templates/profiles/mentorship_request.html:57
-#: templates/profiles/profile_right_panel.html:113
+#: templates/profiles/profile_right_panel.html:121
 msgid "Mentoring request sent."
 msgstr "Cererea de mentorat trimisa."
 
 #: templates/profiles/mentorship_request.html:60
-#: templates/profiles/profile_right_panel.html:116
+#: templates/profiles/profile_right_panel.html:124
 #, fuzzy
 msgid "renounce application"
 msgstr "renunta la solicitare"
 
 #: templates/profiles/mentorship_request.html:67
-#: templates/profiles/profile_right_panel.html:123
+#: templates/profiles/profile_right_panel.html:131
 msgid "You already have a mentor."
 msgstr "Aveti deja un mentor."
 
 #: templates/profiles/mentorship_request.html:70
-#: templates/profiles/profile_right_panel.html:126
+#: templates/profiles/profile_right_panel.html:134
 msgid "Mentoring request previously refused."
 msgstr "O cerere de mentorat a fost refuzata anterior"
 
 #: templates/profiles/mentorship_request.html:73
-#: templates/profiles/profile_right_panel.html:129
+#: templates/profiles/profile_right_panel.html:137
 msgid "You cannot send more than 3 requests."
 msgstr "Nu puteti trimite mai mult de 3 cereri"
 
@@ -3832,6 +4518,18 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%(other_user)s to be your mentor."
 msgstr "%(other_user)s sa va fie mentor."
+
+#: templates/profiles/not_visible_mentor.html:11
+msgid ""
+"You have choosen not to allow other mentors to see your profile, therefore "
+"you may not see the profiles of other mentors."
+msgstr ""
+"Ati ales sa nu le permiteti celorlalti mentori sa va vizualizeze profilul. In"
+"consecinta nu puteti nici dumneavoastra sa vizualizati profilele altor mentori."
+
+#: templates/profiles/not_visible_mentor.html:12
+msgid "You can see your mentees on your profile page."
+msgstr "Puteti sa va vedeti studentii mentorati pe pagina de profil."
 
 #: templates/profiles/profile.html:12
 #, python-format
@@ -3917,88 +4615,93 @@ msgstr "Dezactiveaza"
 msgid "Activate account"
 msgstr "Activeaza"
 
-#: templates/profiles/profile_right_panel.html:14
+#: templates/profiles/profile_right_panel.html:15
 msgid "Edit user events"
 msgstr "Editeaza evenimentele utilizatorilor"
 
-#: templates/profiles/profile_right_panel.html:32
-#: templates/profiles/profile_right_panel.html:157
+#: templates/profiles/profile_right_panel.html:33
+#: templates/profiles/profile_right_panel.html:165
 #: templates/surveys/survey_stats.html:30
 msgid "see all"
 msgstr "vezi toate"
 
-#: templates/profiles/profile_right_panel.html:34
+#: templates/profiles/profile_right_panel.html:35
 msgid "There are no user events available"
 msgstr "Nici un eveniment disponibil"
 
-#: templates/profiles/profile_right_panel.html:42
+#: templates/profiles/profile_right_panel.html:43
 #, fuzzy
 msgid "Deactivate profile"
 msgstr "Dezactivati profilul"
 
-#: templates/profiles/profile_right_panel.html:44
+#: templates/profiles/profile_right_panel.html:45
 #, fuzzy
 msgid "Activate profile"
 msgstr "Activati profilul"
 
-#: templates/profiles/profile_right_panel.html:132
+#: templates/profiles/profile_right_panel.html:49
+#, fuzzy
+msgid "Hide profile from other mentors"
+msgstr "Profilul pentru %(other_user)s"
+
+#: templates/profiles/profile_right_panel.html:51
+#, fuzzy
+msgid "Show profile to other mentors"
+msgstr "Profilul pentru %(other_user)s"
+
+#: templates/profiles/profile_right_panel.html:140
 #, fuzzy
 msgid "Request mentorship"
 msgstr "Cereri de alaturare trimise"
 
-#: templates/profiles/profile_right_panel.html:147
+#: templates/profiles/profile_right_panel.html:155
 #, fuzzy
 msgid "Rating"
 msgstr "Rating"
 
-#: templates/profiles/profile_right_panel.html:150
+#: templates/profiles/profile_right_panel.html:158
 #, fuzzy
 msgid "Recent events"
 msgstr "Evenimente recente"
 
-#: templates/profiles/profile_right_panel.html:165
+#: templates/profiles/profile_right_panel.html:173
 #: templates/tribes/base.html:16 templates/tribes/your_tribes.html:7
 #: templates/tribes/your_tribes.html:11
 msgid "Your Tribes"
 msgstr "Grupurile tale"
 
-#: templates/profiles/profile_right_panel.html:172
+#: templates/profiles/profile_right_panel.html:180
 #, python-format
 msgid "You are not yet a member of any <a href=\"%(tribe_url)s\">tribes</a>."
 msgstr "Nu sunteti membru al niciunui <a href=\"%(tribe_url)s\">grup</a>."
 
-#: templates/profiles/profile_right_panel.html:176
+#: templates/profiles/profile_right_panel.html:184
 msgid "Your Mentors"
 msgstr "Mentorii dumneavoastra"
 
-#: templates/profiles/profile_right_panel.html:177
+#: templates/profiles/profile_right_panel.html:185
 msgid "Your Mentees"
 msgstr "Studentii dumneavoastra"
 
-#: templates/profiles/profile_right_panel.html:192
-#, fuzzy
-msgid ""
-"None. You should look at the list of <a href=\"/profiles\">profiles</a> and "
-"see if there's anyone you know."
+#: templates/profiles/profile_right_panel.html:200
+msgid "None."
 msgstr ""
-"Nici unul. Puteti sa va uitati la lista de <a href=\"/profiles/\">profiluri</"
-"a> si sa vedeti daca nu gasiti persoane interesante."
 
-#: templates/profiles/profile_right_panel.html:199
+#: templates/profiles/profile_right_panel.html:207
 #, python-format
 msgid "%(other_user)s's Tribes"
 msgstr "Grupurile lui %(other_user)s"
 
-#: templates/profiles/profile_right_panel.html:205
+#: templates/profiles/profile_right_panel.html:213
 msgid "Not yet a member of any tribes."
 msgstr "Nu e membru al vreunui grup."
 
-#: templates/profiles/profile_right_panel.html:209
+#: templates/profiles/profile_right_panel.html:217
 #, python-format
 msgid "%(other_user)s's Mentor"
 msgstr "Mentorul lui %(other_user)s"
 
-#: templates/profiles/profile_right_panel.html:210
+#: templates/profiles/profile_right_panel.html:218
 #, python-format
 msgid "%(other_user)s's Mentees"
 msgstr "Studentii lui %(other_user)s"
@@ -4524,11 +5227,11 @@ msgstr "Cont"
 
 #: templates/tribes/tribe.html:30 templates/tribes/tribe_item.html:25
 msgid "Topics:"
-msgstr ""
+msgstr "Subiecte:"
 
 #: templates/tribes/tribe.html:30
 msgid " topic page"
-msgstr ""
+msgstr " pagina subiecte"
 
 #: templates/tribes/tribe.html:33
 #, python-format
@@ -4580,7 +5283,7 @@ msgstr "Categorie"
 
 #: templates/tribes/tribe.html:83
 msgid "Created:"
-msgstr ""
+msgstr "Creat:"
 
 #: templates/tribes/tribe.html:92
 #, fuzzy
@@ -4634,6 +5337,47 @@ msgstr "membri"
 #: templates/tribes/your_tribes.html:13
 msgid "These are the tribes you participate in."
 msgstr ""
+
+#~ msgid "What are you expectations of a mentor?"
+#~ msgstr "Care sunt asteptarile unui mentor?"
+
+#~ msgid "what are your expectation for a mentor"
+#~ msgstr "care sunt asteptarile dumneavoastra de la un mentor"
+
+#~ msgid ""
+#~ "\n"
+#~ "        <b>UBB Alumni</b> is a web application intended to connect UBB "
+#~ "students\n"
+#~ "        with former graduates. \n"
+#~ "        \n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "        <b>UBB Alumni</b> este o aplicatie web care urmareste sa puna in "
+#~ "legaturastudenti\n"
+#~ "        cu fosti absolventi. \n"
+#~ "        \n"
+#~ "        "
+
+#~ msgid ""
+#~ "\n"
+#~ "        For more information about the \"Babes-Bolyai\" University, see\n"
+#~ "        <a href=\"http://ubbcluj.ro/\">http://ubbcluj.ro/</a>.\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "        Pentru mai multe informatii despre Universitatea \"Babes-Bolyai"
+#~ "\", vizitati site-ul\n"
+#~ "        <a href=\"http://ubbcluj.ro/\">http://ubbcluj.ro/</a>.\n"
+#~ "        "
+
+#, fuzzy
+#~ msgid ""
+#~ "None. You should look at the list of <a href=\"/profiles\">profiles</a> "
+#~ "and see if there's anyone you know."
+#~ msgstr ""
+#~ "Nici unul. Puteti sa va uitati la lista de <a href=\"/profiles/"
+#~ "\">profiluri</a> si sa vedeti daca nu gasiti persoane interesante."
 
 #, fuzzy
 #~ msgid "Or sign in with your OpenID"
