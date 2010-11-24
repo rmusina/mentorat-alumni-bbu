@@ -11,13 +11,13 @@
 
 {% block head_title %}{% blocktrans %}Latest News{% endblocktrans %}{% endblock %}
 
-{% block extra_head %}
-    <link rel="alternate" type="application/atom+xml" title="Bookmarks Feed" href="/feeds/bookmarks/" />
+{% block extra_head %} {# SEE IF THESE WORKS #}
+    <link rel="alternate" type="application/atom+xml" title="Bookmarks Feed" href="{{ STATIC_URL }}feeds/bookmarks/" />
 {% endblock %}
 
 {% block body %}
     <h1>{% trans "Latest News" %}</h1>
-	<link rel="stylesheet" href="{{ STATTIC_URL}}calendar_page_style.css" />
+	<link rel="stylesheet" href="{{ STATIC_URL}}calendar_page_style.css" />
        
     {% if bookmarks %}
         {# ## FIXME this should probably be done in djanog-sorting #}
