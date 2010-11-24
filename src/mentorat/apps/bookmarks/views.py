@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
+from django.contrib.admin.views.decorators import staff_member_required
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -37,7 +38,7 @@ def your_bookmarks(request):
         "bookmark_instances": bookmark_instances,
     }, context_instance=RequestContext(request))
 
-@login_required
+@staff_member_required
 def add(request):
     
     if request.method == "POST":
