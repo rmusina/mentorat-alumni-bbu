@@ -40,9 +40,6 @@
         <p>{% trans "Order by:" %}
                 <a href="{% url profile_list %}?order=name&search={{ search_terms }}&field={{ field }}">{% trans "Name" %}</a>
                 <a href="{% url profile_list %}?order=date&search={{ search_terms }}&field={{ field }}">{% trans "Date" %}</a>
-                <a href="{% url profile_list %}?order=faculty&search={{ search_terms }}&field={{ field }}">{% trans "Faculty" %}</a>
-                <a href="{% url profile_list %}?order=students&search={{ search_terms }}&field={{ field }}">{% trans "Students" %}</a>
-                <a href="{% url profile_list %}?order=mentors&search={{ search_terms }}&field={{ field }}">{% trans "Mentors" %}</a>
         </p>
         
         {% autopaginate users%}
@@ -54,12 +51,12 @@
                 <h2 class="join_date">{{ date.grouper|naturalday:_("MONTH_DAY_FORMAT")|capfirst }}</h2>
                 
                 {% for user in date.list %}
-                    {% show_profile user %}
+                    {% show_profile user.user %}
                 {% endfor %}
             {% endfor %}
         {% else %}
             {% for user in users %}
-                {% show_profile user %}
+                {% show_profile user.user %}
             {% endfor %}
         {% endifequal %}
         

@@ -1,0 +1,13 @@
+{% extends "profiles/base.html" %}
+
+{% load i18n %}
+{% load avatar_tags %}
+{% load humanize %}
+{% load profile_tags %}
+
+{% block head_title %}{% blocktrans %}All Profiles{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <b>{% trans "You have choosen not to allow other mentors to see your profile, therefore you may not see the profiles of other mentors." %}</b><br/>
+    {% trans "You can see your mentees on your profile page." %}
+{% endblock %}

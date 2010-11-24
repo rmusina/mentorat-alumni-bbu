@@ -37,17 +37,38 @@ import cPickle as pickle
 def profiles(request, template_name="profiles/profiles.html", extra_context=None):
     if extra_context is None:
         extra_context = {}
-    users = User.objects.all().order_by("-date_joined")
+
+    users = None
+
+    if request.user.is_staff:
+        users = Profile.objects.all()
+    else:
+        profile = request.user.get_profile()
+        if profile.as_student() != None:
+            users = MentorProfile.objects.all()
+        else:
+            if profile.as_mentor().visible_to_mentors:
+                users = MentorProfile.objects.filter(visible_to_mentors=True)
+            else:
+                return render_to_response('profiles/not_visible_mentor.html', {}, context_instance=RequestContext(request))
+
+    if request.user.is_staff:
+        users = users.filter(user__is_staff=False)
+    else:
+        users = users.filter(user__is_staff=False, user__is_active=True)
+
     search_terms = request.GET.get('search', '')
     order = request.GET.get('order')
     if not order:
         order = 'date'
     if search_terms:
-        users = users.filter(username__icontains=search_terms)
+        users = users.filter(user__username__icontains=search_terms)
     if order == 'date':
-        users = users.order_by("-date_joined")
+        users = users.order_by("-user__date_joined")
     elif order == 'name':
-        users = users.order_by("username")
+        users = users.order_by("user__username")
+    elif order == 'faculty':
+        users = users.order_by("")
     return render_to_response(template_name, dict({
         'users': users,
         'order': order,

@@ -21,15 +21,17 @@ def clear_search_url(request):
 register.simple_tag(clear_search_url)
 
 def profile_avatar(user, size=80):
+    from django.conf import settings
+    import os.path
     if not isinstance(user, User):
         try:
             user = User.objects.get(username=user)
             alt = unicode(user)
             url = ""
             if user.get_profile().as_student() <> None:
-                url = "/site_media/static/img/student.png"
+                url = os.path.join(settings.STATIC_URL, "student.png")
             else:
-                url = "/site_media/static/img/mentor.png"
+                url = os.path.join(settings.STATIC_URL, "mentor.png")
         except User.DoesNotExist:
             url = AVATAR_DEFAULT_URL
             alt = _("Default Avatar")
@@ -38,12 +40,12 @@ def profile_avatar(user, size=80):
         url = ""
         user = User.objects.get(username=user)
         if user.is_staff:
-            url = "/site_media/static/img/superuser.jpg"
+            url = os.path.join(settings.STATIC_URL, "img/superuser.jpg")
         else:
             if user.get_profile().as_student() <> None:
-                url = "/site_media/static/img/student.png"
+                url = os.path.join(settings.STATIC_URL, "img/student.png")
             else:
-                url = "/site_media/static/img/mentor.png"
+                url = os.path.join(settings.STATIC_URL, "img/mentor.png")
 
     return """<img src="%s" alt="%s" width="%s" height="%s" />""" % (url, alt,
         size, size)

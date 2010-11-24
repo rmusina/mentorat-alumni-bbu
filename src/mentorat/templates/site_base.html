@@ -46,9 +46,7 @@
     {% if user.is_authenticated %}
         <ul class="tabs">{% spaceless %}
         	<li id="tab_news"><a href="{% url all_bookmarks %}">{% trans "News" %}</a></li>
-            {% if not user.is_staff %}
-                <li id="tab_profile"><a href="{% if user.is_staff %}{% url profile_list %}{% else %}{% url profile_detail user %}{% endif %}">{% trans "Profile" %}</a></li>
-            {% endif %}
+            <li id="tab_profile"><a href="{% if user.is_staff %}{% url profile_list %}{% else %}{% url profile_detail user %}{% endif %}">{% trans "Profile" %}</a></li>
             <li id="tab_tribes"><a href="{% url tribe_list %}">{% trans "Tribes" %}</a></li>
             <li id="tab_wiki"><a href="{% url wiki_list %}">{% trans "Wikis" %}</a></li>
             <li id="tab_locations"><a href="{% url loc_yours %}">{% trans "Locations" %}</a></li>
