@@ -39,7 +39,7 @@
     {% if bookmarktags %}
         {% scores_for_objects bookmarktags as score_dict %}
         
-        <h1>All Bookmarks Matching <i>{{ tag }}</i></h1>
+        <h1>All Articles Matching <i>{{ tag }}</i></h1>
         <table class="bookmarks" width="100%">
             {% for bookmark in bookmarktags %}
                 <tr class="{% cycle odd,even %}">

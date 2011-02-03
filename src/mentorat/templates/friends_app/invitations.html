@@ -11,7 +11,7 @@
         <p><span id="join-invite-toggle">{% trans "Invite someone new to join" %}</span></p>
         
         <form id="join-invite" method="POST" action="">
-            <p>{% trans "If you'd like to invite someone to join Pinax, you can enter their email address and a message for them below:" %}</p>
+            <p>{% trans "If you'd like to invite someone to join MentorAlumni, you can enter their email address and a message for them below:" %}</p>
             <table>
                 <tr>
                     <th>{{ join_request_form.email.label_tag }}</th>
@@ -38,7 +38,11 @@
         </form>
     </div>
     
-    <h2>{% trans "Friendship Requests Received" %}</h2>
+    {% if is_superuser %}
+    <h2>{% trans "Superusers cannot send or receive mentoring requests" %}</h2>
+    {% else %}
+    {% if is_mentor %}
+    <h2>{% trans "Mentoring Requests Received" %}</h2>
     
     {% if invites_received %}
         <table class="invitation_list">
@@ -122,11 +126,12 @@
             {% endfor %}
         </table>
     {% else %}
-        <p>{% trans "No friendship requests received." %}</p>
+        <p>{% trans "No mentoring requests received." %}</p>
     {% endif %}
+       
+    {% else %}
     
-    
-    <h2>{% trans "Friendship Requests Sent" %}</h2>
+    <h2>{% trans "Mentoring Requests Sent" %}</h2>
     
     {% if invites_sent %}
         <table class="invitation_list">
@@ -139,9 +144,10 @@
             {% endfor %}
         </table>
     {% else %}
-        <p>{% trans "No friendship requests sent." %}</p>
+        <p>{% trans "No mentoring requests sent." %}</p>
     {% endif %}
-    
+    {% endif %}
+    {% endif %}
     
     <h2>{% trans "Join Requests Sent" %}</h2>
     

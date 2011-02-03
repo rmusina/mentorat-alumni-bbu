@@ -99,7 +99,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.transaction.TransactionMiddleware',
 )
 
-
 ROOT_URLCONF = 'mentorat.urls'
 
 TEMPLATE_DIRS = (
@@ -267,55 +266,6 @@ FORCE_LOWERCASE_TAGS = True
 
 WIKI_REQUIRES_LOGIN = True
 
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        },
-    },
-    'filters': {
-    },
-    'handlers': {
-        'null': {
-            'level':'DEBUG',
-            'class':'django.utils.log.NullHandler',
-        },
-        'console':{
-            'level':'DEBUG',
-            'class':'logging.StreamHandler',
-            'formatter': 'simple'
-        },
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'filters': ['special']
-        },
-        'log_file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(PROJECT_ROOT, 'logs/app.log'),
-        }
-    },
-    'loggers': {
-        'django': {
-            'handlers':['null', 'log_file'],
-            'propagate': True,
-            'level':'INFO',
-        },
-        'django.request': {
-            'handlers': ['mail_admins', 'log_file'],
-            'level': 'INFO',
-            'propagate': False,
-        }
-    }
-}
-
 # Uncomment this line after signing up for a Yahoo Maps API key at the
 # following URL: https://developer.yahoo.com/wsregapp/
 # YAHOO_MAPS_API_KEY = ''
@@ -326,4 +276,3 @@ try:
     from local_settings import *
 except ImportError:
     pass
-

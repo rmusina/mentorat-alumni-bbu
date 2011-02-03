@@ -39,7 +39,7 @@ def friends(request, form_class=JoinRequestForm,
                 invitation = FriendshipInvitation.objects.get(id=invitation_id)
                 if invitation.to_user == request.user:
                     invitation.decline()
-                    request.user.message_set.create(message=_("Declined mentorship request from %(from_user)s. Please write a message to this user motivating your decision.") % {'from_user': invitation.from_user})
+                    request.user.message_set.create(message=_("Declined mentoring request from %(from_user)s. Please write a message to this user motivating your decision.") % {'from_user': invitation.from_user})
                 return HttpResponseRedirect(reverse('messages.views.compose', kwargs={'recipient':invitation.from_user}))
             except FriendshipInvitation.DoesNotExist:
                 pass
@@ -61,12 +61,24 @@ def friends(request, form_class=JoinRequestForm,
     invites_sent = request.user.invitations_from.invitationsAll().order_by("-sent")
     joins_sent = request.user.join_from.all().order_by("-sent")
     
-    if request.user.get_profile().as_mentor() != None and FriendshipInvitation.objects.countAccepts(to_user = request.user) < 3:
-        mentor_can_accept = True
-    else:
-        mentor_can_accept = False
+    is_superuser = True
+    
+    if not request.user.is_superuser: 
+        is_superuser = False
+    
+    is_mentor = False
+    mentor_can_accept = False
+    
+    if not is_superuser:
+        if request.user.get_profile().as_mentor() != None:
+            is_mentor = True
+        
+        if request.user.get_profile().as_mentor() != None and FriendshipInvitation.objects.countAccepts(to_user = request.user) < 3:
+            mentor_can_accept = True       
         
     return render_to_response(template_name, {
+        "is_superuser" : is_superuser,
+        "is_mentor" : is_mentor,
         "join_request_form": join_request_form,
         "mentor_can_accept": mentor_can_accept,
         "invites_received": invites_received,
@@ -86,39 +98,6 @@ def accept_join(request, confirmation_key, form_class=SignupForm,
         return render_to_response(template_name, {
             "form": form,
         }, context_instance=RequestContext(request))
-
-def contacts(request, form_class=ImportVCardForm,
-        template_name="friends_app/contacts.html"):
-    if request.method == "POST":
-        if request.POST["action"] == "upload_vcard":
-            import_vcard_form = form_class(request.POST, request.FILES)
-            if import_vcard_form.is_valid():
-                imported, total = import_vcard_form.save(request.user)
-                request.user.message_set.create(message=_("%(total)s vCards found, %(imported)s contacts imported.") % {'imported': imported, 'total': total})
-                import_vcard_form = ImportVCardForm()
-        else:
-            import_vcard_form = form_class()
-            if request.POST["action"] == "import_yahoo":
-                bbauth_token = request.session.get('bbauth_token')
-                del request.session['bbauth_token']
-                if bbauth_token:
-                    imported, total = import_yahoo(bbauth_token, request.user)
-                    request.user.message_set.create(message=_("%(total)s people with email found, %(imported)s contacts imported.") % {'imported': imported, 'total': total})
-            if request.POST["action"] == "import_google":
-                authsub_token = request.session.get('authsub_token')
-                del request.session['authsub_token']
-                if authsub_token:
-                    imported, total = import_google(authsub_token, request.user)
-                    request.user.message_set.create(message=_("%(total)s people with email found, %(imported)s contacts imported.") % {'imported': imported, 'total': total})
-    else:
-        import_vcard_form = form_class()
-    
-    return render_to_response(template_name, {
-        "import_vcard_form": import_vcard_form,
-        "bbauth_token": request.session.get('bbauth_token'),
-        "authsub_token": request.session.get('authsub_token'),
-    }, context_instance=RequestContext(request))
-contacts = login_required(contacts)
 
 def friends_objects(request, template_name, friends_objects_function, extra_context={}):
     """
