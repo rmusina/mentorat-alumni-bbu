@@ -44,10 +44,13 @@
     {% if is_mentor %}
     <h2>{% trans "Mentoring Requests Received" %}</h2>
     
+    
     {% if invites_received %}
+    	
         <table class="invitation_list">
             {% for invitation in invites_received %}
                 {% ifequal invitation.status "2" %}
+                	{% if invitations_active_on_platform %}
                     <tr>
                         <td colspan="3" class="friendship_request">
                             <p>From <a href="{% url profile_detail invitation.from_user.username %}">{{ invitation.from_user }}</a>
@@ -80,8 +83,12 @@
                             </form>
                         </td>
                     </tr>
+                    {% else %}
+						<p> {% trans "The time allocated for mentoring invitations has expired." %} </p>
+					{% endif %}
 				{% else %}
 					{% ifequal invitation.status "9" %}
+					{% if invitations_active_on_platform %}
                     <tr>
                         <td colspan="3" class="friendship_request">
                             <p>From <a href="{% url profile_detail invitation.from_user.username %}">{{ invitation.from_user }}</a>
@@ -114,7 +121,9 @@
                             </form>
                         </td>
                     </tr>
-					
+					{% else %}
+						<p> {% trans "The time allocated for mentoring invitations has expired." %} </p>
+					{% endif %}
                 	{% else %}
                     <tr>
                         <td><a href="{% url profile_detail invitation.from_user.username %}">{{ invitation.from_user }}</a></td>

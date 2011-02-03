@@ -4,6 +4,7 @@
 	<p>{% blocktrans %}You are connected with {{ other_user }}.{% endblocktrans %} <a href="{% url messages_compose %}{{ other_user }}/">{% trans "Send a message" %}</a>.</p>
 {% else %}
 				                {% if previous_invitations_from %}
+				                    {% if invitations_active_on_platform %}	
 				                    <p>{% blocktrans %}{{ other_user }} has requested mentorship.{% endblocktrans %}</p>
 				                    {% for invitation in previous_invitations_from %}
 				                        <div class="friendship_request">
@@ -43,10 +44,14 @@
 											{% endifequal %}
 				                        </div>
 				                    {% endfor %}
+				                    {% else %}
+										<p> {% trans "The time allocated for mentoring invitations has expired." %} </p>
+									{% endif %}
 				                {% else %}
 									{% if deny_mentor_request %}
 									{% else %}
 						                {% if previous_invitations_to %}
+						               	  {% if invitations_active_on_platform %}	
 											{% for invitation in previous_invitations_to %}
 												{% ifequal invitation.status "8" %}				                        
 													<p>{% trans "Mentoring request renounced." %}</p>		
@@ -62,6 +67,9 @@
 													{% endifequal %}
 												{% endifequal %}
 											{% endfor %}
+											{% else %}
+												<p> {% trans "The time allocated for mentoring invitations has expired." %} </p>
+											{% endif %}
 						                {% else %}
 											{% if has_mentor %}
 												{% trans "You already have a mentor." %}
@@ -71,7 +79,8 @@
 												{% else %}	
 													{% if consumed_all_requests %}
 														{% trans "You cannot send more than 3 requests." %}
-													{% else %}	
+													{% else %}
+														{% if invitations_active_on_platform %}	
 														<div>					
 															<p> {% trans "Write a small letter of application to motivate your choice of mentor and express your plans for the possible collaboration:" %}</p>	
 														    <form id="uniFormId" method="POST" action="">
@@ -87,6 +96,9 @@
 																	</center>	
 														    </form>
 														</div>
+														{% else %}
+															<p> {% trans "The time allocated for mentoring invitations has expired." %} </p>
+														{% endif %}
 													{% endif %} {# consumed_all_requests #}
 											 	{% endif %} {# previous_denied_invitations #}
 											{% endif %} {# has_mentor #}

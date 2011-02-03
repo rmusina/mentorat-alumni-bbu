@@ -77,6 +77,7 @@ def friends(request, form_class=JoinRequestForm,
             mentor_can_accept = True       
         
     return render_to_response(template_name, {
+        "invitations_active_on_platform": settings.ALLOW_MENTORING_REQUESTS,
         "is_superuser" : is_superuser,
         "is_mentor" : is_mentor,
         "join_request_form": join_request_form,
