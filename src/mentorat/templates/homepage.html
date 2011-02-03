@@ -1,0 +1,63 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+{% load ifsetting_tag %}
+
+{% block head_title %}{% trans "Welcome" %}{% endblock %}
+
+{% block tab_id %}id="home_tab"{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Welcome to UBB Alumni" %}</h1>
+    
+    <p>
+        {% blocktrans %}
+       Dacă ai ajuns până aici, ai deja ceva ce noi căutăm: curiozitate  
+		{% endblocktrans %}
+	</p>
+	
+	<p>
+		{% blocktrans %}
+Mentor Alumni este un program creat de studenţi UBB pentru studenţi şi absolvenţi UBB. Le permite tuturor să găsească şi să discute cu oameni preocupaţi de dezvoltarea lor profesională şi personală. 
+Studenţii UBB primesc îndrumare pentru a-şi îndeplini cele mai îndrăzneţe obiective profesionale.
+Absolvenţii UBB descoperă viitori colaboratori, parteneri de cercetare sau angajaţi. 
+Toţi pot participa la sesiuni de formare şi dezvoltare personală oferite de parteneri.
+{% endblocktrans %}
+</p>
+
+<p>
+{% blocktrans %}
+Înscrie-te dacă eşti nou sau intră dacă eşti deja de-al casei! 
+Dă dovadă şi de puţină răbdare şi completează toate datele, te asigurăm că merită! 
+{% endblocktrans %}
+</p>
+<p>
+{% blocktrans %}
+Proiectul Mentor Alumni este o initiativa a Asociatiei Absolventilor UBB si a Oficiului de Fund Raising al UBB. <b>TeamFlux</b> a transformat ideea in aceasta platforma.  
+        {% endblocktrans %}
+    </p>
+    
+    <h2>{% trans "About this project" %}</h2>
+    
+    <p>
+        {% blocktrans %}
+        Comming soon...
+        {% endblocktrans %}
+    </p>
+    
+    <hr />
+    {% if user.is_authenticated %}
+        {% url what_next as what_next_url %}
+        <p class="what_next">{% blocktrans %}Wondering <a href="{{ what_next_url }}">What Next</a>?{% endblocktrans %}</p>
+    {% else %}
+        {% url acct_login as login_url %}
+        {% ifsetting ACCOUNT_OPEN_SIGNUP %}
+            {% url acct_signup as signup_url %}
+            <p>{% blocktrans %}You can <a href="{{ signup_url }}">Sign up</a> and <a href="{{ login_url }}">Log in</a> to try out the site.{% endblocktrans %}</p>
+        {% else %}
+            <p>{% blocktrans %}You can <a href="{{ login_url }}">Log in</a> to try out the site.{% endblocktrans %}</p>
+        {% endifsetting %}
+    {% endif %}
+    
+{% endblock %}
+
