@@ -193,8 +193,10 @@
                 {% for friendship in other_friends %}
                 {% if forloop.counter0|divisibleby:"3" %}<tr>{% endif %}
                     <td>
+                    <center>
                         <div class="avatar">{% avatar friendship.friend 40 %}</div>
-                        <div class="details"><a href="{% url profile_detail friendship.friend.username %}" title="{{ friendship.friend.username }}">{{ friendship.friend.username }}</a></div>
+                        <div class="details"><a href="{% url profile_detail friendship.friend.username %}" title="{{ friendship.friend.username }}">{{ friendship.friend.username|slice:":8" }}</a></div>
+                    </center>
                     </td>
                 {% if forloop.counter0|add:"1"|divisibleby:"3" %}</tr>{% endif %}
                 {% endfor %}

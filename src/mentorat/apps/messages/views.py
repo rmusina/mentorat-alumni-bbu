@@ -14,6 +14,7 @@ from django.conf import settings
 from messages.models import Message
 from messages.forms import ComposeForm, MassComposeForm
 from messages.utils import format_quote
+from friends.models import FriendshipManager
 
 if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
@@ -74,6 +75,7 @@ def compose(request, recipient=None, form_class=ComposeForm,
     if request.method == "POST":
         sender = request.user
         form = form_class(request.POST, recipient_filter=recipient_filter)
+               
         if form.is_valid():
             form.save(sender=request.user)
             request.user.message_set.create(

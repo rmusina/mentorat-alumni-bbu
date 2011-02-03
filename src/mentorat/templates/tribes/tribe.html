@@ -60,8 +60,10 @@
                     {% for member in tribe.members.all %}
                         {% if forloop.counter0|divisibleby:"3" %}<tr>{% endif %}
                         <td>
+                        <center>
                             <div class="avatar">{% profile_avatar member 40 %}</div>
-                            <div class="details"><a href="{% url profile_detail member.username %}" title="{{ member.username }}">{{ member.username }}</a></div>
+                            <div class="details"><a href="{% url profile_detail member.username %}" title="{{ member.username }}">{{ member.username|slice:":8" }}</a></div>
+                        </center>
                         </td>
                         {% if forloop.counter0|add:"1"|divisibleby:"3" %}</tr>{% endif %}
                     {% endfor %}
