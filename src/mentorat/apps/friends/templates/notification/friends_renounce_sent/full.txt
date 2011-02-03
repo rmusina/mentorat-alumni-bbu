@@ -1,0 +1,1 @@
+{% load i18n %}{% blocktrans with invitation.to_user as invitation_to_user %}you have renounced to the application for {{ invitation_to_user }}.{% endblocktrans %}

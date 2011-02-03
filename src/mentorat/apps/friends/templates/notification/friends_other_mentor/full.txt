@@ -1,0 +1,1 @@
+{% load i18n %}{% url invitations as invitation_page %}{% blocktrans with invitation.from_user as invitation_from_user %}{{ invitation_from_user }} has been accepted by another mentor.{% endblocktrans %}

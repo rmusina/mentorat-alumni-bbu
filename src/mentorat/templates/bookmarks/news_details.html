@@ -1,0 +1,15 @@
+{% extends "bookmarks/base.html" %}
+
+{% load i18n %}
+{% load markup %}
+
+{% block head_title %}{% blocktrans %}Article Details{% endblocktrans %}{% endblock %}
+
+{% block body %}
+	<h1> {{title}} </h1>
+
+	<h5> {% blocktrans %}Posted: {% endblocktrans %} {{date}} </h5>
+	
+	<p> {{description|markdown:"safe"}} </p>
+	
+{% endblock %}
