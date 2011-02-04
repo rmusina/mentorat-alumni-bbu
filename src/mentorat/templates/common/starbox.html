@@ -1,0 +1,24 @@
+<tr>
+    <td><b>&nbsp;{{ field.label }}</b></td>
+    <td>
+        <div style="position:relative;left:10px;width:79px;height:15px;" onmouseout="mouseOut('{{ field.auto_id }}')">
+            <script type="text/javascript">addLoadEvent(function() { mouseOut('{{ field.auto_id }}') });</script>
+            <img src="{{ STATIC_URL }}img/star-clear.png" style="position:absolute;left:0px;"
+                 onmouseover="mouseOver('{{ field.auto_id }}', 0)"
+                 onclick="click('{{ field.auto_id }}', 0)" />
+            <img src="{{ STATIC_URL }}img/star-empty.png" id="{{ field.auto_id }}-star-1" style="position:absolute;left:15px;"
+                 onmouseover="mouseOver('{{ field.auto_id }}', 1)"
+                 onclick="click('{{ field.auto_id }}', 1)"/>
+            <img src="{{ STATIC_URL }}img/star-empty.png" id="{{ field.auto_id }}-star-2" style="position:absolute;left:31px;"
+                 onmouseover="mouseOver('{{ field.auto_id }}', 2)"
+                 onclick="click('{{ field.auto_id }}', 2)"/>
+            <img src="{{ STATIC_URL }}img/star-empty.png" id="{{ field.auto_id }}-star-3" style="position:absolute;left:47px;"
+                 onmouseover="mouseOver('{{ field.auto_id }}', 3)"
+                 onclick="click('{{ field.auto_id }}', 3)"/>
+            <img src="{{ STATIC_URL }}img/star-empty.png" id="{{ field.auto_id }}-star-4" style="position:absolute;left:63px;"
+                 onmouseover="mouseOver('{{ field.auto_id }}', 4)"
+                 onclick="click('{{ field.auto_id }}', 4)"/>
+        </div>
+    </td>
+</tr>
+

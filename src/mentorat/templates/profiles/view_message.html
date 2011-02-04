@@ -1,0 +1,12 @@
+{% extends "profiles/base.html" %}
+
+{% load i18n %}
+{% load markup %}
+
+{% block body %}
+	<h2>
+		{% blocktrans %} Letter of application from {% endblocktrans %} 
+		<a href="{% url profile_detail invitation.from_user.username %}">{{ invitation.from_user }}</a> 
+	</h2>
+	<p> {{ invitation.message|markdown:"safe" }} </p>
+{% endblock %}

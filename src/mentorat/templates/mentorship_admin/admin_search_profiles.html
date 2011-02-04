@@ -1,0 +1,72 @@
+{% extends "mentorship_admin/base.html" %}
+
+{% load i18n %}
+{% load pagination_tags %}
+{% load avatar_tags %}
+{% load humanize %}
+{% load profile_tags %}
+
+{% block head_title %}{% blocktrans %}All Users{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Users" %}</h1>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/search.js"></script>    
+    <form method="GET" action="">
+        <input type="hidden" name="field" value="" />
+        <input type="text" id="search" name="search" value="{{ search_terms }}" />
+        <input type="submit" value="Search" onclick="search_button_pressed('mentorship_admin', this.form.field)"/>
+        {% if search_terms %}
+            <a href="{% clear_search_url request %}">Clear Search Terms</a>
+        {% endif %}
+    </form>
+    
+    {% if fields_of_interest %}
+        <p>
+        <select id="field_select" onchange="field_of_interest_changed('mentorship_admin', this.selectedIndex)">
+        <option>{% trans "Select a field of interest" %}</option>
+        {% for field in fields_of_interest %}
+            <option>{{ field.name }}</option>
+        {% endfor %}
+        </select>
+        {% if field %}
+        <script type="text/javascript">
+            var fs =  document.getElementById("field_select")
+            fs[{{ field }}].defaultSelected = true
+        </script>
+        {% endif %}
+        </p>
+    {% endif %}
+    {% if users %}
+        <p>{% trans "Order by:" %}
+                <a href="{% url admin_profiles %}?order=name&search={{ search_terms }}&field={{ field }}">{% trans "Name" %}</a>
+                <a href="{% url admin_profiles %}?order=date&search={{ search_terms }}&field={{ field }}">{% trans "Date" %}</a>
+                <a href="{% url admin_profiles %}?order=faculty&search={{ search_terms }}&field={{ field }}">{% trans "Faculty" %}</a>
+                <a href="{% url admin_profiles %}?order=students&search={{ search_terms }}&field={{ field }}">{% trans "Students" %}</a>
+                <a href="{% url admin_profiles %}?order=mentors&search={{ search_terms }}&field={{ field }}">{% trans "Mentors" %}</a>
+        </p>
+        
+        {% autopaginate users%}
+        
+        {% ifequal order 'date'  %}
+            {% regroup users by date_joined.date as users_by_date_joined %}
+            
+            {% for date in users_by_date_joined %}
+                <h2 class="join_date">{{ date.grouper|naturalday:_("MONTH_DAY_FORMAT")|capfirst }}</h2>
+                
+                {% for user in date.list %}
+                    {% show_profile user %}
+                {% endfor %}
+            {% endfor %}
+        {% else %}
+            {% for user in users %}
+                {% show_profile user %}
+            {% endfor %}
+        {% endifequal %}
+        
+        {% paginate %}
+        
+       {% else %}
+           <p>No profile were found.</p>
+      {% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "profiles/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}
+{% blocktrans %}Edit{% endblocktrans %} {{ section_verbose_name }}
+{% endblock %}
+
+{% block body %}
+    
+    <h1>{% trans "Edit" %}: {{ section_verbose_name }}</h1>
+    {% include "profiles/profile_form.html" %}
+    
+{% endblock %}
