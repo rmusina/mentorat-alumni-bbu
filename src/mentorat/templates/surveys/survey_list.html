@@ -1,0 +1,65 @@
+{% extends 'surveys/base.html' %}
+{% load i18n %}
+{% load survey_tags %}
+
+{% block head_title %}{% trans 'Surveys' %}{% endblock %}
+{% block extra_head %}
+<style type="text/css">
+    table.surveys, table.surveys th, table.surveys td, table.surveys tr
+    {
+        border: 1px solid #aaa;
+    }
+</style>
+{% endblock %}
+{% block body %}
+    <table width="100%" class="surveys prettytables" >
+        <thead>
+            <tr>
+                <th>{% trans "Name" %}</th>
+                <th>{% trans "Description" %}</th>
+                {% if user.is_staff %}<th>{% trans "Type" %}</th>{% endif %}
+                <th>{% trans "Creation date" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for object in object_list %}
+            <tr>
+                <td>{% if object|for_user:user %}
+                        <a href="{% if not user.is_staff %}
+                                    {% if object|completedSurvey:user %}
+                                        {% url survey_user_input object.pk,user.username %}
+                                    {% else %}
+                                        {% url survey_take object.pk %}
+                                    {% endif %}
+                                 {% else %}
+                                    {% url survey_stats object.pk %}
+                                 {% endif %}">{% endif %}{{ object.name }}{% if object|for_user:user %}</a>{% endif %}</td>
+                <td>{{ object.description }}</td>
+                {% if user.is_staff %}
+                <td align="center">{% if object.for_students %}{% trans "Student" %}{% endif %}{% if object.for_students and object.for_mentors %}/{% endif %}{% if object.for_mentors %}{%  trans "Mentor" %}{% endif %}</td>
+                {% endif %}
+                <td>{{ object.created.date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if is_paginated %}
+        <table width="100%">
+            <tr>
+                <td align="right" width="50%">
+                {% if page_obj.has_previous %}
+                    <a href="{% url survey_list %}">{% trans "First" %}</a>
+                    <a href="{% url survey_list %}?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a>
+                {% endif %}
+                </td>
+                <td width="50%">
+                {% if page_obj.has_next %}
+                    <a href="{% url survey_list %}?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a>
+                    <a href="{% url survey_list %}?page=last">{% trans "Last" %}</a>
+               {% endif %}
+               </td>
+           </tr>
+       <table>
+   {% endif %}
+{% endblock %}
+

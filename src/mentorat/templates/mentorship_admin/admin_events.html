@@ -1,0 +1,15 @@
+{% extends "mentorship_admin/base.html" %}
+{% load i18n %}
+{% load uni_form %}
+
+{% block head_title %}{% blocktrans %}Add a new event{% endblocktrans %}{% endblock %}
+{% block body %}
+	<h1>{% trans "Add a new event" %}</h1> <br/>
+    <form class = "uniForm" method="POST" action="">
+         <fieldset class="inlineLabels">
+        	{{ form|as_uni_form }}
+        	
+        </fieldset>
+        <input type="submit" value="Create Event" />        	
+    </form>
+{% endblock %}
