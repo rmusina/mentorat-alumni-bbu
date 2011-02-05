@@ -23,6 +23,7 @@ from messages.forms import ComposeForm
 
 from avatar.templatetags.avatar_tags import avatar
 from django.contrib.admin.views.decorators import staff_member_required
+from django.db.models import Q
 import datetime
 
 if "notification" in settings.INSTALLED_APPS:
@@ -74,31 +75,31 @@ def profiles(request, template_name="profiles/profiles.html", extra_context=None
     if search_terms:
         if order == 'name':
             users = users.filter(
-                Q(username__icontains=search_terms) |
-                Q(profile__firstname__icontains=search_terms) |
-                Q(profile__surname__icontains=search_terms)
+                Q(user__username__icontains=search_terms) |
+                Q(user__profile__firstname__icontains=search_terms) |
+                Q(user__profile__surname__icontains=search_terms)
             )
         elif order == 'faculty':
             users = users.filter(
-                Q(profile__studentprofile__faculty__icontains=search_terms)
+                Q(user__profile__studentprofile__faculty__icontains=search_terms)
             )
 
     if selected_field_of_interest:
         users = users.filter(profile__fields_of_interest__field__name__iexact=selected_field_of_interest)
     # order by date
     if order == 'date':
-        users = users.order_by("-date_joined")
+        users = users.order_by("user__date_joined")
     # order by username
     elif order == 'name':
-        users = users.order_by("username")
+        users = users.order_by("user__username")
     elif order == 'faculty':
-        users = users.order_by('profile__studentprofile__faculty')
+        users = users.order_by('user__profile__studentprofile__faculty')
     elif order == 'students':
         student_list = [stud.pk for stud in StudentProfile.objects.all()]
-        users = users.filter(profile__pk__in=student_list)
+        users = users.filter(user__profile__pk__in=student_list)
     elif order == 'mentors':
         mentor_list = [m.pk for m in MentorProfile.objects.all()]
-        users = users.filter(profile__pk__in=mentor_list)
+        users = users.filter(user__profile__pk__in=mentor_list)
 
     fields_of_interest = FieldOfInterest.objects.all()
 
