@@ -117,7 +117,7 @@ h2 {
     height: 80px;
     padding-left: 5px;
     padding-top: 0;
-	background: url('../images/logo.png') 20px center no-repeat;
+/*	background: url('../images/logo.png') 20px center no-repeat; */
 }
 #tabhead .logo img {
     width: 190px;
