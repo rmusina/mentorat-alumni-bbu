@@ -204,6 +204,7 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
     allow_restricted = is_me or request.user.is_staff or users_know_each_other
     
     return render_to_response(template_name, dict({
+        "invitations_active_on_platform": settings.ALLOW_MENTORING_REQUESTS,
         "is_me": is_me,
         "is_friend": is_friend,
         "is_following": is_following,

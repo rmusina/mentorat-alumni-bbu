@@ -13,6 +13,7 @@
 {% load photo_tags %}
 {% load theme_tags %}
 {% load markup %}
+{% load username_trim %}
 {% block head_title %}{{ tribe.name }}{% endblock %}
 
 {% block body %}
@@ -59,9 +60,14 @@
                 <table width="100%">
                     {% for member in tribe.members.all %}
                         {% if forloop.counter0|divisibleby:"3" %}<tr>{% endif %}
-                        <td>
-                            <div class="avatar">{% profile_avatar member 40 %}</div>
-                            <div class="details"><a href="{% url profile_detail member.username %}" title="{{ member.username }}">{{ member.username }}</a></div>
+                        <td width="33.33%" height="65px;">
+                            <div class="avatar" style="width: 40px; margin: auto;">{% profile_avatar member 40 %}</div>
+                            <div class="details" style="width:100%; text-align: center;">
+                                <a href="{% url profile_detail member.username %}"
+                                   title="{{ member.username }}">
+                                    {{ member.username|username_trim:6 }}
+                                </a>
+                           </div>
                         </td>
                         {% if forloop.counter0|add:"1"|divisibleby:"3" %}</tr>{% endif %}
                     {% endfor %}
@@ -81,10 +87,11 @@
             {% trans "Slug:" %} <tt>{{ tribe.slug }}</tt><br />
             {% trans "Creator:" %} <a href="{% url profile_detail tribe.creator.username %}">{{ tribe.creator }}</a><br />
             {% trans "Created:" %} {{ tribe.created|date }}
-            <br />
+             <br />
             {% show_tags_for tribe %}
         </p>
         
+
         <p>{{ tribe.description|markdown:"safe" }}</p>
         
         {% ifequal user tribe.creator %}
