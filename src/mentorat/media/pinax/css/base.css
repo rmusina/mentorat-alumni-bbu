@@ -117,6 +117,7 @@ h2 {
     height: 80px;
     padding-left: 5px;
     padding-top: 0;
+    /* Review TV: Others will find commented code confusing. It's best not to leave them. */
 /*	background: url('../images/logo.png') 20px center no-repeat; */
 }
 #tabhead .logo img {
