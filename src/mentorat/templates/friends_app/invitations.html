@@ -11,7 +11,7 @@
         <p><span id="join-invite-toggle">{% trans "Invite someone new to join" %}</span></p>
         
         <form id="join-invite" method="POST" action="">
-            <p>{% trans "If you'd like to invite someone to join MentorAlumni, you can enter their email address and a message for them below:" %}</p>
+            <p>{% trans "If you'd like to invite someone to join Pinax, you can enter their email address and a message for them below:" %}</p>
             <table>
                 <tr>
                     <th>{{ join_request_form.email.label_tag }}</th>
@@ -38,19 +38,12 @@
         </form>
     </div>
     
-    {% if is_superuser %}
-    <h2>{% trans "Superusers cannot send or receive mentoring requests" %}</h2>
-    {% else %}
-    {% if is_mentor %}
-    <h2>{% trans "Mentoring Requests Received" %}</h2>
-    
+    <h2>{% trans "Friendship Requests Received" %}</h2>
     
     {% if invites_received %}
-    	
         <table class="invitation_list">
             {% for invitation in invites_received %}
                 {% ifequal invitation.status "2" %}
-                	{% if invitations_active_on_platform %}
                     <tr>
                         <td colspan="3" class="friendship_request">
                             <p>From <a href="{% url profile_detail invitation.from_user.username %}">{{ invitation.from_user }}</a>
@@ -83,12 +76,8 @@
                             </form>
                         </td>
                     </tr>
-                    {% else %}
-						<p> {% trans "The time allocated for mentoring invitations has expired." %} </p>
-					{% endif %}
 				{% else %}
 					{% ifequal invitation.status "9" %}
-					{% if invitations_active_on_platform %}
                     <tr>
                         <td colspan="3" class="friendship_request">
                             <p>From <a href="{% url profile_detail invitation.from_user.username %}">{{ invitation.from_user }}</a>
@@ -121,9 +110,7 @@
                             </form>
                         </td>
                     </tr>
-					{% else %}
-						<p> {% trans "The time allocated for mentoring invitations has expired." %} </p>
-					{% endif %}
+					
                 	{% else %}
                     <tr>
                         <td><a href="{% url profile_detail invitation.from_user.username %}">{{ invitation.from_user }}</a></td>
@@ -135,12 +122,11 @@
             {% endfor %}
         </table>
     {% else %}
-        <p>{% trans "No mentoring requests received." %}</p>
+        <p>{% trans "No friendship requests received." %}</p>
     {% endif %}
-       
-    {% else %}
     
-    <h2>{% trans "Mentoring Requests Sent" %}</h2>
+    
+    <h2>{% trans "Friendship Requests Sent" %}</h2>
     
     {% if invites_sent %}
         <table class="invitation_list">
@@ -153,10 +139,9 @@
             {% endfor %}
         </table>
     {% else %}
-        <p>{% trans "No mentoring requests sent." %}</p>
+        <p>{% trans "No friendship requests sent." %}</p>
     {% endif %}
-    {% endif %}
-    {% endif %}
+    
     
     <h2>{% trans "Join Requests Sent" %}</h2>
     

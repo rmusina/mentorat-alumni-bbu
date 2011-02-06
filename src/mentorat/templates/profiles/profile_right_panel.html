@@ -65,9 +65,6 @@
 				            {% if is_friend %}
 				                <p>{% blocktrans %}You are connected with {{ other_user }}.{% endblocktrans %} <a href="{% url messages_compose %}{{ other_user }}/">{% trans "Send a message" %}</a>.</p>
 				            {% else %}
-				                {% if not invitations_active_on_platform %}
-				                 	<p>{% blocktrans %} The time allocated for mentoring invitations has expired. {% endblocktrans %}</p>
-				                {% else %}
 				                {% if previous_invitations_from %}
 				                    <p>{% blocktrans %}{{ other_user }} has requested mentorship.{% endblocktrans %}</p>
 				                    {% for invitation in previous_invitations_from %}
@@ -148,7 +145,6 @@
 						                {% endif %} {# previous_invitations_to #}
 									{% endif %}
 				                {% endif %} {# previous_invitations_from #}
-				                {% endif %} {# invitations_active_on_platform #}
 				            {% endif %} {# is_friend #}             
 				</div>
 			{% endif %} {# is me #} 
