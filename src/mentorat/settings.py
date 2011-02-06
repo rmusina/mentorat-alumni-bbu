@@ -224,7 +224,7 @@ ACCOUNT_EMAIL_VERIFICATION = True
 
 EMAIL_CONFIRMATION_DAYS = 2
 EMAIL_DEBUG = DEBUG
-CONTACT_EMAIL = "feedback@example.com"
+CONTACT_EMAIL = "teamflux2009@gmail.com"
 SITE_NAME = "UBB Alumni"
 LOGIN_URL = "/account/login/"
 LOGIN_REDIRECT_URLNAME = "home"
