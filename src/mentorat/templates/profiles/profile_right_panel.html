@@ -65,6 +65,9 @@
 				            {% if is_friend %}
 				                <p>{% blocktrans %}You are connected with {{ other_user }}.{% endblocktrans %} <a href="{% url messages_compose %}{{ other_user }}/">{% trans "Send a message" %}</a>.</p>
 				            {% else %}
+				                {% if not invitations_active_on_platform %}
+				                 	<p>{% blocktrans %} The time allocated for mentoring invitations has expired. {% endblocktrans %}</p>
+				                {% else %}
 				                {% if previous_invitations_from %}
 				                    <p>{% blocktrans %}{{ other_user }} has requested mentorship.{% endblocktrans %}</p>
 				                    {% for invitation in previous_invitations_from %}
@@ -145,6 +148,7 @@
 						                {% endif %} {# previous_invitations_to #}
 									{% endif %}
 				                {% endif %} {# previous_invitations_from #}
+				                {% endif %} {# invitations_active_on_platform #}
 				            {% endif %} {# is_friend #}             
 				</div>
 			{% endif %} {# is me #} 
@@ -189,8 +193,10 @@
                 {% for friendship in other_friends %}
                 {% if forloop.counter0|divisibleby:"3" %}<tr>{% endif %}
                     <td>
+                    <center>
                         <div class="avatar">{% avatar friendship.friend 40 %}</div>
-                        <div class="details"><a href="{% url profile_detail friendship.friend.username %}" title="{{ friendship.friend.username }}">{{ friendship.friend.username }}</a></div>
+                        <div class="details"><a href="{% url profile_detail friendship.friend.username %}" title="{{ friendship.friend.username }}">{{ friendship.friend.username|slice:":8" }}</a></div>
+                    </center>
                     </td>
                 {% if forloop.counter0|add:"1"|divisibleby:"3" %}</tr>{% endif %}
                 {% endfor %}
