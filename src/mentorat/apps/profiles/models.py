@@ -221,7 +221,7 @@ class Event(models.Model):
     points = models.IntegerField(default=1, verbose_name=_('Event Points'))
     date = models.DateTimeField(default=datetime.datetime.now(), blank=False, verbose_name=_('Event Time and Date'))
     location = models.CharField(max_length=50, blank=False, verbose_name=_('Event Location'))
-    description = models.TextField(verbose_name=_('Event DescripTion'))
+    description = models.TextField(verbose_name=_('Event Description'))
     
     def __unicode__(self):
         return self.name

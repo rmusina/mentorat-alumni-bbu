@@ -18,7 +18,7 @@
 	<dt>{{ tribe.name }} (<a href="{{ tribe.get_absolute_url }}">{{ tribe.slug }}</a>)</dt>
 	<div>
 		<div style="overflow: auto">
-			{{ tribe.description|markdown:"safe"|truncatewords_html:100 }} 
+			{{ tribe.description|markdown|truncatewords_html:100 }} 
 		</div>
 		{% trans "Members:" %} <b>{{ tribe.member_count }}</b>
 		<br />

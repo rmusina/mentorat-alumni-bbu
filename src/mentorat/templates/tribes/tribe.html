@@ -92,7 +92,7 @@
         </p>
         
 
-        <p>{{ tribe.description|markdown:"safe" }}</p>
+        <p>{{ tribe.description|markdown }}</p>
         
         {% ifequal user tribe.creator %}
             <div class="form-toggle">

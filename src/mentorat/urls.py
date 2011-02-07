@@ -55,7 +55,8 @@ urlpatterns = patterns('',
     (r'^wiki/', include('wiki.urls')),
     (r'^news', include('bookmarks.urls')),
     (r'^survey/', include('surveys.urls')),
-
+    (r'^tinymce/', include('tinymce.urls')),
+    
     (r'^feeds/posts/(.*)/$', 'django.contrib.syndication.views.feed', blogs_feed_dict),
 )
 

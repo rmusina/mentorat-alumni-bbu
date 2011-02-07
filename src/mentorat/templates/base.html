@@ -9,6 +9,8 @@
                 zoom: 1; /* trigger hasLayout */
             }
         </style><![endif]-->
+        <script type="text/javascript" src="{{ STATIC_URL }}admin/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+		<script type="text/javascript" src="{% url tinymce-js "DEFAULT_TINYMCE_CONFIG" %}"></script>
         <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/base.css" />
         <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/tabs.css" />
         <link rel="stylesheet" href="{{ STATIC_URL }}pinax/css/facebox.css" />

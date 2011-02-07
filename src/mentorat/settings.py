@@ -155,6 +155,7 @@ INSTALLED_APPS = (
     'blog',
     'pagination',
 #    'gravatar',
+    'tinymce',
     'wiki',
     'threadedcomments',
     'threadedcomments_extras',
@@ -258,6 +259,16 @@ RESTRUCTUREDTEXT_FILTER_SETTINGS = {
 }
 
 ALLOW_MENTORING_REQUESTS = False
+
+#TinyMCE settings follow
+TINYMCE_JS_URL = os.path.join(STATIC_ROOT, '/admin/tinymce/jscripts/tiny_mce/tiny_mce.js')
+TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, '/tinymce');
+TINYMCE_DEFAULT_CONFIG = {    
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+}
 
 # if Django is running behind a proxy, we need to do things like use
 # HTTP_X_FORWARDED_FOR instead of REMOTE_ADDR. This setting is used
