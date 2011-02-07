@@ -1,5 +1,5 @@
 tinyMCE.addI18n('en.advanced',{
-style_select:"Style",
+style_select:"Styles",
 font_size:"Font size",
 fontdefault:"Font family",
 block:"Format",
