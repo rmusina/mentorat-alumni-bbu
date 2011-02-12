@@ -1,0 +1,10 @@
+div.event_info {
+    background: #DEF;
+    padding: 10px;
+	margin-left: 5px;
+    margin-bottom: 10px;
+}
+div.event_info h2 {
+    margin: 0 0 5px 0;
+    padding: 0;
+}
