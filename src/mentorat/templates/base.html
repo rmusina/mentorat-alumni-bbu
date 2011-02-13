@@ -1,8 +1,12 @@
 {% load i18n %}
+
+{% block doctype_declaration %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% endblock %}
+
 <html xmlns="http://www.w3.org/1999/xhtml" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
         <title>{% if SITE_NAME %}{{ SITE_NAME }} : {% endif %}{% block head_title %}{% endblock %}</title>
         <!--[if IE]><style>
             div {
@@ -29,7 +33,7 @@
         {% endblock %}
     </head>
     
-    <body class="{% block body_class %}{% endblock %}">
+    <body class="{% block body_class %}{% endblock %}" onload="{% block body_onload_functions %}{% endblock %}">
         {% if site_wide_announcements %}
             <div id="site_wide_announcements">
                 <ul>
