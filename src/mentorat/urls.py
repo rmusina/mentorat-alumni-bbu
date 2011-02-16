@@ -56,6 +56,7 @@ urlpatterns = patterns('',
     (r'^news', include('bookmarks.urls')),
     (r'^survey/', include('surveys.urls')),
     (r'^tinymce/', include('tinymce.urls')),
+    (r'^mail/', include('mail.urls')),
     
     (r'^feeds/posts/(.*)/$', 'django.contrib.syndication.views.feed', blogs_feed_dict),
 )

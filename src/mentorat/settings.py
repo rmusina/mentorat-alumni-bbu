@@ -192,6 +192,9 @@ INSTALLED_APPS = (
     # mentorship exclusive
     'mentorship_admin',
     'surveys',
+
+    # mail confirmation
+    'mail',
 )
 
 # zamtools news app settings
