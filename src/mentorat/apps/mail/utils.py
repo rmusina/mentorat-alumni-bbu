@@ -7,7 +7,8 @@ from models import EmailConfirmation
 from django.utils.hashcompat import sha_constructor
 from django.core.urlresolvers import reverse
 
-LOG_MAIL = True
+
+LOG_MAIL = False
 
 def mail(to, subject, message):
     """Send email to user. The mail will be send from the default site email.
@@ -20,18 +21,18 @@ def mail(to, subject, message):
         print '> Sending mail'
         print '> To:', to
         print '> From:', settings.DEFAULT_FROM_EMAIL
-        print '>> Subject:', subject
-        print '>> Message:', message
+        print '>> Subject:', subject.translate('en')
+        print '>> Message:', message.translate('en')
         print '< Mail ending'
 
     send_mail(subject, to, settings.DEFAULT_FROM_EMAIL, [to], priority='high')
 
 
-def send_mail_confirm(user):
+def send_mail_confirm(user, email=None):
     """Send a confirmation email to the user.
     """
     # Get the profile email
-    to = user.get_profile().email
+    to = email or user.get_profile().email
     if EmailConfirmation.objects.filter(email=to).count():
         # see if the email was already confirmed
         confirm = EmailConfirmation.objects.get(email=to)
@@ -76,3 +77,16 @@ def check_confirm(key):
     return confirm.email
     
 
+def spam_confirm():
+    """Send confirm mail to all users.
+    """
+    import profiles.models
+
+    print '> Trying to send mail confirmations to all'
+    for student in profiles.models.StudentProfile.objects.all():
+        print 'Sending to:', student.user.username
+        send_mail_confirm(student.user)
+
+    for mentor in profiles.models.MentorProfile.objects.all():
+        print 'Sending to:', mentor.user.username
+        send_mail_confirm(mentor.user)

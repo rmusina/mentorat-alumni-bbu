@@ -16,8 +16,7 @@ from forms import EventsForm
 from django.utils.translation import ugettext_lazy as _
 
 import profiles
-from pinax.core.utils import get_send_mail
-send_mail = get_send_mail()
+import mail.utils
 
 @staff_member_required
 def admin_set_profile_visibility(request, username, visibility, template_name="mentorship_admin/admin_set_profile_visibility.html", extra_context=None):
@@ -41,6 +40,7 @@ def admin_set_profile_visibility(request, username, visibility, template_name="m
         other_user_status = "active"
         subject = _('Account activated')
         message = _('Your account at mentorat.alumni.ubbcluj.ro has been activated.')
+        mail.utils.send_mail_confirm(other_user)
     else:
         other_user_status = "inactive"
         subject = _('Account deactivated')
@@ -51,7 +51,8 @@ def admin_set_profile_visibility(request, username, visibility, template_name="m
     #print 'Message:', message.translate("en")
     #print 'From:', settings.DEFAULT_FROM_EMAIL
     #print 'To:', email
-    send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email], priority="high")
+    #send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email], priority="high")
+    mail.utils.mail(email, subject, message)
 
     other_user.save()
 

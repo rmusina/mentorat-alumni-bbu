@@ -25,6 +25,9 @@ from avatar.templatetags.avatar_tags import avatar
 from django.contrib.admin.views.decorators import staff_member_required
 import datetime
 
+
+import mail.utils
+
 if "notification" in settings.INSTALLED_APPS:
     from notification import models as notification
 else:
@@ -285,10 +288,13 @@ def profile_edit(request, form_class=GeneralInfoForm, **kwargs):
     
     if request.method == "POST":
         profile_form = form_class(request.POST, instance=profile)
+        past_email = profile.email
         if profile_form.is_valid():
             profile = profile_form.save(commit=False)
             profile.user = request.user
             profile.save()
+            if profile.email != past_email:
+                mail.utils.send_mail_confirm(request.user, email=profile.email)
             return HttpResponseRedirect(reverse("profile_detail", args=[request.user.username]))
     else:
         profile_form = form_class(instance=profile)
