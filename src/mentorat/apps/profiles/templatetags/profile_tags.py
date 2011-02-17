@@ -40,7 +40,7 @@ def profile_avatar(user, size=80):
         url = ""
         user = User.objects.get(username=user)
         if user.is_staff:
-            url = os.path.join(settings.STATIC_URL, "img/superuser.jpg")
+            url = os.path.join(settings.STATIC_URL, "img/superuser.png")
         else:
             if user.get_profile().as_student() <> None:
                 url = os.path.join(settings.STATIC_URL, "img/student.png")
