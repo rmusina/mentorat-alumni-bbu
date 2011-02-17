@@ -6,9 +6,10 @@ from django.utils.translation import ugettext_lazy as _
 from models import EmailConfirmation
 from django.utils.hashcompat import sha_constructor
 from django.core.urlresolvers import reverse
+from django.template.loader import render_to_string
+from django.contrib.sites.models import Site
 
-
-LOG_MAIL = False
+LOG_MAIL = True
 
 def mail(to, subject, message):
     """Send email to user. The mail will be send from the default site email.
@@ -48,12 +49,17 @@ def send_mail_confirm(user, email=None):
         confirm.save()
 
     subject = _('Mail confirmation for mentorat.alumni.ubbcluj.ro')
-    message = _("""This message has been sent to you to confirm that you are the owner of the account on mentorat.alumni.ubbcluj.ro at which this email was set.
-
-If the account with username %s belongs to you please click the following link to confirm it:
-mentorat.alumni.ubbcluj.ro%s
-
-This message is automatically sent by mentorat.alumni.ubbcluj.ro, please do not repply to this email.""") % (user.username, reverse('email_confirm', kwargs={ 'key' : key }))
+    message = render_to_string('mail/confirm_message.txt', {
+        'username': user.username,
+        'url': reverse('email_confirm', kwargs={ 'key' : key }),
+        'domain': unicode(Site.objects.get_current().domain)
+    })
+#    message = _("""This message has been sent to you to confirm that you are the owner of the account on mentorat.alumni.ubbcluj.ro at which this email was set.
+#
+#If the account with username %s belongs to you please click the following link to confirm it:
+#mentorat.alumni.ubbcluj.ro%s
+#
+#This message is automatically sent by mentorat.alumni.ubbcluj.ro, please do not repply to this email.""") % (user.username, reverse('email_confirm', kwargs={ 'key' : key }))
     
     mail(to, subject, message)
     
