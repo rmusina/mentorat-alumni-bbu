@@ -1,0 +1,62 @@
+{% extends "bookmarks/base.html" %}
+
+{% load i18n %}
+{% load profile_tags %}
+{% load voting_tags %}
+{% load pagination_tags %}
+{% load extra_voting_tags %}
+{% load in_filter %}
+{% load extra_tagging_tags %}
+{% load sorting_tags %}
+{% load markup %}
+
+{% block head_title %}{% blocktrans %}Latest News{% endblocktrans %}{% endblock %}
+
+{% block extra_head %} {# SEE IF THESE WORKS #}
+    <link rel="alternate" type="application/atom+xml" title="Bookmarks Feed" href="{{ STATIC_URL }}feeds/bookmarks/" />
+{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Latest News" %}</h1>
+	<link rel="stylesheet" href="{{ MEDIA_URL}}calendar_page_style.css" />
+       
+    {% if bookmarks %}
+        {# ## FIXME this should probably be done in djanog-sorting #}
+        {% with request.field|cut:"-" as sort_order %}
+        <p></p>
+        
+        {% autopaginate bookmarks %}
+        
+        {% votes_by_user user on bookmarks as vote_dict %}
+        {% scores_for_objects bookmarks as score_dict %}
+        
+        <table class="bookmarks">
+            {% for bookmark in bookmarks %}
+                <tr class="news_entry">
+                    <td class="meta">
+                        <div class="calendar_sheet"> 
+							<div class="calendar_month">{{ bookmark.added|date:"M" }}</div>
+							<div class="calendar_day">{{ bookmark.added|date:"d" }}</div>
+						</div>
+                    </td>
+                    <td class="content">
+						<div class="news_content">
+		                    <h2><a href="{{ bookmark.url }}" class="title">{{ bookmark.description }}</a></h2>
+		                    <div class="url">{% if bookmark.get_favicon_url %}<img src="{{ bookmark.get_favicon_url }}" width="16" height="16" /> {% endif %} {{ bookmark.url }} </div>
+		                    <div class="body">{{ bookmark.note|markdown|truncatewords_html:100 }}</div>
+		                   
+		                    <div class="tags">{% show_tag_counts bookmark.all_tags_with_counts %}</div>
+						</div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        
+        {% paginate %}
+        
+    {% endwith %}
+    {% else %}
+        <p>{% trans "No news yet." %}</p>
+    {% endif %}
+    
+{% endblock %}

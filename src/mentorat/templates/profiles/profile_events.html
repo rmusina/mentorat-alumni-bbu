@@ -1,0 +1,41 @@
+{% extends "profiles/base.html" %}
+{% load i18n %}
+
+{% block head_title %}
+{% trans "Events of" %} {{ username }}
+{% endblock %}
+
+{% block body %}
+<div>
+<h1>{% trans "Events of" %} <a href="{% url profile_detail username %}">{{ username }}</a></h1>
+<br/><br/>
+<style type="text/css">
+table.list {
+    border-width: 1px;
+    border-style: dotted;
+}
+table.list th {
+    font-size: 120%;
+    border-width: 1px;
+    border-style: dotted;
+}
+
+table.list td {
+    border-width: 1px;
+    border-style: dotted;
+}
+</style>
+<table style="width:100%;" class="list">
+<thead><th style="text-align:left">{% trans "Event" %}</th><th>{% trans "Date" %}</th><th>{% trans "Points" %}</th></thead>
+{% for event in events %}
+<tr>
+    <td>{{ event.name }}</td>
+    <td style="width:150px;text-align:center;">{{ event.event_date }}</td>
+    <td style="width:100px;text-align:right;" >{{ event.points }}</td>
+</tr>
+{% endfor %}
+</table>
+<div style="text-align:center;"> {% if prev %}<a href="{% url profile_events username %}">&lt;&lt; First</a> <a href="{% url profile_events username %}?offset={{ prev_offset }}">&lt; Prev</a>{% endif %} 
+{% if next %} <a href="{% url profile_events username %}?offset={{ next_offset }}"/>Next &gt;</a> <a href="{% url profile_events username %}?offset={{ last_offset }}">Last &gt;&gt;</a>{% endif %}</div>
+</div>
+{% endblock %}
