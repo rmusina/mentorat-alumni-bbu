@@ -5,13 +5,17 @@ import os.path
 import posixpath
 import pinax
 
+
+MENTORAT_SITE_ROOT = '/mentorat'
+
+
 PINAX_ROOT = os.path.abspath(os.path.dirname(pinax.__file__))
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+PROJECT_ROOT = '/home/scs/others/flux/Mentorat/trunk/src/mentorat/' #os.path.abspath(os.path.dirname(__file__))
 
 # tells Pinax to use the default theme
 PINAX_THEME = 'default'
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 # tells Pinax to serve media through django.views.static.serve.
@@ -23,12 +27,12 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'sqlite3'    # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
-DATABASE_NAME = 'database/mentorat.db'       # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+DATABASE_ENGINE = 'mysql'    # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
+DATABASE_NAME = 'mentorat'       # Or path to database file if using sqlite3.
+DATABASE_USER = 'mentorat'             # Not used with sqlite3.
+DATABASE_PASSWORD = 'stargateSG1'         # Not used with sqlite3.
+DATABASE_HOST = 'localhost'             # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT = '3306'             # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
 # http://www.postgresql.org/docs/8.1/static/datetime-keywords.html#DATETIME-TIMEZONE-SET-TABLE
@@ -50,19 +54,19 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'site_media', 'media')
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media_all') #'site_media', 'media')
 
 # URL that handles the media served from MEDIA_ROOT.
 # Example: "http://media.lawrence.com"
-MEDIA_URL = '/site_media/media/'
+MEDIA_URL = MENTORAT_SITE_ROOT + '/media/' # '/site_media/media/'
 
 # Absolute path to the directory that holds static files like app media.
 # Example: "/home/media/media.lawrence.com/apps/"
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'site_media', 'static')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'media_all')# 'site_media', 'static')
 
 # URL that handles the static files like app media.
 # Example: "http://media.lawrence.com"
-STATIC_URL = '/site_media/static/'
+STATIC_URL = MENTORAT_SITE_ROOT + '/media/' # '/site_media/static/'
 
 # Additional directories which hold static files
 STATICFILES_DIRS = (
@@ -74,7 +78,7 @@ STATICFILES_DIRS = (
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
 # TODO: remove hack on launch
-ADMIN_MEDIA_PREFIX = "http://localhost:8000/site_media/static/admin/"
+ADMIN_MEDIA_PREFIX = MENTORAT_SITE_ROOT + "/media/admin/"
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 't5*mt1qfvkwbbk4^$_lx1k=#i+d1%=f4u-#4+4^r$&wm++#2jb'
@@ -155,7 +159,6 @@ INSTALLED_APPS = (
     'blog',
     'pagination',
 #    'gravatar',
-    'tinymce',
     'wiki',
     'threadedcomments',
     'threadedcomments_extras',
@@ -193,8 +196,10 @@ INSTALLED_APPS = (
     'mentorship_admin',
     'surveys',
 
-    # mail confirmation
+    # South for database schema and data migration
+    # 'south',
     'mail',
+    'tinymce',
 )
 
 # zamtools news app settings
@@ -226,6 +231,7 @@ ACCOUNT_OPEN_SIGNUP = True
 ACCOUNT_REQUIRED_EMAIL = False
 ACCOUNT_EMAIL_VERIFICATION = True
 
+DEFAULT_FROM_EMAIL="root@mentorat.alumni.ubbcluj.ro"
 EMAIL_CONFIRMATION_DAYS = 2
 EMAIL_DEBUG = DEBUG
 CONTACT_EMAIL = "teamflux2009@gmail.com"
@@ -261,18 +267,6 @@ RESTRUCTUREDTEXT_FILTER_SETTINGS = {
     'strip_comments': True,
 }
 
-ALLOW_MENTORING_REQUESTS = False
-
-#TinyMCE settings follow
-TINYMCE_JS_URL = os.path.join(STATIC_ROOT, '/admin/tinymce/jscripts/tiny_mce/tiny_mce.js')
-TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, '/tinymce');
-TINYMCE_DEFAULT_CONFIG = {    
-    'plugins': "table,spellchecker,paste,searchreplace",
-    'theme': "advanced",
-    'cleanup_on_startup': True,
-    'custom_undo_redo_levels': 10,
-}
-
 # if Django is running behind a proxy, we need to do things like use
 # HTTP_X_FORWARDED_FOR instead of REMOTE_ADDR. This setting is used
 # to inform apps of this fact
@@ -281,6 +275,22 @@ BEHIND_PROXY = False
 FORCE_LOWERCASE_TAGS = True
 
 WIKI_REQUIRES_LOGIN = True
+
+
+# Creu's stuff
+ALLOW_MENTORING_REQUESTS = False
+
+#TinyMCE settings follow
+TINYMCE_JS_URL = os.path.join(STATIC_ROOT, '/admin/tinymce/jscripts/tiny_mce/tiny_mce.js')
+TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, '/tinymce');
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+}
+
+
 
 # Uncomment this line after signing up for a Yahoo Maps API key at the
 # following URL: https://developer.yahoo.com/wsregapp/
@@ -292,3 +302,7 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
+
+
+

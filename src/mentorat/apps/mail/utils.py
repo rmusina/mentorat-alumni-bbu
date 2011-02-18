@@ -11,7 +11,7 @@ from django.contrib.sites.models import Site
 
 import profiles.models
 
-LOG_MAIL = True
+LOG_MAIL = False
 
 def mail(to, subject, message):
     """Send email to user. The mail will be send from the default site email.
@@ -28,7 +28,7 @@ def mail(to, subject, message):
         print '>> Message:', message.translate('en')
         print '< Mail ending'
 
-    send_mail(subject, to, settings.DEFAULT_FROM_EMAIL, [to], priority='high')
+    send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [to], priority='high')
 
 
 def send_mail_confirm(user, email=None):
