@@ -66,7 +66,7 @@
 				                <p>{% blocktrans %}You are connected with {{ other_user }}.{% endblocktrans %} <a href="{% url messages_compose %}{{ other_user }}/">{% trans "Send a message" %}</a>.</p>
 				            {% else %}
 				                {% if not invitations_active_on_platform %}
-				                 	<p>{% blocktrans %} The time allocated for mentoring invitations has expired. {% endblocktrans %}</p>
+				                 	<p>{% blocktrans %} Sending mentoring requests is currently disabled. {% endblocktrans %}</p>
 				                {% else %}
 				                {% if previous_invitations_from %}
 				                    <p>{% blocktrans %}{{ other_user }} has requested mentorship.{% endblocktrans %}</p>
