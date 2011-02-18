@@ -9,6 +9,8 @@ from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
 from django.contrib.sites.models import Site
 
+import profiles.models
+
 LOG_MAIL = True
 
 def mail(to, subject, message):
@@ -80,19 +82,35 @@ def check_confirm(key):
     confirm.confirmed = True
     confirm.key = '--confirmed--'
     confirm.save()
+
+    for profile in profiles.models.Profile.objects.all():
+        user = profile.user
+        user.email = profile.email
+        user.save()
+
     return confirm.email
     
 
 def spam_confirm():
     """Send confirm mail to all users.
     """
-    import profiles.models
-
     print '> Trying to send mail confirmations to all'
-    for student in profiles.models.StudentProfile.objects.all():
-        print 'Sending to:', student.user.username
-        send_mail_confirm(student.user)
+    for profile in profiles.models.Profile.objects.all():
+        print 'Sending to:', profile.user.username
+        send_mail_confirm(profile.user)
+    #for student in profiles.models.StudentProfile.objects.all():
+    #    print 'Sending to:', student.user.username
+    #    send_mail_confirm(student.user)
 
-    for mentor in profiles.models.MentorProfile.objects.all():
-        print 'Sending to:', mentor.user.username
-        send_mail_confirm(mentor.user)
+    #for mentor in profiles.models.MentorProfile.objects.all():
+    #    print 'Sending to:', mentor.user.username
+    #    send_mail_confirm(mentor.user)
+
+
+def set_user_emails():
+    """Set user email on user
+    """
+    for profile in profiles.models.Profile.objects.all():
+        user = profile.user
+        user.email = profile.email
+        user.save()
