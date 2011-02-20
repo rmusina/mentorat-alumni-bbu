@@ -29,8 +29,14 @@
     <p class="public-info"><b>{% trans "Year of study" %}</b>: {{ student.year_of_study }}</p>
     <p class="public-info"><b>{% trans "Faculty major" %}</b>: {{ student.major }}</p>
     {% if allow_private or allow_restricted %}
-        <p class="restricted-info"><b>{% trans "Email" %}</b>: {{ student.email }}</p>
+        <p class="restricted-info"><b>{% trans "Email" %}</b>: {{ student.email }}
+            {% if user.is_staff or user.is_superuser %}
+            {% if confirmed %}<span style="color: green; font-size: 11px; padding-left: 5px;">[{% trans "Confirmed" %}]</span>
+            {% else %}<span style="color: red; font-size: 11px; padding-left: 5px;">[{% trans "Unconfirmed" %}]</span>
+            {% endif %}
+        {% endif %}</p>
     {% endif %}
+
     {% if allow_private or allow_restricted %}
         <p class="restricted-info"><b>{% trans "Telephone" %}</b>: {{ student.telephone }}</p>
     {% endif %}

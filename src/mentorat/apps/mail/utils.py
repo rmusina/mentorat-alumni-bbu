@@ -114,3 +114,9 @@ def set_user_emails():
         user = profile.user
         user.email = profile.email
         user.save()
+
+
+def is_confirmed(user):
+    return EmailConfirmation.objects.filter(email=user.get_profile().email, confirmed=True).count() > 0
+
+

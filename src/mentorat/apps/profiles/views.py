@@ -259,6 +259,7 @@ def profile(request, username, template_name="profiles/profile.html", extra_cont
         "previous_invitations_to": previous_invitations_to,
         "previous_invitations_from": previous_invitations_from,
         "previous_denied_invitation_to": previous_denied_invitation_to,
+        "confirmed": mail.utils.is_confirmed(other_user)
     }, **extra_context), context_instance=RequestContext(request))
 
 
