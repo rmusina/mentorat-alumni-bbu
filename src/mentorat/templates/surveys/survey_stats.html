@@ -1,0 +1,101 @@
+{% extends 'surveys/base.html' %}
+
+{% load i18n %}
+{% load survey_tags %}
+
+{% block head_title %}{% trans 'Survey stats' %}: {{ survey.name }}{% endblock %}
+{% block extra_head %}
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load('visualization', '1', {packages: ['corechart']});
+        function addLoadEvent(funct) {
+            var oldLoad = window.onload;
+            if (typeof window.onload != 'function')
+                window.onload = func;
+            else 
+                window.onload = function() {
+                    if (oldLoad)
+                        oldLoad();
+                    funct();
+                }
+        }
+    </script>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}surveys/css/stats.css" />
+{% endblock %}
+{% block body %}
+<h1>{{ survey.name }} {% trans 'statistics' %}</h1>
+<div class="stat-region">
+    <h2>{% trans "Summary" %}</h2>
+    <div class="summary"><b>{% trans "Completed by" %}:</b> {{ completed_count }} {% trans "users of" %} {{ user_count }}</div>
+    <div class="summary"><b>{% trans "User inputs" %}:</b> <a href="{% url survey_stats_users survey.pk %}">{% trans "see all" %}</a></div>
+    <br/>
+</div>
+<div class="stat-region">
+    <h2>{% trans "Field statistics" %}</h2>
+    {% for item in stats %}
+        <div class="chart">
+            <div class="chart-name">{{item.name}}</div>
+            {% if item.is_bool %}
+            <script type="text/javascript">
+                google.setOnLoadCallback(drawBoolChart{{ item.pk }});
+                function drawBoolChart{{ item.pk }}() {
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', '{% trans "Option" %}');
+                    data.addColumn('number', '{% trans "User count" %}');
+                    data.addRows(2);
+                    data.setValue(0, 0, '{% trans "Yes" %}');
+                    data.setValue(0, 1, {{ item.YesCount }});
+                    data.setValue(1, 0, '{% trans "No" %}');
+                    data.setValue(1, 1, {{ item.NoCount }});
+                    var chart = new google.visualization.PieChart(document.getElementById('bool_chart_{{ item.pk }}'));
+                    chart.draw(data, { width: 514, height: 300, legend: 'bottom', titleTextStyle: { color: 'black', fontSize: 14 }, legendTextStyle: { color: 'black', fontSize: 12 } });
+                }
+            </script>
+            <div class="bool_chart" id="bool_chart_{{ item.pk }}"></div>
+{% comment %}       <img src="http://chart.apis.google.com/chart?chs=480x300&cht=p&chco=FF9900|000000&chd=t:{{ item.YesPercent }},{{ item.NoPercent }}&chdl={% trans "Yes" %}|{% trans "No" %}&chdlp=b&chp=1.57&chl={{ item.YesCount }}+({{ item.YesPercent }}+%25)|{{ item.NoCount }}+({{ item.NoPercent }}+%25)"
+             width="480" height="300" alt="" /> {% endcomment %}
+        {% else %} {% if item.is_choice %}
+            <script type="text/javascript">
+                google.setOnLoadCallback(drawChoiceChart{{ item.pk }});
+                function drawChoiceChart{{ item.pk }}() {
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', '{% trans "Option" %}');
+                    data.addColumn('number', '{% trans "User cound" %}');
+                    data.addRows({{ item.choices|length }});
+                    {% for choice in item.choices %}
+                    data.setValue({{ forloop.counter0 }}, 0, '{{ choice.name }}');
+                    data.setValue({{ forloop.counter0 }}, 1, {{ choice.value }});
+                    {% endfor %}
+                    var chart = new google.visualization.PieChart(document.getElementById('choice_chart_{{ item.pk }}'));
+                    chart.draw(data, { width: 700, height: 300, titleTextStyle: { color: 'black', fontSize: 14 }, legendTextStyle: { color: 'black', fontSize: 12 }});
+                }            
+            </script>
+            <div class="choice_chart" id="choice_chart_{{ item.pk }}"></div>
+{% comment %}       <img src="http://chart.apis.google.com/chart?chs=560x300&cht=p&chco=0303FC&chd=t:{% for choice in item.choices %}{{ choice.percent }}{% if not forloop.last %},{% endif %}{% endfor %}&chdl={% for choice in item.choices %}{{ choice.name }}{% if not forloop.last %}|{% endif %}{% endfor %}&chl={% for choice in item.choices %}{{ choice.value }}+({{ choice.percent }}+%25){% if not forloop.last %}|{% endif %}{% endfor %}"
+             width="560" height="300" alt="" />    {% endcomment %}
+        {% else %} {% if item.is_multi %}
+            <script type="text/javascript">
+                google.setOnLoadCallback(drawMultichoiceChart{{ item.pk }});    
+                function drawMultichoiceChart{{ item.pk }}() {
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', '');
+                    {% for choice in item.choices %}
+                    data.addColumn('number', '{{ choice.name }}');
+                    {% endfor %}
+                    data.addRows(1);
+                    {% for choice in item.choices %}
+                    data.setValue(0, {{ forloop.counter }}, {{ choice.value }});
+                    {% endfor %}
+                    var chart = new google.visualization.ColumnChart(document.getElementById('multichoice_chart_{{ item.pk }}'));
+                    chart.draw(data, { width: 700, height: 300, titleTextStyle: { color: 'black', fontSize: 14 }, legendTextStyle: { color: 'black', fontSize: 12 }});
+                }
+            </script>
+            <div class="multi_chart" id="multichoice_chart_{{ item.pk }}"></div>
+{% comment %}        <img src="http://chart.apis.google.com/chart?chxr=0,0,{{ item.max }},{{ item.max|chart_step }}&chxt=y&chbh=a&chs=600x300&cht=bvg&chco={{ item.choices|length|chart_colors:"215715" }}&chds={% for choice in item.choices %}0,{{ item.max }}{% if not forloop.last %},{% endif %}{% endfor %}&chd=t:{% for choice in item.choices %}{{ choice.value }}{% if not forloop.last %}|{% endif %}{% endfor %}&chdl={% for choice in item.choices %}{{ choice.name }}+({{ choice.value }}){% if not forloop.last %}|{% endif %}{% endfor %}"
+             width="600" height="300" alt="Vertical bar chart" /> {% endcomment %}
+        {% endif %}{% endif %} {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,165 @@
+{% load i18n %}
+{% load range %}
+{% load markup %}
+
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}profiles/css/profile-info.css" />
+{% autoescape on %}
+<br/>
+<p class="public-info"><b>{% trans "Account type" %}</b>: {% trans "Student" %}</p>
+<div class="profile-info-region">
+    <h2 class="profile-info-region-header">{% trans "General information" %}
+{% if is_me %}<small><small><sup>[<a href='{% url profile_edit_general %}'>{% trans 'Edit' %}</a>]</sup></small></small>{% endif %}
+    </h2>
+    <p class="public-info"><b>{% trans "Firstname" %}</b>: {{ student.firstname }}</p>
+    <p class="public-info"><b>{% trans "Surname" %}</b>: {{ student.surname }}</p>
+    {% if student.previous_surname %}
+        <p class="public-info"><b>{% trans "Surname before marriage" %}</b>: {{ student.previous_surname }}</p>
+    {% endif %}
+    {% if allow_private %}
+        <p class="private-info"><b>{% trans "CNP" %}</b>: {{ student.CNP }}</p>
+    {% endif %}
+    {% if student.birthplace %}
+        <p class="public-info"><b>{% trans "Birth place" %}</b>: {{ student.birthplace }}</p>
+    {% endif %}
+    {% if student.age %}
+        <p class="public-info"><b>{% trans "Age" %}</b>: {{ student.age }}</p>
+    {% endif %}
+    <p class="public-info"><b>{% trans "Faculty" %}</b>: {{ student.faculty }}</p>
+    <p class="public-info"><b>{% trans "Current pursued degree" %}</b>: {{ student.get_current_degree_display }}</p>
+    <p class="public-info"><b>{% trans "Year of study" %}</b>: {{ student.year_of_study }}</p>
+    <p class="public-info"><b>{% trans "Faculty major" %}</b>: {{ student.major }}</p>
+    {% if allow_private or allow_restricted %}
+        <p class="restricted-info"><b>{% trans "Email" %}</b>: {{ student.email }}</p>
+    {% endif %}
+    {% if allow_private or allow_restricted %}
+        <p class="restricted-info"><b>{% trans "Telephone" %}</b>: {{ student.telephone }}</p>
+    {% endif %}
+    {% if allow_private %}
+        <p class="private-info"><b>{% trans "Address" %}</b>: {{ student.address|markdown }}</p>
+    {% endif %}
+    {% if student.town_of_study %}
+        <p class="public-info"><b>{% trans "Town of study" %}</b>: {{ student.town_of_study|markdown }}</p>
+    {% endif %}
+</div>
+{% if student.employer_name or student.employer_position or student.employee_duties or student.employer_address %}
+    <div class="profile-info-region">
+        <h2 class="profile-info-region-header">{% trans "Current employment" %}
+{% if is_me %}<small><small><sup>[<a href='{% url profile_edit_employment %}'>{% trans 'Edit' %}</a>]</sup></small></small>{% endif %}
+        </h2>
+        {% if student.employer_name %}
+            <p class="public-info"><b>{% trans "Employer name" %}</b>: {{ student.employer_name }}</p>
+        {% endif %}
+        {% if student.employer_address and allow_private %}
+            <p class="private-info"><b>{% trans "Employer address" %}</b>: {{ student.employer_address|markdown }}</p>
+        {% endif %}
+        {% if student.employee_position %}
+            <p class="public-info"><b>{% trans "Position held" %}</b>: {{ student.employee_position|markdown }}</p>
+        {% endif %}
+        {% if student.employee_duties %}
+            <p class="pubicinfo"><b>{% trans "Duties" %}</b>:<div class="multiline-info">{{ student.employee_duties|markdown }}</div></p>
+        {% endif %}
+    </div>
+{% else %}
+    {% if is_me %}
+        <br/>
+        <a href='{% url profile_edit_employment %}'>{% trans 'Add current employment information' %}</a>
+        <br/>
+    {% endif %}
+{% endif %}
+<div class="profile-info-region">
+    <h2 class="profile-info-region-header">{% trans "Academic and professional information" %}
+{% if is_me %}<small><small><sup>[<a href='{% url profile_edit_professional %}'>{% trans 'Edit' %}</a>]</sup></small></small>{% endif %}
+    </h2>
+    {% if student.home_town %}
+        <p class="public-info"><b>{% trans "Home town" %}</b>: {{ student.home_town|markdown }}</p>
+    {% endif %}
+    {% if student.graduated_college %}
+        <p class="public-info"><b>{% trans "Graduated college" %}</b>: {{ student.graduated_college|markdown }}</p>
+    {% endif %}
+    {% if student.volunteer.count or is_me %}
+        <p class="public-info">
+            <b>{% trans "Organizations in which (s)he is/was a volunteer" %}</b>:
+            <ul class="info-list">
+            {% for organization in student.volunteer.all %}
+                <li class="info-list-item">
+                    {% include "profiles/profile-types/parts/volunteer-organization.html" %}
+                    {% if is_me %}<small><a href="{% url volunteer_edit organization.pk %}">{% trans "Edit" %}</a> or <a href="{% url volunteer_remove organization.pk %}">{% trans "remove" %}</a></small>{% endif %}
+                </li>
+            {% endfor %}
+            {% if is_me %}<li><a href="{% url volunteer_add %}">{% trans "Add another" %}</a></li>{% endif %}
+            </ul>
+        </p>
+    {% endif %}
+    {% if student.work_experience.count or is_me %}
+        <p class="public-info">
+            <b>{% trans "Work experience" %}</b>:
+            <ul class="info-list">
+            {% for employment in student.work_experience.all %}
+                <li class="info-list-item">
+                    {% include "profiles/profile-types/parts/student-employment.html" %}
+                    {% if is_me %}<small><a href="{% url employment_edit employment.pk %}">{% trans "Edit" %}</a> or <a href="{% url employment_remove employment.pk %}">{% trans "remove" %}</a></small>{% endif %}
+                </li>
+            {% endfor %}
+            {% if is_me %}<li><a href="{% url employment_add %}">{% trans "Add another" %}</a></li>{% endif %}
+            </ul>
+        </p>
+    {% endif %}
+    {% if student.research.count or is_me %}
+        <p class="public-info">
+            <b>{% trans "Research" %}</b>:
+            <ul class="info-list">
+            {% for research in student.research.all %}
+                <li class="info-list-item">
+                    <p>
+                    {% trans 'Field' %}: {{ research.field }}
+                    {% if research.duties %}<br/><i>{% trans 'Duties' %}: {{ research.duties|markdown }}</i>{%endif%}
+                    </p>
+                    {% if is_me %}<small><a href="{% url research_edit research.pk %}">{% trans "Edit" %}</a> or <a href="{% url research_remove research.pk %}">{% trans "remove" %}</a></small>{% endif %}
+                </li>
+            {% endfor %}
+            {% if is_me %}<li><a href="{% url research_add %}">{% trans "Add another" %}</a></li>{% endif %}
+            </ul>
+         </p>
+    {% endif %}
+    {% if student.future_plans %}
+        <p class="public-info"><b>{% trans "Plans for the following year" %}</b>:<div class="multiline-info">{{ student.future_plans|markdown }}</div></p>
+    {% endif %}
+    {% if student.fields_of_interest.count %}
+        <p class="public-info"><b>{% trans "Fields of interest for mentorship" %}</b>:
+        <ul class="info-list">{% for field in student.fields_of_interest.all %}
+            <li class="info-list-item">{{ field.field.name }}</li>
+        {% endfor %}</ul>
+    {% endif %}
+    {% if student.how_mentor_can_help %}
+        <p class="public-info"><b>{% blocktrans %}How can a mentor help in the student's  development?{% endblocktrans %}</b><div class="multiline-info">{{ student.how_mentor_can_help|markdown }}</div></p>
+    {% endif %}
+</div>
+<div class="profile-info-region">
+    <h2 class="profile-info-region-header">{% trans "Additional information" %}
+{% if is_me %}<small><small><sup>[<a href='{% url profile_edit_additional %}'>{% trans 'Edit' %}</a>]</sup></small></small>{% endif %}
+    </h2>
+    {% if student.hobbies %}
+        <p class="public-info"><b>{% trans "Hobbies" %}</b>:<div class="multiline-info">{{ student.hobbies|markdown }}</div></p>
+    {% endif %}
+    {% if student.self_evaluation %}
+        <p class="public-info"><b>{% trans "How would you describe yourself as a colleague?" %}</b>
+        <div class="multiline-info">{{ student.self_evaluation|markdown }}</div></p>
+    {% endif %}
+    {% if student.mentor_expectations %}
+        <p class="public-info"><b>{% trans "Expectation of mentor" %}</b>:<div class="multiline-info">{{ student.mentor_expectations|markdown }}</div></p>
+    {% endif %}
+    {% if student.extra_info %}
+        <p class="public-info"><b>{% trans "Addtional informations" %}</b>:<div class="multiline-info">{{student.extra_info|markdown }}</div></p>
+    {% endif %}
+    {% if student.communication_ratings.count %}
+        <p class="public-info"><b>{% trans "Preffered communication methods" %}</b>:
+        <ul class="info-list">
+        {% for ratting in student.sorted_communication_ratings %}
+            <li class="info-list-item">{{ ratting.method.name }} {% for x in ratting.ratting|get_range %}<img src="{{ STATIC_URL }}img/star-full.png"/>{% endfor %}</li>
+        {% endfor %}
+        </ul>
+        </p>
+    {% endif %}
+</div>
+<br/>
+{% endautoescape %}

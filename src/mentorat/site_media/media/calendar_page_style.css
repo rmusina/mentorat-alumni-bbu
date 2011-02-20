@@ -1,0 +1,41 @@
+table.bookmarks{
+
+}
+
+div.calendar_sheet {
+	border-style:solid;
+	border-width:1px;
+	text-align: center;
+	margin: 10px 20px 0px 0px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	background: #fff;
+}
+
+div.calendar_month {
+	background-color: #99ccff;
+	-moz-border-radius: 7px 7px 0px 0px;
+	border-radius: 7px 7px 0px 0px;
+	font-size:15px;
+}
+
+div.calendar_day {
+	font-size:25px;
+}
+
+div.news_content {
+	padding:10px 0px 10px 0px; 
+
+}
+
+
+tr.news_entry{
+	border-bottom-style: dashed; 
+	border-bottom-width: thin;
+	background: #fff;
+}
+
+td.meta {
+	width: 10%;
+}
+

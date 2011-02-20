@@ -1,0 +1,36 @@
+/* numele de sctiuni General Info etc */
+h2.profile-info-region-header
+{
+    color:#222255;
+}
+/* tot continutul unei sectiuni */
+div.profile-info-region
+{
+}
+/* multiline gen extra info */
+div.multiline-info
+{
+    text-indent:20px;
+}
+/* informatii pe care le vede toata lumea */
+p.public-info
+{
+}
+/* informatii pe care le vad admini si userul */
+p.private-info
+{
+    color:#770000;
+}
+/* informatii pe care le vad admini, userul si mentorul care l-a aceptat/sau studentul acceptat */
+p.restricted-info
+{
+    color:#775500;
+}
+/* liste de informatii */
+ul.info-list
+{
+}
+/* componente ale unei liste de informatii */
+li.info-list-item
+{
+}

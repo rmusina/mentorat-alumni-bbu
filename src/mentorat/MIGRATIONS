@@ -1,0 +1,14 @@
+Applied successfully: manage.py schemamigration --initial to the following apps
+
+bookmarks
+friends
+messages
+profiles
+signup_codes
+surveys
+tag_app
+topics
+tribes
+wiki
+
+
