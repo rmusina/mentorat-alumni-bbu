@@ -36,9 +36,9 @@ def send_mail_confirm(user, email=None):
     """
     # Get the profile email
     to = email or user.get_profile().email
-    if EmailConfirmation.objects.filter(email=to).count():
+    if EmailConfirmation.objects.filter(email__iexact=to).count():
         # see if the email was already confirmed
-        confirm = EmailConfirmation.objects.get(email=to)
+        confirm = EmailConfirmation.objects.get(email__iexact=to)
         if confirm.confirmed:
             return False
         key = confirm.key
@@ -117,6 +117,6 @@ def set_user_emails():
 
 
 def is_confirmed(user):
-    return EmailConfirmation.objects.filter(email=user.get_profile().email, confirmed=True).count() > 0
+    return EmailConfirmation.objects.filter(email__iexact=user.get_profile().email, confirmed=True).count() > 0
 
 
