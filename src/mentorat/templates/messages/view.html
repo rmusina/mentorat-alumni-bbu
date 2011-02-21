@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load oembed_tags %}
 {% load timezone_filters %}
+{% load markup %}
 
 {% block body %}
     <h1>{% trans "View Message" %}</h1>
@@ -18,7 +19,7 @@
         <dd>{{ message.recipient }}</dd>
     </dl>
     
-    <p>{% oembed %}{{ message.body|linebreaksbr }}{% endoembed %}</p>
+    <p>{% oembed %}{{ message.body|markdown }}{% endoembed %}</p>
     
     {% ifequal message.recipient user %}
         <p><a href="{% url messages_reply message.id %}">{% trans "Reply" %}</a></p>
