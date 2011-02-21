@@ -1,0 +1,14 @@
+{% if active %}Salut!
+
+Multumim ca ai ales Mentor Alumni in 2011!
+Bine ai venit pe platforma!
+Contul tau a fost activat. Il poti accesa la http://mentorat.alumni.ubbcluj.ro
+Detaliile despre utilizarea platformei le gasesti in ghidurile accesibile la http://alumni.ubbcluj.ro
+Inscrierile studentilor si mentorilor continua pana in 27 februarie. Recomanda programul colegilor tai si plaseaza un buton de sustinere pe blogul propriu.
+Daca ai sugestii sau intampini probleme, echipa de mentenanta iti sta la dispozitie pe grupul de mentenanta al platformei.
+
+Pe curand!
+Catalina Amihaiesi
+
+Programul MENTOR Alumni este o initiativa a Asociatiei Absolventilor Universitatii Babes-Bolyai si a Oficiului de Fund Raising al UBB, implementat cu sprijinul TeamFlux.
+{% else %}Contul tau pe http://mentorat.alumni.ubbcluj.ro a fost dezactivat. {% endif %}
