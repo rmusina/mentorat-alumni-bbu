@@ -13,6 +13,8 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 from django.core.exceptions import ImproperlyConfigured
 
+from locations.forms import UserLocationForm
+
 try:
     from notification import models as notification
 except ImportError:
@@ -37,22 +39,16 @@ def get_pushpin_avatar(user):
             return '/site_media/media/pushpins/mentor.png'
 
 @login_required
-def your_location(request):
+def user_location(request, form_class=UserLocationForm):
     
     if request.method == 'POST':
-        print 'Raw Data: "%s"' % request.raw_post_data
-        return HttpResponse("OK")
-    
-    user_location = UserLocation.objects.filter(user=request.user)
-    
-    if user_location == None:
-        user_location = UserLocations()
-        user_location.user = request.user
-        if not user_location.set_from_account_data(request.user):
-            user_location = None
+        form = form_class(request.user, request.POST, {'pushpin' : get_pushpin_avatar(request.user)})
+        form.save(request.POST.get('user_location', '0,0'))        
+    else:
+        user_location = UserLocation.objects.filter(user=request.user).get(0)
+        form = form_class(user_location, {'pushpin' : get_pushpin_avatar(request.user)})
         
     return render_to_response("locations/your_location.html",
-                              { 'user_location' : user_location,
-                                'pushpin_image' : get_pushpin_avatar(request.user)},
+                              { 'form' : form },
                               context_instance=RequestContext(request)
                               )

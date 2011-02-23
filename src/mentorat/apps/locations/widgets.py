@@ -36,7 +36,12 @@ class LocationWidget(forms.TextInput):
             lat, lng = float(a), float(b)
 
         js = '''
-            <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>s         var input = document.getElementById("id_%(name)s");
+            <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+            <script type="text/javascript">
+                var map_%(name)s;
+                
+                function savePosition_%(name)s(point) {
+                    var input = document.getElementById("id_%(name)s");
                     input.value = point.lat().toFixed(6) + "," + point.lng().toFixed(6);
                     map_%(name)s.panTo(point);
                 }

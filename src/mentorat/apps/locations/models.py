@@ -17,6 +17,6 @@ class UserLocation(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     
-    city = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
-    address = models.CharField(max_length=100)
+    #city = models.CharField(max_length=50)
+    #country = models.CharField(max_length=50)
+    #address = models.CharField(max_length=100)
