@@ -37,8 +37,8 @@ def admin_set_profile_visibility(request, username, visibility, template_name="m
         raise Http404
 
     email = profiles.models.Profile.objects.get(user=other_user).email
-    subject = render_to_string('mentorship_admin/activate_subject.txt', { 'active': other_user.is_active })
-    message = render_to_string('mentorship_admin/activate_message.txt', { 'active': other_user.is_active })
+    subject = render_to_string('mentorship_admin/activate_subject.txt', { 'active': other_user.is_active, 'username': username })
+    message = render_to_string('mentorship_admin/activate_message.txt', { 'active': other_user.is_active, 'username': username })
     mail.utils.mail(email, subject, message)
 
     if other_user.is_active == True:
