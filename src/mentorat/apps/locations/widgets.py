@@ -15,19 +15,28 @@ class MapTypes:
     EVENT_DISPLAY=4
 
 class LocationWidget(forms.TextInput):
+    
     def __init__(self, *args, **kw):
-
         self.map_width = kw.get("map_width", DEFAULT_WIDTH)
         self.map_height = kw.get("map_height", DEFAULT_HEIGHT)
         self.map_type = kw.get("map_type", MapTypes.USER_LOCATION)
-        self.pushpin_path = kw.get("pushpin_path", "/site_media/media/pushpins/root.png")
-                                   
+        self.pushpin_path = kw.get("pushpin", "/site_media/media/pushpins/root.png")
+        self.location = kw.get("location", None);
+         
+        print self.pushpin_path        
+        print self.location        
+                
+        if self.location != None:
+            print 'aaaaaaaaaaa2'  + self.location.latitude
+                                      
         super(LocationWidget, self).__init__(*args, **kw)
         self.inner_widget = forms.widgets.HiddenInput()
 
     def render(self, name, value, *args, **kwargs):
         if value is None:
             lat, lng = DEFAULT_LAT, DEFAULT_LNG
+            if location <> None:
+                lat, lng = self.location.latitude, self.location.longitude
         else:
             if isinstance(value, unicode):
                 a, b = value.split(',')
@@ -139,8 +148,8 @@ class LocationFormField(forms.CharField):
 class LocationField(models.CharField):
     def formfield(self, **kwargs):
         defaults = {'form_class': LocationFormField}
-        defaults['widget'] = LocationWidget
         defaults.update(kwargs)
+        defaults['widget'] = LocationWidget()
         
         return super(LocationField, self).formfield(**defaults)
 

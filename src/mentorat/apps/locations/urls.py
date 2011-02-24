@@ -4,7 +4,7 @@ from django.conf.urls.defaults import *
 # and then checkin in to that place.
 
 urlpatterns = patterns('',
-    url(r'^$', 'locations.views.all_locations', name='locations_all'),
+    url(r'^$', 'locations.views.map_data', name='locations_all'),
     url(r'^your_location/$', 'locations.views.user_location', name='locations_your'),
     url(r'^data/$', 'locations.views.map_data', name='map_data'),
 )

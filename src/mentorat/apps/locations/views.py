@@ -6,7 +6,7 @@ import django.utils.simplejson
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from locations.models import UserLocation
@@ -14,6 +14,7 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 from django.core.exceptions import ImproperlyConfigured
 
+from django.http import HttpResponseRedirect, HttpResponse
 from locations.forms import UserLocationForm
 from locations.models import UserLocation
 
@@ -43,18 +44,22 @@ def get_pushpin_avatar(user):
 @login_required
 def user_location(request, form_class=UserLocationForm):
     
+    user_location = None
+    
     if request.method == 'POST':
-        form = form_class(request.user, request.POST, {'pushpin' : get_pushpin_avatar(request.user)})
-        form.save(request.POST.get('user_location', '0,0'))        
+        print request.data       
     else:
-        user_location = UserLocation.objects.filter(user=request.user).get(0)
-        form = form_class(user_location, {'pushpin' : get_pushpin_avatar(request.user)})
+        locations = UserLocation.objects.filter(user=request.user)
+        user_location = None
         
+        if len(locations) >= 1:
+            user_location = locations[0]
+                    
     return render_to_response("locations/your_location.html",
-                              { 'form' : form },
+                              { 'user_location' : user_location,
+                                'pushpin_path' : get_pushpin_avatar(request.user) },
                               context_instance=RequestContext(request)
                               )
-
 
 @login_required
 def map_data(request):

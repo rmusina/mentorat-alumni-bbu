@@ -1,0 +1,14 @@
+{% extends "site_base.html" %}
+
+{% block doctype_declaration %}
+<!DOCTYPE html">
+{% endblock %}
+
+{% load i18n %}
+
+{% block subnav %}
+<ul>
+	<li><a href="{% url map_data %} ">{% trans "All locations" %}</a></li>
+    <li><a href="{% url locations_your %} ">{% trans "Your location" %}</a></li>
+</ul>
+{% endblock %}
