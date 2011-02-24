@@ -5,13 +5,22 @@ from locations.models import UserLocation
 
 class UserLocationForm(forms.Form):
     
-    user = None
+    #user = None
     
     def __init__(self, user=None, *args, **kwargs):
         self.user = user
         
-        user_location = LocationField().formfield(widget=LocationWidget({'map_type' : MapTypes.USER_LOCATION,
-                                                                         'pushpin_path' : kwargs.get('pushpin', "")}))
+        defaults = {}
+        defaults['map_type'] = MapTypes.USER_LOCATION;
+        defaults['location'] = kwargs.get('location', None)
+        defaults['location'] = kwargs.get('pushpin', None)
+        defaults.update(**kwargs)
+        
+        #print 'aaaaaaaaaaa1'  + defaults['location'].latitude 
+        print len(args)
+        
+        user_location = LocationField().formfield(**{ 'widget' : LocationWidget(attrs=defaults)})
+        
         super(UserLocationForm, self).__init__(*args, **kwargs)
     
     def save(self, request_data):
