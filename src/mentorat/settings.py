@@ -10,7 +10,7 @@ MENTORAT_SITE_ROOT = '/mentorat'
 
 
 PINAX_ROOT = os.path.abspath(os.path.dirname(pinax.__file__))
-PROJECT_ROOT = '/home/scs/others/flux/Mentorat/trunk/src/mentorat/' #os.path.abspath(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 # tells Pinax to use the default theme
 PINAX_THEME = 'default'
@@ -29,10 +29,10 @@ MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'mysql'    # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
 DATABASE_NAME = 'mentorat'       # Or path to database file if using sqlite3.
-DATABASE_USER = 'mentorat'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'stargateSG1'         # Not used with sqlite3.
-DATABASE_HOST = 'localhost'             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = '3306'             # Set to empty string for default. Not used with sqlite3.
+DATABASE_USER = 'tephe'             # Not used with sqlite3.
+DATABASE_PASSWORD = 'ciusztocei'         # Not used with sqlite3.
+DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
 # http://www.postgresql.org/docs/8.1/static/datetime-keywords.html#DATETIME-TIMEZONE-SET-TABLE
