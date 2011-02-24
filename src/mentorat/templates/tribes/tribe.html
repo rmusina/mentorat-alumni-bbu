@@ -26,6 +26,7 @@
                 <h2>{% trans "Discussion Topics" %}</h2>
 					{% get_topics_for_group tribe as topic_queryset %}
 					<p> <b>{% blocktrans %}Topic count: {% endblocktrans %}</b>{{ topic_queryset.count }}</p>
+					{% if is_member %}
 					{% with topic_queryset|slice:":5" as topics %}
 						{% if topics %}
 							<p><b>{% trans "Topics:" %} </b><a href="{% groupurl topic_list tribe %}">{% trans " topic page" %}</a></p>
@@ -34,6 +35,9 @@
 							<p><b>{% blocktrans %}Topics:</b> None yet. <a href="{{ new_topic_url }}">Start one...</a>{% endblocktrans %}</p>
 						{% endif %}
 					{% endwith %}
+					{% else %} 
+						<p> {% trans "You canoot access the topics page, as you are not a member yet. "%} </p>
+					{% endif %}
             </div>
 		</div>
 		<div class="groups" style="width:200px;">
@@ -41,6 +45,7 @@
                 {% content_objects tribe "wiki.Article" as articles %}
 				<h2>{% trans "Wiki Articles" %}</h2>
 				<p> <b>{% trans "Article count:" %}</b> {{ articles|length }}</p>
+				{% if is_member %}
 				{% if articles %}
 					<p><b>{% trans "Articles:" %}</b><a href="{% groupurl wiki_list tribe %}">{% trans " read" %}</a></p>
 				{% else %}
@@ -51,12 +56,16 @@
 						{% endblocktrans %}
 					</p>
 				{% endif %}
+				{% else %} 
+					<p> {% trans "You canoot view the articles associated to this tribe, as you are not a member yet. "%} </p>
+				{% endif %}
             </div>
 		</div>
 		<div class="groups" style="width:200px;">
-
+					
 			<div class="extra">
                 <h2>{% trans "Members" %}</h2>
+                {% if is_member %}
                 <table width="100%">
                     {% for member in tribe.members.all %}
                         {% if forloop.counter0|divisibleby:"3" %}<tr>{% endif %}
@@ -72,6 +81,9 @@
                         {% if forloop.counter0|add:"1"|divisibleby:"3" %}</tr>{% endif %}
                     {% endfor %}
                     {% if tribe.members.all|length|divisibleby:"3" %}{% else %}</tr>{% endif %}
+                {% else %}
+                	<p> {% trans "You canoot view the members of this tribe, as you are not yet a member." %}
+                {% endif %}
                 </table>
             </div>
         
