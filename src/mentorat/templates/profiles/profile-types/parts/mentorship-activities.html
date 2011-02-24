@@ -1,0 +1,4 @@
+{% load i18n %}
+<p>{{ activity.activity.name }}<br/>
+{% if activity.activity.description %}<i>{% trans "Description" %}: {{activity.activity.description}}</i>
+{% endif %}</p>
