@@ -105,7 +105,7 @@ class MassComposeForm(forms.Form):
         if send_to_email:
             recipient_emails = [r.get_profile().email for r in recipients]
             for email in recipient_emails:
-                send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [email], priority="high")
+                send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [email], priority="high")
         else:
             for r in recipients:
                 msg = Message(
