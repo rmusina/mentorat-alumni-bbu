@@ -113,7 +113,7 @@ def mass_compose(request, recipient=None, form_class=MassComposeForm,
         else:
             form = form_class()
             if recipient is not None:
-                recipients = [u for u in User.objects.filter(username_in=[r.strip() for r in recipient.split('+')])]
+                recipients = [u for u in User.objects.filter(user__username_in=[r.strip() for r in recipient.split('+')])]
                 form.fields['recipient'].initial = recipients
         return render_to_response(template_name, {
             'form': form,

@@ -1,12 +1,12 @@
-import json
+#import json
 import geopy.distance
 import geopy.units
 import datetime
-import django.utils.simplejson
+import django.utils.simplejson as json
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from locations.models import UserLocation
@@ -24,7 +24,7 @@ except ImportError:
 
 @login_required
 def all_locations(request):
-    
+    raise Http404
     return render_to_response("locations/locations.html",
         {'locations': UserLocation.objects },
         context_instance=RequestContext(request)
@@ -32,6 +32,7 @@ def all_locations(request):
 
 def get_pushpin_avatar(user):
     #user = User.objects.get(username=user)
+    raise Http404
     if user.is_staff:
         return '/site_media/media/pushpins/root.png'
     else:
@@ -42,7 +43,7 @@ def get_pushpin_avatar(user):
 
 @login_required
 def user_location(request, form_class=UserLocationForm):
-    
+    raise Http404
     if request.method == 'POST':
         form = form_class(request.user, request.POST, {'pushpin' : get_pushpin_avatar(request.user)})
         form.save(request.POST.get('user_location', '0,0'))        
@@ -58,6 +59,7 @@ def user_location(request, form_class=UserLocationForm):
 
 @login_required
 def map_data(request):
+    raise Http404
     users = []
     for location in UserLocation.objects.all():
         user = location.user

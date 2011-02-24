@@ -90,11 +90,11 @@ class MassComposeForm(forms.Form):
 
         if send_to_students:
             student_list = [stud.pk for stud in StudentProfile.objects.all()]
-            students_as_users = [u for u in User.objects.all().filter(profile__pk__in=student_list)]
+            students_as_users = [u for u in User.objects.all().filter(user__profile__pk__in=student_list)]
             recipients.extend(students_as_users)
         if send_to_mentors:
             mentor_list = [ment.pk for ment in MentorProfile.objects.all()]
-            mentors_as_users = [u for u in User.objects.all().filter(profile__pk__in=mentor_list)]
+            mentors_as_users = [u for u in User.objects.all().filter(user__profile__pk__in=mentor_list)]
             recipients.extend(mentors_as_users)
 
         # filter only unique users

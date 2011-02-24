@@ -15,7 +15,7 @@ PROJECT_ROOT = '/home/scs/others/flux/Mentorat/trunk/src/mentorat/' #os.path.abs
 # tells Pinax to use the default theme
 PINAX_THEME = 'default'
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 # tells Pinax to serve media through django.views.static.serve.
