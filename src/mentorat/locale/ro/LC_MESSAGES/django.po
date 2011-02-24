@@ -1,0 +1,5433 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-11-24 20:26+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+
+#: apps/account/forms.py:36 apps/account/forms.py:69 apps/account/forms.py:374
+#: apps/account/forms.py:395
+#: apps/grappelli/templates/admin/auth/user/add_form.html:13
+#: templates/surveys/survey_stats_users.html:20
+msgid "Username"
+msgstr "Nume utilizator"
+
+#: apps/account/forms.py:37 apps/account/forms.py:70 apps/account/forms.py:256
+#: apps/account/forms.py:375 apps/account/forms.py:396
+#: apps/grappelli/templates/admin/auth/user/add_form.html:20
+#: apps/grappelli/templates/admin/auth/user/change_password.html:33
+msgid "Password"
+msgstr "Parola"
+
+#: apps/account/forms.py:38
+msgid "Remember Me"
+msgstr "Pastreaza-ma autentificat"
+
+#: apps/account/forms.py:38
+msgid "If checked you will stay logged in for 3 weeks"
+msgstr "Dacaa aceasta casuta e bifata veti ramane logat timp de 3 saptamani"
+
+#: apps/account/forms.py:50
+msgid "This account is currently inactive."
+msgstr "Acest cont este momentan inactiv."
+
+#: apps/account/forms.py:52
+msgid "The username and/or password you specified are not correct."
+msgstr "Numele de utilizator si/sau parola specificata sunt incorecte."
+
+#: apps/account/forms.py:58 apps/signup_codes/views.py:34
+#, python-format
+msgid "Successfully logged in as %(username)s."
+msgstr "Logat cu succes ca %(username)s."
+
+#: apps/account/forms.py:71 apps/account/forms.py:257
+#: apps/account/forms.py:397
+#: apps/grappelli/templates/admin/auth/user/add_form.html:26
+#: apps/grappelli/templates/admin/auth/user/change_password.html:39
+msgid "Password (again)"
+msgstr "Parola (repetare)"
+
+#: apps/account/forms.py:75 apps/account/forms.py:151
+#: apps/account/forms.py:217 apps/account/forms.py:273
+#: apps/profiles/forms.py:35
+#: templates/profiles/profile-types/profile-mentor.html:32
+#: templates/profiles/profile-types/profile-student.html:30
+msgid "Email"
+msgstr "Email"
+
+#: apps/account/forms.py:81 apps/account/forms.py:157
+msgid "Email (optional)"
+msgstr "Email (optional)"
+
+#: apps/account/forms.py:90 apps/account/forms.py:401
+msgid "Usernames can only contain letters, numbers and underscores."
+msgstr ""
+"Numele de utilizator pot contine doar litere, cifre sau caracterul "
+"'_' (uderscore)"
+
+#: apps/account/forms.py:95 apps/account/forms.py:406
+msgid "This username is already taken. Please choose another."
+msgstr "Numele de utilizator deja existent. Va rugam alegeti altul."
+
+#: apps/account/forms.py:100 apps/account/forms.py:245
+#: apps/account/forms.py:262 apps/account/forms.py:321
+#: apps/account/forms.py:411
+msgid "You must type the same password each time."
+msgstr "Parolele introduse trebuie sa coincida."
+
+#: apps/account/forms.py:124
+msgid "Your email address has already been verified"
+msgstr "Adresa dumneavoastra de email a fost deja verificata."
+
+#: apps/account/forms.py:131 apps/account/forms.py:136
+#: apps/account/forms.py:227
+#, python-format
+msgid "Confirmation email sent to %(email)s"
+msgstr "Email de confirmare trimis la %(email)s"
+
+#: apps/account/forms.py:224
+msgid "This email address already associated with this account."
+msgstr "Aceasta adresa de email e deja asociata contului curent."
+
+#: apps/account/forms.py:233
+msgid "Current Password"
+msgstr "Parola curenta"
+
+#: apps/account/forms.py:234 apps/account/forms.py:308
+msgid "New Password"
+msgstr "Parola noua"
+
+#: apps/account/forms.py:235 apps/account/forms.py:309
+msgid "New Password (again)"
+msgstr "Parola noua (repetare)"
+
+#: apps/account/forms.py:239
+msgid "Please type your current password."
+msgstr "Va rugam sa introduceti parola dumneavoastra curenta."
+
+#: apps/account/forms.py:251 apps/account/forms.py:333
+msgid "Password successfully changed."
+msgstr "Parola modificata cu succes."
+
+#: apps/account/forms.py:268
+msgid "Password successfully set."
+msgstr "Parola setata cu succes."
+
+#: apps/account/forms.py:277
+msgid "Email address not verified for any user account"
+msgstr "Adresa de email nu este verificata pentru nici un cont de utilizator"
+
+#: apps/account/forms.py:296
+msgid "Password reset email sent"
+msgstr "Email de resetare al parolei trimis"
+
+#: apps/account/forms.py:315
+msgid "Temporary key is invalid."
+msgstr "Cheia temporara este invalida."
+
+#: apps/account/forms.py:343 templates/account/base.html:13
+#: templates/account/timezone_change.html:6
+#: templates/account/timezone_change.html:9
+msgid "Timezone"
+msgstr "Fus orar"
+
+#: apps/account/forms.py:352
+msgid "Timezone successfully updated."
+msgstr "Fus orar updatat cu succes."
+
+#: apps/account/forms.py:357 templates/account/base.html:12
+#: templates/account/language_change.html:6
+#: templates/account/language_change.html:9
+msgid "Language"
+msgstr "Limba"
+
+#: apps/account/forms.py:366
+msgid "Language successfully updated."
+msgstr "Limba updatata cu succes."
+
+#: apps/account/forms.py:388
+msgid "Successfully authenticated."
+msgstr "Autentificat cu succes."
+
+#: apps/account/forms.py:432
+msgid "Account information"
+msgstr "Informatii despre cont"
+
+#: apps/account/forms.py:432 apps/profiles/views.py:258
+#: templates/profiles/profile-types/profile-mentor.html:8
+#: templates/profiles/profile-types/profile-student.html:8
+msgid "General information"
+msgstr "Informatii generale"
+
+#: apps/account/forms.py:432 apps/profiles/views.py:265
+#: templates/profiles/profile-types/profile-mentor.html:46
+#: templates/profiles/profile-types/profile-student.html:44
+msgid "Current employment"
+msgstr "Angajator curent"
+
+#: apps/account/forms.py:432 apps/profiles/views.py:272
+#: templates/profiles/profile-types/profile-mentor.html:72
+#: templates/profiles/profile-types/profile-student.html:68
+msgid "Academic and professional information"
+msgstr "Informatii academice si profesionale"
+
+#: apps/account/forms.py:433 apps/profiles/views.py:279
+#: templates/profiles/profile-types/profile-mentor.html:128
+#: templates/profiles/profile-types/profile-student.html:136
+msgid "Additional information"
+msgstr "Informatii aditionale"
+
+#: apps/account/forms.py:438 templates/surveys/survey_form.html:19
+msgid "Submit"
+msgstr "Trimite"
+
+#: apps/account/forms.py:439 templates/profiles/admin/events.html:34
+#: templates/surveys/survey_list.html:57
+#: templates/surveys/survey_stats_users.html:48
+msgid "Next"
+msgstr "Urmatoarea"
+
+#: apps/account/models.py:17 apps/account/models.py:30
+#: apps/account/models.py:102 apps/bookmarks/models.py:78
+#: apps/profiles/models.py:9
+msgid "user"
+msgstr "utilizator"
+
+#: apps/account/models.py:19
+msgid "language"
+msgstr "limba"
+
+#: apps/account/models.py:20
+msgid "timezone"
+msgstr "fus orar"
+
+#: apps/account/models.py:31
+msgid "Other Service Info Key"
+msgstr ""
+
+#: apps/account/models.py:32
+msgid "Other Service Info Value"
+msgstr ""
+
+#: apps/account/models.py:104
+msgid "temp_key"
+msgstr ""
+
+#: apps/account/models.py:105
+msgid "timestamp"
+msgstr ""
+
+#: apps/account/models.py:106
+msgid "reset yet?"
+msgstr "resetati?"
+
+#: apps/account/views.py:148
+msgid "Twitter authentication failed"
+msgstr "Autenficarea cu twitter a esuat"
+
+#: apps/account/views.py:167
+msgid "Removed twitter account information successfully."
+msgstr ""
+
+#: apps/account/templatetags/openid_tags.py:27
+msgid "Logged in with OpenID"
+msgstr "Logat cu OpenID"
+
+#: apps/bookmarks/models.py:37 apps/bookmarks/models.py:81
+#: apps/surveys/models.py:7
+msgid "description"
+msgstr "descriere"
+
+#: apps/bookmarks/models.py:38 apps/bookmarks/models.py:82
+msgid "note"
+msgstr ""
+
+#: apps/bookmarks/models.py:40
+msgid "has favicon"
+msgstr ""
+
+#: apps/bookmarks/models.py:41
+msgid "favicon checked"
+msgstr ""
+
+#: apps/bookmarks/models.py:43
+msgid "adder"
+msgstr "persoana care a adaugat"
+
+#: apps/bookmarks/models.py:44
+msgid "added"
+msgstr "adaugat"
+
+#: apps/bookmarks/models.py:77
+msgid "bookmark"
+msgstr ""
+
+#: apps/bookmarks/models.py:79
+msgid "saved"
+msgstr "salvat"
+
+#: apps/bookmarks/models.py:100
+#, python-format
+msgid "%(bookmark)s for %(user)s"
+msgstr "%(bookmark)s pentru %(user)s"
+
+#: apps/bookmarks/views.py:77
+#, python-format
+msgid "You have saved news '%(description)s'"
+msgstr "Ati salvat stirea '%(description)s'"
+
+#: apps/bookmarks/views.py:107
+msgid "News Post Deleted"
+msgstr "Stire stearsa"
+
+#: apps/friends/management.py:9
+msgid "Invitation Received"
+msgstr "Invitatie primita"
+
+#: apps/friends/management.py:9
+msgid "you have received an invitation"
+msgstr "ati primit o invitatie"
+
+#: apps/friends/management.py:10
+msgid "Invitation Sent"
+msgstr "Invitatie trimisa"
+
+#: apps/friends/management.py:10
+msgid "you have sent an invitation"
+msgstr "ati trimis o invitatie"
+
+#: apps/friends/management.py:11
+msgid "Acceptance Received"
+msgstr "Accept primit"
+
+#: apps/friends/management.py:11
+msgid "an invitation you sent has been accepted"
+msgstr "o invitatie pe care ati trimis-o a fost acceptata"
+
+#: apps/friends/management.py:12
+msgid "Acceptance Sent"
+msgstr "Accept trimis"
+
+#: apps/friends/management.py:12
+msgid "you have accepted an invitation you received"
+msgstr "ati acceptat o invitatie primita"
+
+#: apps/friends/management.py:13
+msgid "Decline Received"
+msgstr "Refuz primit"
+
+#: apps/friends/management.py:13
+msgid "an invitation you sent has been declined"
+msgstr "o invitatie pe care ati trimis-o a fost refuzata"
+
+#: apps/friends/management.py:14
+msgid "Decline Sent"
+msgstr "Refuz trimis"
+
+#: apps/friends/management.py:14
+msgid "you have declined an invitation you received"
+msgstr "ati refuzat o invitatie primita anterior"
+
+#: apps/friends/management.py:15
+msgid "Pending Received"
+msgstr "In curs de procesare primit"
+
+#: apps/friends/management.py:15
+msgid "an invitation you sent is being considered by a mentor"
+msgstr "o invitatie pe care ati trimis-o este analizata de un mentor"
+
+#: apps/friends/management.py:16
+msgid "Pending Sent"
+msgstr "In curs de procesare trimis"
+
+#: apps/friends/management.py:16
+msgid "you have accepted to overview an invitation"
+msgstr "ati acceptat sa analizati o invitatie"
+
+#: apps/friends/management.py:17
+msgid "Renounce Received"
+msgstr "Renunt primit"
+
+#: apps/friends/management.py:17
+msgid "one student has renounced his application"
+msgstr "un student a renuntat la solicitarea sa."
+
+#: apps/friends/management.py:18
+msgid "Renounce Sent"
+msgstr "Renunt trimis"
+
+#: apps/friends/management.py:18
+msgid "you have renounced your application for a mentor"
+msgstr "ati renuntat la solicitarea trimisa unui mentor"
+
+#: apps/friends/management.py:19
+msgid "Join Invitation Accepted"
+msgstr "Invitatie de alaturare acceptata"
+
+#: apps/friends/management.py:19
+msgid "an invitation you sent to join this site has been accepted"
+msgstr ""
+"o invitatie de inregistrare pe site pe care ati trimis-o a fost acceptata"
+
+#: apps/friends/management.py:20
+msgid "User Assigned To Another Mentor"
+msgstr "Utilizator asignat altui mentor"
+
+#: apps/friends/management.py:20
+msgid ""
+"the user who has submitted a request has been assigned to another mentor"
+msgstr "utilizatorul care a trimis o solicitare a fost asignat altui mentor"
+
+#: apps/friends/templates/notification/friends_accept/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(invitation_user)s</a> has accepted to be your "
+"mentor."
+msgstr "%(invitation_to_user)s a acceptat sa va fie mentor."
+
+#: apps/friends/templates/notification/friends_accept_sent/notice.html:2
+#, python-format
+msgid ""
+"You accepted <a href=\"%(user_url)s\">%(invitation_from_user)s</a>'s request."
+msgstr ""
+"Ati acceptat solicitarea trimisa de <a href=\"%(user_url)s\">%"
+"(invitation_from_user)s</a>."
+
+#: apps/friends/templates/notification/friends_decline/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(invitation_user)s</a> has declined your "
+"mentorship request."
+msgstr "%(invitation_to_user)s a refuzat solicitarea dumneavoastra."
+
+#: apps/friends/templates/notification/friends_decline_sent/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"You declined <a href=\"%(user_url)s\">%(invitation_from_user)s</a>'s "
+"mentorship request."
+msgstr "Ati refuzat solicitarea trimisa de %(invitation_from_user)s"
+
+#: apps/friends/templates/notification/friends_invite/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(invitation_from_user)s</a> has requested you to "
+"be his mentor (see <a href=\"%(invitation_page)s\">invitations</a>)"
+msgstr ""
+"%(invitation_from_user)s v-a solicitat ca mentor. Puteti sa acceptati "
+"invitatia la:\n"
+"\n"
+"http://%(current_site)s%(invitation_page)s\n"
+
+#: apps/friends/templates/notification/friends_invite_sent/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"you have invited <a href=\"%(user_url)s\">%(invitation_to_user)s</a> to be "
+"your mentor."
+msgstr "L-ati invitat pe %(invitation_to_user)s sa va fie mentor."
+
+#: apps/friends/templates/notification/friends_other_mentor/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(invitation_from_user)s</a> has been accepted by "
+"another mentor "
+msgstr "%(invitation_from_user)s a fost acceptat de catre alt mentor."
+
+#: apps/friends/templates/notification/friends_pending/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(invitation_user)s</a> is studying your mentorship "
+"request."
+msgstr "%(invitation_to_user)s studiaza solicitarea dumneavoastra"
+
+#: apps/friends/templates/notification/friends_pending_sent/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"You accepted to overview <a href=\"%(user_url)s\">%(invitation_from_user)s</"
+"a>'s mentorship request."
+msgstr ""
+"Ati acceptat sa studiati solicitarea trimisa de %(invitation_from_user)s"
+
+#: apps/friends/templates/notification/friends_renounce/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(invitation_from_user)s</a> has renounced his "
+"application "
+msgstr "%(invitation_from_user)s a renuntat la solicitare."
+
+#: apps/friends/templates/notification/friends_renounce_sent/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"you have renounced your application for <a href=\"%(user_url)s\">%"
+"(invitation_to_user)s</a>"
+msgstr "ati renuntat la solicitarea trimisa trimisa de %(invitation_to_user)s."
+
+#: apps/friends/templates/notification/join_accept/notice.html:2
+#, fuzzy, python-format
+msgid "<a href=\"%(user_url)s\">%(new_user)s</a> has joined."
+msgstr "%(new_user)s s-a alaturat platformei"
+
+#: apps/friends_app/views.py:26
+#, python-format
+msgid "Accepted mentorship request from %(from_user)s"
+msgstr "Ati acceptat solicitarea trimisa de %(from_user)s"
+
+#: apps/friends_app/views.py:42
+#, python-format
+msgid ""
+"Declined mentorship request from %(from_user)s. Please write a message to "
+"this user motivating your decision."
+msgstr ""
+"Ati refuzat solicitarea facuta de %(from_user)s. Va rugam sa va motivati "
+"deciziaintr-un mesaj trimis utilizatorului in cauza."
+
+#: apps/friends_app/views.py:52
+#, python-format
+msgid "You have chosen to overview this request %(from_user)s"
+msgstr "Ati acceptat sa studiati solicitarea facuta de %(from_user)s"
+
+#: apps/friends_app/views.py:97
+#, python-format
+msgid "%(total)s vCards found, %(imported)s contacts imported."
+msgstr "%(total)s vCards gasite, %(imported)s contacte importate."
+
+#: apps/friends_app/views.py:106 apps/friends_app/views.py:112
+#, python-format
+msgid "%(total)s people with email found, %(imported)s contacts imported."
+msgstr "%(total)s persoane cu email gasite, %(imported)s contacte importate."
+
+#: apps/grappelli/sites.py:131 apps/grappelli/sites.py:142
+#: apps/grappelli/sites.py:150
+msgid "Site administration"
+msgstr "Administrare site"
+
+#: apps/grappelli/sites.py:212
+#, python-format
+msgid "%s administration"
+msgstr "administrare %s"
+
+#: apps/grappelli/models/bookmarks.py:13
+#: apps/grappelli/templates/admin/object_history.html:26
+#: apps/wiki/templates/wiki/history.html:20
+msgid "User"
+msgstr "Utilizator"
+
+#: apps/grappelli/models/bookmarks.py:17 apps/grappelli/models/bookmarks.py:32
+msgid "Bookmark"
+msgstr "Stire"
+
+#: apps/grappelli/models/bookmarks.py:18
+#: apps/grappelli/templates/admin/includes_grappelli/bookmarks.html:4
+#: apps/grappelli/templates/admin/includes_grappelli/header.html:10
+msgid "Bookmarks"
+msgstr "Stiri"
+
+#: apps/grappelli/models/bookmarks.py:33 apps/grappelli/models/help.py:13
+#: apps/grappelli/models/help.py:36 apps/grappelli/models/navigation.py:18
+#: apps/grappelli/models/navigation.py:41 apps/wiki/models.py:61
+#: apps/wiki/templates/wiki/recentchanges.html:9
+msgid "Title"
+msgstr "Titlu"
+
+#: apps/grappelli/models/bookmarks.py:34 apps/grappelli/models/help.py:37
+#: apps/grappelli/models/navigation.py:42
+msgid "Link"
+msgstr "Link"
+
+#: apps/grappelli/models/bookmarks.py:34 apps/grappelli/models/help.py:37
+#: apps/grappelli/models/navigation.py:42
+msgid "The Link should be relative, e.g. /admin/blog/."
+msgstr "Link-ul trebuie sa fie relativ, ex. /admin/blog/."
+
+#: apps/grappelli/models/bookmarks.py:37 apps/grappelli/models/help.py:16
+#: apps/grappelli/models/help.py:41 apps/grappelli/models/navigation.py:21
+#: apps/grappelli/models/navigation.py:50
+msgid "Order"
+msgstr "Ordoneaza dupa:"
+
+#: apps/grappelli/models/bookmarks.py:41
+msgid "Bookmark Item"
+msgstr "Bookmark"
+
+#: apps/grappelli/models/bookmarks.py:42
+msgid "Bookmark Items"
+msgstr "Bookmark-uri"
+
+#: apps/grappelli/models/help.py:20 apps/grappelli/models/help.py:21
+#: apps/grappelli/models/help.py:35
+#: apps/grappelli/templates/grappelli/help/help.html:10
+#: apps/grappelli/templates/grappelli/help/help_detail.html:22
+#: apps/grappelli/views/help.py:35
+msgid "Help"
+msgstr "Ajutor"
+
+#: apps/grappelli/models/help.py:38 apps/messages/forms.py:27
+#: apps/messages/forms.py:68 apps/messages/models.py:50
+msgid "Body"
+msgstr "Corp"
+
+#: apps/grappelli/models/help.py:45
+msgid "Help Entry"
+msgstr "Intrare ajutor"
+
+#: apps/grappelli/models/help.py:46
+msgid "Help Entries"
+msgstr "Intrari ajutor"
+
+#: apps/grappelli/models/navigation.py:25
+#: apps/grappelli/models/navigation.py:26
+#: apps/grappelli/models/navigation.py:40
+#: apps/grappelli/templates/admin/includes_grappelli/navigation.html:5
+msgid "Navigation"
+msgstr "Navigare"
+
+#: apps/grappelli/models/navigation.py:43
+msgid "Category"
+msgstr "Categorie"
+
+#: apps/grappelli/models/navigation.py:46
+#: templates/mentorship_admin/admin_search_profiles.html:12
+#: templates/profiles/profiles.html:12
+msgid "Users"
+msgstr "Utilizatori"
+
+#: apps/grappelli/models/navigation.py:47
+msgid "Groups"
+msgstr "Grupuri"
+
+#: apps/grappelli/models/navigation.py:54
+msgid "Navigation Item"
+msgstr "Element navigare"
+
+#: apps/grappelli/models/navigation.py:55
+msgid "Navigation Items"
+msgstr "Elemente navigare"
+
+#: apps/grappelli/templates/admin/404.html:7
+#: apps/grappelli/templates/admin/404.html:11
+msgid "Page not found"
+msgstr "Pagina nu a fost gasita"
+
+#: apps/grappelli/templates/admin/404.html:12
+msgid "We're sorry, but the requested page could not be found."
+msgstr "Ne pare rau, dar pagina solicitata nu a putut fi gasita."
+
+#: apps/grappelli/templates/admin/500.html:7
+#: apps/grappelli/templates/admin/app_index.html:10
+#: apps/grappelli/templates/admin/base.html:55
+#: apps/grappelli/templates/admin/change_form.html:24
+#: apps/grappelli/templates/admin/change_list.html:43
+#: apps/grappelli/templates/admin/delete_confirmation.html:9
+#: apps/grappelli/templates/admin/delete_selected_confirmation.html:9
+#: apps/grappelli/templates/admin/index.html:21
+#: apps/grappelli/templates/admin/index_collection.html:21
+#: apps/grappelli/templates/admin/index_group.html:21
+#: apps/grappelli/templates/admin/invalid_setup.html:7
+#: apps/grappelli/templates/admin/object_history.html:9
+#: apps/grappelli/templates/admin/auth/user/change_password.html:10
+#: apps/grappelli/templates/admin_doc/bookmarklets.html:9
+#: apps/grappelli/templates/grappelli/help/help.html:10
+#: apps/grappelli/templates/grappelli/help/help_detail.html:22
+#: apps/grappelli/templates/registration/logged_out.html:4
+#: apps/grappelli/templates/registration/password_change_done.html:17
+#: apps/grappelli/templates/registration/password_reset_complete.html:4
+#: apps/grappelli/templates/registration/password_reset_confirm.html:4
+#: apps/grappelli/templates/registration/password_reset_done.html:4
+#: apps/grappelli/templates/registration/password_reset_form.html:4
+msgid "Home"
+msgstr "Pagina pricipala"
+
+#: apps/grappelli/templates/admin/500.html:7
+msgid "Server error"
+msgstr "Eroare de server"
+
+#: apps/grappelli/templates/admin/500.html:10
+msgid "Server error (500)"
+msgstr "Eroare de server (500)"
+
+#: apps/grappelli/templates/admin/500.html:14
+msgid "Server Error <em>(500)</em>"
+msgstr "Eroare de server <em>(500)</em>"
+
+#: apps/grappelli/templates/admin/500.html:15
+msgid ""
+"There's been an error. It's been reported to the site administrators via e-"
+"mail and should be fixed shortly. Thanks for your patience."
+msgstr ""
+"S-a produs o eroare. A fost raportata administratorilor site-ului prin e-"
+"mailsi va fi reparata in cel mai scurt timp. Va multumim pentru rabdare"
+
+#: apps/grappelli/templates/admin/app_index.html:12
+#: apps/grappelli/templates/admin/app_index.html:26
+#: templates/admin/index.html:19
+#, python-format
+msgid "%(name)s"
+msgstr "%(name)s"
+
+#: apps/grappelli/templates/admin/app_index.html:25
+#: apps/grappelli/templates/admin/index.html:35
+#: apps/grappelli/templates/admin/index.html:64
+#: apps/grappelli/templates/admin/index.html:98
+#: apps/grappelli/templates/admin/index_collection.html:37
+#: apps/grappelli/templates/admin/index_collection.html:66
+#: apps/grappelli/templates/admin/index_group.html:38
+#: apps/grappelli/templates/admin/index_group.html:67
+#: apps/grappelli/templates/admin/index_group.html:101
+#: templates/admin/index.html:18
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr ""
+
+#: apps/grappelli/templates/admin/app_index.html:36
+#: apps/grappelli/templates/admin/change_form.html:27
+#: apps/grappelli/templates/admin/index.html:46
+#: apps/grappelli/templates/admin/index.html:74
+#: apps/grappelli/templates/admin/index.html:109
+#: apps/grappelli/templates/admin/index_collection.html:48
+#: apps/grappelli/templates/admin/index_collection.html:76
+#: apps/grappelli/templates/admin/index_group.html:49
+#: apps/grappelli/templates/admin/index_group.html:77
+#: apps/grappelli/templates/admin/index_group.html:112
+#: apps/profiles/views.py:336 apps/profiles/views.py:409
+#: apps/profiles/views.py:482 templates/admin/index.html:29
+msgid "Add"
+msgstr "Adaugati"
+
+#: apps/grappelli/templates/admin/app_index.html:42
+#: apps/grappelli/templates/admin/index.html:52
+#: apps/grappelli/templates/admin/index.html:80
+#: apps/grappelli/templates/admin/index.html:115
+#: apps/grappelli/templates/admin/index_collection.html:54
+#: apps/grappelli/templates/admin/index_collection.html:82
+#: apps/grappelli/templates/admin/index_group.html:55
+#: apps/grappelli/templates/admin/index_group.html:83
+#: apps/grappelli/templates/admin/index_group.html:118
+#: templates/admin/index.html:35
+#, fuzzy
+msgid "Change"
+msgstr "Schimbati"
+
+#: apps/grappelli/templates/admin/base_site.html:7
+#, fuzzy
+msgid "Django site admin"
+msgstr "Administrare mentorat"
+
+#: apps/grappelli/templates/admin/base_site.html:8
+#, fuzzy
+msgid "Django administration"
+msgstr "Invitatii"
+
+#: apps/grappelli/templates/admin/change_form.html:39
+#: apps/grappelli/templates/admin/object_history.html:13
+#, fuzzy
+msgid "History"
+msgstr "Istoric pentru"
+
+#: apps/grappelli/templates/admin/change_form.html:40
+msgid "View on site"
+msgstr ""
+
+#: apps/grappelli/templates/admin/change_form.html:57
+#: apps/grappelli/templates/admin/change_list.html:70
+#: apps/grappelli/templates/admin/auth/user/change_password.html:22
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/grappelli/templates/admin/change_list.html:60
+#, fuzzy, python-format
+msgid "Add %(name)s"
+msgstr "%(name)s"
+
+#: apps/grappelli/templates/admin/change_list.html:101
+#: apps/grappelli/templates/admin/submit_line.html:5
+#: apps/profiles/views.py:363 apps/profiles/views.py:436
+#: apps/profiles/views.py:509 apps/wiki/templates/wiki/edit.html:23
+#: templates/profiles/admin/events.html:40
+msgid "Save"
+msgstr "Salvati"
+
+#: apps/grappelli/templates/admin/change_list.html:115
+msgid "Results"
+msgstr ""
+
+#: apps/grappelli/templates/admin/change_list.html:117
+#, python-format
+msgid "%(counter)s found"
+msgstr ""
+
+#: apps/grappelli/templates/admin/change_list.html:118
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr ""
+
+#: apps/grappelli/templates/admin/change_list.html:132
+msgid "Filter"
+msgstr ""
+
+#: apps/grappelli/templates/admin/date_hierarchy.html:5
+msgid "Date Hierarchy"
+msgstr ""
+
+#: apps/grappelli/templates/admin/delete_confirmation.html:13
+#: apps/grappelli/templates/admin/submit_line.html:4
+#: apps/messages/templates/messages/view.html:20
+#: templates/messages/view.html:27
+msgid "Delete"
+msgstr ""
+
+#: apps/grappelli/templates/admin/delete_confirmation.html:20
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: apps/grappelli/templates/admin/delete_confirmation.html:27
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: apps/grappelli/templates/admin/delete_confirmation.html:31
+#: apps/grappelli/templates/admin/delete_selected_confirmation.html:37
+#: apps/grappelli/templates/admin/includes_grappelli/bookmarks.html:21
+#, fuzzy
+msgid "Cancel"
+msgstr "renunta"
+
+#: apps/grappelli/templates/admin/delete_confirmation.html:33
+#: apps/grappelli/templates/admin/delete_selected_confirmation.html:38
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: apps/grappelli/templates/admin/delete_selected_confirmation.html:12
+msgid "Delete multiple objects"
+msgstr ""
+
+#: apps/grappelli/templates/admin/delete_selected_confirmation.html:19
+#, python-format
+msgid ""
+"Deleting the %(object_name)s would result in deleting related objects, but "
+"your account doesn't have permission to delete the following types of "
+"objects:"
+msgstr ""
+
+#: apps/grappelli/templates/admin/delete_selected_confirmation.html:26
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(object_name)s objects? All of "
+"the following objects and it's related items will be deleted:"
+msgstr ""
+
+#: apps/grappelli/templates/admin/filter.html:8
+#, fuzzy, python-format
+msgid " By %(filter_title)s "
+msgstr "%(page_title)s"
+
+#: apps/grappelli/templates/admin/index.html:127
+#: apps/grappelli/templates/admin/index_collection.html:96
+#: apps/grappelli/templates/admin/index_group.html:130
+#: templates/admin/index.html:45
+msgid "You don't have permission to edit anything."
+msgstr "Nu aveti permisiunea sa editati nimic."
+
+#: apps/grappelli/templates/admin/index.html:137
+#: apps/grappelli/templates/admin/index_collection.html:106
+#: apps/grappelli/templates/admin/index_group.html:140
+#: templates/admin/index.html:53
+msgid "Recent Actions"
+msgstr "Actiuni recente"
+
+#: apps/grappelli/templates/admin/index.html:138
+#: apps/grappelli/templates/admin/index_collection.html:107
+#: apps/grappelli/templates/admin/index_group.html:141
+#: templates/admin/index.html:54
+msgid "My Actions"
+msgstr "Actiunile mele"
+
+#: apps/grappelli/templates/admin/index.html:142
+#: apps/grappelli/templates/admin/index_collection.html:111
+#: apps/grappelli/templates/admin/index_group.html:145
+#: templates/admin/index.html:58
+msgid "None available"
+msgstr "Nici unul disponibil"
+
+#: apps/grappelli/templates/admin/index_collection.html:23
+#: apps/grappelli/templates/admin/index_group.html:23
+#, fuzzy
+msgid "Site Administration"
+msgstr "Invitatii"
+
+#: apps/grappelli/templates/admin/invalid_setup.html:11
+msgid ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+
+#: apps/grappelli/templates/admin/login.html:28
+#, fuzzy
+msgid "Username:"
+msgstr "Nume utilizator"
+
+#: apps/grappelli/templates/admin/login.html:31
+#, fuzzy
+msgid "Password:"
+msgstr "Parola"
+
+#: apps/grappelli/templates/admin/login.html:36
+#: apps/grappelli/templates/registration/password_reset_complete.html:14
+#, fuzzy
+msgid "Log in"
+msgstr "Logare"
+
+#: apps/grappelli/templates/admin/object_history.html:25
+#: apps/messages/admin.py:45
+#, fuzzy
+msgid "Date/time"
+msgstr "Data"
+
+#: apps/grappelli/templates/admin/object_history.html:27
+#: apps/messages/templates/messages/inbox.html:7
+#: apps/messages/templates/messages/outbox.html:7
+#: apps/messages/templates/messages/trash.html:7
+#: apps/wiki/templates/wiki/recentchanges.html:8
+#: templates/messages/inbox.html:11 templates/messages/outbox.html:11
+#: templates/messages/trash.html:11
+#, fuzzy
+msgid "Action"
+msgstr "Actiune"
+
+#: apps/grappelli/templates/admin/object_history.html:33
+#: apps/messages/templates/messages/inbox.html:19
+#: apps/messages/templates/messages/outbox.html:16
+#: apps/messages/templates/messages/trash.html:16
+#: apps/messages/templates/messages/view.html:11
+#: templates/messages/inbox.html:23 templates/messages/outbox.html:20
+#: templates/messages/trash.html:20 templates/messages/view.html:16
+msgid "DATETIME_FORMAT"
+msgstr ""
+
+#: apps/grappelli/templates/admin/object_history.html:41
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+
+#: apps/grappelli/templates/admin/pagination.html:11
+msgid "Show all"
+msgstr ""
+
+#: apps/grappelli/templates/admin/search_form.html:7
+#: templates/mentorship_admin/base.html:10
+#, fuzzy
+msgid "Search"
+msgstr "Cauta"
+
+#: apps/grappelli/templates/admin/search_form.html:19
+#, fuzzy
+msgid "Search for"
+msgstr "Cauta"
+
+#: apps/grappelli/templates/admin/submit_line.html:6
+msgid "Save as new"
+msgstr ""
+
+#: apps/grappelli/templates/admin/submit_line.html:7
+#, fuzzy
+msgid "Save and add another"
+msgstr "Adauga altul"
+
+#: apps/grappelli/templates/admin/submit_line.html:8
+msgid "Save and continue editing"
+msgstr ""
+
+#: apps/grappelli/templates/admin/auth/user/add_form.html:6
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user "
+"options."
+msgstr ""
+
+#: apps/grappelli/templates/admin/auth/user/add_form.html:27
+#: apps/grappelli/templates/admin/auth/user/change_password.html:40
+msgid "Enter the same password as above, for verification."
+msgstr ""
+
+#: apps/grappelli/templates/admin/auth/user/change_password.html:13
+#: apps/grappelli/templates/admin/auth/user/change_password.html:46
+#: apps/grappelli/templates/admin/includes_grappelli/header.html:41
+#: apps/grappelli/templates/registration/password_change_done.html:10
+#: apps/grappelli/templates/registration/password_change_form.html:10
+#: templates/profiles/profile_right_panel.html:54
+#, fuzzy
+msgid "Change password"
+msgstr "Schimbati parola"
+
+#: apps/grappelli/templates/admin/auth/user/change_password.html:26
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+
+#: apps/grappelli/templates/admin/edit_inline/stacked.html:6
+msgid "Open All Items"
+msgstr ""
+
+#: apps/grappelli/templates/admin/edit_inline/stacked.html:7
+msgid "Close All Items"
+msgstr ""
+
+#: apps/grappelli/templates/admin/edit_inline/stacked.html:8
+#: apps/grappelli/templates/admin/edit_inline/tabular.html:6
+#, fuzzy
+msgid "Add Item"
+msgstr "Adauga altul"
+
+#: apps/grappelli/templates/admin/edit_inline/stacked.html:18
+#: apps/grappelli/templates/admin/edit_inline/tabular.html:53
+msgid "View on Site"
+msgstr ""
+
+#: apps/grappelli/templates/admin/edit_inline/stacked.html:20
+#: apps/grappelli/templates/admin/edit_inline/tabular.html:52
+msgid "Delete Item"
+msgstr ""
+
+#: apps/grappelli/templates/admin/edit_inline/tabular.html:54
+msgid "Move Item"
+msgstr ""
+
+#: apps/grappelli/templates/admin/includes_grappelli/bookmarks.html:11
+msgid "No Bookmarks Found"
+msgstr ""
+
+#: apps/grappelli/templates/admin/includes_grappelli/bookmarks.html:22
+msgid "Save Bookmark"
+msgstr ""
+
+#: apps/grappelli/templates/admin/includes_grappelli/header.html:12
+msgid "Loading Bookmarks"
+msgstr ""
+
+#: apps/grappelli/templates/admin/includes_grappelli/header.html:32
+#: apps/grappelli/templates/admin_doc/bookmarklets.html:9
+#: apps/grappelli/templates/registration/password_change_done.html:6
+#: apps/grappelli/templates/registration/password_change_form.html:6
+#, fuzzy
+msgid "Documentation"
+msgstr "Locatii"
+
+#: apps/grappelli/templates/admin/includes_grappelli/header.html:49
+#: apps/grappelli/templates/registration/password_change_done.html:13
+#: apps/grappelli/templates/registration/password_change_form.html:13
+#, fuzzy
+msgid "Log out"
+msgstr "Logare"
+
+#: apps/grappelli/templates/admin/includes_grappelli/navigation.html:16
+msgid "No Items Found."
+msgstr ""
+
+#: apps/grappelli/templates/admin_doc/bookmarklets.html:9
+#: apps/grappelli/templates/admin_doc/bookmarklets.html:14
+msgid "Bookmarklets"
+msgstr ""
+
+#: apps/grappelli/templates/admin_doc/bookmarklets.html:10
+msgid "Documentation bookmarklets"
+msgstr ""
+
+#: apps/grappelli/templates/admin_doc/bookmarklets.html:15
+msgid ""
+"\n"
+"<p>To install bookmarklets, drag the link to your bookmarks\n"
+"toolbar, or right-click the link and add it to your bookmarks. Now you can\n"
+"select the bookmarklet from any page in the site.  Note that some of these\n"
+"bookmarklets require you to be viewing the site from a computer designated\n"
+"as \"internal\" (talk to your system administrator if you aren't sure if\n"
+"your computer is \"internal\").</p>\n"
+msgstr ""
+
+#: apps/grappelli/templates/admin_doc/bookmarklets.html:25
+msgid "Documentation for this page"
+msgstr ""
+
+#: apps/grappelli/templates/admin_doc/bookmarklets.html:26
+msgid ""
+"Jumps you from any page to the documentation for the view that generates "
+"that page."
+msgstr ""
+
+#: apps/grappelli/templates/admin_doc/bookmarklets.html:29
+msgid "Show object ID"
+msgstr ""
+
+#: apps/grappelli/templates/admin_doc/bookmarklets.html:30
+msgid ""
+"Shows the content-type and unique ID for pages that represent a single "
+"object."
+msgstr ""
+
+#: apps/grappelli/templates/admin_doc/bookmarklets.html:33
+msgid "Edit this object (current window)"
+msgstr ""
+
+#: apps/grappelli/templates/admin_doc/bookmarklets.html:34
+msgid "Jumps to the admin page for pages that represent a single object."
+msgstr ""
+
+#: apps/grappelli/templates/admin_doc/bookmarklets.html:37
+msgid "Edit this object (new window)"
+msgstr ""
+
+#: apps/grappelli/templates/admin_doc/bookmarklets.html:38
+msgid "As above, but opens the admin page in a new window."
+msgstr ""
+
+#: apps/grappelli/templates/grappelli/help/help.html:15
+msgid ""
+"This section should explain the handling of the Admin-Interface/CMS. "
+"Permissions provided, you can change/add entries to this Section."
+msgstr ""
+
+#: apps/grappelli/templates/grappelli/widget/foreignkey_autocomplete.html:4
+msgid "Lookup"
+msgstr ""
+
+#: apps/grappelli/templates/registration/logged_out.html:7
+#, fuzzy
+msgid "Log in again"
+msgstr "Logare &raquo"
+
+#: apps/grappelli/templates/registration/password_change_done.html:17
+#: apps/grappelli/templates/registration/password_change_form.html:17
+#: apps/grappelli/templates/registration/password_change_form.html:21
+#, fuzzy
+msgid "Password change"
+msgstr "Parola (repetare)"
+
+#: apps/grappelli/templates/registration/password_change_done.html:19
+#: apps/grappelli/templates/registration/password_change_done.html:23
+#, fuzzy
+msgid "Password change successful"
+msgstr "Parola setata cu succes."
+
+#: apps/grappelli/templates/registration/password_change_done.html:25
+#, fuzzy
+msgid "Your password was changed."
+msgstr "Parola modificata cu succes."
+
+#: apps/grappelli/templates/registration/password_change_form.html:23
+msgid ""
+"Please enter your old password, for securitys sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+
+#: apps/grappelli/templates/registration/password_change_form.html:30
+#, fuzzy
+msgid "Old password:"
+msgstr "Parola"
+
+#: apps/grappelli/templates/registration/password_change_form.html:34
+#: apps/grappelli/templates/registration/password_reset_confirm.html:18
+#, fuzzy
+msgid "New password:"
+msgstr "Parola noua"
+
+#: apps/grappelli/templates/registration/password_change_form.html:38
+#: apps/grappelli/templates/registration/password_reset_confirm.html:20
+#, fuzzy
+msgid "Confirm password:"
+msgstr "Schimbati parola"
+
+#: apps/grappelli/templates/registration/password_change_form.html:41
+#: apps/grappelli/templates/registration/password_reset_confirm.html:21
+#, fuzzy
+msgid "Change my password"
+msgstr "Schimbati parola"
+
+#: apps/grappelli/templates/registration/password_reset_complete.html:4
+#: apps/grappelli/templates/registration/password_reset_confirm.html:6
+#: apps/grappelli/templates/registration/password_reset_done.html:4
+#: apps/grappelli/templates/registration/password_reset_form.html:4
+#: apps/grappelli/templates/registration/password_reset_form.html:6
+#: apps/grappelli/templates/registration/password_reset_form.html:10
+#, fuzzy
+msgid "Password reset"
+msgstr "Resetare parola"
+
+#: apps/grappelli/templates/registration/password_reset_complete.html:6
+#: apps/grappelli/templates/registration/password_reset_complete.html:10
+#, fuzzy
+msgid "Password reset complete"
+msgstr "Email de resetare al parolei trimis"
+
+#: apps/grappelli/templates/registration/password_reset_complete.html:12
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr ""
+
+#: apps/grappelli/templates/registration/password_reset_confirm.html:4
+#, fuzzy
+msgid "Password reset confirmation"
+msgstr "Email de resetare al parolei trimis"
+
+#: apps/grappelli/templates/registration/password_reset_confirm.html:12
+#, fuzzy
+msgid "Enter new password"
+msgstr "schimba parola"
+
+#: apps/grappelli/templates/registration/password_reset_confirm.html:14
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: apps/grappelli/templates/registration/password_reset_confirm.html:26
+#, fuzzy
+msgid "Password reset unsuccessful"
+msgstr "Parola setata cu succes."
+
+#: apps/grappelli/templates/registration/password_reset_confirm.html:28
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+
+#: apps/grappelli/templates/registration/password_reset_done.html:6
+#: apps/grappelli/templates/registration/password_reset_done.html:10
+#, fuzzy
+msgid "Password reset successful"
+msgstr "Parola setata cu succes."
+
+#: apps/grappelli/templates/registration/password_reset_done.html:12
+msgid ""
+"We've e-mailed a new password to the e-mail address you submitted. You "
+"should be receiving it shortly."
+msgstr ""
+
+#: apps/grappelli/templates/registration/password_reset_email.html:2
+msgid "You're receiving this e-mail because you requested a password reset"
+msgstr ""
+
+#: apps/grappelli/templates/registration/password_reset_email.html:3
+#, python-format
+msgid "for your user account at %(site_name)s"
+msgstr ""
+
+#: apps/grappelli/templates/registration/password_reset_email.html:5
+#, python-format
+msgid "Your new password is: %(new_password)s"
+msgstr ""
+
+#: apps/grappelli/templates/registration/password_reset_email.html:7
+msgid "Feel free to change this password by going to this page:"
+msgstr ""
+
+#: apps/grappelli/templates/registration/password_reset_email.html:11
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: apps/grappelli/templates/registration/password_reset_email.html:13
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: apps/grappelli/templates/registration/password_reset_email.html:15
+#, fuzzy, python-format
+msgid "The %(site_name)s team"
+msgstr "Grup %(tribe_name)s sters"
+
+#: apps/grappelli/templates/registration/password_reset_form.html:12
+#, fuzzy
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll reset "
+"your password and e-mail the new one to you."
+msgstr ""
+"V-ati uitat parola? Completati-va adresa de email mai jos si o sa va "
+"trimitem un e-mail care va va permite sa o schimbi."
+
+#: apps/grappelli/templates/registration/password_reset_form.html:16
+#, fuzzy
+msgid "E-mail address:"
+msgstr "Adresa angajatorului"
+
+#: apps/grappelli/templates/registration/password_reset_form.html:16
+#: templates/account/password_reset.html:21
+#, fuzzy
+msgid "Reset my password"
+msgstr "Reseteaza-mi parola"
+
+#: apps/grappelli/views/bookmarks.py:38
+msgid "Site is already bookmarked."
+msgstr ""
+
+#: apps/grappelli/views/bookmarks.py:43
+msgid "Site was added to Bookmarks."
+msgstr ""
+
+#: apps/grappelli/views/bookmarks.py:45 apps/grappelli/views/bookmarks.py:47
+#: apps/grappelli/views/bookmarks.py:50
+msgid "Site could not be added to Bookmarks."
+msgstr ""
+
+#: apps/grappelli/views/bookmarks.py:73
+msgid "Site was removed from Bookmarks."
+msgstr ""
+
+#: apps/grappelli/views/bookmarks.py:75 apps/grappelli/views/bookmarks.py:77
+#: apps/grappelli/views/bookmarks.py:80
+msgid "Site could not be removed from Bookmarks."
+msgstr ""
+
+#: apps/mentorship_admin/views.py:119 apps/signup_codes/views.py:68
+#, python-format
+msgid "An e-mail has been sent to %(email)s."
+msgstr "Un e-mail a fost trimis catre %(email)s."
+
+#: apps/mentorship_admin/views.py:124 apps/signup_codes/views.py:73
+msgid "Invite user"
+msgstr "Invita utilizator"
+
+#: apps/mentorship_admin/views.py:139
+#, fuzzy, python-format
+msgid "Event %(event)s has been created."
+msgstr "un nou grup a fost creat"
+
+#: apps/messages/admin.py:13 apps/messages/forms.py:25
+#: apps/messages/forms.py:66 apps/messages/models.py:52
+#: apps/messages/templates/messages/outbox.html:7
+#: apps/messages/templates/messages/view.html:12
+#: templates/messages/outbox.html:11 templates/messages/view.html:17
+msgid "Recipient"
+msgstr "Recipient"
+
+#: apps/messages/admin.py:15
+msgid "group"
+msgstr ""
+
+#: apps/messages/admin.py:16
+msgid "Creates the message optionally for all users or a group of users."
+msgstr "Creaza mesajul optional pentru toti userii unui grup"
+
+#: apps/messages/admin.py:23
+#, fuzzy
+msgid "All users"
+msgstr "Toti utilizatorii"
+
+#: apps/messages/admin.py:38 apps/messages/models.py:88
+msgid "Message"
+msgstr "Mesaj"
+
+#: apps/messages/fields.py:54
+#, python-format
+msgid "The following usernames are incorrect: %(users)s"
+msgstr "Urmatoarele nume de utilizatori sunt incorecte: %(users)s"
+
+#: apps/messages/forms.py:26 apps/messages/forms.py:67
+#: apps/messages/models.py:49 apps/messages/templates/messages/inbox.html:7
+#: apps/messages/templates/messages/outbox.html:7
+#: apps/messages/templates/messages/trash.html:7
+#: apps/messages/templates/messages/view.html:6
+#: templates/messages/inbox.html:11 templates/messages/outbox.html:11
+#: templates/messages/trash.html:11 templates/messages/view.html:13
+msgid "Subject"
+msgstr "Subiect"
+
+#: apps/messages/forms.py:70
+msgid "Send by email (default is private message)"
+msgstr "Trimite prin e-mail (implicit e mesaj privat)"
+
+#: apps/messages/forms.py:71
+msgid "Send to all active students"
+msgstr "Trimite tuturor studentilor activi"
+
+#: apps/messages/forms.py:72
+msgid "Send to all active mentors"
+msgstr ""
+
+#: apps/messages/management.py:9
+#, fuzzy
+msgid "Message Received"
+msgstr "Refuz primit"
+
+#: apps/messages/management.py:9
+#, fuzzy
+msgid "you have received a message"
+msgstr "ati primit o invitatie"
+
+#: apps/messages/management.py:10
+msgid "Message Sent"
+msgstr "Mesaj trimis"
+
+#: apps/messages/management.py:10
+#, fuzzy
+msgid "you have sent a message"
+msgstr "ati trimis o invitatie"
+
+#: apps/messages/management.py:11
+msgid "Message Replied"
+msgstr "Mesaj Raspuns"
+
+#: apps/messages/management.py:11
+#, fuzzy
+msgid "you have replied to a message"
+msgstr "ati primit o invitatie"
+
+#: apps/messages/management.py:12
+#, fuzzy
+msgid "Reply Received"
+msgstr "Refuz primit"
+
+#: apps/messages/management.py:12
+#, fuzzy
+msgid "you have received a reply to a message"
+msgstr "ati primit o invitatie"
+
+#: apps/messages/management.py:13
+msgid "Message Deleted"
+msgstr "Mesaj sters"
+
+#: apps/messages/management.py:13
+#, fuzzy
+msgid "you have deleted a message"
+msgstr "Trimite un mesaj"
+
+#: apps/messages/management.py:14
+msgid "Message Recovered"
+msgstr "Mesaj recuperat"
+
+#: apps/messages/management.py:14
+#, fuzzy
+msgid "you have undelete a message"
+msgstr "Trimite un mesaj"
+
+#: apps/messages/models.py:51 apps/messages/templates/messages/inbox.html:7
+#: apps/messages/templates/messages/trash.html:7
+#: apps/messages/templates/messages/view.html:8
+#: templates/messages/inbox.html:11 templates/messages/trash.html:11
+#: templates/messages/view.html:11
+msgid "Sender"
+msgstr "Expeditor"
+
+#: apps/messages/models.py:53
+#, fuzzy
+msgid "Parent message"
+msgstr "Trimite un mesaj"
+
+#: apps/messages/models.py:54
+#, fuzzy
+msgid "sent at"
+msgstr "expeditor"
+
+#: apps/messages/models.py:55
+msgid "read at"
+msgstr "citit la"
+
+#: apps/messages/models.py:56
+msgid "replied at"
+msgstr "raspuns la"
+
+#: apps/messages/models.py:57
+msgid "Sender deleted at"
+msgstr "Expeditor sters la"
+
+#: apps/messages/models.py:58
+#, fuzzy
+msgid "Recipient deleted at"
+msgstr "Destinatar sters la"
+
+#: apps/messages/models.py:89
+msgid "Messages"
+msgstr "Mesaj"
+
+#: apps/messages/utils.py:27
+#, python-format
+msgid "New Message: %(subject)s"
+msgstr "Mesaj nou: %(subject)s"
+
+#: apps/messages/views.py:80 apps/messages/views.py:105
+#: apps/messages/views.py:139
+#, fuzzy
+msgid "Message successfully sent."
+msgstr "Mesaj epxpediat cu succes"
+
+#: apps/messages/views.py:145
+#, python-format
+msgid ""
+"%(sender)s wrote:\n"
+"%(body)s"
+msgstr ""
+"%(sender)s a scris:\n"
+"%(body)s"
+
+#: apps/messages/views.py:149
+#, python-format
+msgid "Re: %(subject)s"
+msgstr ""
+
+#: apps/messages/views.py:185
+#, fuzzy
+msgid "Message successfully deleted."
+msgstr "Mesaj sters cu succes."
+
+#: apps/messages/views.py:212
+#, fuzzy
+msgid "Message successfully recovered."
+msgstr "Mesaj recuperat cu succes."
+
+#: apps/messages/templates/messages/base.html:8
+#: apps/messages/templates/messages/inbox.html:4
+#: apps/messages/templates/messages/new_message.html:10
+#: templates/site_base.html:53 templates/messages/base.html:15
+#: templates/messages/inbox.html:7
+msgid "Inbox"
+msgstr "Inbox"
+
+#: apps/messages/templates/messages/base.html:9
+#: apps/messages/templates/messages/outbox.html:4
+#: templates/messages/outbox.html:7
+#, fuzzy
+msgid "Sent Messages"
+msgstr "Mesaje trimise"
+
+#: apps/messages/templates/messages/base.html:10
+#, fuzzy
+msgid "New Message"
+msgstr "Mesaj nou"
+
+#: apps/messages/templates/messages/base.html:11
+#: templates/messages/base.html:17
+msgid "Trash"
+msgstr "Gunoi"
+
+#: apps/messages/templates/messages/compose.html:4
+#: templates/messages/compose.html:7
+msgid "Compose Message"
+msgstr "Compune mesaj"
+
+#: apps/messages/templates/messages/compose.html:9
+#: templates/messages/compose.html:13
+msgid "Send"
+msgstr "Trimite"
+
+#: apps/messages/templates/messages/inbox.html:7
+#: templates/messages/inbox.html:11
+#, fuzzy
+msgid "Received"
+msgstr "Primite"
+
+#: apps/messages/templates/messages/inbox.html:20
+#: apps/messages/templates/messages/outbox.html:17
+#: templates/messages/inbox.html:24 templates/messages/outbox.html:21
+msgid "delete"
+msgstr "sterge"
+
+#: apps/messages/templates/messages/new_message.html:1
+#, python-format
+msgid ""
+"Hello %(recipient)s,\n"
+"\n"
+"you received a private message from %(sender)s with\n"
+"the following contents:"
+msgstr ""
+
+#: apps/messages/templates/messages/new_message.html:9
+#: templates/messages/new_messages.html:4
+#, python-format
+msgid "Sent from %(site_url)s"
+msgstr "Trimis de la %(site_url)s"
+
+#: apps/messages/templates/messages/new_message.html:11
+#: apps/messages/templates/messages/view.html:18
+#: templates/messages/view.html:24
+msgid "Reply"
+msgstr "Raspunde"
+
+#: apps/messages/templates/messages/outbox.html:7
+#: templates/messages/base.html:16 templates/messages/outbox.html:11
+msgid "Sent"
+msgstr "Trimis"
+
+#: apps/messages/templates/messages/trash.html:4
+#: templates/messages/trash.html:7
+#, fuzzy
+msgid "Deleted Messages"
+msgstr "Mesaj sters"
+
+#: apps/messages/templates/messages/trash.html:7
+#: apps/messages/templates/messages/view.html:10
+#: apps/wiki/templates/wiki/recentchanges.html:10
+#: templates/mentorship_admin/admin_search_profiles.html:43
+#: templates/messages/trash.html:11 templates/messages/view.html:15
+#: templates/profiles/profile_events.html:29
+#: templates/profiles/profiles.html:42 templates/profiles/admin/events.html:17
+#: templates/profiles/profile-types/parts/student-employment.html:6
+#, fuzzy
+msgid "Date"
+msgstr "Data"
+
+#: apps/messages/templates/messages/trash.html:17
+#: templates/messages/trash.html:21
+msgid "undelete"
+msgstr "recupereaza"
+
+#: apps/messages/templates/messages/trash.html:23
+msgid ""
+"Deleted Messages are removed from the trash at unregular intervals, don't "
+"rely on this feature for long-time storage."
+msgstr ""
+
+#: apps/messages/templates/messages/view.html:4 templates/messages/view.html:8
+#, fuzzy
+msgid "View Message"
+msgstr "Vizualizare mesaj"
+
+#: apps/messages/templates/notification/messages_deleted/notice.html:1
+#: templates/messages/notification/messages_deleted/notice.html:1
+#, fuzzy, python-format
+msgid ""
+"You have deleted the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "Ati sters mesajul"
+
+#: apps/messages/templates/notification/messages_received/notice.html:2
+#, python-format
+msgid ""
+"You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
+"from %(message_sender)s."
+msgstr "Ati primit un mesaj <a href=\"%(message_url)s\">%(message)s</a> de la %(message_sender)s"
+
+#: apps/messages/templates/notification/messages_recovered/notice.html:1
+#: templates/messages/notification/messages_recovered/notice.html:1
+#, fuzzy, python-format
+msgid ""
+"You have recovered the message <a href=\"%(message_url)s\">%(message)s</a>."
+msgstr "Ati recuperat mesajul."
+
+#: apps/messages/templates/notification/messages_replied/notice.html:2
+#, python-format
+msgid ""
+"You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
+"from %(message_recipient)s."
+msgstr ""
+
+#: apps/messages/templates/notification/messages_reply_received/notice.html:2
+#, python-format
+msgid "%(message_sender)s has sent you a reply to %(message_parent_msg)s."
+msgstr ""
+
+#: apps/messages/templates/notification/messages_sent/notice.html:2
+#, python-format
+msgid ""
+"You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to %"
+"(message_recipient)s."
+msgstr ""
+
+#: apps/profiles/forms.py:21 apps/profiles/forms.py:29
+#: apps/profiles/forms.py:35 apps/profiles/forms.py:150
+#: apps/profiles/forms.py:151 apps/profiles/forms.py:154
+#: apps/profiles/forms.py:210 apps/profiles/forms_parts.py:6
+#: apps/profiles/forms_parts.py:20 apps/profiles/forms_parts.py:22
+#: apps/surveys/forms.py:6
+msgid "This field is required"
+msgstr "Acest camp este oblicatoriu"
+
+#: apps/profiles/forms.py:21 apps/surveys/forms.py:6
+msgid "You input is too long"
+msgstr "Textul dumneavoastra este prea lung"
+
+#: apps/profiles/forms.py:22 apps/surveys/forms.py:7
+msgid "You input is too short"
+msgstr "Textul dumneavoastra este prea scurt"
+
+#: apps/profiles/forms.py:25
+msgid "First name"
+msgstr "Prenume"
+
+#: apps/profiles/forms.py:26
+#: templates/profiles/profile-types/profile-mentor.html:12
+#: templates/profiles/profile-types/profile-student.html:12
+msgid "Surname"
+msgstr "Nume"
+
+#: apps/profiles/forms.py:27
+msgid "Surname before marriage (is applicable)"
+msgstr "Nume inainte de casatorie (daca e cazul)"
+
+#: apps/profiles/forms.py:29 apps/profiles/models.py:16
+#: templates/profiles/profile-types/profile-mentor.html:17
+#: templates/profiles/profile-types/profile-student.html:17
+msgid "CNP"
+msgstr ""
+
+#: apps/profiles/forms.py:30 apps/profiles/forms.py:31
+msgid "The CNP is 13 digits long"
+msgstr "CNP-ul are 13 cifre"
+
+#: apps/profiles/forms.py:32
+msgid "Age (optional)"
+msgstr "Varsta (optional)"
+
+#: apps/profiles/forms.py:33
+msgid "Enter a valid age"
+msgstr "Introduceti o varsta valida"
+
+#: apps/profiles/forms.py:33
+#, python-format
+msgid "Are you really that old? You can't be older than %d."
+msgstr "Sunteti chiar asa de batran(a)? Varsta maxima este %d."
+
+#: apps/profiles/forms.py:33
+#, python-format
+msgid "You are too young to be a student. You must be at least %d."
+msgstr "Esti prea tanar sa fii student. Varsta minima e %d."
+
+#: apps/profiles/forms.py:35
+msgid "This email address is invalid"
+msgstr "Adresa de email este invalida"
+
+#: apps/profiles/forms.py:37
+#: templates/profiles/profile-types/profile-mentor.html:35
+#: templates/profiles/profile-types/profile-student.html:33
+msgid "Telephone"
+msgstr "Telefon"
+
+#: apps/profiles/forms.py:39
+#: templates/profiles/profile-types/profile-mentor.html:38
+#: templates/profiles/profile-types/profile-student.html:36
+msgid "Address"
+msgstr "Adresa"
+
+#: apps/profiles/forms.py:45
+msgid "Invalid CNP entered"
+msgstr "CNP invalid"
+
+#: apps/profiles/forms.py:55
+#: templates/profiles/profile-types/profile-student.html:20
+msgid "Birth place"
+msgstr "Locul nasterii"
+
+#: apps/profiles/forms.py:57
+msgid "Current faculty"
+msgstr "Facultatea curenta"
+
+#: apps/profiles/forms.py:59
+#: templates/profiles/profile-types/profile-student.html:27
+msgid "Year of study"
+msgstr "Anul de studiu"
+
+#: apps/profiles/forms.py:59
+msgid "Enter a valid year of study"
+msgstr "Introduceti un an de studiu valid"
+
+#: apps/profiles/forms.py:59
+msgid "This field cannot be empty"
+msgstr "Acest camp nu poate fi gol"
+
+#: apps/profiles/forms.py:60
+#, python-format
+msgid "The year of study must be at least %d"
+msgstr "Anul de studiu trebuie sa fie cel putin %d."
+
+#: apps/profiles/forms.py:61
+#, python-format
+msgid "The year of study can be at most %d"
+msgstr "Anul de studiu poate fi maxim %d."
+
+#: apps/profiles/forms.py:63
+msgid "Major"
+msgstr "Specializare"
+
+#: apps/profiles/forms.py:64
+#: templates/profiles/profile-types/profile-student.html:39
+msgid "Town of study"
+msgstr "Oras de studiu"
+
+#: apps/profiles/forms.py:73
+msgid "Employer's name (optional)"
+msgstr "Numele angajatorului (optional)"
+
+#: apps/profiles/forms.py:74
+msgid "Employer's address (optional)"
+msgstr "Adresa angajatorului (optional)"
+
+#: apps/profiles/forms.py:75
+msgid "Position held (optional)"
+msgstr "Functii detinute (optional)"
+
+#: apps/profiles/forms.py:76
+msgid "Duties (optional)"
+msgstr "Indatoriri (optional)"
+
+#: apps/profiles/forms.py:90
+#: templates/profiles/profile-types/profile-mentor.html:76
+#: templates/profiles/profile-types/profile-student.html:72
+msgid "Home town"
+msgstr "Oras natal"
+
+#: apps/profiles/forms.py:92
+#: templates/profiles/profile-types/profile-mentor.html:79
+#: templates/profiles/profile-types/profile-student.html:75
+msgid "Graduated college"
+msgstr "Liceu absolvit"
+
+#: apps/profiles/forms.py:94
+msgid "Fields of interest for mentorship (between 1 and 3)"
+msgstr "Domenii de interes pentru mentorat (intre 1 si 3)"
+
+#: apps/profiles/forms.py:101
+msgid "You have to choose at least 1 field of interest"
+msgstr "Trebuie sa alegeti cel putin 1 domeniu de interes"
+
+#: apps/profiles/forms.py:103
+msgid "You may choose at most 3 fields of interest"
+msgstr "Puteti sa alegeti maxim 3 domenii de interes"
+
+#: apps/profiles/forms.py:128
+#: templates/profiles/profile-types/profile-student.html:123
+msgid "Plans for the following year"
+msgstr "Planuri pentru anul urmator"
+
+#: apps/profiles/forms.py:130
+msgid "How can a mentor help in the student's development?"
+msgstr "Cum poate un mentor sa ajute in dezvoltarea unui student?"
+
+#: apps/profiles/forms.py:150
+msgid "What are you hobbies?"
+msgstr "Care sunt hobbiurile dumneavoastra?"
+
+#: apps/profiles/forms.py:151
+#: templates/profiles/profile-types/profile-mentor.html:135
+#: templates/profiles/profile-types/profile-student.html:143
+msgid "How would you describe yourself as a colleague?"
+msgstr "Cum v-ati descrie in ipostaza de coleg?"
+
+#: apps/profiles/forms.py:153
+msgid ""
+"Do you have any additional information you might want to share with a "
+"possible mentor?"
+msgstr ""
+"Aveti si alte informatii pe care ati dori sa le impartasiti cu un eventual "
+"mentor?"
+
+#: apps/profiles/forms.py:207
+#: templates/profiles/profile-types/profile-mentor.html:23
+msgid "Graduated faculty"
+msgstr "Facultatea absolvita"
+
+#: apps/profiles/forms.py:209
+#: templates/profiles/profile-types/profile-mentor.html:26
+msgid "Graduated major"
+msgstr "Specializarea absolvita"
+
+#: apps/profiles/forms.py:210
+msgid "Graduation date (year-month-day)"
+msgstr "Anul de absolvire (da-luna-zi)"
+
+#: apps/profiles/forms.py:210
+msgid "You have entered an invalid date"
+msgstr "Ati introdus o data invalida"
+
+#: apps/profiles/forms.py:211
+msgid ""
+"In which city and country will you be during the mentorship period? (You can "
+"include more than one)"
+msgstr ""
+"In ce tara o sa veti fi pe durata perioadei de mentorizare? (Puteti include mai "
+"multe intrari)"
+
+#: apps/profiles/forms.py:220 apps/profiles/forms_parts.py:17
+msgid "Employer's name"
+msgstr "Numele angajatorului"
+
+#: apps/profiles/forms.py:221
+msgid "Employer's address"
+msgstr "Adresa angajatorului"
+
+#: apps/profiles/forms.py:222
+#: templates/profiles/profile-types/profile-mentor.html:56
+#: templates/profiles/profile-types/profile-student.html:54
+msgid "Position held"
+msgstr "Functie detinuta"
+
+#: apps/profiles/forms.py:223 apps/profiles/forms_parts.py:19
+#: apps/profiles/forms_parts.py:32
+#: templates/profiles/profile-types/profile-mentor.html:59
+#: templates/profiles/profile-types/profile-student.html:57
+#: templates/profiles/profile-types/profile-student.html:113
+#: templates/profiles/profile-types/parts/student-employment.html:5
+msgid "Duties"
+msgstr "Indatoriri"
+
+#: apps/profiles/forms.py:245
+msgid ""
+"Did you continue your studies after completing your Bachelor's? If yes, what "
+"are they, what university did you study in?"
+msgstr ""
+"V-ati continuat studiile dupa terminarea facultatii? Daca da, ce "
+"specializari postuniversitare ati urmat si la ce facultate"
+
+#: apps/profiles/forms.py:248
+msgid ""
+"What is your professional experience relevant for the mentorship program? "
+"Provide details if you can."
+msgstr ""
+"Care este experienta profesionala relevanta pentru programul de mentorat? "
+"Daca e posibil furnizati detalii."
+
+#: apps/profiles/forms.py:250
+msgid "Other activities (if not in the above choice list)"
+msgstr "Alte activitati (daca nu sunt in lista de optiuni de mai sus)"
+
+#: apps/profiles/forms.py:251
+msgid "Activities you are interested in doing during the mentorship program:"
+msgstr ""
+"Selectati din lista acele activitati pe care sunteti interesat sa le "
+"realizati cu studentul:"
+
+#: apps/profiles/forms_parts.py:6
+msgid "Your input is too long"
+msgstr "Datele furnizate sunt prea lungi"
+
+#: apps/profiles/forms_parts.py:8
+msgid "Organization name"
+msgstr "Numele organizatiei"
+
+#: apps/profiles/forms_parts.py:9
+#: templates/profiles/profile-types/profile-student.html:112
+#: templates/profiles/profile-types/parts/volunteer-organization.html:3
+msgid "Field"
+msgstr "Domeniu"
+
+#: apps/profiles/forms_parts.py:16
+#: templates/profiles/profile-types/parts/student-employment.html:2
+msgid "Internship"
+msgstr ""
+
+#: apps/profiles/forms_parts.py:18
+msgid "Postion held"
+msgstr "Functie detinuta"
+
+#: apps/profiles/forms_parts.py:20
+msgid "Start date (year-month-day)"
+msgstr "Data inceperii (an-luna-zi)"
+
+#: apps/profiles/forms_parts.py:21 apps/profiles/forms_parts.py:23
+msgid ""
+"You have entered an invalid date. Enter a date in the format year-month-day."
+msgstr ""
+"Ati introdus o data invalida. Introduceti o data in formatul an-luna-zi."
+
+#: apps/profiles/forms_parts.py:22
+msgid "End date (year-month-day)"
+msgstr "Data terminarii (an-luna-zi)"
+
+#: apps/profiles/forms_parts.py:31
+msgid "Field of research"
+msgstr "Domenii de cercetare"
+
+#: apps/profiles/models.py:10
+#, fuzzy
+msgid "active"
+msgstr "activ"
+
+#: apps/profiles/models.py:13
+msgid "first name"
+msgstr "prenume"
+
+#: apps/profiles/models.py:14
+msgid "surname"
+msgstr "nume"
+
+#: apps/profiles/models.py:15
+msgid "surname before marriage"
+msgstr "nume inainte de casatorie"
+
+#: apps/profiles/models.py:17
+msgid "age"
+msgstr "varsta"
+
+#: apps/profiles/models.py:18
+msgid "email"
+msgstr "email"
+
+#: apps/profiles/models.py:19
+msgid "telephone"
+msgstr "telefon"
+
+#: apps/profiles/models.py:20
+msgid "address"
+msgstr "adresa"
+
+#: apps/profiles/models.py:23
+msgid "home town"
+msgstr "oras natal"
+
+#: apps/profiles/models.py:24
+msgid "graduated college"
+msgstr "liceu absolvit"
+
+#: apps/profiles/models.py:29
+msgid "hobbies"
+msgstr "hobbie-uri"
+
+#: apps/profiles/models.py:30
+msgid "self evaluation as colleague"
+msgstr "autoevaluare ca si coleg"
+
+#: apps/profiles/models.py:37
+msgid "additional information"
+msgstr "informatii aditionale"
+
+#: apps/profiles/models.py:47 apps/profiles/models.py:160
+msgid "profile"
+msgstr "profil"
+
+#: apps/profiles/models.py:48
+msgid "profiles"
+msgstr "profiluri"
+
+#: apps/profiles/models.py:65
+msgid "Bachelor's"
+msgstr "Licenta"
+
+#: apps/profiles/models.py:65
+#, fuzzy
+msgid "Master's"
+msgstr "Masterat"
+
+#: apps/profiles/models.py:65
+msgid "PhD"
+msgstr "Doctorat"
+
+#: apps/profiles/models.py:69
+msgid "place of birth"
+msgstr "locul nasterii"
+
+#: apps/profiles/models.py:70
+msgid "current faculty"
+msgstr "facultatea curenta"
+
+#: apps/profiles/models.py:71
+msgid "current pursued degree"
+msgstr "nivel curent de studiu"
+
+#: apps/profiles/models.py:72
+msgid "year of study"
+msgstr "an de studiu"
+
+#: apps/profiles/models.py:73
+msgid "major"
+msgstr "specializare"
+
+#: apps/profiles/models.py:74
+msgid "city of study"
+msgstr "oras de studiu"
+
+#: apps/profiles/models.py:77
+msgid "name of current employer"
+msgstr "numele angajatorului curent"
+
+#: apps/profiles/models.py:78
+msgid "address of current employer"
+msgstr "adresa angajatorului curent"
+
+#: apps/profiles/models.py:79
+msgid "position help in current employment"
+msgstr "functii detinute la actualul locu de munca "
+
+#: apps/profiles/models.py:80 apps/profiles/models.py:121
+msgid "duties at current work place"
+msgstr "indatoriri la actualul loc de munca"
+
+#: apps/profiles/models.py:85
+msgid "plans the following year"
+msgstr "planuri pentru anul urmator"
+
+#: apps/profiles/models.py:86
+msgid "how can a mentor help"
+msgstr "cum poate un mentor sa ajute"
+
+#: apps/profiles/models.py:100
+msgid "student profile"
+msgstr "profil student"
+
+#: apps/profiles/models.py:115
+msgid "graduated faculty"
+msgstr "facultatea absolvita"
+
+#: apps/profiles/models.py:116
+msgid "graduated major"
+msgstr "specializarea absolvita"
+
+#: apps/profiles/models.py:117
+msgid "graduation date"
+msgstr "data absolvirii"
+
+#: apps/profiles/models.py:118 apps/profiles/models.py:171
+msgid "employer name"
+msgstr "numele angajatorului"
+
+#: apps/profiles/models.py:119
+msgid "employer address"
+msgstr "adresa angajatorului"
+
+#: apps/profiles/models.py:120
+msgid "position held in current employment"
+msgstr "functia detinuta la actualul loc de munca"
+
+#: apps/profiles/models.py:122
+msgid "city and country for mentorship"
+msgstr "orasul si tara programului de mentorat"
+
+#: apps/profiles/models.py:124
+msgid "post bachelor's studies"
+msgstr "studii postuniversitare"
+
+#: apps/profiles/models.py:125
+msgid "professional experience"
+msgstr "experienta profesionala"
+
+#: apps/profiles/models.py:127
+msgid "other mentorship activities"
+msgstr "alte activitati de mentorat"
+
+#: apps/profiles/models.py:129
+msgid "should profile be visible to other mentors?"
+msgstr ""
+
+#: apps/profiles/models.py:132
+msgid "mentor profile"
+msgstr "profilul mentor"
+
+#: apps/profiles/models.py:145
+msgid "field name"
+msgstr "nume domeniu"
+
+#: apps/profiles/models.py:161
+msgid "organization name"
+msgstr "nume organizatie"
+
+#: apps/profiles/models.py:162
+msgid "working field"
+msgstr "domeniul ocupatiei"
+
+#: apps/profiles/models.py:169
+msgid "student"
+msgstr "student"
+
+#: apps/profiles/models.py:170
+msgid "was internship"
+msgstr "a fost internship"
+
+#: apps/profiles/models.py:172
+msgid "pos    ition held"
+msgstr "functie ocupata"
+
+#: apps/profiles/models.py:173 apps/profiles/models.py:184
+msgid "duties"
+msgstr "indatoriri"
+
+#: apps/profiles/models.py:174
+msgid "starting date"
+msgstr "data inceperii"
+
+#: apps/profiles/models.py:175
+msgid "ending date"
+msgstr "data terminarii"
+
+#: apps/profiles/models.py:183
+msgid "field of research"
+msgstr "domeniu de cercetare"
+
+#: apps/profiles/models.py:191
+msgid "mentorship activities"
+msgstr "activitati de mentorat"
+
+#: apps/profiles/models.py:192
+msgid "activity description"
+msgstr "descrierea activitatii"
+
+#: apps/profiles/models.py:204
+msgid "name"
+msgstr "nume"
+
+#: apps/profiles/models.py:212
+msgid "ratting"
+msgstr "rating"
+
+#: apps/profiles/models.py:220
+#, fuzzy
+msgid "Event Name"
+msgstr "numele evenimentului"
+
+#: apps/profiles/models.py:221
+#, fuzzy
+msgid "Event Points"
+msgstr "Puncte"
+
+#: apps/profiles/models.py:222
+msgid "Event Time and Date"
+msgstr ""
+
+#: apps/profiles/models.py:223
+#, fuzzy
+msgid "Event Location"
+msgstr "Locatii"
+
+#: apps/profiles/models.py:224
+#, fuzzy
+msgid "Event DescripTion"
+msgstr "Descriere"
+
+#: apps/profiles/models.py:232
+#, fuzzy
+msgid "date"
+msgstr "Indatoriri"
+
+#: apps/profiles/views.py:116
+#, python-format
+msgid "You have removed %(from_user)s from mentor contacts"
+msgstr "L-ati eliminat pe %(from_user)s din contactele de mentorat"
+
+#: apps/profiles/views.py:120 apps/profiles/views.py:136
+#: apps/profiles/views.py:172
+msgid "Please review my cv and accept my request!"
+msgstr "Va rog sa imi studiati cv-ul si sa acceptati solicitarea!"
+
+#: apps/profiles/views.py:131
+#, python-format
+msgid "You have chosen to renounce this request %(from_user)s"
+msgstr "Ati ales sa renuntati la solicitarea %(from_user)s"
+
+#: apps/profiles/views.py:144
+#, python-format
+msgid "You have accepted the mentorship request from %(from_user)s"
+msgstr "Ati acceptat solicitarea de mentorat de la %(from_user)s"
+
+#: apps/profiles/views.py:154
+#, python-format
+msgid ""
+"You have declined the mentorship request from %(from_user)s. Please write a "
+"message to this user motivating your decision."
+msgstr ""
+"Ati refuzat solicitarea de mentorat din partea %(from_user)s. Va rugam sa "
+"scrieti un mesaj in care sa va motivati decizia."
+
+#: apps/profiles/views.py:165
+#, python-format
+msgid "You have chosen to review the mentorship request from %(from_user)s"
+msgstr "Ati ales sa studiati solicitarea de mentorat din partea %(from_user)s"
+
+#: apps/profiles/views.py:319
+msgid "Volunteer organization"
+msgstr "Organizatie non-guvernamentala"
+
+#: apps/profiles/views.py:337
+msgid "Add a volunteer organization in which you were a member"
+msgstr "Adaugati un ONG in care ati fost membru"
+
+#: apps/profiles/views.py:364
+msgid "Update information about a volunteer organization"
+msgstr "Updatari informatiile despre un ONG"
+
+#: apps/profiles/views.py:392
+#: templates/profiles/profile-types/profile-student.html:93
+msgid "Work experience"
+msgstr "Experienta profesionala"
+
+#: apps/profiles/views.py:410
+msgid "Add information about your work experience"
+msgstr "Adaugati informatii despre experienta dumneavoastra profesionala"
+
+#: apps/profiles/views.py:437
+msgid "Update the information about you work experience"
+msgstr "Updatati informatii despre experienta dumneavoastra profesionala"
+
+#: apps/profiles/views.py:465
+#: templates/profiles/profile-types/profile-student.html:107
+msgid "Research"
+msgstr "Cercetare"
+
+#: apps/profiles/views.py:483
+msgid "Add information about your research activities"
+msgstr "Adaugati informatii despre activitatea dumneavoastra de cercetare"
+
+#: apps/profiles/views.py:510
+msgid "Update the information about your research activities"
+msgstr "Updatati informatii despre activitatea dumneavoastra de cercetare"
+
+#: apps/profiles/views.py:657
+#, fuzzy
+msgid "Changes were successfully saved"
+msgstr "Parola setata cu succes."
+
+#: apps/profiles/templates/profile_item.html:10
+#: templates/mentorship_admin/admin_search_profiles.html:42
+#: templates/profiles/profiles.html:41 templates/surveys/survey_list.html:18
+#: templates/surveys/survey_stats_users.html:19
+#, fuzzy
+msgid "Name"
+msgstr "Nume"
+
+#: apps/profiles/templatetags/profile_tags.py:37
+msgid "Default Avatar"
+msgstr ""
+
+#: apps/signup_codes/forms.py:54
+#, python-format
+msgid "Create an acccount on %(domain)s"
+msgstr "Creati un cont la %(domain)s"
+
+#: apps/surveys/forms.py:11
+#, fuzzy
+msgid "Survey name"
+msgstr "Nume"
+
+#: apps/surveys/forms.py:12
+#, fuzzy
+msgid "Desciption"
+msgstr "Descriere"
+
+#: apps/surveys/forms.py:13
+#, fuzzy
+msgid "Student survey"
+msgstr "Studenti"
+
+#: apps/surveys/forms.py:14
+#, fuzzy
+msgid "Mentor survey"
+msgstr "Mentori"
+
+#: apps/surveys/models.py:6
+#, fuzzy
+msgid "survey name"
+msgstr "nume"
+
+#: apps/surveys/models.py:8
+#, fuzzy
+msgid "student survey"
+msgstr "profil student"
+
+#: apps/surveys/models.py:9
+#, fuzzy
+msgid "mentor survey"
+msgstr "profilul mentor"
+
+#: apps/surveys/views.py:41 apps/surveys/views.py:65 apps/surveys/views.py:116
+#, fuzzy
+msgid "The name of the field cannot be empty"
+msgstr "Acest camp nu poate fi gol"
+
+#: apps/surveys/views.py:119
+msgid "The name of the field is too long"
+msgstr ""
+
+#: apps/surveys/views.py:124
+#, fuzzy
+msgid "The choice set must have at least 2 elements"
+msgstr "Anul de studiu trebuie sa fie cel putin %d."
+
+#: apps/tasks/forms.py:96
+msgid "You must provide a resolution to mark this task as resolved"
+msgstr ""
+
+#: apps/tasks/management.py:11
+msgid "New Task"
+msgstr ""
+
+#: apps/tasks/management.py:11
+msgid "a new task been created"
+msgstr ""
+
+#: apps/tasks/management.py:12
+msgid "Task Comment"
+msgstr ""
+
+#: apps/tasks/management.py:12
+msgid "a new comment has been made on a task"
+msgstr ""
+
+#: apps/tasks/management.py:13
+msgid "Task State Change"
+msgstr ""
+
+#: apps/tasks/management.py:13
+msgid "there has been a change in the state of a task"
+msgstr ""
+
+#: apps/tasks/management.py:14
+msgid "Task Assignment"
+msgstr ""
+
+#: apps/tasks/management.py:14
+msgid "a task has been (re)assigned"
+msgstr ""
+
+#: apps/tasks/management.py:15
+msgid "Task Status Update"
+msgstr ""
+
+#: apps/tasks/management.py:15
+msgid "there has been a status update to a task"
+msgstr ""
+
+#: apps/tasks/management.py:16
+msgid "Task Tag Update"
+msgstr ""
+
+#: apps/tasks/management.py:16
+msgid "there has been a change in the tagging of a task"
+msgstr ""
+
+#: apps/tasks/management.py:17
+msgid "Task Nudge"
+msgstr ""
+
+#: apps/tasks/management.py:17
+msgid "there has been a nudge of a task"
+msgstr ""
+
+#: apps/tasks/models.py:46 apps/tasks/models.py:191
+msgid "summary"
+msgstr ""
+
+#: apps/tasks/models.py:47 apps/tasks/models.py:192
+msgid "detail"
+msgstr ""
+
+#: apps/tasks/models.py:48 apps/tasks/models.py:193
+msgid "Detail Markup"
+msgstr ""
+
+#: apps/tasks/models.py:50 apps/tasks/models.py:195 apps/topics/models.py:32
+msgid "creator"
+msgstr ""
+
+#: apps/tasks/models.py:51 apps/tasks/models.py:196 apps/topics/models.py:33
+msgid "created"
+msgstr ""
+
+#: apps/tasks/models.py:52 apps/tasks/models.py:197 apps/topics/models.py:34
+msgid "modified"
+msgstr ""
+
+#: apps/tasks/models.py:53 apps/tasks/models.py:198
+msgid "assignee"
+msgstr ""
+
+#: apps/tasks/models.py:58 apps/tasks/models.py:202
+msgid "status"
+msgstr ""
+
+#: apps/tasks/models.py:59 apps/tasks/models.py:203
+msgid "state"
+msgstr ""
+
+#: apps/tasks/models.py:60 apps/tasks/models.py:204
+msgid "resolution"
+msgstr ""
+
+#: apps/tasks/models.py:183
+msgid "tasks"
+msgstr ""
+
+#: apps/tasks/models.py:207
+msgid "comment"
+msgstr ""
+
+#: apps/tasks/models.py:210
+msgid "Owner"
+msgstr ""
+
+#: apps/tasks/models.py:222
+msgid "nudger"
+msgstr ""
+
+#: apps/tasks/models.py:223
+msgid "task"
+msgstr ""
+
+#: apps/tasks/models.py:224
+msgid "nudge date"
+msgstr ""
+
+#: apps/tasks/views.py:132
+#, python-format
+msgid ""
+"Link to the snippet: http://%(domain)s%(link)s\n"
+"\n"
+msgstr ""
+
+#: apps/tasks/templates/notification/tasks_assignment/notice.html:4
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(user)s</a> has assigned task '<a href=\"%"
+"(task_url)s\">%(task)s</a>' in '<a href=\"%(group_url)s\">%(group)s</a>' to "
+"<a href=\"%(assignee_url)s\">%(assignee)s</a>."
+msgstr ""
+
+#: apps/tasks/templates/notification/tasks_assignment/notice.html:6
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(user)s</a> has assigned task '<a href=\"%"
+"(task_url)s\">%(task)s</a>' to <a href=\"%(assignee_url)s\">%(assignee)s</a>."
+msgstr ""
+
+#: apps/tasks/templates/notification/tasks_change/notice.html:4
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(user)s</a> has marked task '<a href=\"%(task_url)s"
+"\">%(task)s</a>' in '<a href=\"%(group_url)s\">%(group)s</a>' as %(new_state)"
+"s."
+msgstr ""
+
+#: apps/tasks/templates/notification/tasks_change/notice.html:6
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(user)s</a> has marked task '<a href=\"%(task_url)s"
+"\">%(task)s</a>' as %(new_state)s."
+msgstr ""
+
+#: apps/tasks/templates/notification/tasks_change/notice.html:10
+msgid "resolution:"
+msgstr ""
+
+#: apps/tasks/templates/notification/tasks_comment/notice.html:4
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(user)s</a> has commented on task '<a href=\"%"
+"(task_url)s\">%(task)s</a>' in '<a href=\"%(group_url)s\">%(group)s</a>'."
+msgstr ""
+
+#: apps/tasks/templates/notification/tasks_comment/notice.html:6
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(user)s</a> has commented on task '<a href=\"%"
+"(task_url)s\">%(task)s</a>'."
+msgstr ""
+
+#: apps/tasks/templates/notification/tasks_new/notice.html:3
+#, python-format
+msgid ""
+"<a href=\"%(creator_url)s\">%(creator)s</a> has added a task '<a href=\"%"
+"(task_url)s\">%(task)s</a>' in '<a href=\"%(group_url)s\">%(group)s</a>'."
+msgstr ""
+
+#: apps/tasks/templates/notification/tasks_new/notice.html:5
+#, python-format
+msgid ""
+"<a href=\"%(creator_url)s\">%(creator)s</a> has added a task '<a href=\"%"
+"(task_url)s\">%(task)s</a>'."
+msgstr ""
+
+#: apps/tasks/templates/notification/tasks_nudge/notice.html:3
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(nudger)s</a> has nudged you on task '<a href=\"%"
+"(task_url)s\">%(task)s</a>'."
+msgstr ""
+
+#: apps/tasks/templates/notification/tasks_status/notice.html:4
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(user)s</a> has updated the status of task '<a "
+"href=\"%(task_url)s\">%(task)s</a>' in '<a href=\"%(group_url)s\">%(group)s</"
+"a>' to '%(task_status)s'."
+msgstr ""
+
+#: apps/tasks/templates/notification/tasks_status/notice.html:6
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(user)s</a> has updated the status of task '<a "
+"href=\"%(task_url)s\">%(task)s</a>' to '%(task_status)s'."
+msgstr ""
+
+#: apps/tasks/templates/notification/tasks_tags/notice.html:4
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(user)s</a> has updated the tags of task '<a href="
+"\"%(task_url)s\">%(task)s</a>' in '<a href=\"%(group_url)s\">%(group)s</a>' "
+"to '%(task_tags)s'."
+msgstr ""
+
+#: apps/tasks/templates/notification/tasks_tags/notice.html:6
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(user)s</a> has updated the tags of task '<a href="
+"\"%(task_url)s\">%(task)s</a>' to '%(task_tags)s'."
+msgstr ""
+
+#: apps/topics/models.py:31
+msgid "title"
+msgstr "titlu"
+
+#: apps/topics/models.py:35
+msgid "body"
+msgstr "corp"
+
+#: apps/topics/views.py:57
+#, python-format
+msgid "You have started the topic %(topic_title)s"
+msgstr "Ati creat subiectul %(topic_title)s"
+
+#: apps/topics/views.py:60
+msgid "You are not a member and so cannot start a new topic"
+msgstr "Nu sunteti membru si nu puteti crea un nou subiect"
+
+#: apps/tribes/forms.py:11
+msgid ""
+"a short version of the name consisting only of letters, numbers, underscores "
+"and hyphens."
+msgstr ""
+"o versiune prescurtata a numelui continand doar litere, cifre, underscoresi "
+"virgule."
+
+#: apps/tribes/forms.py:12
+msgid "This value must contain only letters, numbers, underscores and hyphens."
+msgstr ""
+"Aceasta valoare poate sa contina doar litere, cifre, underscore si virgule."
+
+#: apps/tribes/forms.py:16
+msgid "A tribe already exists with that slug."
+msgstr "Exista deja un grup cu acest nume."
+
+#: apps/tribes/forms.py:21 apps/tribes/forms.py:38
+msgid "A tribe already exists with that name."
+msgstr "Exista deja un grup cu acest nume."
+
+#: apps/tribes/management.py:9
+msgid "New Tribe Member"
+msgstr "Membru nou in grup"
+
+#: apps/tribes/management.py:9
+msgid "a tribe you are a member of has a new member"
+msgstr "un grup din care faceti parte are un membru nou"
+
+#: apps/tribes/management.py:10
+msgid "New Member Of Tribe You Created"
+msgstr "Membru nou in grup creat de dumneavoastra"
+
+#: apps/tribes/management.py:10
+msgid "a tribe you created has a new member"
+msgstr "un grup creat de dumneavoastra are un membru nou"
+
+#: apps/tribes/management.py:11
+msgid "New Tribe Created"
+msgstr "Grupul a fost creat"
+
+#: apps/tribes/management.py:11
+msgid "a new tribe has been created"
+msgstr "un nou grup a fost creat"
+
+#: apps/tribes/models.py:10
+msgid "members"
+msgstr "membri"
+
+#: apps/tribes/views.py:86
+#, python-format
+msgid "Tribe %(tribe_name)s deleted."
+msgstr "Grup %(tribe_name)s sters"
+
+#: apps/tribes/views.py:117
+#, python-format
+msgid "You have joined the tribe %(tribe_name)s"
+msgstr "V-ati alaturat grupului %(tribe_name)s"
+
+#: apps/tribes/views.py:124
+#, python-format
+msgid "You have already joined tribe %(tribe_name)s"
+msgstr "V-ati alaturat deja grupului %(tribe_name)s"
+
+#: apps/tribes/templates/notification/tribes_created_new_member/notice.html:2
+#: apps/tribes/templates/notification/tribes_new_member/notice.html:2
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(user)s</a> has joined the tribe <a href=\"%"
+"(tribe_url)s\">%(tribe)s</a>."
+msgstr ""
+"<a href=\"%(user_url)s\">%(user)s</a> s-a alaturat tribului <a href=\"%"
+"(tribe_url)s\">%(tribe)s</a>."
+
+#: apps/tribes/templates/notification/tribes_new_tribe/notice.html:2
+#, python-format
+msgid "A new group <a href=\"%(tribe_url)s\">%(tribe)s</a> has been created."
+msgstr "Un nou grup <a href=\"%(tribe_url)s\">%(tribe)s</a> a fost creat."
+
+#: apps/wiki/feeds.py:101 apps/wiki/feeds.py:211
+msgid "Anonimous"
+msgstr "Anonim"
+
+#: apps/wiki/forms.py:53
+msgid "Must be a WikiWord."
+msgstr "Titlul nu poate contine spatii (WikiWord)"
+
+#: apps/wiki/forms.py:71
+msgid "An article with this title already exists."
+msgstr "Un articol cu acest titlu este deja existent"
+
+#: apps/wiki/management.py:10
+msgid "Article Edited"
+msgstr "Articol editat"
+
+#: apps/wiki/management.py:11
+#, fuzzy
+msgid "your article has been edited"
+msgstr "articolul dumneavoastra a fost editat"
+
+#: apps/wiki/management.py:13
+msgid "Article Revision Reverted"
+msgstr "Modificarea articolului anulata"
+
+#: apps/wiki/management.py:14
+#, fuzzy
+msgid "your revision has been reverted"
+msgstr "modificarea dumneavoastra a fost anulata"
+
+#: apps/wiki/management.py:16
+msgid "Observed Article Changed"
+msgstr "Articol urmarit schimbat"
+
+#: apps/wiki/management.py:17
+msgid "an article you observe has changed"
+msgstr "un articol urmarit de dumneavoastra a fost schimbat"
+
+#: apps/wiki/models.py:39
+msgid "Creole"
+msgstr ""
+
+#: apps/wiki/models.py:40
+msgid "reStructuredText"
+msgstr ""
+
+#: apps/wiki/models.py:41
+msgid "Textile"
+msgstr ""
+
+#: apps/wiki/models.py:42
+msgid "Markdown"
+msgstr ""
+
+#: apps/wiki/models.py:62
+#, fuzzy
+msgid "Content"
+msgstr "Continut"
+
+#: apps/wiki/models.py:63 templates/surveys/survey_stats.html:28
+msgid "Summary"
+msgstr "Sumar"
+
+#: apps/wiki/models.py:65
+msgid "Content Markup"
+msgstr "Markup-ul continutului"
+
+#: apps/wiki/models.py:68
+msgid "Article Creator"
+msgstr "Autorul articolului"
+
+#: apps/wiki/models.py:70
+msgid "IP Address of the Article Creator"
+msgstr "Adresa IP a autorului"
+
+#: apps/wiki/models.py:74
+#, fuzzy
+msgid "Is removed?"
+msgstr "Este sters?"
+
+#: apps/wiki/models.py:94 apps/wiki/models.py:171
+#, fuzzy
+msgid "Article"
+msgstr "Articol"
+
+#: apps/wiki/models.py:95
+#, fuzzy
+msgid "Articles"
+msgstr "Articole"
+
+#: apps/wiki/models.py:174 apps/wiki/templates/wiki/recentchanges.html:11
+#, fuzzy
+msgid "Editor"
+msgstr "Editor"
+
+#: apps/wiki/models.py:176
+msgid "IP Address of the Editor"
+msgstr "Adresa Ip a editorului"
+
+#: apps/wiki/models.py:179
+msgid "Revision Number"
+msgstr "Numarul versiunii"
+
+#: apps/wiki/models.py:182
+msgid "Old Title"
+msgstr "Vechiul titlu"
+
+#: apps/wiki/models.py:183
+msgid "Article Content Markup"
+msgstr "Markup-ul continutului articolului"
+
+#: apps/wiki/models.py:186
+msgid "Content Patch"
+msgstr "Modificare continut"
+
+#: apps/wiki/models.py:188
+msgid "Editor comment"
+msgstr "Comentariul editorului"
+
+#: apps/wiki/models.py:189
+msgid "Modified at"
+msgstr "Modificat la"
+
+#: apps/wiki/models.py:190
+msgid "Reverted Revision"
+msgstr "Versiunea la care s-a revenit"
+
+#: apps/wiki/models.py:204
+#, fuzzy
+msgid "Change set"
+msgstr "Schimbari"
+
+#: apps/wiki/models.py:205
+#, fuzzy
+msgid "Change sets"
+msgstr "Schimbari"
+
+#: apps/wiki/templates/feeds/history_description.html:3
+#, fuzzy
+msgid "edited by user"
+msgstr "editat de utilizator"
+
+#: apps/wiki/templates/feeds/history_description.html:3
+#, fuzzy
+msgid "at"
+msgstr "la"
+
+#: apps/wiki/templates/notification/wiki_article_edited/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"The wiki article <a href=\"%(article_url)s\">%(article)s</a> has been edited "
+"by <a href=\"%(user_url)s\">%(user)s</a>."
+msgstr ""
+"Articolul wiki <a href=\"%(article_url)s\">%(article)s</a>  a fost editat de "
+"catre <a href=\"%(user_url)s\">%(user)s</a>."
+
+#: apps/wiki/templates/notification/wiki_observed_article_changed/notice.html:1
+#, fuzzy, python-format
+msgid ""
+"The wiki article <a href=\"%(article_url)s\">%(observed)s</a>, that you "
+"observe, has changed."
+msgstr ""
+"Articolul wiki <a href=\"%(article_url)s\">%(observed)s</a>, urmarit de "
+"dumneavoastra a fost schimbat."
+
+#: apps/wiki/templates/notification/wiki_revision_reverted/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"Your revision <a href=\"%(revision_url)s\">%(revision)s</a> on <a href=\"%"
+"(article_url)s\">%(article)s</a> has been reverted."
+msgstr ""
+"Modificarea dumneavoastra <a href=\"%(revision_url)s\">%(revision)s</a> la "
+"<a href=\"%(article_url)s\">%(article)s</a> a fost anulata."
+
+#: apps/wiki/templates/wiki/base.html:21
+msgid "List all articles"
+msgstr "Listeaza toate articolele"
+
+#: apps/wiki/templates/wiki/base.html:22
+#: apps/wiki/templates/wiki/recentchanges.html:5
+#, fuzzy
+msgid "Recent Changes"
+msgstr "Modificari recente"
+
+#: apps/wiki/templates/wiki/changeset.html:14
+msgid "Markup:"
+msgstr ""
+
+#: apps/wiki/templates/wiki/changeset.html:16
+msgid "Plain Text."
+msgstr ""
+
+#: apps/wiki/templates/wiki/confirm_remove.html:5
+msgid "Remove article"
+msgstr "Sterge articolul"
+
+#: apps/wiki/templates/wiki/confirm_remove.html:9
+msgid "Confirm deletion"
+msgstr "Confirma stergerea"
+
+#: apps/wiki/templates/wiki/confirm_remove.html:16
+msgid "Confirm"
+msgstr "Confirma"
+
+#: apps/wiki/templates/wiki/edit.html:5
+#, fuzzy
+msgid "Editing article"
+msgstr "Articol in curs de editare"
+
+#: apps/wiki/templates/wiki/edit.html:9 templates/profiles/profile_edit.html:6
+#: templates/profiles/profile_edit.html:11
+#: templates/profiles/profile-types/profile-mentor.html:9
+#: templates/profiles/profile-types/profile-mentor.html:47
+#: templates/profiles/profile-types/profile-mentor.html:73
+#: templates/profiles/profile-types/profile-mentor.html:88
+#: templates/profiles/profile-types/profile-mentor.html:129
+#: templates/profiles/profile-types/profile-student.html:9
+#: templates/profiles/profile-types/profile-student.html:45
+#: templates/profiles/profile-types/profile-student.html:69
+#: templates/profiles/profile-types/profile-student.html:84
+#: templates/profiles/profile-types/profile-student.html:98
+#: templates/profiles/profile-types/profile-student.html:115
+#: templates/profiles/profile-types/profile-student.html:137
+msgid "Edit"
+msgstr "Editare"
+
+#: apps/wiki/templates/wiki/history.html:6
+msgid "History for"
+msgstr "Istoric pentru"
+
+#: apps/wiki/templates/wiki/history.html:14
+msgid "Article History"
+msgstr "Istoric articole"
+
+#: apps/wiki/templates/wiki/history.html:19
+msgid "At"
+msgstr "La"
+
+#: apps/wiki/templates/wiki/history.html:21
+#: apps/wiki/templates/wiki/recentchanges.html:12
+msgid "Comment"
+msgstr "Comentariu"
+
+#: apps/wiki/templates/wiki/history.html:22
+#: apps/wiki/templates/wiki/history.html:52
+msgid "Revert"
+msgstr "Anuleaza"
+
+#: apps/wiki/templates/wiki/history.html:41
+#, fuzzy
+msgid "Current revision"
+msgstr "Versiuena curenta"
+
+#: apps/wiki/templates/wiki/index.html:19
+msgid "Create a new article"
+msgstr "Creeaza un articol nou"
+
+#: apps/wiki/templates/wiki/searchbox.html:7
+msgid "Article by title"
+msgstr "Articol dupa titlu"
+
+#: apps/wiki/templates/wiki/view.html:13
+msgid "This article does not exist."
+msgstr "Acest articol nu exista"
+
+#: apps/wiki/templates/wiki/view.html:14
+msgid ">Create it now</a>?"
+msgstr ">Doresti sa il creeazi</a>?"
+
+#: apps/wiki/templates/wiki/view.html:23
+msgid "Edit this article"
+msgstr "Editeaza acest articol"
+
+#: apps/wiki/templates/wiki/view.html:25
+msgid "Editing history"
+msgstr "Istoric editare"
+
+#: apps/wiki/templates/wiki/view.html:27
+msgid "Remove this article"
+msgstr "Sterge acest articol"
+
+#: apps/wiki/templates/wiki/view.html:29
+msgid "Create this article"
+msgstr "Creaza acest articol"
+
+#: apps/wiki/templates/wiki/wiki_title.html:4
+#, python-format
+msgid ""
+"\n"
+"        <h1> Wiki for %(group_type)s <a href=\"%(group_url)s\">%(group_name)"
+"s</a> </h1>\n"
+"    "
+msgstr ""
+"\n"
+"        <h1> Wiki pentru %(group_type)s <a href=\"%(group_url)s\">%"
+"(group_name)s</a> </h1>\n"
+"    "
+
+#: templates/base.html:37
+#, fuzzy
+msgid "Hide announcement"
+msgstr "Renunt trimis"
+
+#: templates/base.html:57
+msgid "clear"
+msgstr ""
+
+#: templates/homepage.html:6
+msgid "Welcome"
+msgstr "Bine ati venit"
+
+#: templates/homepage.html:11
+msgid "Welcome to UBB Alumni"
+msgstr "Bine ati venit la UBB Alumni"
+
+#: templates/homepage.html:14
+msgid ""
+"\n"
+"       Dacă ai ajuns până aici, ai deja ceva ce noi căutăm: curiozitate  \n"
+"\t\t"
+msgstr ""
+
+#: templates/homepage.html:20 templates/about/about.html:10
+msgid ""
+"\n"
+"Mentor Alumni este un program creat de studenţi UBB pentru studenţi şi "
+"absolvenţi UBB. Le permite tuturor să găsească şi să discute cu oameni "
+"preocupaţi de dezvoltarea lor profesională şi personală. \n"
+"Studenţii UBB primesc îndrumare pentru a-şi îndeplini cele mai îndrăzneţe "
+"obiective profesionale.\n"
+"Absolvenţii UBB descoperă viitori colaboratori, parteneri de cercetare sau "
+"angajaţi. \n"
+"Toţi pot participa la sesiuni de formare şi dezvoltare personală oferite de "
+"parteneri.\n"
+msgstr ""
+
+#: templates/homepage.html:29 templates/about/about.html:19
+msgid ""
+"\n"
+"Înscrie-te dacă eşti nou sau intră dacă eşti deja de-al casei! \n"
+"Dă dovadă şi de puţină răbdare şi completează toate datele, te asigurăm că "
+"merită! \n"
+msgstr ""
+
+#: templates/homepage.html:35 templates/about/about.html:25
+msgid ""
+"\n"
+"Proiectul Mentor Alumni este o initiativa a Asociatiei Absolventilor UBB si "
+"a Oficiului de Fund Raising al UBB. <b>TeamFlux</b> a transformat ideea in "
+"aceasta platforma.  \n"
+"        "
+msgstr ""
+
+#: templates/homepage.html:40
+msgid "About this project"
+msgstr "Despre proiect"
+
+#: templates/homepage.html:43
+msgid ""
+"\n"
+"        Comming soon...\n"
+"        "
+msgstr ""
+"\n"
+"        In curand...\n"
+"        "
+
+#: templates/homepage.html:51
+#, python-format
+msgid "Wondering <a href=\"%(what_next_url)s\">What Next</a>?"
+msgstr "Ce o sa <a href=\"%(what_next_url)s\">urmeze</a>??"
+
+#: templates/homepage.html:56
+#, python-format
+msgid ""
+"You can <a href=\"%(signup_url)s\">Sign up</a> and <a href=\"%(login_url)s"
+"\">Log in</a> to try out the site."
+msgstr ""
+"Puteti sa va <a href=\"%(signup_url)s\">Inscrieti</a> sau sa va <a href=\"%"
+"(login_url)s\">Logati</a> pentru a incerca site-ul."
+
+#: templates/homepage.html:58
+#, python-format
+msgid "You can <a href=\"%(login_url)s\">Log in</a> to try out the site."
+msgstr ""
+"Puteti sa va <a href=\"%(login_url)s\">Logati</a> pentru a incerca site-ul."
+
+#: templates/site_base.html:29 templates/profiles/profile_right_panel.html:41
+msgid "Account"
+msgstr "Cont"
+
+#: templates/site_base.html:29 templates/site_base.html.py:55
+msgid "Admin"
+msgstr ""
+
+#: templates/site_base.html:29 templates/account/logout.html:5
+msgid "Logout"
+msgstr "Delogare"
+
+#: templates/site_base.html:31 templates/account/login.html:7
+msgid "Login"
+msgstr "Logare"
+
+#: templates/site_base.html:31 templates/bookmarks/friends_bookmarks.html:28
+#: templates/bookmarks/friends_bookmarks.html:30
+#: templates/bookmarks/friends_bookmarks.html:36
+#: templates/bookmarks/friends_bookmarks.html:38
+#: templates/bookmarks/friends_bookmarks.html:43
+#: templates/bookmarks/friends_bookmarks.html:45
+#: templates/profiles/admin/events.html:40
+msgid "or"
+msgstr "sau"
+
+#: templates/site_base.html:31
+msgid "Sign up"
+msgstr "Inscriere"
+
+#: templates/site_base.html:48 templates/bookmarks/base.html:9
+msgid "News"
+msgstr ""
+
+#: templates/site_base.html:49
+#, fuzzy
+msgid "Profile"
+msgstr "Profil"
+
+#: templates/site_base.html:50 templates/tribes/tribes.html:12
+#: templates/tribes/tribes.html.py:15
+msgid "Tribes"
+msgstr "Triburi"
+
+#: templates/site_base.html:51
+msgid "Wikis"
+msgstr "Wiki-uri"
+
+#: templates/site_base.html:52
+msgid "Locations"
+msgstr "Locatii"
+
+#: templates/site_base.html:57 templates/surveys/survey_list.html:5
+msgid "Surveys"
+msgstr ""
+
+#: templates/site_base.html:64
+msgid "&copy; 2010 UBB"
+msgstr ""
+
+#: templates/site_base.html:65 templates/about/about.html:5
+#: templates/about/privacy.html:5
+msgid "About"
+msgstr "Despre"
+
+#: templates/site_base.html:66 templates/about/terms.html:5
+msgid "Terms of Service"
+msgstr "Termenii serviciului"
+
+#: templates/site_base.html:67
+msgid "Privacy Policy"
+msgstr "Confidentialitate"
+
+#: templates/about/dmca.html:5
+msgid "Digital Millennium Copyright Act Notice"
+msgstr ""
+
+#: templates/about/dmca.html:8
+msgid ""
+"<p>Your <b>Digital Millennium Copyright Act Notice</b> would normally go "
+"here...</p>"
+msgstr ""
+
+#: templates/about/privacy.html:8
+msgid ""
+"\n"
+"        <div>\n"
+"    <p>\n"
+"        <b>\n"
+"            Politica de securitate a datelor\n"
+"            <p>\n"
+"            </p>\n"
+"        </b>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Datele cu caracter personal furnizate in momentul inscrierii in "
+"programul .Mentor Alumni. sunt utilizate exclusiv de catre Asociatia "
+"Absolventilor\n"
+"        Universitatii Babes-Bolyai pentru desfasurarea in conditii optime a "
+"programului .Mentor Alumni..\n"
+"        <b>\n"
+"            <p>\n"
+"            </p>\n"
+"        </b>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai nu "
+"comercializeaza adresele de email sau orice alte date oferite de membrii "
+"inscrisi.  Asociatia\n"
+"        Absolventilor Universitatii Babes-Bolyai nu divulga adresele, "
+"telefoanele sau orice alte date personale catre terte parti, cu exceptia "
+"cazurilor\n"
+"        extreme cerute de legislatia in vigoare.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Orice statistica privind traficul utilizatorilor nostri, pe care o "
+"vom oferi partenerilor, este furnizata doar ca ansamblu de date si nu "
+"include nicio\n"
+"        informatie identificabila despre niciun utilizator individual.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        In momentul in care noi primim informatiile transmise de dvs, va "
+"garantam ca vom depune toate eforturile pentru a asigura securitatea "
+"acestora in\n"
+"        sistemele noastre, conform standardelor de securitate impuse de "
+"legislatia romana in vigoare.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai nu inchiriaza, "
+"vinde sau imparte informatii cu caracter personal cu alte persoane sau site-"
+"uri, cu\n"
+"        exceptia situatiilor in care avem acordul dvs explicit.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Datele dvs personale precum CNP si datele de contact nu pot fi "
+"accesate de niciun utilizator al siteului. Membrii siteului pot folosi "
+"serviciul de\n"
+"        cautare pentru a gasi alti membri in functie de diferite criterii de "
+"selectie, precum anul absolvirii sau facultatea finalizata. Datele "
+"personale\n"
+"        introduse de dvs pe profilul dvs vor fi folosite in aceste cautari.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Despre setarile legate de vizibilitatea profilului dvs pentru alti "
+"utilizatori,\n"
+"        <u>\n"
+"            click aici.\n"
+"            <p>\n"
+"            </p>\n"
+"        </u>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <u>\n"
+"            <p>\n"
+"                 \n"
+"            </p>\n"
+"        </u>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai isi rezerva "
+"dreptul de a folosi  datele adunate din site in mod anonim in scopul de a "
+"realiza\n"
+"        statistici sau alte rapoarte ce nu afecteaza direct si individual "
+"membrii siteului.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Prin crearea unui cont pe site, va manifestati acordul expres de a "
+"primi notificari din partea Asociatiei Absolventilor Universitatii Babes-"
+"Bolyai  cu\n"
+"        privire la noi facilitati si servicii lansate pentru absolventi.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Fiind sub incidenta termenilor de utilizare a sistemului, sunteti de "
+"acord sa:\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        a.                   oferiti informatii corecte in formularul de "
+"inregistrare.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        b.                  mentineti la zi datele de inregistrare.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Daca oferiti informatii incorecte sau care nu mai sunt de "
+"actualitate, Asociatia Absolventilor Universitatii Babes-Bolyai isi rezerva "
+"drepturi depline\n"
+"        de a va suspenda sau sterge contul sau de a va refuza in viitor "
+"accesul la sistem. Prin utilizarea programului .Mentor Alumni., va asumati "
+"toate\n"
+"        consecintele introducerii de date false.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"</div>\n"
+"\n"
+"    "
+msgstr ""
+
+#: templates/about/terms.html:8
+msgid ""
+"\n"
+"<div>\n"
+"    <p>\n"
+"        Site-ul <a href=\"http://mentorat.alumni.ubbcluj.ro/\">http://"
+"mentorat.alumni.ubbcluj.ro</a> (denumit in continuare SITE) este creat si "
+"administrat de\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai, cu datele de "
+"contact:____\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Daca folositi serviciile oferite de acest site, sunteti de acord cu "
+"termenii si conditiile de mai jos. Orice viitor acces va fi considerat un "
+"accept al\n"
+"        termenilor si conditiilor din acest document. Termenii si conditiile "
+"pot suferi modificari in timp. Veti fi notificat ori de cate ori se produc\n"
+"        modificari ale termenilor si conditiilor site-ului.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <b>\n"
+"            Protectia proprietatii intelectuale\n"
+"            <p>\n"
+"            </p>\n"
+"        </b>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Continutul si designul siteului (precum si orice alt material ce are "
+"legatura cu siteul) trimis dvs prin e-mail sau orice alta modalitate "
+"(articole,\n"
+"        newslettere, alte materiale denumite in continuare Continut site) "
+"apartin siteului .acolo unde nu este specificat un alt autor . si sunt "
+"protejate de\n"
+"        legislatia in vigoare cu privire la proprietatea intelectuala. Nu "
+"puteti utiliza, reproduce sau permite nimanui sa utilizeze sau sa reproduca "
+"parti din\n"
+"        continutul siteului fara a detine o permisiune scrisa din partea "
+"Asociatiei Absolventilor Universitatii Babes-Bolyai.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Sunteti responsabil in totalitate pentru fotografiile, profilurile, "
+"mesajele, articolele, si orice alt continut incarcati, publicati sau afisati "
+"pe sau\n"
+"        prin intermediul serviciilor oferite de site , sau pe care il "
+"impartasiti cu alti utilizatori.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Nu aveti voie sa publicati, trimiteti sau impartasiti continut pe "
+"care nu l-ati creat sau asupra caruia nu aveti drept de utilizare. "
+"Dumneavoastra\n"
+"        garantati ca afisarea continutului dvs in cadrul siteului nu incalca "
+"drepturile de intimitate, drepturile de autor, drepturile contractuale sau "
+"orice\n"
+"        alte drepturi ale oricarei persoane.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <b>\n"
+"            Utilizarea continutului siteului\n"
+"            <p>\n"
+"            </p>\n"
+"        </b>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Puteti copia si printa continutul siteului doar pentru utilizare in "
+"scop personal, lipsita de intentie comerciala. In oricare alt caz, "
+"continutul\n"
+"        siteului nu poate fi reprodus, modificat si exploatat, indiferent de "
+"scopul comercial sau necomercial al acestei exploatari.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Actiunile descrise mai jos nu sunt permise in lipsa obtinerii in "
+"prealabil a unei permisiuni scrise din partea Asociatiei Absolventilor "
+"Universitatii\n"
+"        Babes-Bolyai.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        reproducerea sau stocarea continutului siteului, precum si "
+"trimiterea acestui continut catre orice alt website, server sau orice alt "
+"mijloc de stocare\n"
+"        a informatiei\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        modificarea, publicarea, transmiterea, participarea la transferul "
+"sau distributia unor materiale realizate prin reproducerea, modificarea sau "
+"afisarea\n"
+"        continutului siteului, in lipsa obtinerii in prealabil a permisiunii "
+"scrise din partea Asociatiei Absolventilor Universitatii Babes-Bolyai.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Indepartarea insemnelor care semnifica drepturile de autor ale "
+"siteului asupra continutului.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Cererile de utilizare a continutului in alte scopuri decat cele "
+"permise expres de prezentul document pot fi trimise la adresa de\n"
+"        e-mail:______________________\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <b>\n"
+"            Inregistrare si parole\n"
+"            <p>\n"
+"            </p>\n"
+"        </b>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Accesul dvs la serviciile oferite de site este protejat de o parola. "
+"Va rugam sa nu dezvaluiti nimanui aceasta parola. Va rugam sa semnati .log\n"
+"        off/sign out. din contul dvs de utilizator al siteului la sfarsitul "
+"fiecarei sesiuni. Va sfatuim de asemenea sa inchideti fereastra browser-ului "
+"in\n"
+"        care ati lucrat la sfarsitul navigarii dvs si sa fiti atent/a la "
+"accesarea siteului de pe calculatoare publice/care nu va apartin.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Fiecare inregistrare se face pentru un singur utilizator. Este "
+"interzisa partajarea datelor de acces in contul siteului. In situatia in "
+"care se\n"
+"        descopera actiuni de acest gen, siteul isi rezerva dreptul de a "
+"anula sau suspenda accesul dvs la continutul sau.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <b>\n"
+"            Politica de securitate a datelor\n"
+"            <p>\n"
+"            </p>\n"
+"        </b>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Datele cu caracter personal furnizate in momentul inscrierii in "
+"programul .Mentor Alumni. sunt utilizate exclusiv de catre Asociatia "
+"Absolventilor\n"
+"        Universitatii Babes-Bolyai pentru desfasurarea in conditii optime a "
+"programului .Mentor Alumni..\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai nu "
+"comercializeaz. adresele de email sau orice alte date oferite de membrii "
+"îcri.i. Asociatia\n"
+"        Absolventilor Universitatii Babes-Bolyai nu divulg. adresele, "
+"telefoanele sau orice alte date personale c.tre ter.e p.r.i, cu excep.ia "
+"cazurilor\n"
+"        extreme cerute de legisla.ia îvigoare.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Orice statistica privind traficul utilizatorilor nostri, pe care o "
+"vom oferi partenerilor, este furnizata doar ca ansamblu de date si nu "
+"include nicio\n"
+"        informatie identificabila despre niciun utilizator individual.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        In momentul in care noi primim informatiile transmise de dvs, va "
+"garantam ca vom depune toate eforturile pentru a asigura securitatea "
+"acestora in\n"
+"        sistemele noastre, conform standardelor de securitate impuse de "
+"legislatia romana in vigoare.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai nu inchiriaza, "
+"vinde sau imparte informatii cu caracter personal cu alte persoane sau site-"
+"uri, cu\n"
+"        exceptia situatiilor in care avem acordul dvs explicit.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Datele dvs personale precum CNP, date de contact, nu pot fi accesate "
+"de niciun utilizator al siteului. Membrii siteului pot folosi serviciul de "
+"cautare\n"
+"        pentru a gasi alti membri in functie de diferite criterii de "
+"selectie, precum anul absolvirii sau facultatea finalizata. Datele personale "
+"introduse de\n"
+"        dvs pe profilul dvs vor fi folosite in aceste cautari. Pentru "
+"vizibilitatea profilului dvs va rugam cititi sectiunea de confidentialitate "
+"a siteului.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai isi rezerva "
+"dreptul de a folosi  datele adunate din site in mod anonim in scopul de a "
+"realiza\n"
+"        statistici sau alte rapoarte ce nu afecteaza direct si individual "
+"membrii siteului.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Prin crearea unui cont pe site, va manifestati acordul expres de a "
+"primi notificari din partea Asociatiei Absolventilor Universitatii Babes-"
+"Bolyai  cu\n"
+"        privire la noi facilitati si servicii lansate pentru absolventi.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Fiind sub inciden.a termenilor de utilizare a sistemului, sunte.i de "
+"acord s.:\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <ul>\n"
+"        <li>\n"
+"            oferi.i informa.ii corecte îformularul de îegistrare.\n"
+"            <p>\n"
+"            </p>\n"
+"        </li>\n"
+"    </ul>\n"
+"    <p>\n"
+"    </p>\n"
+"    <ul>\n"
+"        <li>\n"
+"            men.ine.i la zi datele de îegistrare.\n"
+"            <p>\n"
+"            </p>\n"
+"        </li>\n"
+"    </ul>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Dac. oferi.i informa.ii incorecte sau care nu mai sunt de "
+"actualitate, Asociatia Absolventilor Universitatii Babes-Bolyai î rezerv. "
+"drepturi depline\n"
+"        de a v. suspenda sau .terge contul sau de a v. refuza îviitor "
+"accesul la sistem. Prin utilizarea programului .Mentor Alumni., v. asuma.i "
+"toate\n"
+"        consecin.ele introducerii de date false.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <strong>5. Limitarea raspunderii</strong>\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Asociatia Absolventilor Universitatii Babes-Bolyai  nu poate garanta "
+"implicit sau expres pentru continutul de pe site, pentru continutul oferit "
+"de\n"
+"        membrii inregistrati.  Asociatia Absolventilor Universitatii Babes-"
+"Bolyai  nu isi asuma raspunderea in nici un caz, pentru nici o dauna, "
+"pricinuita\n"
+"        direct sau indirect de date, informatii, imagini colectate de pe "
+"site. De asemenea, Asociatia Absolventilor Universitatii Babes-Bolyai nu "
+"garanteaza\n"
+"        acuratetea, corectitudinea sau caracterul actual al continutului ori "
+"serviciilor furnizate de site. De asemenea,<strong> </strong>Asociatia\n"
+"        Absolventilor Universitatii Babes-Bolyai  nu garanteaza faptul ca "
+"sistemele informatice sau programele folosite pentru afisarea sau "
+"transmiterea\n"
+"        informatiei pe site sau in orice alta forma nu contin virusi ori "
+"alte surse distructive de cod sau alte proprietati distructive.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        Prin prezenta sunteti de acord sa exonerati de raspundere Asociatia "
+"Absolventilor Universitatii Babes-Bolyai   pentru orice actiune judiciara "
+"sau\n"
+"        extrajudiciara, care provine ca urmare a neutilizarii corecte sau "
+"frauduloase a site-ului.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <br/>\n"
+"        Pentru caz de forta majora, Asociatia Absolventilor Universitatii "
+"Babes-Bolyai  impreuna cu colaboratorii sai, este exonerata total de "
+"raspundere.\n"
+"        Cazurile de forta majora includ, dar nu se limiteaza la, erori de "
+"functionare ale echipamentului tehnic de pe site, lipsa functionarii "
+"conexiunii la\n"
+"        internet, lipsa functionarii conexiunilor de telefon, virusii "
+"informatici, accesul neautorizat in sistemele http://mentorat.alumni.ubbcluj."
+"ro , erorile\n"
+"        de operare, greva, etc.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"\t\n"
+"        <b>\n"
+"            Litigii\n"
+"            <br/> <br/>\n"
+"        </b>\n"
+"        Drepturile si obligatiile utilizatorilor siteului si toate efectele "
+"juridice pe care acceptarea le produce, sunt guvernate de legea romana in "
+"vigoare\n"
+"        si vor fi analizate si judecate de catre instanta romana.\n"
+"        <p>\n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"    <p>\n"
+"        <p>\n"
+"             \n"
+"        </p>\n"
+"    </p>\n"
+"    <p>\n"
+"    </p>\n"
+"</div>\n"
+"\n"
+"\t"
+msgstr ""
+
+#: templates/about/what_next.html:6 templates/about/what_next.html.py:9
+msgid "What Next?"
+msgstr "Ce urmeaza?"
+
+#: templates/about/what_next.html:43
+#, python-format
+msgid ""
+"Start by <a href=\"%(signup_url)s\">signing up</a> and <a href=\"%(login_url)"
+"s\">logging in</a>."
+msgstr ""
+"Incepeti prin a va <a href=\"%(signup_url)s\">Inscrie</a> si a va <a href=\"%"
+"(login_url)s\">Logati</a>."
+
+#: templates/about/what_next.html:45
+#, python-format
+msgid "Start by <a href=\"%(login_url)s\">logging in</a>."
+msgstr "Incepeti prin a va <a href=\"%(login_url)s\">loga</a>."
+
+#: templates/account/base.html:11 templates/account/password_change.html:5
+#: templates/account/password_change.html:8
+#: templates/account/password_reset_from_key.html:5
+#: templates/account/password_reset_from_key.html:8
+msgid "Change Password"
+msgstr "Schimba parola"
+
+#: templates/account/language_change.html:11
+msgid "Pinax can be used in your preferred language."
+msgstr "Platforma poate fi accesata in limba dumneavoastra preferata."
+
+#: templates/account/language_change.html:17
+msgid "Change my language"
+msgstr "Schimba limba"
+
+#: templates/account/login.html:11 templates/account/signup-wizard.html:14
+#: templates/account/signup.html:14
+msgid "Log In"
+msgstr "Logare"
+
+#: templates/account/login.html:14 templates/account/password_reset.html:12
+#: templates/account/password_reset_done.html:11
+msgid "Note"
+msgstr ""
+
+#: templates/account/login.html:14 templates/account/password_reset.html:12
+#: templates/account/password_reset_done.html:11
+#, python-format
+msgid "you are already logged in as %(user)s."
+msgstr "deja esti logat ca %(user)s."
+
+#: templates/account/login.html:18
+#, python-format
+msgid "Don't have an account? <a href=\"%(signup_url)s\">Sign up</a>!"
+msgstr "Nu aveti un cont? <a href=\"%(signup_url)s\">Inscrieti-va</a>!"
+
+#: templates/account/login.html:25
+#, fuzzy
+msgid "Forgot password?"
+msgstr "Ati uitat parola?"
+
+#: templates/account/login.html:29
+msgid "Log in &raquo;"
+msgstr "Logare &raquo"
+
+#: templates/account/login.html:34
+#, python-format
+msgid ""
+"If you have any trouble logging in to your account, contact us at <a href="
+"\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+msgstr ""
+"Daca aveti probleme cu contul, contactati-ne la <a href=\"mailto:%"
+"(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+
+#: templates/account/logout.html:8
+msgid "You've been logged out."
+msgstr "Ati fost delogati."
+
+#: templates/account/other_services.html:5
+#: templates/account/other_services.html:9
+msgid "Other Services"
+msgstr "Alte servicii"
+
+#: templates/account/other_services.html:10
+msgid "Twitter"
+msgstr "Twitter"
+
+#: templates/account/other_services.html:14
+#, fuzzy
+msgid "You have already authorized a twitter account."
+msgstr "Aceasta adresa de email e deja asociata contului curent."
+
+#: templates/account/other_services.html:15
+msgid "Change your account with this form."
+msgstr "Schimbati-va contul cu acest formular."
+
+#: templates/account/other_services.html:24
+#: templates/bookmarks/friends_bookmarks.html:90
+#: templates/profiles/profile_right_panel.html:32
+#, fuzzy
+msgid "save"
+msgstr "Salvati"
+
+#: templates/account/password_change.html:14
+#: templates/account/password_reset_from_key.html:17
+#, fuzzy
+msgid "change password"
+msgstr "schimba parola"
+
+#: templates/account/password_reset.html:6
+#: templates/account/password_reset.html:10
+#: templates/account/password_reset_done.html:5
+#: templates/account/password_reset_done.html:8
+#, fuzzy
+msgid "Password Reset"
+msgstr "Resetare parola"
+
+#: templates/account/password_reset.html:15
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+"V-ati uitat parola? Completati-va adresa de email mai jos si o sa va "
+"trimitem un e-mail care va va permite sa o schimbi."
+
+#: templates/account/password_reset.html:26
+#, python-format
+msgid ""
+"If you have any trouble resetting your password, contact us at <a href="
+"\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+msgstr ""
+"Daca aveti probleme cu resetarea parolei, contactati-ne la <a href=\"mailto:%"
+"(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+
+#: templates/account/password_reset_done.html:14
+#, python-format
+msgid ""
+"We have sent you an e-mail to <b>%(email)s</b>. If you do not receive it "
+"within a few minutes, contact us at <a href=\"mailto:%(CONTACT_EMAIL)s\">%"
+"(CONTACT_EMAIL)s</a>."
+msgstr ""
+"V-am trimis un email la <b>%(email)s</b>. Daca nu il primiti in cateva "
+"minute, contactati-ne la <a href=\"mailto:%(CONTACT_EMAIL)s\">%"
+"(CONTACT_EMAIL)s</a>."
+
+#: templates/account/signup-wizard.html:6 templates/account/signup.html:6
+msgid "Signup"
+msgstr "Inscriere"
+
+#: templates/account/signup-wizard.html:10
+#: templates/account/signup-wizard.html:13 templates/account/signup.html:9
+msgid "Sign Up"
+msgstr "Inscriere"
+
+#: templates/account/signup-wizard.html:11 templates/account/signup.html:12
+#, fuzzy
+msgid "You are already logged in."
+msgstr "Sunteti deja logat."
+
+#: templates/account/signup-wizard.html:13
+msgid "Step"
+msgstr "Pas"
+
+#: templates/account/signup-wizard.html:13
+msgid "of"
+msgstr "al"
+
+#: templates/account/signup-wizard.html:14 templates/account/signup.html:14
+msgid "Already have an account?"
+msgstr "Aveti deja un cont?"
+
+#: templates/account/signup-wizard.html:31
+#: templates/profiles/profile_form.html:14
+msgid "Prefered methods of communication"
+msgstr "Metode preferate de comunicare"
+
+#: templates/account/signup.html:16
+msgid "Student sign up form."
+msgstr "Formular inscriere student."
+
+#: templates/account/signup.html:17
+msgid "Mentor sign up form."
+msgstr "Formular inscriere mentor."
+
+#: templates/account/signup_complete.html:5
+msgid "Sign Up complete"
+msgstr "Inscriere completa"
+
+#: templates/account/signup_complete.html:8
+#, python-format
+msgid ""
+"\n"
+"You're account has been created, but, is currently inactive.\n"
+"<br/>\n"
+"An administrator will check the account information you have written and, if "
+"he consider's that the information you enetered is valid, your account will "
+"be activate.\n"
+"<br/>\n"
+"An email will be sent at the email address you provided (%(email)s) when "
+"your account will be activated.\n"
+msgstr ""
+"\n"
+"Contul dumneavoastra a fost creat, dar deocamdata este inactiv.\n"
+"<br/>\n"
+"Un administrator va verifica informatiile din contul dumneavoastra si, daca "
+"acestea vor fi valide, contul va fi activat.\n"
+"<br/>\n"
+"Un email va fi trimis pe emailul dumneavoastra (%(email)s) cand contul va fi "
+"activat.\n"
+
+#: templates/account/timezone_change.html:11
+msgid ""
+"Pinax can localize all times into your preferred timezone. Change your "
+"timezone below."
+msgstr ""
+"Orele pot fi localizate in fusul vostru orar preferat. Schimba fusul orar "
+"dedesupt."
+
+#: templates/account/timezone_change.html:17
+msgid "Change my timezone"
+msgstr "Schimba fus orar"
+
+#: templates/admin/base_site.html:4
+msgid "Mentorship admin"
+msgstr "Administrare mentorat"
+
+#: templates/admin/base_site.html:7
+msgid "Babes-Bolyai Mentorship Program"
+msgstr "Programul de mentorat al universitatii Babes-Bolyai"
+
+#: templates/admin/index.html:72
+msgid "Unknown content"
+msgstr "Continut necunoscut"
+
+#: templates/bookmarks/add.html:6 templates/bookmarks/add.html.py:10
+msgid "Add News"
+msgstr "Adauga stire"
+
+#: templates/bookmarks/add.html:16
+msgid "add news"
+msgstr "adauga stire"
+
+#: templates/bookmarks/base.html:10
+msgid "Events"
+msgstr "Evenimente"
+
+#: templates/bookmarks/bookmarks.html:12 templates/bookmarks/bookmarks.html:19
+#: templates/bookmarks/event_calendar.html:5
+msgid "Latest News"
+msgstr "Ultimele Stiri"
+
+#: templates/bookmarks/bookmarks.html:58
+msgid "No news yet."
+msgstr "Deocamdata nu exista nici o stire."
+
+#: templates/bookmarks/event_calendar.html:10
+msgid "Event Calendar"
+msgstr "Calendarul Evenimentelor"
+
+#: templates/bookmarks/event_details.html:6
+msgid "Event Details"
+msgstr "Detailii eveniment"
+
+#: templates/bookmarks/event_right_panel.html:5
+msgid " Date and time: "
+msgstr " Data si ora: "
+
+#: templates/bookmarks/event_right_panel.html:6
+msgid " Location: "
+msgstr " Locatie: "
+
+#: templates/bookmarks/event_right_panel.html:7
+msgid " Aquired points: "
+msgstr " Puncte stranse: "
+
+#: templates/bookmarks/friends_bookmarks.html:12
+#: templates/bookmarks/friends_bookmarks.html:17
+msgid "Friends' Bookmarks"
+msgstr "Bookmark-urile prietenilor"
+
+#: templates/bookmarks/friends_bookmarks.html:23
+msgid "These are bookmarks from your friends:"
+msgstr "Acestea sunt bookmark-uri de la prienteni tai:"
+
+#: templates/bookmarks/friends_bookmarks.html:25
+msgid "Sort by:"
+msgstr "Ordonea-za dupa:"
+
+#: templates/bookmarks/friends_bookmarks.html:29
+msgid "total points"
+msgstr "total puncte"
+
+#: templates/bookmarks/friends_bookmarks.html:35
+msgid "reddit-like hotness"
+msgstr ""
+
+#: templates/bookmarks/friends_bookmarks.html:46
+msgid "date added"
+msgstr "data adaugarii"
+
+#: templates/bookmarks/friends_bookmarks.html:82
+#, python-format
+msgid ""
+"\n"
+"                                Saved once\n"
+"                            "
+msgid_plural ""
+"\n"
+"                                Saved %(count)s times\n"
+"                            "
+msgstr[0] ""
+"\n"
+"                                Salvat o data\n"
+"                            "
+msgstr[1] ""
+"\n"
+"                                Salvat de %(count)s ori\n"
+"                            "
+
+#: templates/bookmarks/friends_bookmarks.html:88
+msgid "(including you)"
+msgstr "(inclusiv tu)"
+
+#: templates/bookmarks/friends_bookmarks.html:103
+#: templates/bookmarks/your_bookmarks.html:46
+#, fuzzy
+msgid "No bookmarks yet."
+msgstr "Nici o postare "
+
+#: templates/bookmarks/news_details.html:6
+#, fuzzy
+msgid "Article Details"
+msgstr "Articol dupa titlu"
+
+#: templates/bookmarks/news_details.html:11
+#, fuzzy
+msgid "Posted: "
+msgstr "Functie detinuta"
+
+#: templates/bookmarks/your_bookmarks.html:8
+#: templates/bookmarks/your_bookmarks.html:11
+#, fuzzy
+msgid "Your Bookmarks"
+msgstr "Fotografiile tale"
+
+#: templates/bookmarks/your_bookmarks.html:34
+msgid "Delete Bookmark"
+msgstr ""
+
+#: templates/friends_app/contacts.html:6 templates/friends_app/contacts.html:9
+#: templates/messages/base.html:20
+msgid "Contacts"
+msgstr "Contacte"
+
+#: templates/friends_app/contacts.html:22
+msgid "upload"
+msgstr ""
+
+#: templates/friends_app/contacts.html:31
+msgid "Import Google Contacts"
+msgstr "Importa contacte Google"
+
+#: templates/friends_app/contacts.html:47
+msgid "Import Yahoo Address Book"
+msgstr "Importa Yahoo Address Book"
+
+#: templates/friends_app/contacts.html:82
+msgid "No contacts."
+msgstr "Nici un contact"
+
+#: templates/friends_app/invitations.html:5
+#: templates/friends_app/invitations.html:8 templates/messages/base.html:19
+msgid "Invitations"
+msgstr "Invitatii"
+
+#: templates/friends_app/invitations.html:11
+msgid "Invite someone new to join"
+msgstr "Invitati pe cineva nou sa ni se alature"
+
+#: templates/friends_app/invitations.html:14
+msgid ""
+"If you'd like to invite someone to join Pinax, you can enter their email "
+"address and a message for them below:"
+msgstr ""
+"Daca doriti sa invitati pe cineva nou sa se alature platformei, puteti sa le "
+"introduceti adresa de email si un mesaj mai jos:"
+
+#: templates/friends_app/invitations.html:21
+msgid "Someone with this email address has already joined:"
+msgstr "Cineva cu aceasta adresa de email este deja inscris pe platforma."
+
+#: templates/friends_app/invitations.html:36
+#: templates/profiles/mentorship_request.html:84
+msgid "invite"
+msgstr "invita"
+
+#: templates/friends_app/invitations.html:41
+msgid "Friendship Requests Received"
+msgstr "Cereri de prietenie primite"
+
+#: templates/friends_app/invitations.html:51
+#: templates/friends_app/invitations.html:85
+#: templates/profiles/mentorship_request.html:11
+#: templates/profiles/profile_right_panel.html:74
+#, fuzzy
+msgid "View application letter"
+msgstr "renunta la solicitare"
+
+#: templates/friends_app/invitations.html:57
+#: templates/friends_app/invitations.html:63
+#: templates/friends_app/invitations.html:91
+#: templates/friends_app/invitations.html:97
+#: templates/profiles/mentorship_request.html:17
+#: templates/profiles/mentorship_request.html:23
+#: templates/profiles/profile_right_panel.html:81
+#: templates/profiles/profile_right_panel.html:87
+msgid "accept"
+msgstr "accepta"
+
+#: templates/friends_app/invitations.html:70
+#: templates/friends_app/invitations.html:104
+#: templates/profiles/mentorship_request.html:29
+#: templates/profiles/profile_right_panel.html:93
+msgid "decline"
+msgstr "refuza"
+
+#: templates/friends_app/invitations.html:75
+#: templates/friends_app/invitations.html:109
+#: templates/profiles/mentorship_request.html:35
+#: templates/profiles/mentorship_request.html:41
+#: templates/profiles/profile_right_panel.html:99
+#: templates/profiles/profile_right_panel.html:105
+#, fuzzy
+msgid "pending"
+msgstr "in curs de analiza"
+
+#: templates/friends_app/invitations.html:125
+msgid "No friendship requests received."
+msgstr "Nici o cerere de prietenie primita."
+
+#: templates/friends_app/invitations.html:129
+msgid "Friendship Requests Sent"
+msgstr "Cereri de prietenie trimise."
+
+#: templates/friends_app/invitations.html:142
+msgid "No friendship requests sent."
+msgstr "Nici o cerere de prietenie trimisa."
+
+#: templates/friends_app/invitations.html:146
+msgid "Join Requests Sent"
+msgstr "Cereri de alaturare trimise"
+
+#: templates/friends_app/invitations.html:164
+msgid "No join requests sent."
+msgstr "Nici o cerere de alaturare trimisa."
+
+#: templates/info/NDA.html:3
+msgid ""
+"The personal information included in this form are stored and used by "
+"\"Babes Bolyai\" University<br/>only in the purpose mentioned in the Mentor "
+"Alumni project."
+msgstr ""
+"Informatiile cu caracter personal incluse in acest formular sunt stocate si "
+"folosite de catre Asociatia Absolventilor Universitatii \"Babes Bolyai\" <br/>doar in scopurile "
+"mentionate in proiectul Mentor Alumni."
+
+#: templates/mentorship_admin/admin_events.html:5
+#: templates/mentorship_admin/admin_events.html:7
+msgid "Add a new event"
+msgstr "Adauga un eveniment nou"
+
+#: templates/mentorship_admin/admin_invite_users.html:4
+msgid "Invite users to join using singup codes"
+msgstr "Invita utilizatori sa se alature folosind coduri de inregistrare"
+
+#: templates/mentorship_admin/admin_invite_users.html:8
+msgid ""
+" Invite users given an email address. The user will be given a signup code "
+"to create their account on this website. "
+msgstr ""
+" Invita utilizatori data fiind o adresa de email. Utilizatorul va primi un "
+"cod de inregistrare pentru a-si crea contul pe acest website. "
+
+#: templates/mentorship_admin/admin_search_profiles.html:9
+msgid "All Users"
+msgstr "Toti utilizatorii"
+
+#: templates/mentorship_admin/admin_search_profiles.html:27
+#: templates/profiles/profiles.html:26
+#, fuzzy
+msgid "Select a field of interest"
+msgstr "Trebuie sa alegeti cel putin 1 domeniu de interes"
+
+#: templates/mentorship_admin/admin_search_profiles.html:41
+#: templates/profiles/profiles.html:40 templates/tribes/tribes.html:37
+msgid "Order by:"
+msgstr "Ordoneaza dupa:"
+
+#: templates/mentorship_admin/admin_search_profiles.html:44
+#: templates/profiles/profile-types/profile-student.html:25
+msgid "Faculty"
+msgstr "Facultate"
+
+#: templates/mentorship_admin/admin_search_profiles.html:45
+msgid "Students"
+msgstr "Studenti"
+
+#: templates/mentorship_admin/admin_search_profiles.html:46
+msgid "Mentors"
+msgstr "Mentori"
+
+#: templates/mentorship_admin/admin_search_profiles.html:55
+#: templates/profiles/profiles.html:51
+msgid "MONTH_DAY_FORMAT"
+msgstr ""
+
+#: templates/mentorship_admin/admin_set_profile_visibility.html:7
+#: templates/mentorship_admin/admin_set_profile_visibility.html:10
+msgid "User visibility"
+msgstr "Vizibilitatea utilizatorilor"
+
+#: templates/mentorship_admin/admin_set_profile_visibility.html:13
+msgid " is active."
+msgstr " este activ."
+
+#: templates/mentorship_admin/admin_set_profile_visibility.html:14
+msgid "Deactivate"
+msgstr "Dezactiveaza"
+
+#: templates/mentorship_admin/admin_set_profile_visibility.html:16
+msgid " is inactive."
+msgstr " este inactiv"
+
+#: templates/mentorship_admin/admin_set_profile_visibility.html:17
+msgid "Activate"
+msgstr "Activeaza"
+
+#: templates/mentorship_admin/base.html:11
+msgid "Invite users"
+msgstr "Invita utilizatori"
+
+#: templates/mentorship_admin/base.html:12
+#: templates/profiles/admin/events.html:4
+msgid "Add events"
+msgstr "Adauga eveniment"
+
+#: templates/mentorship_admin/base.html:13
+#, fuzzy
+msgid "Add news"
+msgstr "Evenimente recente"
+
+#: templates/messages/base.html:11
+msgid "Compose"
+msgstr "Compune"
+
+#: templates/messages/base.html:13
+#, fuzzy
+msgid "Mass Message"
+msgstr "Trimite un mesaj"
+
+#: templates/messages/base.html:18
+#, fuzzy
+msgid "Notices"
+msgstr "Observatie"
+
+#: templates/messages/trash.html:27
+msgid ""
+"Deleted Messages are removed from the trash at irregular intervals, don't "
+"rely on this feature for long-time storage."
+msgstr ""
+"Mesajele din gunoi sunt sterse definitiv la intervale regulate de timp."
+
+#: templates/messages/notification/messages_received/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"You have received the message <a href=\"%(message_url)s\">%(message)s</a> "
+"from <a href=\"%(sender_url)s\">%(message_sender)s</a>."
+msgstr ""
+"Articolul wiki <a href=\"%(article_url)s\">%(article)s</a>  a fost editat de "
+"catre <a href=\"%(user_url)s\">%(user)s</a>."
+
+#: templates/messages/notification/messages_replied/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"You have replied to <a href=\"%(message_url)s\">%(message_parent_msg)s</a> "
+"from <a href=\"%(recipient_url)s\">%(message_recipient)s</a>."
+msgstr ""
+"Modificarea dumneavoastra <a href=\"%(revision_url)s\">%(revision)s</a> la "
+"<a href=\"%(article_url)s\">%(article)s</a> a fost anulata."
+
+#: templates/messages/notification/messages_reply_received/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"<a href=\"%(sender_url)s\">%(message_sender)s</a> has sent you a reply to <a "
+"href=\"%(message_url)s\">%(message_parent_msg)s</a>."
+msgstr ""
+"<a href=\"%(user_url)s\">%(user)s</a> s-a alaturat tribului <a href=\"%"
+"(tribe_url)s\">%(tribe)s</a>."
+
+#: templates/messages/notification/messages_sent/notice.html:2
+#, fuzzy, python-format
+msgid ""
+"You have sent the message <a href=\"%(message_url)s\">%(message)s</a> to <a "
+"href=\"%(recipient_url)s\">%(message_recipient)s</a>."
+msgstr ""
+"Modificarea dumneavoastra <a href=\"%(revision_url)s\">%(revision)s</a> la "
+"<a href=\"%(article_url)s\">%(article)s</a> a fost anulata."
+
+#: templates/notification/single.html:7 templates/notification/single.html:10
+msgid "Notice"
+msgstr "Observatie"
+
+#: templates/photos/base.html:18
+msgid "Latest Photos"
+msgstr "Ultimele fotografii"
+
+#: templates/photos/base.html:19
+msgid "Your Photos"
+msgstr "Fotografiile tale"
+
+#: templates/photos/base.html:20
+msgid "Friends' Photos"
+msgstr "Fotografiile prietenilor"
+
+#: templates/photos/base.html:21
+msgid "Upload a Photo"
+msgstr "Uploadeaza o fotografie"
+
+#: templates/profiles/apply.html:10
+#, fuzzy
+msgid "You cannot mentor yourself :)"
+msgstr "cum poate un mentor sa ajute"
+
+#: templates/profiles/apply.html:12
+#: templates/profiles/profile_right_panel.html:62
+#, fuzzy
+msgid "Mentorship request"
+msgstr "Solicitare de mentorat"
+
+#: templates/profiles/base.html:10
+#, fuzzy
+msgid "Your Profile"
+msgstr "Profilul tau"
+
+#: templates/profiles/base.html:11
+#: templates/profiles/not_visible_mentor.html:8
+#: templates/profiles/profiles.html:9
+#, fuzzy
+msgid "All Profiles"
+msgstr "Toate profilele"
+
+#: templates/profiles/mentorship_request.html:4
+#: templates/profiles/profile_right_panel.html:66
+#, python-format
+msgid "You are connected with %(other_user)s."
+msgstr "Esti conectat cu %(other_user)s."
+
+#: templates/profiles/mentorship_request.html:4
+#: templates/profiles/profile_right_panel.html:66
+msgid "Send a message"
+msgstr "Trimite un mesaj"
+
+#: templates/profiles/mentorship_request.html:7
+#: templates/profiles/profile_right_panel.html:69
+#, fuzzy, python-format
+msgid "%(other_user)s has requested mentorship."
+msgstr "%(other_user)s a solicitat mentorizare."
+
+#: templates/profiles/mentorship_request.html:52
+#: templates/profiles/profile_right_panel.html:116
+msgid "Mentoring request renounced."
+msgstr "Cererea de mentorat a fost abandonata."
+
+#: templates/profiles/mentorship_request.html:55
+#: templates/profiles/profile_right_panel.html:119
+msgid "Mentoring request is being processed."
+msgstr "Cererea de mentorat este in curs de procesare."
+
+#: templates/profiles/mentorship_request.html:57
+#: templates/profiles/profile_right_panel.html:121
+msgid "Mentoring request sent."
+msgstr "Cererea de mentorat trimisa."
+
+#: templates/profiles/mentorship_request.html:60
+#: templates/profiles/profile_right_panel.html:124
+#, fuzzy
+msgid "renounce application"
+msgstr "renunta la solicitare"
+
+#: templates/profiles/mentorship_request.html:67
+#: templates/profiles/profile_right_panel.html:131
+msgid "You already have a mentor."
+msgstr "Aveti deja un mentor."
+
+#: templates/profiles/mentorship_request.html:70
+#: templates/profiles/profile_right_panel.html:134
+msgid "Mentoring request previously refused."
+msgstr "O cerere de mentorat a fost refuzata anterior"
+
+#: templates/profiles/mentorship_request.html:73
+#: templates/profiles/profile_right_panel.html:137
+msgid "You cannot send more than 3 requests."
+msgstr "Nu puteti trimite mai mult de 3 cereri"
+
+#: templates/profiles/mentorship_request.html:76
+msgid ""
+"Write a small letter of application to motivate your choice of mentor and "
+"express your plans for the possible collaboration:"
+msgstr ""
+
+#: templates/profiles/mentorship_request.html:85
+#, fuzzy, python-format
+msgid "%(other_user)s to be your mentor."
+msgstr "%(other_user)s sa va fie mentor."
+
+#: templates/profiles/not_visible_mentor.html:11
+msgid ""
+"You have choosen not to allow other mentors to see your profile, therefore "
+"you may not see the profiles of other mentors."
+msgstr ""
+"Ati ales sa nu le permiteti celorlalti mentori sa va vizualizeze profilul. In"
+"consecinta nu puteti nici dumneavoastra sa vizualizati profilele altor mentori."
+
+#: templates/profiles/not_visible_mentor.html:12
+msgid "You can see your mentees on your profile page."
+msgstr "Puteti sa va vedeti studentii mentorati pe pagina de profil."
+
+#: templates/profiles/profile.html:12
+#, python-format
+msgid "Profile for %(other_user)s"
+msgstr "Profilul pentru %(other_user)s"
+
+#: templates/profiles/profile.html:23
+#, python-format
+msgid "Profile for <span class=\"nickname\">%(other_user)s</span>"
+msgstr "Profilul pentru <span class=\"nickname\">%(other_user)s</span>"
+
+#: templates/profiles/profile.html:25
+#, python-format
+msgid "Profile for <span class=\"fn nickname\">%(other_user)s</span>"
+msgstr "Profilul pentru <span class=\"fn nickname\">%(other_user)s</span>"
+
+#: templates/profiles/profile.html:38 templates/tribes/tribe.html:41
+msgid "Wiki Articles"
+msgstr "Articole wiki"
+
+#: templates/profiles/profile.html:55
+msgid "No wiki articles yet."
+msgstr "Nici un articol wiki deocamdata"
+
+#: templates/profiles/profile.html:62
+#, python-format
+msgid ""
+"<a href=\"%(signup_url)s\">Sign up</a> and <a href=\"%(login_url)s\">log in "
+"</a> to add this person as a friend and see their tweets and blog posts."
+msgstr ""
+"<a href=\"%(signup_url)s\">Inregistreaza-te</a> si <a href=\"%(login_url)s"
+"\">logheaza-te </a> pentru a adauga aceasta persoana in lista de contacte."
+
+#: templates/profiles/profile_404.html:4
+#, fuzzy
+msgid "Profile 404"
+msgstr "Profil 404"
+
+#: templates/profiles/profile_404.html:7
+msgid "Profile not found"
+msgstr "Profilul nu a fost gasit"
+
+#: templates/profiles/profile_404.html:10
+msgid ""
+"The user whose profile you are trying to view either doesn't exist or he "
+"deactivated his profile page."
+msgstr ""
+"Utilizatorul al carui profil incercati sa il vizitati nu exista sau si-a "
+"dezactivat pagina de profil."
+
+#: templates/profiles/profile_404.html:12
+#, fuzzy
+msgid "You do not have permissions to view this profile"
+msgstr "Nu aveti permisiunea sa editati nimic."
+
+#: templates/profiles/profile_events.html:5
+#: templates/profiles/profile_events.html:10
+msgid "Events of"
+msgstr "Evenimente"
+
+#: templates/profiles/profile_events.html:29
+#: templates/profiles/admin/events.html:16
+msgid "Event"
+msgstr "Eveniment"
+
+#: templates/profiles/profile_events.html:29
+#: templates/profiles/admin/events.html:17
+msgid "Points"
+msgstr "Puncte"
+
+#: templates/profiles/profile_right_panel.html:8
+#, fuzzy
+msgid "Administration"
+msgstr "Invitatii"
+
+#: templates/profiles/profile_right_panel.html:10
+#, fuzzy
+msgid "Deactivate account"
+msgstr "Dezactiveaza"
+
+#: templates/profiles/profile_right_panel.html:12
+#, fuzzy
+msgid "Activate account"
+msgstr "Activeaza"
+
+#: templates/profiles/profile_right_panel.html:15
+msgid "Edit user events"
+msgstr "Editeaza evenimentele utilizatorilor"
+
+#: templates/profiles/profile_right_panel.html:33
+#: templates/profiles/profile_right_panel.html:165
+#: templates/surveys/survey_stats.html:30
+msgid "see all"
+msgstr "vezi toate"
+
+#: templates/profiles/profile_right_panel.html:35
+msgid "There are no user events available"
+msgstr "Nici un eveniment disponibil"
+
+#: templates/profiles/profile_right_panel.html:43
+#, fuzzy
+msgid "Deactivate profile"
+msgstr "Dezactivati profilul"
+
+#: templates/profiles/profile_right_panel.html:45
+#, fuzzy
+msgid "Activate profile"
+msgstr "Activati profilul"
+
+#: templates/profiles/profile_right_panel.html:49
+#, fuzzy
+msgid "Hide profile from other mentors"
+msgstr "Profilul pentru %(other_user)s"
+
+#: templates/profiles/profile_right_panel.html:51
+#, fuzzy
+msgid "Show profile to other mentors"
+msgstr "Profilul pentru %(other_user)s"
+
+#: templates/profiles/profile_right_panel.html:140
+#, fuzzy
+msgid "Request mentorship"
+msgstr "Cereri de alaturare trimise"
+
+#: templates/profiles/profile_right_panel.html:155
+#, fuzzy
+msgid "Rating"
+msgstr "Rating"
+
+#: templates/profiles/profile_right_panel.html:158
+#, fuzzy
+msgid "Recent events"
+msgstr "Evenimente recente"
+
+#: templates/profiles/profile_right_panel.html:173
+#: templates/tribes/base.html:16 templates/tribes/your_tribes.html:7
+#: templates/tribes/your_tribes.html:11
+msgid "Your Tribes"
+msgstr "Grupurile tale"
+
+#: templates/profiles/profile_right_panel.html:180
+#, python-format
+msgid "You are not yet a member of any <a href=\"%(tribe_url)s\">tribes</a>."
+msgstr "Nu sunteti membru al niciunui <a href=\"%(tribe_url)s\">grup</a>."
+
+#: templates/profiles/profile_right_panel.html:184
+msgid "Your Mentors"
+msgstr "Mentorii dumneavoastra"
+
+#: templates/profiles/profile_right_panel.html:185
+msgid "Your Mentees"
+msgstr "Studentii dumneavoastra"
+
+#: templates/profiles/profile_right_panel.html:200
+msgid "None."
+msgstr ""
+
+#: templates/profiles/profile_right_panel.html:207
+#, python-format
+msgid "%(other_user)s's Tribes"
+msgstr "Grupurile lui %(other_user)s"
+
+#: templates/profiles/profile_right_panel.html:213
+msgid "Not yet a member of any tribes."
+msgstr "Nu e membru al vreunui grup."
+
+#: templates/profiles/profile_right_panel.html:217
+#, python-format
+msgid "%(other_user)s's Mentor"
+msgstr "Mentorul lui %(other_user)s"
+
+#: templates/profiles/profile_right_panel.html:218
+#, python-format
+msgid "%(other_user)s's Mentees"
+msgstr "Studentii lui %(other_user)s"
+
+#: templates/profiles/view_message.html:8
+msgid " Letter of application from "
+msgstr ""
+
+#: templates/profiles/admin/events.html:7
+#, fuzzy
+msgid "Edit event for"
+msgstr "Evenimente"
+
+#: templates/profiles/admin/events.html:30
+#: templates/surveys/survey_list.html:51
+#: templates/surveys/survey_stats_users.html:42
+#, fuzzy
+msgid "First"
+msgstr "Primul"
+
+#: templates/profiles/admin/events.html:30
+#: templates/surveys/survey_list.html:52
+#: templates/surveys/survey_stats_users.html:43
+msgid "Previous"
+msgstr "Precedentul"
+
+#: templates/profiles/admin/events.html:34
+#: templates/surveys/survey_list.html:58
+#: templates/surveys/survey_stats_users.html:49
+msgid "Last"
+msgstr "Ultimul"
+
+#: templates/profiles/admin/events.html:40
+msgid "cancel"
+msgstr "renunta"
+
+#: templates/profiles/profile-types/profile-mentor.html:6
+#: templates/profiles/profile-types/profile-student.html:6
+#: templates/surveys/survey_stats_users.html:21
+msgid "Account type"
+msgstr "Tip de cont"
+
+#: templates/profiles/profile-types/profile-mentor.html:6
+#: templates/surveys/survey_list.html:39
+#: templates/surveys/survey_stats_users.html:31
+msgid "Mentor"
+msgstr "Mentor"
+
+#: templates/profiles/profile-types/profile-mentor.html:11
+#: templates/profiles/profile-types/profile-student.html:11
+#, fuzzy
+msgid "Firstname"
+msgstr "Prenume"
+
+#: templates/profiles/profile-types/profile-mentor.html:14
+#: templates/profiles/profile-types/profile-student.html:14
+#, fuzzy
+msgid "Surname before marriage"
+msgstr "Nume inainte de casatorie"
+
+#: templates/profiles/profile-types/profile-mentor.html:20
+#: templates/profiles/profile-types/profile-student.html:23
+#, fuzzy
+msgid "Age"
+msgstr "Varsta"
+
+#: templates/profiles/profile-types/profile-mentor.html:29
+#, fuzzy
+msgid "Graduation date"
+msgstr "Data absolvirii"
+
+#: templates/profiles/profile-types/profile-mentor.html:41
+#, fuzzy
+msgid "City and country of interest for mentorship"
+msgstr "Orasul si tara programului de mentorat"
+
+#: templates/profiles/profile-types/profile-mentor.html:50
+#: templates/profiles/profile-types/profile-student.html:48
+#, fuzzy
+msgid "Employer name"
+msgstr "Numele angajatorului"
+
+#: templates/profiles/profile-types/profile-mentor.html:53
+#: templates/profiles/profile-types/profile-student.html:51
+#, fuzzy
+msgid "Employer address"
+msgstr "Adresa angajatorului"
+
+#: templates/profiles/profile-types/profile-mentor.html:67
+#: templates/profiles/profile-types/profile-student.html:63
+#, fuzzy
+msgid "Add current employment information"
+msgstr "Adaugati informatii despre actualul loc de munca."
+
+#: templates/profiles/profile-types/profile-mentor.html:83
+#: templates/profiles/profile-types/profile-student.html:79
+msgid "Organizations in which (s)he is/was a volunteer"
+msgstr "Organizatii in care a participat ca voluntar"
+
+#: templates/profiles/profile-types/profile-mentor.html:88
+#: templates/profiles/profile-types/profile-student.html:84
+#: templates/profiles/profile-types/profile-student.html:98
+#: templates/profiles/profile-types/profile-student.html:115
+msgid "remove"
+msgstr "sterge"
+
+#: templates/profiles/profile-types/profile-mentor.html:91
+#: templates/profiles/profile-types/profile-student.html:87
+#: templates/profiles/profile-types/profile-student.html:101
+#: templates/profiles/profile-types/profile-student.html:118
+msgid "Add another"
+msgstr "Adauga altul"
+
+#: templates/profiles/profile-types/profile-mentor.html:96
+#, fuzzy
+msgid "Post bachelor's studies"
+msgstr "Studii postuniversitare"
+
+#: templates/profiles/profile-types/profile-mentor.html:101
+#: templates/profiles/profile-types/profile-student.html:126
+#, fuzzy
+msgid "Fields of interest for mentorship"
+msgstr "Domenii de interes pentru mentorat"
+
+#: templates/profiles/profile-types/profile-mentor.html:110
+#, fuzzy
+msgid "Professional experience"
+msgstr "Experienta profesionala"
+
+#: templates/profiles/profile-types/profile-mentor.html:115
+#, fuzzy
+msgid "Activities of interest for the mentorship program"
+msgstr "Activitati de interes pentru programul de mentorat"
+
+#: templates/profiles/profile-types/profile-mentor.html:121
+msgid "other"
+msgstr "altele"
+
+#: templates/profiles/profile-types/profile-mentor.html:132
+#: templates/profiles/profile-types/profile-student.html:140
+#, fuzzy
+msgid "Hobbies"
+msgstr "Hobbie-uri"
+
+#: templates/profiles/profile-types/profile-mentor.html:140
+#, fuzzy
+msgid "Additional informations"
+msgstr "Informatii aditionale"
+
+#: templates/profiles/profile-types/profile-mentor.html:145
+#: templates/profiles/profile-types/profile-student.html:153
+msgid "Preffered communication methods"
+msgstr "Mijlocul preferat de comunicare"
+
+#: templates/profiles/profile-types/profile-student.html:6
+#: templates/surveys/survey_list.html:39
+#: templates/surveys/survey_stats_users.html:31
+msgid "Student"
+msgstr "Student"
+
+#: templates/profiles/profile-types/profile-student.html:26
+msgid "Current pursued degree"
+msgstr "Nivel de studiu"
+
+#: templates/profiles/profile-types/profile-student.html:28
+#, fuzzy
+msgid "Faculty major"
+msgstr "Specializarea"
+
+#: templates/profiles/profile-types/profile-student.html:132
+#, fuzzy
+msgid "How can a mentor help in the student's  development?"
+msgstr "Cum poate un mentor sa ajute in dezvoltarea unui student?"
+
+#: templates/profiles/profile-types/profile-student.html:147
+#, fuzzy
+msgid "Expectation of mentor"
+msgstr "Asteptarile de la un mentor"
+
+#: templates/profiles/profile-types/profile-student.html:150
+#, fuzzy
+msgid "Addtional informations"
+msgstr "Informatii aditionale"
+
+#: templates/profiles/profile-types/parts/form.html:6
+#, python-format
+msgid "%(page_title)s"
+msgstr "%(page_title)s"
+
+#: templates/profiles/profile-types/parts/mentorship-activities.html:3
+#: templates/surveys/survey_form.html:15 templates/surveys/survey_list.html:19
+#, fuzzy
+msgid "Description"
+msgstr "Descriere"
+
+#: templates/profiles/profile-types/parts/student-employment.html:2
+msgid "Job"
+msgstr "Loc de munca"
+
+#: templates/profiles/profile-types/parts/student-employment.html:4
+#, fuzzy
+msgid "Position"
+msgstr "Functie detinuta"
+
+#: templates/profiles/profile-types/parts/volunteer-organization.html:2
+#, fuzzy
+msgid "Organization"
+msgstr "Numele organizatiei"
+
+#: templates/surveys/add.html:5 templates/surveys/add.html.py:9
+#: templates/surveys/base.html:11
+#, fuzzy
+msgid "Add survey"
+msgstr "Evenimente recente"
+
+#: templates/surveys/add.html:21 templates/surveys/add.html.py:63
+msgid "Text field"
+msgstr "Camp text"
+
+#: templates/surveys/add.html:23 templates/surveys/add.html.py:31
+#: templates/surveys/add.html:37 templates/surveys/add.html.py:63
+#: templates/surveys/add.html:64 templates/surveys/add.html.py:65
+#, fuzzy
+msgid "Field name"
+msgstr "Nume camp"
+
+#: templates/surveys/add.html:27 templates/surveys/add.html.py:43
+#: templates/surveys/add.html:63 templates/surveys/add.html.py:66
+msgid "Required"
+msgstr "Obligatoriu"
+
+#: templates/surveys/add.html:29 templates/surveys/add.html.py:64
+msgid "Checkbox"
+msgstr "Casuta bifare"
+
+#: templates/surveys/add.html:35 templates/surveys/add.html.py:65
+#, fuzzy
+msgid "Choice field"
+msgstr "Camp optiune"
+
+#: templates/surveys/add.html:41 templates/surveys/add.html.py:66
+msgid "Multichoice"
+msgstr "Multioptiuni"
+
+#: templates/surveys/add.html:45 templates/surveys/add.html.py:67
+msgid "Choices"
+msgstr "Optiuni"
+
+#: templates/surveys/add.html:49 templates/surveys/add.html.py:55
+#: templates/surveys/add.html:68
+#, fuzzy
+msgid "Choice name"
+msgstr "Nume optiune"
+
+#: templates/surveys/add.html:51 templates/surveys/add.html.py:55
+#: templates/surveys/add.html:68
+#, fuzzy
+msgid "Remove choice"
+msgstr "Sterge optiune"
+
+#: templates/surveys/add.html:55 templates/surveys/add.html.py:67
+msgid "Add choice"
+msgstr "Adauga optiune"
+
+#: templates/surveys/add.html:57 templates/surveys/add.html.py:63
+#: templates/surveys/add.html:64 templates/surveys/add.html.py:67
+#, fuzzy
+msgid "Remove field"
+msgstr "Sterge camp"
+
+#: templates/surveys/add.html:62
+msgid "Save survey"
+msgstr "Salveaza sondaj"
+
+#: templates/surveys/add.html:63
+msgid "Add text field"
+msgstr "Adauga camp text"
+
+#: templates/surveys/add.html:64
+msgid "Add checkbox"
+msgstr "Adauga casuta bifare"
+
+#: templates/surveys/add.html:68
+msgid "Add choice field"
+msgstr "Adauga camp optiuni"
+
+#: templates/surveys/add_success.html:4
+msgid "Survey addeed"
+msgstr "Sondaj adaugat"
+
+#: templates/surveys/add_success.html:7
+msgid "Survey added"
+msgstr "Sondaj adaugat"
+
+#: templates/surveys/add_success.html:9
+#, fuzzy
+msgid "The survey was successfully added."
+msgstr "sondaj creat cu succes."
+
+#: templates/surveys/base.html:10
+#, fuzzy
+msgid "All surveys"
+msgstr "Toate sondajele"
+
+#: templates/surveys/survey_form.html:5 templates/surveys/survey_form.html:14
+msgid "Survey"
+msgstr "Sondaj"
+
+#: templates/surveys/survey_list.html:20
+msgid "Type"
+msgstr "Tip"
+
+#: templates/surveys/survey_list.html:21
+#, fuzzy
+msgid "Creation date"
+msgstr "Data crearii"
+
+#: templates/surveys/survey_stats.html:6
+msgid "Survey stats"
+msgstr "Statistici sondaje"
+
+#: templates/surveys/survey_stats.html:26
+msgid "statistics"
+msgstr "statistici"
+
+#: templates/surveys/survey_stats.html:29
+msgid "Completed by"
+msgstr "Completat de"
+
+#: templates/surveys/survey_stats.html:29
+#, fuzzy
+msgid "users of"
+msgstr "utilizatori ai"
+
+#: templates/surveys/survey_stats.html:30
+#, fuzzy
+msgid "User inputs"
+msgstr "Input utilizatori"
+
+#: templates/surveys/survey_stats.html:34
+msgid "Field statistics"
+msgstr "Statistici pentru camp"
+
+#: templates/surveys/survey_stats.html:43
+#: templates/surveys/survey_stats.html:62
+#, fuzzy
+msgid "Option"
+msgstr "Optiune"
+
+#: templates/surveys/survey_stats.html:44
+msgid "User count"
+msgstr "Numar utilizatori"
+
+#: templates/surveys/survey_stats.html:46
+#: templates/surveys/survey_stats.html:55
+msgid "Yes"
+msgstr "Da"
+
+#: templates/surveys/survey_stats.html:48
+#: templates/surveys/survey_stats.html:55
+msgid "No"
+msgstr "Nu"
+
+#: templates/surveys/survey_stats.html:63
+msgid "User cound"
+msgstr "Numar utilizatori"
+
+#: templates/surveys/survey_stats_users.html:5
+msgid "Completed surveys"
+msgstr "Sondaje completate"
+
+#: templates/surveys/survey_stats_users.html:15
+msgid "User inputs for"
+msgstr "Inputul utilizatorului pentru"
+
+#: templates/surveys/survey_stats_users.html:22
+#, fuzzy
+msgid "Completion date"
+msgstr "Data completarii"
+
+#: templates/surveys/take_success.html:4
+msgid "Survey done"
+msgstr "Sondaj complet"
+
+#: templates/surveys/take_success.html:6
+#, fuzzy
+msgid "Survey complete"
+msgstr "Sondaj complet"
+
+#: templates/surveys/take_success.html:8
+#, fuzzy
+msgid "You have successfully completed the survey."
+msgstr "Ai completat sondajul cu succes."
+
+#: templates/surveys/view_user_input.html:4
+msgid "Survey input"
+msgstr "Inputul pentru sondaj"
+
+#: templates/surveys/view_user_input.html:8
+msgid "Survey input by:"
+msgstr "Inputul pentru sondaj de:"
+
+#: templates/tags/index.html:17
+msgid "Tags"
+msgstr "Tag-uri"
+
+#: templates/tags/index.html:21
+msgid "All Photos Matching "
+msgstr "Toate fotografiile"
+
+#: templates/tags/index.html:67
+msgid "All Blog Posts Matching "
+msgstr "Toate postarile pe blog"
+
+#: templates/tags/index.html:70
+msgid "These are blog posts from everyone:"
+msgstr "Acestea sunt toate postarile pe blog:"
+
+#: templates/tags/index.html:78
+#, python-format
+msgid "All Tribes Matching <i>%(tag)s</i>"
+msgstr "Toate grupurile care se protrivesc <i>%(tag)s</i>"
+
+#: templates/tags/index.html:87
+#, python-format
+msgid "All Tribe Topics Matching <i>%(tag)s</i>"
+msgstr "Toate subiectele deschise pe grupuri care se potrivesc <i>%(tag)s</i>"
+
+#: templates/tags/index.html:94
+#, python-format
+msgid "All Wiki Articles Matching <i>%(tag)s</i>"
+msgstr "Toate articolele Wiki care se potrivesc <i>%(tag)s</i>"
+
+#: templates/topics/topic.html:11
+msgid "Topic"
+msgstr ""
+
+#: templates/topics/topic.html:14
+msgid "Back to Topic List"
+msgstr ""
+
+#: templates/topics/topic.html:31
+msgid "Delete Topic"
+msgstr ""
+
+#: templates/topics/topic_item.html:36
+#, python-format
+msgid ""
+"\n"
+"                (most recent: %(topic_modified)s)\n"
+"                "
+msgstr ""
+
+#: templates/topics/topics.html:9
+#, python-format
+msgid "Discussion Topics for %(group_name)s"
+msgstr ""
+
+#: templates/topics/topics.html:11 templates/tribes/tribe.html:25
+msgid "Discussion Topics"
+msgstr ""
+
+#: templates/topics/topics.html:20
+#, fuzzy, python-format
+msgid "Topics for <a href=\"%(group_url)s\">%(group_name)s</a>"
+msgstr ""
+"\n"
+"        <h1> Wiki pentru %(group_type)s <a href=\"%(group_url)s\">%"
+"(group_name)s</a> </h1>\n"
+"    "
+
+#: templates/topics/topics.html:22
+#, fuzzy
+msgid "Topics"
+msgstr "Observatie"
+
+#: templates/topics/topics.html:28
+msgid "New Topic"
+msgstr ""
+
+#: templates/topics/topics.html:34
+#, fuzzy
+msgid "Create New Topic"
+msgstr "Creeaza un articol nou"
+
+#: templates/tribes/base.html:17
+#, fuzzy
+msgid "Create a Tribe"
+msgstr "Creeaza un articol nou"
+
+#: templates/tribes/base.html:19
+#, fuzzy
+msgid "All Tribes"
+msgstr "Triburi"
+
+#: templates/tribes/create.html:11 templates/tribes/create.html.py:14
+#, fuzzy
+msgid "Create Tribe"
+msgstr "Creaza acest articol"
+
+#: templates/tribes/create.html:16 templates/tribes/tribes.html:17
+msgid "A <b>tribe</b> is a group of people with some common interest."
+msgstr ""
+
+#: templates/tribes/create.html:23
+#, fuzzy
+msgid "create"
+msgstr "citit la"
+
+#: templates/tribes/create.html:30 templates/tribes/tribes.html:23
+#, fuzzy, python-format
+msgid ""
+"<a href=\"%(signup_url)s\">Sign up</a> and <a href=\"%(login_url)s\">log in "
+"</a> to create your own tribe or join an existing one."
+msgstr ""
+"Puteti sa va <a href=\"%(signup_url)s\">Inscrieti</a> sau sa va <a href=\"%"
+"(login_url)s\">Logati</a> pentru a incerca site-ul."
+
+#: templates/tribes/tribe.html:27
+#, fuzzy
+msgid "Topic count: "
+msgstr "Cont"
+
+#: templates/tribes/tribe.html:30 templates/tribes/tribe_item.html:25
+msgid "Topics:"
+msgstr "Subiecte:"
+
+#: templates/tribes/tribe.html:30
+msgid " topic page"
+msgstr " pagina subiecte"
+
+#: templates/tribes/tribe.html:33
+#, python-format
+msgid "Topics:</b> None yet. <a href=\"%(new_topic_url)s\">Start one...</a>"
+msgstr ""
+
+#: templates/tribes/tribe.html:42
+#, fuzzy
+msgid "Article count:"
+msgstr "Articol"
+
+#: templates/tribes/tribe.html:44
+#, fuzzy
+msgid "Articles:"
+msgstr "Articole"
+
+#: templates/tribes/tribe.html:44
+#, fuzzy
+msgid " read"
+msgstr "citit la"
+
+#: templates/tribes/tribe.html:48
+#, python-format
+msgid ""
+"\n"
+"\t\t\t\t\t\t\t<b>Articles:</b> None yet. Go to the <a href=\"%(wiki_url)s\" "
+"title=\"wiki\">wiki</a> to start a new article.\n"
+"\t\t\t\t\t\t"
+msgstr ""
+
+#: templates/tribes/tribe.html:58
+#, fuzzy
+msgid "Members"
+msgstr "membri"
+
+#: templates/tribes/tribe.html:78
+#, fuzzy
+msgid "Tribe"
+msgstr "Triburi"
+
+#: templates/tribes/tribe.html:81
+msgid "Slug:"
+msgstr ""
+
+#: templates/tribes/tribe.html:82
+#, fuzzy
+msgid "Creator:"
+msgstr "Categorie"
+
+#: templates/tribes/tribe.html:83
+msgid "Created:"
+msgstr "Creat:"
+
+#: templates/tribes/tribe.html:92
+#, fuzzy
+msgid "Edit details"
+msgstr "Detailii eveniment"
+
+#: templates/tribes/tribe.html:99
+#, fuzzy
+msgid "updated"
+msgstr "Indatoriri"
+
+#: templates/tribes/tribe.html:106
+msgid "Delete tribe"
+msgstr ""
+
+#: templates/tribes/tribe.html:108
+msgid "Delete Tribe"
+msgstr ""
+
+#: templates/tribes/tribe.html:111
+msgid "You are not the only member of the tribe so you can't delete the tribe."
+msgstr ""
+
+#: templates/tribes/tribe.html:121
+msgid "You are the creator of this tribe so can't leave (yet)."
+msgstr ""
+
+#: templates/tribes/tribe.html:124
+#, fuzzy
+msgid "leave"
+msgstr "Salvati"
+
+#: templates/tribes/tribe.html:128
+msgid "join tribe"
+msgstr ""
+
+#: templates/tribes/tribe.html:135
+#, fuzzy, python-format
+msgid ""
+"<a href=\"%(signup_url)s\">Sign up</a> and <a href=\"%(login_url)s\">log in "
+"</a> to join this tribe."
+msgstr ""
+"Puteti sa va <a href=\"%(signup_url)s\">Inscrieti</a> sau sa va <a href=\"%"
+"(login_url)s\">Logati</a> pentru a incerca site-ul."
+
+#: templates/tribes/tribe_item.html:23
+#, fuzzy
+msgid "Members:"
+msgstr "membri"
+
+#: templates/tribes/your_tribes.html:13
+msgid "These are the tribes you participate in."
+msgstr ""
+
+#~ msgid "What are you expectations of a mentor?"
+#~ msgstr "Care sunt asteptarile unui mentor?"
+
+#~ msgid "what are your expectation for a mentor"
+#~ msgstr "care sunt asteptarile dumneavoastra de la un mentor"
+
+#~ msgid ""
+#~ "\n"
+#~ "        <b>UBB Alumni</b> is a web application intended to connect UBB "
+#~ "students\n"
+#~ "        with former graduates. \n"
+#~ "        \n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "        <b>UBB Alumni</b> este o aplicatie web care urmareste sa puna in "
+#~ "legaturastudenti\n"
+#~ "        cu fosti absolventi. \n"
+#~ "        \n"
+#~ "        "
+
+#~ msgid ""
+#~ "\n"
+#~ "        For more information about the \"Babes-Bolyai\" University, see\n"
+#~ "        <a href=\"http://ubbcluj.ro/\">http://ubbcluj.ro/</a>.\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "        Pentru mai multe informatii despre Universitatea \"Babes-Bolyai"
+#~ "\", vizitati site-ul\n"
+#~ "        <a href=\"http://ubbcluj.ro/\">http://ubbcluj.ro/</a>.\n"
+#~ "        "
+
+#, fuzzy
+#~ msgid ""
+#~ "None. You should look at the list of <a href=\"/profiles\">profiles</a> "
+#~ "and see if there's anyone you know."
+#~ msgstr ""
+#~ "Nici unul. Puteti sa va uitati la lista de <a href=\"/profiles/"
+#~ "\">profiluri</a> si sa vedeti daca nu gasiti persoane interesante."
+
+#, fuzzy
+#~ msgid "Or sign in with your OpenID"
+#~ msgstr "Logati-va cu OpenID"
+
+#~ msgid "Mentor request form"
+#~ msgstr "Formular solicitare mentorat"
+
+#, fuzzy
+#~ msgid "Profiles"
+#~ msgstr "Profiluri"
+
+#~ msgid "Blogs"
+#~ msgstr "Bloguri"
+
+#~ msgid "Blog Posts"
+#~ msgstr "Postari pe bloguri"
+
+#~ msgid ""
+#~ "%(user)s has joined the tribe %(tribe)s.\n"
+#~ "\n"
+#~ "http://%(current_site)s%(tribe_url)s\n"
+#~ msgstr ""
+#~ "%(user)s s-a alaturat grupului %(tribe)s.\n"
+#~ "\n"
+#~ "http://%(current_site)s%(tribe_url)s\n"
+
+#~ msgid ""
+#~ "A new tribe %(tribe)s has been created.\n"
+#~ "\n"
+#~ "http://%(current_site)s%(tribe_url)s\n"
+#~ msgstr ""
+#~ "Un nou grup %(tribe)s a fost creeat\n"
+#~ "\n"
+#~ "http://%(current_site)s%(tribe_url)s\n"
+
+#~ msgid ""
+#~ "You're receiving this e-mail becuase you or someone else has requested a "
+#~ "password for your user account at Pinax.\n"
+#~ "It can be safely ignored if you did not request a password reset. Click "
+#~ "the link below to reset your password.\n"
+#~ "\n"
+#~ "http://%(domain)s%(password_reset_url)s\n"
+#~ "\n"
+#~ "Thanks for using our site!\n"
+#~ msgstr ""
+#~ "Ati primit acest email deoarece dumneavoastra sau altcineva ati solicitat "
+#~ "o parola pentru contul dumneavoastra de utilizator la Alumni UBB.\n"
+#~ "Click pe linkul urmator pentru resetarea parolei.\n"
+#~ "\n"
+#~ "http://%(domain)s%(password_reset_url)s\n"
+#~ "\n"
+#~ "Va multumim ca folositi site-ul nostru!\n"

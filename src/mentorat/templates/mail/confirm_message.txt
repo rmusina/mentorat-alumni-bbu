@@ -1,0 +1,6 @@
+{% load i18n %}{% blocktrans %}    This message has been sent to you to confirm that you are the owner of the account on {{ domain }} at which this email was set.
+ 
+    If the account with username {{ username }} belongs to you please click the following link to confirm it:
+{{ domain }}{{ url }}
+ 
+    This message is automatically sent by {{ domain }}, please do not repply to this email.{% endblocktrans %}

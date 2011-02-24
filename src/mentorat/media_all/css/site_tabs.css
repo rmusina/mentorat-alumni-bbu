@@ -1,0 +1,42 @@
+/* SITE-SPECIFIC TAB STYLING */
+
+body.news #tab_news a,
+body.surveys #tab_surveys a,
+body.mentorship_admin #tab_mentorship_admin a,
+body.wiki #tab_wiki a,
+body.profile #tab_profile a,
+body.blogs #tab_blogs a,
+body.swaps #tab_swaps a,
+body.photos #tab_photos a,
+body.tribes #tab_tribes a,
+body.tweets #tab_tweets a,
+body.News #tab_news a,
+body.locations #tab_locations a,
+body.inbox #tab_inbox a
+{
+    color: #fff; /* selected tab text colour */
+}
+
+body.news #tab_news,
+body.surveys #tab_surveys,
+body.mentorship_admin #tab_mentorship_admin,
+body.wiki #tab_wiki,
+body.profile #tab_profile,
+body.blogs #tab_blogs,
+body.swaps #tab_swaps,
+body.photos #tab_photos,
+body.tribes #tab_tribes,
+body.tweets #tab_tweets,
+body.news #tab_news,
+body.locations #tab_locations,
+body.inbox #tab_inbox
+{
+    margin: 0; /* to compensate for border */
+	margin-left: 2px;
+
+    padding: 5px 0 5px;
+    background-color: #ac74e3; /* selected tab colour */
+    border-left: 1px solid #000; /* tab border */
+    border-top: 1px solid #000; /* tab border */
+    border-right: 1px solid #000; /* tab border */
+}
