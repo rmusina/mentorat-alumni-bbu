@@ -1,0 +1,6 @@
+{% load i18n %}
+<p><b>{% if employment.internship %}{% trans "Internship" %}{% else %}{% trans "Job"%}{% endif %}
+{% if employment.employer_name %} at {{ employment.employer_name }}{% endif %}</b>
+{% if employment.position %}<br/>{% trans "Position" %}: {{ employment.position }}{% endif %}
+{% if employment.duties %}<br/>{% trans "Duties" %}: {{ employment.duties }}{% endif %}
+{% if employment.start_date %}<i><br/>{% trans "Date"%}: {{ employment.start_date }}{% if employment.end_date %} - {{ employment.end_date }}{%endif%}</i>{%endif%}</p>

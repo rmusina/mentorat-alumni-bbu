@@ -1,0 +1,16 @@
+{% extends "mentorship_admin/base.html" %}
+{% load i18n %}
+
+{% block head_title %}{% blocktrans %}Invite users to join using singup codes{% endblocktrans %}{% endblock %}
+{% block body %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js" type="text/javascript"></script>
+<div id="left-pannel">
+    <p> {% blocktrans %} Invite users given an email address. The user will be given a signup code to create their account on this website. {% endblocktrans %}</p>
+    <form method="POST" action="">
+    <div>
+        {{ form.as_p }}
+        <input type="submit" value="Send signup code" />
+    </div>
+    </form>
+</div>
+{% endblock %}

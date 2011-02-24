@@ -1,0 +1,56 @@
+{% extends 'surveys/base.html' %}
+{% load i18n %}
+{% load survey_tags %}
+
+{% block head_title %}{% trans 'Completed surveys' %}: {{ survey.name }}{% endblock %}
+{% block extra_head %}
+<style type="text/css">
+    table.surveys, table.surveys th, table.surveys td, table.surveys tr
+    {
+        border: 1px solid #aaa;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<h2>{% trans "User inputs for" %} <a href="{% url survey_stats survey.id %}">{{ survey.name }}</a></h2><br/>
+    <table width="100%" class="surveys" >
+        <thead>
+            <tr>
+                <th>{% trans "Name" %}</th>
+                <th>{% trans "Username" %}</th>
+                <th>{% trans "Account type" %}</th>
+                <th>{% trans "Completion date" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in object_list %}
+            <tr>
+                <td><a href="{% url survey_user_input survey.id,obj.user.username %}">{{ obj.user.get_profile.whole_name }}</a></td>
+                <td><a href="{% url profile_detail obj.user.username %}">{{ obj.user.username }}</a></td>                
+                <td align="center">
+			{% if obj.user.get_profile.as_student %}{% trans "Student" %}{% else %}{% trans "Mentor" %}{% endif %}</td>
+                <td>{{ obj.date.date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if is_paginated %}
+        <table width="100%">
+            <tr>
+                <td align="right" width="50%">
+                {% if page_obj.has_previous %}
+                    <a href="{% url survey_stats_users survey.pk %}">{% trans "First" %}</a>
+                    <a href="{% url survey_stats_users survey.pk %}?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a>
+                {% endif %}
+                </td>
+                <td width="50%">
+                {% if page_obj.has_next %}
+                    <a href="{% url survey_stats_users survey.pk %}?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a>
+                    <a href="{% url survey_stats_users survey.pk %}?page=last">{% trans "Last" %}</a>
+               {% endif %}
+               </td>
+           </tr>
+       <table>
+   {% endif %}
+{% endblock %}
+

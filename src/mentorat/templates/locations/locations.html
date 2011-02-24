@@ -1,0 +1,57 @@
+{% extends "site_base.html" %}
+
+{% block doctype_declaration %}
+<!DOCTYPE html">
+{% endblock %}
+
+{% load i18n %}
+
+{% block extra_head_base %}
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"> </script>
+	<script type="text/javascript" src="{{ STATIC_URL }}admin/js/locations.js"></script>
+    <script type="text/javascript">
+        pushpins = {
+            mentor: '{{ STATIC_URL }}pushpins/mentor.png',
+            student: '{{ STATIC_URL }}pushpins/user.png',
+            root: '{{ STATIC_URL }}pushpins/root.png'
+        };
+
+        function initialize() {
+            var position = new google.maps.LatLng(46.766667, 23.583333),
+                options = {
+                    zoom: 13,
+                    center: position,
+                    mapTypeId: google.maps.MapTypeId.HYBRID
+                },
+                map = new google.maps.Map(document.getElementById('map_canvas'), options);
+
+            $.get('{% url map_data %}', function(data, textStatus, jqXHR) {
+                data = JSON.parse(data) || {};
+                var u = data.users || [];
+                for (var i=0, len=u.length; i < len; ++ i) {
+                    var user = u[i];
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(user.lat, user.lng),
+                        map: map,
+                        icon: pushpins[user.icon],
+                        clickable: true,
+                        url: user.profile
+                    });
+                    google.maps.event.addListener(marker, 'click', function() { window.location = user.profile; });
+                    console.log(pushpins[user.icon]);
+                }
+            });
+        }
+    </script>
+    {% block extra_head %}{% endblock %}
+{% endblock %}
+
+{% block head_title %}
+	{% blocktrans %}All locations{% endblocktrans %}
+{% endblock %}
+
+{% block body_onload_functions %}initialize(){% endblock %}
+
+{% block body %}
+<div id="map_canvas" style="width:800px; height:700px"></div>
+{% endblock %}

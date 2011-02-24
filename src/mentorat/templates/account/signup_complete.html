@@ -1,0 +1,17 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+
+{% block body %}
+<h2>{% trans "Sign Up complete" %}</h2>
+<br/>
+<div>
+{% blocktrans %}
+You're account has been created, but, is currently inactive.
+<br/>
+An administrator will check the account information you have written and, if he consider's that the information you enetered is valid, your account will be activate.
+<br/>
+An email will be sent at the email address you provided ({{ email }}) when your account will be activated.
+{% endblocktrans %}
+</div>
+{% endblock %}
+

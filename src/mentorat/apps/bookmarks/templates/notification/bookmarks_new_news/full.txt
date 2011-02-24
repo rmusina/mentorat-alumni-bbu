@@ -1,0 +1,4 @@
+{% load i18n %}{% blocktrans with bookmark.description as description %}A new news post {{ description }} has been created.
+
+http://{{ current_site }}{{ bookmark }}
+{% endblocktrans %}
