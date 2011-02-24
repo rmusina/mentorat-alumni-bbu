@@ -55,7 +55,7 @@
             <li id="tab_profile"><a href="{% if user.is_staff %}{% url profile_list %}{% else %}{% url profile_detail user %}{% endif %}">{% trans "Profile" %}</a></li>
             <li id="tab_tribes"><a href="{% url tribe_list %}">{% trans "Tribes" %}</a></li>
             <li id="tab_wiki"><a href="{% url wiki_list %}">{% trans "Wikis" %}</a></li>
-            <li id="tab_locations"><a href="{% url locations_your %}">{% trans "Locations" %}</a></li>
+            <!--<li id="tab_locations"><a href="{% url locations_your %}">{% trans "Locations" %}</a></li>-->
             <li id="tab_inbox"><a href="{% url messages_inbox %}">{% trans "Inbox" %} ({{ combined_inbox_count }})</a></li>
             {% if user.is_staff %}
                 <li id="tab_mentorship_admin"><a href="{% url admin_invite_users %}">{% trans "Admin" %}</a></li>
