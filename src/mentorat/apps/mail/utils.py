@@ -31,7 +31,7 @@ def mail(to, subject, message):
         print '>> Message:', message.translate('en')
         print '< Mail ending'
        
-    html_content = render_to_string(message, {}) # ...
+    html_content = message # ...
     text_content = strip_tags(html_content) # this strips the html, so people will have the text as well.
      
     # create the email, and attach the HTML version as well.

@@ -16,3 +16,48 @@ lock already in place. quitting.
 ------------------------------------------------------------------------
 acquiring lock...
 lock already in place. quitting.
+------------------------------------------------------------------------
+acquiring lock...
+acquired.
+sending message 'Contul tau a fost activat' to teamflux2009@gmail.com
+sending message 'Contul tau a fost dezactivat' to teamflux2009@gmail.com
+releasing lock...
+released.
+
+2 sent; 0 deferred; 0 don't send
+done in 0.91 seconds
+------------------------------------------------------------------------
+acquiring lock...
+acquired.
+sending message 'Test' to teamflux2009@gmail.com
+releasing lock...
+released.
+Traceback (most recent call last):
+  File "manage.py", line 28, in <module>
+    execute_from_command_line()
+  File "/home/scs/others/flux/pinax-env/lib/python2.5/site-packages/django/core/management/__init__.py", line 353, in execute_from_command_line
+    utility.execute()
+  File "/home/scs/others/flux/pinax-env/lib/python2.5/site-packages/django/core/management/__init__.py", line 303, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/home/scs/others/flux/pinax-env/lib/python2.5/site-packages/django/core/management/base.py", line 195, in run_from_argv
+    self.execute(*args, **options.__dict__)
+  File "/home/scs/others/flux/pinax-env/lib/python2.5/site-packages/django/core/management/base.py", line 222, in execute
+    output = self.handle(*args, **options)
+  File "/home/scs/others/flux/pinax-env/lib/python2.5/site-packages/django/core/management/base.py", line 351, in handle
+    return self.handle_noargs(**options)
+  File "/home/scs/others/flux/pinax-env/lib/python2.5/site-packages/mailer/management/commands/send_mail.py", line 19, in handle_noargs
+    send_all()
+  File "/home/scs/others/flux/pinax-env/lib/python2.5/site-packages/mailer/engine.py", line 72, in send_all
+    core_send_mail(message.subject, message.message_body, message.from_address, [message.to_address])
+  File "/home/scs/others/flux/pinax-env/lib/python2.5/site-packages/django/core/mail.py", line 409, in send_mail
+    m.attach_alternative(html_content, "text/html")
+NameError: global name 'html_content' is not defined
+------------------------------------------------------------------------
+acquiring lock...
+acquired.
+sending message 'Test' to teamflux2009@gmail.com
+releasing lock...
+released.
+
+1 sent; 0 deferred; 0 don't send
+done in 0.38 seconds
