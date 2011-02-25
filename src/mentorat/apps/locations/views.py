@@ -1,8 +1,7 @@
-import json
 import geopy.distance
 import geopy.units
 import datetime
-import django.utils.simplejson
+import django.utils.simplejson as json
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
