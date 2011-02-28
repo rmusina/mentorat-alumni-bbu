@@ -278,7 +278,7 @@ WIKI_REQUIRES_LOGIN = True
 
 
 # Creu's stuff
-ALLOW_MENTORING_REQUESTS = False
+ALLOW_MENTORING_REQUESTS = True
 
 #TinyMCE settings follow
 TINYMCE_JS_URL = os.path.join(STATIC_ROOT, '/admin/tinymce/jscripts/tiny_mce/tiny_mce.js')
