@@ -1,0 +1,18 @@
+{% extends "profiles/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+	{% if is_me %}
+		{% trans "You cannot mentor yourself :)" %}
+	{% else %}		                
+		<h2>{% trans "Mentorship request" %}</h2>
+		{% include "profiles/mentorship_request.html" %}
+	{% endif %} {# is me #} 
+	
+{% endif %}
+
+{% endblock %}
