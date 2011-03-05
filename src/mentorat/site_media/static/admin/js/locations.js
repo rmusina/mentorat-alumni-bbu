@@ -1,12 +1,17 @@
-var initialLocation = null;
-var currentLocation = null;
-var clujNapoca = new google.maps.LatLng(46.7667, 23.6);
-var browserSupportFlag = new Boolean();
-var map = null;
-var userLocationPushpin = null;
-var pushpinPath = '';
 
-function initialize_your_location() {
+function initialize_your_location(latitude, longitude, pushpinPath, postbackLink) {
+	
+	var initialLocation = null;
+	
+	if (latitude != null && longitude != null) {
+		initialLocation = new google.maps.LatLng(latitude, longitude);
+	}
+	
+	var clujNapoca = new google.maps.LatLng(46.7667, 23.6);
+	var browserSupportFlag = new Boolean();
+	var map = null;
+	var userLocationPushpin = null;
+	
 	var myOptions = {
 		zoom : 10,
 		mapTypeId : google.maps.MapTypeId.ROADMAP
@@ -15,15 +20,13 @@ function initialize_your_location() {
 			myOptions);
 
 	if (!initialLocation) {
-		
 		// Try W3C Geolocation (Preferred)
 		if (navigator.geolocation) {
 			browserSupportFlag = true;
 			navigator.geolocation.getCurrentPosition(function(position) {
-				currentLocation = new google.maps.LatLng(
-						position.coords.latitude, position.coords.longitude);
-				map.setCenter(currentLocation);
+				initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 				initializeUserLocationPushpin();
+				map.setCenter(initialLocation);
 			}, function() {
 				handleNoGeolocation(browserSupportFlag);
 			});
@@ -32,10 +35,9 @@ function initialize_your_location() {
 			browserSupportFlag = true;
 			var geo = google.gears.factory.create('beta.geolocation');
 			geo.getCurrentPosition(function(position) {
-				currentLocation = new google.maps.LatLng(position.latitude,
-						position.longitude);
-				map.setCenter(currentLocation);
+				initialLocation = new google.maps.LatLng(position.latitude, position.longitude);
 				initializeUserLocationPushpin();
+				map.setCenter(initialLocation);
 			}, function() {
 				handleNoGeoLocation(browserSupportFlag);
 			});
@@ -45,19 +47,19 @@ function initialize_your_location() {
 			handleNoGeolocation(browserSupportFlag);
 		}
 	} else {
-		currentLocation = initialLocation;
 		initializeUserLocationPushpin();
+		map.setCenter(initialLocation);
 	}
-
+	
 	function handleNoGeolocation(errorFlag) {
 		if (errorFlag == true) {
 			alert("Geolocation service failed.");
-			currentLocation = clujNapoca;
+			initialLocation = clujNapoca;
 		} else {
 			alert("Your browser doesn't support geolocation. We've placed you in Cluj-Napoca.");
-			currentLocation = clujNapoca;
+			initialLocation = clujNapoca;
 		}
-		map.setCenter(currentLocation);
+		map.setCenter(initialLocation);
 		initializeUserLocationPushpin();
 	}
 	
@@ -79,11 +81,29 @@ function initialize_your_location() {
 
 		userLocationPushpin = new google.maps.Marker({
 		    map: map,
-		    position: currentLocation,
+		    position: initialLocation,
 		    draggable: true,
 		    shadow: shadow,
 		    shape: shape,
 		    icon: image
+		});
+	}
+		
+	function postLatLng(latitude, longitude) {
+		var requestData = { 'lat': latitude , 'lng': longitude };
+		
+		$.ajax({
+			data: JSON.stringify(requestData),
+		    processData: false,
+		    contentType: 'application/json',			
+		    type: "POST",
+		    url: postbackLink,
+		    success: function(data){
+		    	alert(data);
+		    },
+		    error: function(msg){
+		    	alert("There was an error with the server." );
+		    }              
 		});
 	}
 	
@@ -92,37 +112,34 @@ function initialize_your_location() {
 			userLocationPushpin.getPosition().lng() != initialLocation.lng() || 
 			userLocationPushpin.getPosition().lat() != initialLocation.lat()) {
 			
-			var saveLocation = confirm('Do you want to save your new location?');
-			
-			if (saveLocation) {
-				alert(userLocationPushpin.getPosition().lat() + " "
-						+ userLocationPushpin.getPosition().lng());
-				
-				var locationJSON = {
-					lat : userLocationPushpin.getPosition().lat(),
-					lng : userLocationPushpin.getPosition().lng()
-				};
-				
-				if (jQuery) {  
-				    alert("jQuery OK");
-				} else {
-					alert("jQuery caca");
-				}
-				
-				$.post('/locations/your_location/', locationJSON, function(result) {
-		            alert(result.Result);
-		        })
-
-
-			} else {
-				alert('not saving');
-			}
-			
-			initialLocation = null;
-			currentLocation = null;
-			userLocationPushpin = null;
+			return 'You have changed your current location, but it is not yet saved to the database.';
 		}
-	}
+	}	
 	
-	window.onbeforeunload=leave_locations;
+	var controlsHolder = document.createElement('DIV');
+	controlsHolder.style.padding = '30px';
+	controlsHolder.style.paddingTop = '10px';
+	controlsHolder.style.paddingBottom = '10px';
+	controlsHolder.style.border = '3px solid #fff';
+	controlsHolder.style.backgroundColor = '#ac74e3';
+	controlsHolder.index = 1;
+
+	var saveLocationControl = document.createElement('DIV');
+	saveLocationControl.style.padding = '3px';
+	saveLocationControl.style.paddingLeft = '10px';
+	saveLocationControl.style.paddingRight = '10px';
+	saveLocationControl.style.border = '1px solid #003399';
+	saveLocationControl.style.backgroundColor = '#fff';
+	saveLocationControl.style.cursor = 'pointer';
+	saveLocationControl.innerHTML = '<b>Save location</b>';
+	
+	controlsHolder.appendChild(saveLocationControl);
+	
+	google.maps.event.addDomListener(saveLocationControl, 'click', function() {
+		postLatLng(userLocationPushpin.getPosition().lat(), userLocationPushpin.getPosition().lng());
+		initialLocation = new google.maps.LatLng(userLocationPushpin.getPosition().lat(), userLocationPushpin.getPosition().lng());
+	});
+	
+	map.controls[google.maps.ControlPosition.TOP].push(controlsHolder);
+	window.onbeforeunload = leave_locations;
 }

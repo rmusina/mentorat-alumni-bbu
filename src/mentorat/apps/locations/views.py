@@ -1,7 +1,7 @@
 import geopy.distance
 import geopy.units
 import datetime
-import django.utils.simplejson as json
+from django.utils import simplejson
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -24,7 +24,6 @@ except ImportError:
 
 @login_required
 def all_locations(request):
-    raise Http404
     return render_to_response("locations/locations.html",
         {'locations': UserLocation.objects },
         context_instance=RequestContext(request)
@@ -32,7 +31,6 @@ def all_locations(request):
 
 def get_pushpin_avatar(user):
     #user = User.objects.get(username=user)
-    raise Http404
     if user.is_staff:
         return '/site_media/media/pushpins/root.png'
     else:
@@ -43,17 +41,25 @@ def get_pushpin_avatar(user):
 
 @login_required
 def user_location(request, form_class=UserLocationForm):
-    raise Http404
     user_location = None
     
-    if request.method == 'POST':
-        print request.data       
-    else:
-        locations = UserLocation.objects.filter(user=request.user)
-        user_location = None
+    locations = UserLocation.objects.filter(user=request.user)
         
-        if len(locations) >= 1:
-            user_location = locations[0]
+    if len(locations) >= 1:
+        user_location = locations[0]
+    
+    if request.method == "POST":
+        if user_location == None:
+            user_location = UserLocation()
+            user_location.user = request.user
+        
+        json_data = simplejson.loads(request.raw_post_data)
+        user_location.latitude = json_data["lat"]
+        user_location.longitude = json_data["lng"]
+        
+        user_location.save()
+               
+        return HttpResponse("Successfully saved new location.")       
                     
     return render_to_response("locations/your_location.html",
                               { 'user_location' : user_location,
@@ -63,7 +69,6 @@ def user_location(request, form_class=UserLocationForm):
 
 @login_required
 def map_data(request):
-    raise Http404
     users = []
     for location in UserLocation.objects.all():
         user = location.user
@@ -84,4 +89,4 @@ def map_data(request):
     data = {
         'users': users
     }
-    return HttpResponse(status=200, mimetype="application/json", content=json.dumps(data))
+    return HttpResponse(status=200, mimetype="application/json", content=simplejson.dumps(data))
