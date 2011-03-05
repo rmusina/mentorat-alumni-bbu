@@ -4,7 +4,9 @@ from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext_noop
 from django.contrib.auth.models import User
-
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from pinax.core.utils import get_send_mail
 send_mail = get_send_mail()
 
@@ -41,18 +43,24 @@ class ComposeForm(forms.Form):
         body = self.cleaned_data['body']
         message_list = []
         for r in recipients:
-            msg = Message(
-                sender = sender,
-                recipient = r,
-                subject = subject,
-                body = body,
-            )
+            html_content = body
+            text_content = strip_tags(html_content) # this strips the html, so people will have the text as well.
+            
+            print html_content
+            print text_content
+         
+            # create the email, and attach the HTML version as well.
+            msg = EmailMultiAlternatives(subject, text_content, settings.DEFAULT_FROM_EMAIL, [r])
+            msg.attach_alternative(html_content, "text/html")
+            message_list.append(msg)
+            msg.save()
+            
             if parent_msg is not None:
                 msg.parent_msg = parent_msg
                 parent_msg.replied_at = datetime.datetime.now()
                 parent_msg.save()
             msg.save()
-            message_list.append(msg)
+                               
             if notification:
                 if parent_msg is not None:
                     notification.send([sender], "messages_replied", {'message': msg,})
