@@ -17,7 +17,7 @@
 	{% blocktrans %}Choose event location{% endblocktrans %}
 {% endblock %}
 
-{% block body_onload_functions %}initialize_your_location(null, null, '/site_media/media/pushpins/event.png', '/locations/event_location/'){% endblock %}
+{% block body_onload_functions %}initialize_your_location(null, null, '/site_media/media/pushpins/event.png', '/locations/event_location/', true){% endblock %}
 
 {% block body %}
 <div id="map_canvas" style="width:800px; height:700px"></div>

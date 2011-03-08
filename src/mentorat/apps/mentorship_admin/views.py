@@ -16,6 +16,7 @@ from profiles.models import StudentProfile, MentorProfile, FieldOfInterest
 from forms import EventsForm
 from django.utils.translation import ugettext_lazy as _
 
+import datetime
 import profiles
 import mail.utils
 
@@ -140,21 +141,49 @@ def admin_invite_users(request, form_class = InviteUserForm,
         "form": form,
     }, context_instance = RequestContext(request))
 
+def get_initial_form_values_from_session(request):
+    ret_dict = {}
+    
+    ret_dict['name'] = request.session.get('events_selected_name', '')
+    ret_dict['points'] = request.session.get('events_selected_points', '1')
+    ret_dict['date'] = request.session.get('events_selected_date', datetime.datetime.now())
+    ret_dict['location'] = request.session.get('events_selected_location', '')
+    ret_dict['description'] = request.session.get('events_selected_description', '')
+    
+    return ret_dict
+
+def set_form_session_values(request):
+    request.session.get['events_selected_name']
+
+from locations.models import EventLocation
+
 @staff_member_required
 def admin_events(request, form_class = EventsForm,
         template_name="mentorship_admin/admin_events.html"):
     """
     View that controls the admin add events forms
     """
+    
+    if request.method == 'POST' and request.is_ajax():
+        print request.raw_post_data;
+        return HttpResponse("/mentorship_admin/event_admin/")
 
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
-            form.save()
+            event = form.save()
+            
+            (latitude, longitude) = request.session.get('events_selected_name', '46.7667,23.6').split(",")
+            event_location = EventLocation()
+            event_location.event = event
+            event_location.latitude = float(latitude)
+            event_location.longitude = float(longitude)
+            event_location.save()
+            
             request.user.message_set.create(message=_("Event %(event)s has been created.") % {'event':form.cleaned_data["name"]})
         form = form_class()
     else:
-        form = form_class()
+        form = form_class(initial=get_initial_form_values_from_session(request))
 
     return render_to_response(template_name, {
         "form": form,

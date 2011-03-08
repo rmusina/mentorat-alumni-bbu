@@ -21,7 +21,7 @@
 		{% else %}
 			alert("You do not have a location set yet. You will be prompted to share your location (if you choose not to share, your location will be set to Cluj-Napoca).");
 		{% endif %}	
-		initialize_your_location(latitude, longitude, '{{pushpin_path}}', '/locations/your_location/');
+		initialize_your_location(latitude, longitude, '{{pushpin_path}}', '/locations/your_location/', false);
 	}
 	</script>	
 	{% block extra_head %}{% endblock %}

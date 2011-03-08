@@ -215,7 +215,6 @@ class CommunicationRating(models.Model):
     def __unicode__(self):
         return self.method.name + '(' + str(self.ratting) + ')' 
 
-
 class Event(models.Model):
     name = models.CharField(max_length=30,  blank=False, verbose_name=_('Event Name'))
     points = models.IntegerField(default=1, verbose_name=_('Event Points'))
