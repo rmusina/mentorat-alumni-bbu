@@ -1,5 +1,5 @@
 
-function initialize_your_location(latitude, longitude, pushpinPath, postbackLink) {
+function initialize_your_location(latitude, longitude, pushpinPath, postbackLink, isEvent) {
 	
 	var initialLocation = null;
 	
@@ -8,6 +8,11 @@ function initialize_your_location(latitude, longitude, pushpinPath, postbackLink
 	}
 	
 	var clujNapoca = new google.maps.LatLng(46.7667, 23.6);
+	
+	if (isEvent) {
+		initialLocation = clujNapoca;
+	}
+	
 	var browserSupportFlag = new Boolean();
 	var map = null;
 	var userLocationPushpin = null;
@@ -88,8 +93,8 @@ function initialize_your_location(latitude, longitude, pushpinPath, postbackLink
 		    icon: image
 		});
 	}
-		
-	function postLatLng(latitude, longitude) {
+			
+	function postUserLatLng(latitude, longitude) {
 		var requestData = { 'lat': latitude , 'lng': longitude };
 		
 		$.ajax({
@@ -107,10 +112,29 @@ function initialize_your_location(latitude, longitude, pushpinPath, postbackLink
 		});
 	}
 	
+	function postEventLatLng(latitude, longitude) {
+		var requestData = { 'lat': latitude , 'lng': longitude };
+		
+		$.ajax({
+			data: JSON.stringify(requestData),
+		    processData: false,
+		    contentType: 'application/json',			
+		    type: "POST",
+		    url: postbackLink,
+		    success: function(data){
+		    	window.location.href = data;
+		    },
+		    error: function(msg){
+		    	alert("There was an error with the server." );
+		    }              
+		});
+	}
+	
 	function leave_locations(e) {
-		if (initialLocation == null || 
+		if (!isEvent &&
+			(initialLocation == null || 
 			userLocationPushpin.getPosition().lng() != initialLocation.lng() || 
-			userLocationPushpin.getPosition().lat() != initialLocation.lat()) {
+			userLocationPushpin.getPosition().lat() != initialLocation.lat())) {
 			
 			return 'You have changed your current location, but it is not yet saved to the database.';
 		}
@@ -136,8 +160,12 @@ function initialize_your_location(latitude, longitude, pushpinPath, postbackLink
 	controlsHolder.appendChild(saveLocationControl);
 	
 	google.maps.event.addDomListener(saveLocationControl, 'click', function() {
-		postLatLng(userLocationPushpin.getPosition().lat(), userLocationPushpin.getPosition().lng());
-		initialLocation = new google.maps.LatLng(userLocationPushpin.getPosition().lat(), userLocationPushpin.getPosition().lng());
+		if (isEvent) {
+			postEventLatLng(userLocationPushpin.getPosition().lat(), userLocationPushpin.getPosition().lng());
+		} else {
+			postUserLatLng(userLocationPushpin.getPosition().lat(), userLocationPushpin.getPosition().lng());
+			initialLocation = new google.maps.LatLng(userLocationPushpin.getPosition().lat(), userLocationPushpin.getPosition().lng());
+		}
 	});
 	
 	map.controls[google.maps.ControlPosition.TOP].push(controlsHolder);
