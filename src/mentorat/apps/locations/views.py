@@ -3,6 +3,7 @@ import geopy.units
 import datetime
 from django.utils import simplejson
 
+from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
@@ -16,6 +17,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponseRedirect, HttpResponse
 from locations.forms import UserLocationForm
 from locations.models import UserLocation
+from geopy import geocoders
 
 try:
     from notification import models as notification
@@ -38,6 +40,29 @@ def get_pushpin_avatar(user):
             return '/site_media/media/pushpins/user.png'
         else:
             return '/site_media/media/pushpins/mentor.png'
+
+@staff_member_required
+def event_location(request):
+    
+    if request.method == "POST":
+        json_data = simplejson.loads(request.raw_post_data)
+        
+        latitude = json_data["lat"]
+        longitude = json_data["lng"]
+        
+        print latitude, longitude
+        
+        g = geocoders.Google()
+        coord_string = "%s,%s" % (latitude, longitude)
+        (place, point) = g.geocode(coord_string)
+        
+        request.session['events_selected_location'] = place
+        request.session['events_selected_coordinates'] = coord_string
+        
+        return HttpResponse("/mentorship_admin/event_admin/")
+    
+    return render_to_response("locations/event_location.html",
+                              context_instance=RequestContext(request))
 
 @login_required
 def user_location(request, form_class=UserLocationForm):
