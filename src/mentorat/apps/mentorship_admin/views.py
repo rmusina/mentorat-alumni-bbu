@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
@@ -152,8 +152,24 @@ def get_initial_form_values_from_session(request):
     
     return ret_dict
 
-def set_form_session_values(request):
-    request.session.get['events_selected_name']
+def set_form_session_values(request, data_dict):
+    request.session['events_selected_name'] = data_dict.get('name', '')
+    request.session['events_selected_points'] = data_dict.get('points', '')
+    request.session['events_selected_date'] = data_dict.get('date', '')
+    request.session['events_selected_location'] = data_dict.get('location', '')
+    request.session['events_selected_description'] = data_dict.get('description', '')
+
+def safely_delete_key(dict, key):
+    if dict.has_key(key):
+        del dict[key]
+
+def cleanup_session_data(request):
+    safely_delete_key(request.session, 'events_selected_name')
+    safely_delete_key(request.session, 'events_selected_points')
+    safely_delete_key(request.session, 'events_selected_date')
+    safely_delete_key(request.session, 'events_selected_location')
+    safely_delete_key(request.session, 'events_selected_description')
+    
 
 from locations.models import EventLocation
 
@@ -165,15 +181,15 @@ def admin_events(request, form_class = EventsForm,
     """
     
     if request.method == 'POST' and request.is_ajax():
-        print request.raw_post_data;
-        return HttpResponse("/mentorship_admin/event_admin/")
+        set_form_session_values(request, request.POST)
+        return HttpResponse("/locations/event_location/")
 
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
             event = form.save()
             
-            (latitude, longitude) = request.session.get('events_selected_name', '46.7667,23.6').split(",")
+            (latitude, longitude) = request.session.get('events_selected_coordinates', '46.7667,23.6').split(",")
             event_location = EventLocation()
             event_location.event = event
             event_location.latitude = float(latitude)
@@ -181,6 +197,8 @@ def admin_events(request, form_class = EventsForm,
             event_location.save()
             
             request.user.message_set.create(message=_("Event %(event)s has been created.") % {'event':form.cleaned_data["name"]})
+        
+        cleanup_session_data(request)
         form = form_class()
     else:
         form = form_class(initial=get_initial_form_values_from_session(request))
