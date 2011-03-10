@@ -16,7 +16,8 @@ from django.core.exceptions import ImproperlyConfigured
 
 from django.http import HttpResponseRedirect, HttpResponse
 from locations.forms import UserLocationForm
-from locations.models import UserLocation
+from locations.models import UserLocation, EventLocation
+from friends.models import FriendshipInvitation
 from geopy import geocoders
 
 try:
@@ -93,8 +94,17 @@ def user_location(request, form_class=UserLocationForm):
                               )
 
 @login_required
+def all_locations(request):
+    return render_to_response("locations/locations_all.html",
+                              {},
+                              context_instance=RequestContext(request)
+                              )
+
+@login_required
 def map_data(request):
     users = []
+    relations = []
+    
     for location in UserLocation.objects.all():
         user = location.user
         if user.is_staff or user.is_superuser:
@@ -103,6 +113,16 @@ def map_data(request):
             icon = 'student'
         else:
             icon = 'mentor'
+            for invitation in FriendshipInvitation.objects.filter(to_user=user):
+                try: 
+                     student = UserLocation.objects.get(user=invitation.from_user)
+                     if student != None:
+                         relations.append({'lat1':location.latitude, 'lng1':location.longitude,
+                                      'lat2':student.latitude, 'lng2':student.longitude, 
+                                      'status':invitation.status})
+                except UserLocation.DoesNotExist:
+                      pass                   
+            
         users.append({
             'name': user.username,
             'profile': reverse('profile_detail', kwargs={'username': user.username}),
@@ -110,8 +130,21 @@ def map_data(request):
             'lng': location.longitude,
             'icon': icon
         })
+    
+    events = []
+    for location in EventLocation.objects.all():
+        event = location.event
+        
+        events.append({
+            'name': user.username,
+            'event_details': reverse('event_details', kwargs={'eventId': event.id}),
+            'lat': location.latitude,
+            'lng': location.longitude
+        })
 
     data = {
-        'users': users
+        'users': users,
+        'events': events,
+        'relations': relations
     }
     return HttpResponse(status=200, mimetype="application/json", content=simplejson.dumps(data))
