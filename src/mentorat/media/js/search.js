@@ -19,5 +19,5 @@ function search_button_pressed(view, field) {
     var field_index = document.getElementById("field_select").selectedIndex
     field.value = field_index
 
-    return false;
+    return true;
 }

@@ -95,7 +95,7 @@ def your_tribes(request, template_name="tribes/your_tribes.html"):
         "tribes": Tribe.objects.filter(members=request.user).order_by("name"),
     }, context_instance=RequestContext(request))
 
-
+@login_required
 def tribe(request, group_slug=None, form_class=TribeUpdateForm,
         template_name="tribes/tribe.html"):
     tribe = get_object_or_404(Tribe, slug=group_slug)

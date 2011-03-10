@@ -8,6 +8,8 @@ from django.utils.hashcompat import sha_constructor
 from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
 from django.contrib.sites.models import Site
+from django.core.mail import EmailMultiAlternatives
+from django.utils.html import strip_tags
 
 import profiles.models
 
@@ -27,9 +29,14 @@ def mail(to, subject, message):
         print '>> Subject:', subject.translate('en')
         print '>> Message:', message.translate('en')
         print '< Mail ending'
-
-    send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [to], priority='high')
-
+       
+    html_content = message # ...
+    text_content = strip_tags(html_content) # this strips the html, so people will have the text as well.
+         
+    # create the email, and attach the HTML version as well.
+    msg = EmailMultiAlternatives(subject, text_content, settings.DEFAULT_FROM_EMAIL, [to])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()    
 
 def send_mail_confirm(user, email=None):
     """Send a confirmation email to the user.

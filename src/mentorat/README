@@ -1,0 +1,3 @@
+Made changes in django 
+  - changed mailler engine.py lock file name
+  - change core.mail.py send_mail to send html mails
