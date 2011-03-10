@@ -19,6 +19,12 @@ from django.utils.translation import ugettext_lazy as _
 import profiles
 import mail.utils
 
+if "notification" in settings.INSTALLED_APPS:
+    from notification import models as notification
+else:
+    notification = None
+
+
 @staff_member_required
 def admin_set_profile_visibility(request, username, visibility, template_name="mentorship_admin/admin_set_profile_visibility.html", extra_context=None):
     if extra_context == None:
@@ -150,7 +156,11 @@ def admin_events(request, form_class = EventsForm,
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
-            form.save()
+            event = form.save()
+
+            if notification:
+                notification.send(User.objects.all(), "profiles_new_event", { "event": event }, queue=True)
+
             request.user.message_set.create(message=_("Event %(event)s has been created.") % {'event':form.cleaned_data["name"]})
         form = form_class()
     else:
