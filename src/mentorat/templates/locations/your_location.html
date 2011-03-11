@@ -1,4 +1,4 @@
-{% extends "site_base.html" %}
+{% extends "locations/locations_base.html" %}
 
 {% block doctype_declaration %}
 <!DOCTYPE html">
@@ -8,7 +8,22 @@
 
 {% block extra_head_base %}	
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"> </script>
-	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}admin/js/locations.js"></script>
+	<script type="text/javascript">
+	function initMap() {
+		var latitude = null;
+		var longitude = null;
+			
+		{% if user_location %}
+			latitude = {{ user_location.latitude }};
+			longitude = {{ user_location.longitude }};
+		{% else %}
+			alert("You do not have a location set yet. You will be prompted to share your location (if you choose not to share, your location will be set to Cluj-Napoca).");
+		{% endif %}	
+		initialize_your_location(latitude, longitude, '{{pushpin_path}}', '/locations/your_location/', false);
+	}
+	</script>	
 	{% block extra_head %}{% endblock %}
 {% endblock %}
 
@@ -16,25 +31,12 @@
 	{% blocktrans %}Your location{% endblocktrans %}
 {% endblock %}
 
-{% block body_onload_functions %}initialize_your_location(){% endblock %}
+{% block body_onload_functions %}initMap(){% endblock %}
 
 {% block body %}
-<form name="mapform" action="." method="post">
-	<div id="map_canvas" style="width:800px; height:700px"></div>
-</form>
+<div id="map_canvas" style="width:800px; height:700px"></div>
 {% endblock %}
 
 {% block extra_body %}
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-	<script type="text/javascript">
-		{% if user_location %}
-			initialUserLocation = new google.maps.LatLng({{user_location.latitude}}, {{user_location.longitude}});
-			alert("init ok");
-		{% else %}
-			alert("no user location in db");
-		{% endif %}	
-		
-		pushpinPath = {{pushpin_path}};
-	</script>
-	<script type="text/javascript" src="{{ STATIC_URL }}admin/js/locations.js"></script>
+	
 {% endblock %}

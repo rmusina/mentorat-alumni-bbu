@@ -14,6 +14,7 @@
     <form method="GET" action="">
         <input type="hidden" name="field" value="" />
         <input type="text" id="search" name="search" value="{{ search_terms }}" />
+        <input type="hidden" id="order" name="order" value="{{ order }}" />
         <input type="submit" value="Search" onclick="search_button_pressed('profiles', this.form.field)"/>
         {% if search_terms %}
             <a href="{% clear_search_url request %}">Clear Search Terms</a>
@@ -38,14 +39,16 @@
     {% endif %}
     {% if users %}
         <p>{% trans "Order by:" %}
-                <a href="{% url profile_list %}?order=name&search={{ search_terms }}&field={{ field }}">{% trans "Name" %}</a>
-                <a href="{% url profile_list %}?order=date&search={{ search_terms }}&field={{ field }}">{% trans "Date" %}</a>
-                <a href="{% url profile_list %}?order=faculty&search={{ search_terms }}&field={{ field }}">{% trans "Faculty" %}</a>
-                <a href="{% url profile_list %}?order=students&search={{ search_terms }}&field={{ field }}">{% trans "Students" %}</a>
-                <a href="{% url profile_list %}?order=mentors&search={{ search_terms }}&field={{ field }}">{% trans "Mentors" %}</a>
+            {% for category in categories %}
+                {% ifequal category order %}
+                    <a href="{% url profile_list %}?order={{ category }}&search={{ search_terms }}&field={{ field }}" style="text-transform: capitalize; font-weight: bold;">{% trans category %}</a>
+                {% else %}
+                    <a href="{% url profile_list %}?order={{ category }}&search={{ search_terms }}&field={{ field }}" style="text-transform: capitalize;">{% trans category %}</a>
+                {% endifequal %}
+            {% endfor %}
         </p>
         
-        {% autopaginate users%}
+        {% autopaginate users %}
         
         {% ifequal order 'date'  %}
             {% regroup users by user.date_joined.date as users_by_date_joined %}

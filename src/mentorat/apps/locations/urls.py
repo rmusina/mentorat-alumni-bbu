@@ -6,5 +6,7 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('',
     url(r'^$', 'locations.views.map_data', name='locations_all'),
     url(r'^your_location/$', 'locations.views.user_location', name='locations_your'),
+    url(r'^event_location/$', 'locations.views.event_location', name='locations_event'),
     url(r'^data/$', 'locations.views.map_data', name='map_data'),
+    url(r'^all_locations/$', 'locations.views.all_locations', name='locations_all')
 )

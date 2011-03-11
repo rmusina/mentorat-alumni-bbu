@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
@@ -16,8 +16,15 @@ from profiles.models import StudentProfile, MentorProfile, FieldOfInterest
 from forms import EventsForm
 from django.utils.translation import ugettext_lazy as _
 
+import datetime
 import profiles
 import mail.utils
+
+if "notification" in settings.INSTALLED_APPS:
+    from notification import models as notification
+else:
+    notification = None
+
 
 @staff_member_required
 def admin_set_profile_visibility(request, username, visibility, template_name="mentorship_admin/admin_set_profile_visibility.html", extra_context=None):
@@ -140,21 +147,71 @@ def admin_invite_users(request, form_class = InviteUserForm,
         "form": form,
     }, context_instance = RequestContext(request))
 
+def get_initial_form_values_from_session(request):
+    ret_dict = {}
+    
+    ret_dict['name'] = request.session.get('events_selected_name', '')
+    ret_dict['points'] = request.session.get('events_selected_points', '1')
+    ret_dict['date'] = request.session.get('events_selected_date', datetime.datetime.now())
+    ret_dict['location'] = request.session.get('events_selected_location', '')
+    ret_dict['description'] = request.session.get('events_selected_description', '')
+    
+    return ret_dict
+
+def set_form_session_values(request, data_dict):
+    request.session['events_selected_name'] = data_dict.get('name', '')
+    request.session['events_selected_points'] = data_dict.get('points', '')
+    request.session['events_selected_date'] = data_dict.get('date', '')
+    request.session['events_selected_location'] = data_dict.get('location', '')
+    request.session['events_selected_description'] = data_dict.get('description', '')
+
+def safely_delete_key(dict, key):
+    if dict.has_key(key):
+        del dict[key]
+
+def cleanup_session_data(request):
+    safely_delete_key(request.session, 'events_selected_name')
+    safely_delete_key(request.session, 'events_selected_points')
+    safely_delete_key(request.session, 'events_selected_date')
+    safely_delete_key(request.session, 'events_selected_location')
+    safely_delete_key(request.session, 'events_selected_description')
+    
+
+from locations.models import EventLocation
+
 @staff_member_required
 def admin_events(request, form_class = EventsForm,
         template_name="mentorship_admin/admin_events.html"):
     """
     View that controls the admin add events forms
     """
+  
+    if request.method == 'POST' and request.is_ajax():
+        set_form_session_values(request, request.POST)
+        return HttpResponse("/locations/event_location/")
 
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
-            form.save()
+            event = form.save()
+            
+            (latitude, longitude) = request.session.get('events_selected_coordinates', '46.7667,23.6').split(",")
+            event_location = EventLocation()
+            event_location.event = event
+            event_location.latitude = float(latitude)
+            event_location.longitude = float(longitude)
+            event_location.save()
+            
+
+            if notification:
+                notification.send(User.objects.all(), "profiles_new_event", { "event": event }, queue=True)
+
             request.user.message_set.create(message=_("Event %(event)s has been created.") % {'event':form.cleaned_data["name"]})
+        
+        cleanup_session_data(request)
         form = form_class()
     else:
-        form = form_class()
+        form = form_class(initial=get_initial_form_values_from_session(request))
 
     return render_to_response(template_name, {
         "form": form,

@@ -43,6 +43,7 @@ def profiles(request, template_name="profiles/profiles.html", extra_context=None
         extra_context = {}
 
     users = None
+    categories = ['name', 'date', 'faculty', 'students', 'mentors']
 
     if request.user.is_staff:
         users = Profile.objects.all()
@@ -76,16 +77,11 @@ def profiles(request, template_name="profiles/profiles.html", extra_context=None
     if not order:
         order = 'date'
     if search_terms:
-        if order == 'name':
-            users = users.filter(
-                Q(user__username__icontains=search_terms) |
-                Q(user__profile__firstname__icontains=search_terms) |
-                Q(user__profile__surname__icontains=search_terms)
-            )
-        elif order == 'faculty':
-            users = users.filter(
-                Q(user__profile__studentprofile__faculty__icontains=search_terms)
-            )
+        users = users.filter(
+            Q(user__username__icontains=search_terms) |
+            Q(user__profile__firstname__icontains=search_terms) |
+            Q(user__profile__surname__icontains=search_terms)
+        )
 
     if selected_field_of_interest:
         users = users.filter(user__profile__fields_of_interest__field__name__iexact=selected_field_of_interest)
@@ -110,6 +106,7 @@ def profiles(request, template_name="profiles/profiles.html", extra_context=None
         'search_terms': search_terms,
         'fields_of_interest': fields_of_interest,
         'field': selected_field_index,
+        'categories': categories,
     }, **extra_context), context_instance=RequestContext(request))
 
 

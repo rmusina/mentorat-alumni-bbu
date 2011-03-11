@@ -18,6 +18,13 @@ from django.utils.safestring import mark_safe
 
 from profiles.models import Event
 from calendar import monthrange
+from django.contrib.auth.models import User
+
+from django.conf import settings
+if "notification" in settings.INSTALLED_APPS:
+    from notification import models as notification
+else:
+    notification = None
 
 def bookmarks(request):
     bookmarks = Bookmark.objects.all().order_by("-added")
@@ -70,6 +77,9 @@ def add(request):
             if bookmark.url == "":
                 bookmark.url = reverse('news_details', kwargs={'newsId':bookmark.id}) 
                 bookmark.save()
+
+            if notification:
+                notification.send(User.objects.all(), "bookmarks_new_news", { "bookmark": bookmark }, queue=True)
                 
             if bookmark_form.should_redirect():
                 return HttpResponseRedirect(bookmark.url)
