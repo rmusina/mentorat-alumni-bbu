@@ -1,1 +1,0 @@
-{% if active %}Contul tau a fost activat{% else %}Contul tau a fost dezactivat{% endif %}
