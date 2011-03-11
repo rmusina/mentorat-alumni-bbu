@@ -1,0 +1,45 @@
+{% extends "profiles/base.html" %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Add events" %}{% endblock %}
+
+{% block body %}
+<h1>{% trans "Edit event for" %} <a href="{% url profile_detail username %}">{{ username }}</a></h1>
+<br/>
+{% if save_message %}
+<p><b style="color:green">{{ save_message }}.</b></p>
+{% endif %}
+<form method="POST" action="{% url profile_admin_events username %}?offset={{ offset }}">
+{% csrf_token %}
+<table class="event-table" style="width:100%">
+    <thead>
+    <th></th><th style="text-aling:left">{% trans "Event" %}</th>
+    <th style="text-align:center">{% trans "Date" %}</th><th style="text-align:right">{% trans "Points" %}</th></thead>
+    {% for item in items %}
+    <tr>
+        <td style="width:30px"><input type="checkbox" name="event-{{ item.id }}" {% if item.participated %}checked="true"{% endif %} value="{{ item.id }}"/>
+        <input type="hidden" name="id-event-{{ item.id }}" value="{{ item.id }}"/></td>
+        <td>{{ item.name }}</td>
+        <td style="text-align:center;width:150px">{{ item.date }}</td>
+        <td style="text-align:right;width:100px">{{ item.points }}</td>
+    </tr>
+    {% endfor %}
+    {% if has_prev or has_next %}
+        <tr><td colspan="4" style="text-align:center">
+        {% if has_prev %}
+            <a href="{% url profile_admin_events username %}">&lt;&lt;{% trans "First" %}</a> <a href="{% url profile_admin_events username %}?offset={{ prev }}">&lt;{% trans "Previous" %}</a>
+        {% endif %}
+        {% if has_prev and has_next %}&nbsp;*&nbsp;{% endif %}
+        {% if has_next %}
+            <a href="{% url profile_admin_events username %}?offset={{ next }}">{% trans "Next" %}&gt;</a> <a href="{% url profile_admin_events username %}?offset={{ last }}">{% trans "Last" %}&gt;&gt;</a>
+        {% endif %}
+        </td></tr>
+    {% endif %}
+</table>
+{% if items %}
+<p><input type="submit" value="{% trans 'Save' %}"/> {% trans "or" %} <a href="{% url profile_detail username %}">{% trans "cancel" %}</a></p>
+{% endif %}
+</form>
+{% endblock %}
+
+

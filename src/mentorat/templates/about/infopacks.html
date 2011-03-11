@@ -1,0 +1,16 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Info-packs" %}{% endblock %}
+
+{% block body %}
+
+<h1> Info-packs </h1>
+
+{% trans "Aceste documente contin mai multe detalii despre proiect:" %}
+
+<p><a href="{{ MEDIA_URL }}/info_pack_alumni_final.pdf">Info-pack mentor</a></p>
+<p><a href="{{ MEDIA_URL }}/info_pack_student_final.pdf">Info-pack student</a></p>
+
+{% endblock %}
