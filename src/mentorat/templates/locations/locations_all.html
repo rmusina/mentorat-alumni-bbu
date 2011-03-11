@@ -25,8 +25,10 @@
         	9: '#E9F030'
         };
 
+        map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(controlsHolder);
+
         function initialize() {
-            var position = new google.maps.LatLng(46.766667, 23.583333),
+           var position = new google.maps.LatLng(46.766667, 23.583333),
                 options = {
                     zoom: 13,
                     center: position,
@@ -34,6 +36,18 @@
                 },
                 map = new google.maps.Map(document.getElementById('map_canvas'), options);
 
+            var controlsHolder = document.createElement('DIV');
+            controlsHolder.style.padding = '20px';
+            controlsHolder.style.paddingTop = '10px';
+            controlsHolder.style.paddingBottom = '10px';
+            controlsHolder.style.border = '3px solid #ac74e3';
+            controlsHolder.style.backgroundColor = '#fff';
+            controlsHolder.innerHTML = '<div> <b>Mentoring invitations legend:</b> <div style="color:#2327FC">Sent</div> <div style="color:#4DF211">Accepted</div> <div style="color:#FF0000">Declined</div>  <div style="color:#E9F030">Pending</div> <div style="color:#000000">Accepted by another mentor</div> </div>';
+            controlsHolder.index = 1;
+            
+            map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(controlsHolder);
+                          
+            
             $.get('{% url map_data %}', function(data, textStatus, jqXHR) {
                 data = JSON.parse(data) || {};
                 var u = data.users || [];
@@ -47,7 +61,7 @@
                         url: user.profile
                     });
                     //google.maps.event.addListener(marker, 'click', function() { window.location = user.profile; });
-                    console.log(pushpins[user.icon]);
+                    //console.log(pushpins[user.icon]);
                 }
                 
                 var events = data.events || [];
@@ -61,7 +75,7 @@
                         url: event.event_details
                     });
                     google.maps.event.addListener(marker, 'click', function() { window.location = event.event_details; });
-                    console.log(pushpins[event]);
+                    //console.log(pushpins[event]);
                 }
                 
                 var relations = data.relations || [];

@@ -147,8 +147,10 @@ function initialize_your_location(latitude, longitude, pushpinPath, postbackLink
 	controlsHolder.style.border = '3px solid #fff';
 	controlsHolder.style.backgroundColor = '#ac74e3';
 	controlsHolder.index = 1;
+	
 
-	var saveLocationControl = document.createElement('DIV');
+
+    var saveLocationControl = document.createElement('DIV');
 	saveLocationControl.style.padding = '3px';
 	saveLocationControl.style.paddingLeft = '10px';
 	saveLocationControl.style.paddingRight = '10px';
