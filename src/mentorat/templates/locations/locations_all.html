@@ -8,101 +8,258 @@
 
 {% block extra_head_base %}
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"> </script>
-    <script type="text/javascript" src="{{ STATIC_URL }}admin/js/locations.js"></script>
-    <script type="text/javascript">
-        pushpins = {
-            mentor: '{{ STATIC_URL }}pushpins/mentor.png',
-            student: '{{ STATIC_URL }}pushpins/user.png',
-            root: '{{ STATIC_URL }}pushpins/root.png',
-            event: '{{ STATIC_URL }}pushpins/event.png'
-        };
-        
-        colors = {
-        	1: '#2327FC',
-        	2: '#2327FC',
-        	5: '#4DF211',
-        	6: '#FF0000',
-        	9: '#E9F030'
-        };
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<style>
+	   	div.mapControls {
+			padding : 20px;
+			padding-top : 10px;
+			padding-bottom : 10px;
+			border-width : 3px;
+			border-style: solid;
+			border-color: #ac74e3;
+			background-color : #fff;
+			float : left; 
+	   	}
+	   	
+	   	div.mapControls a{
+	   		text-decoration: none;
+	   	}
+    </style>
+    <script type="text/javascript">   
+		var map;
+		var lines = [];
+				
+	    pushpins = {
+			mentor : '{{ STATIC_URL }}pushpins/mentor.png',
+			student : '{{ STATIC_URL }}pushpins/user.png',
+			root : '{{ STATIC_URL }}pushpins/root.png',
+			event : '{{ STATIC_URL }}pushpins/event.png'
+		};
+	
+		colors = {
+			1 : '#2327FC',
+			2 : '#2327FC',
+			5 : '#4DF211',
+			6 : '#FF0000',
+			9 : '#E9F030',
+		};
+	
+		var markerGroups = {
+			"mentor" : [],
+			"student" : [],
+			"root" : [],
+			"event" : [],
+		};
+		
+		var colorGroups = {
+			"#2327FC": [],
+			"#2327FC": [],
+			"#4DF211": [],
+			"#FF0000": [],
+			"#E9F030": [],
+			"#000000": []
+		}
+	
+		function showLineIfContainsEndpoints(line, relationLocation, location, showLine) {
+			if (relationLocation.lat() == location.lat() &&
+				relationLocation.lng() == location.lng()) {
+				
+				if (showLine) {
+					line.setMap(map);
+				} else {
+					line.setMap(null);
+				}	
+			}
+		}
+		
+		function registerJqueryEvents(control, controlToggle) {
+			$(control).hide();
+	        $(controlToggle).click(function() {
+	            $(control).slideToggle();
+	            return false;
+	        });
+		}
+		
+		function toggleAssociatedCoordinatesVisibility(location, showLine) {
+			for ( var i = 0; i < lines.length; i++) {
+				var isChecked = document.getElementById(lines[i].strokeColor).checked;
+				var show = showLine;
+				
+				if (!isChecked) {
+					show = false;
+				}
+				
+				showLineIfContainsEndpoints(lines[i], lines[i].getPath().getAt(0), location, show);
+				showLineIfContainsEndpoints(lines[i], lines[i].getPath().getAt(1), location, show);		
+			}
+		}
+		
+		function toggleGroup(type) {
+			for ( var i = 0; i < markerGroups[type].length; i++) {
+				var marker = markerGroups[type][i];
+				
+				if (!marker.getVisible()) {
+					marker.setVisible(true);
+					if (type == 'mentor' || type == 'student') {
+						toggleAssociatedCoordinatesVisibility(marker.position, true);
+					}
+				} else {
+					marker.setVisible(false);
+					if (type == 'mentor' || type == 'student') {
+						toggleAssociatedCoordinatesVisibility(marker.position, false);
+					}
+				}
+			}
+		}
+		
+		function togglePolylines(type) {
+			for ( var i = 0; i < colorGroups[type].length; i++) {
+				var line = colorGroups[type][i];
+				if (line.getMap() == null) {
+					line.setMap(map);
+				} else {
+					line.setMap(null);
+				}
+			}
+		}
+		
+		function initialize() {
+			var position = new google.maps.LatLng(46.766667, 23.583333);
+			var options = {
+				zoom : 13,
+				center : position,
+				mapTypeId : google.maps.MapTypeId.ROADMAP
+			}; 
+			
+			map = new google.maps.Map(document.getElementById('map_canvas'),
+					options);
+			
+			var topCenterControlsHoleder = document.createElement('DIV');
+			
+			var relationsControlsHolder = document.createElement('DIV');
+			relationsControlsHolder.className = 'mapControls';
+			
+			var relationsControlsHolderToggle = document.createElement('a');
+			relationsControlsHolderToggle.href = '#';
+			relationsControlsHolderToggle.id = 'relationsControlsHolder-toggle';
+			relationsControlsHolderToggle.innerHTML = '<b>Mentoring invitations</b>';
+			
+			var relationsControlsHolderContent = document.createElement('DIV');
+			relationsControlsHolderContent.innerHTML = '<div></br>'
+					+ '<div style="color:#2327FC"><input type="checkbox" id="#2327FC" onClick="togglePolylines(\'#2327FC\')" checked>Sent</input></div>'
+					+ '<div style="color:#4DF211"><input type="checkbox" id="#4DF211" onClick="togglePolylines(\'#4DF211\')" checked>Accepted</input></div>'
+					+ '<div style="color:#FF0000"><input type="checkbox" id="#FF0000" onClick="togglePolylines(\'#FF0000\')" checked>Declined</input></div>'
+					+ '<div style="color:#E9F030"><input type="checkbox" id="#E9F030" onClick="togglePolylines(\'#E9F030\')" checked>Pending</input></div>'
+					+ '<div style="color:#000000"><input type="checkbox" id="#000000" onClick="togglePolylines(\'#000000\')" checked>Accepted by another mentor</input></div></div>';
 
-        map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(controlsHolder);
-
-        function initialize() {
-           var position = new google.maps.LatLng(46.766667, 23.583333),
-                options = {
-                    zoom: 13,
-                    center: position,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                },
-                map = new google.maps.Map(document.getElementById('map_canvas'), options);
-
-            var controlsHolder = document.createElement('DIV');
-            controlsHolder.style.padding = '20px';
-            controlsHolder.style.paddingTop = '10px';
-            controlsHolder.style.paddingBottom = '10px';
-            controlsHolder.style.border = '3px solid #ac74e3';
-            controlsHolder.style.backgroundColor = '#fff';
-            controlsHolder.innerHTML = '<div> <b>Mentoring invitations legend:</b> <div style="color:#2327FC">Sent</div> <div style="color:#4DF211">Accepted</div> <div style="color:#FF0000">Declined</div>  <div style="color:#E9F030">Pending</div> <div style="color:#000000">Accepted by another mentor</div> </div>';
-            controlsHolder.index = 1;
-            
-            map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(controlsHolder);
-                          
-            
-            $.get('{% url map_data %}', function(data, textStatus, jqXHR) {
-                data = JSON.parse(data) || {};
-                var u = data.users || [];
-                for (var i=0, len=u.length; i < len; ++ i) {
-                    var user = u[i];
-                    var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(user.lat, user.lng),
-                        map: map,
-                        icon: pushpins[user.icon],
-                        clickable: false,
-                        url: user.profile
-                    });
-                    //google.maps.event.addListener(marker, 'click', function() { window.location = user.profile; });
-                    //console.log(pushpins[user.icon]);
-                }
-                
-                var events = data.events || [];
-                for (var i=0, len=events.length; i < len; ++ i) {
-                    var event = events[i];
-                    var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(event.lat, event.lng),
-                        map: map,
-                        icon: pushpins['event'],
-                        clickable: true,
-                        url: event.event_details
-                    });
-                    google.maps.event.addListener(marker, 'click', function() { window.location = event.event_details; });
-                    //console.log(pushpins[event]);
-                }
-                
-                var relations = data.relations || [];
-                for (var i=0, len=relations.length; i < len; ++ i) {
-                    var relation = relations[i];
-                    var path = [new google.maps.LatLng(relation['lat1'], relation['lng1']),
-                                new google.maps.LatLng(relation['lat2'], relation['lng2'])]
-                    var line = new google.maps.Polyline({
-                        path: path,
-                        strokeColor: colors[relation['status']] || '#000000',
-                        strokeOpacity: 1.0,
-                        strokeWeight: 2
-                      });
-                    line.setMap(map);
-                }
-            });
-        }
-    </script>
-    {% block extra_head %}{% endblock %}
+			relationsControlsHolder.appendChild(relationsControlsHolderToggle);			
+			relationsControlsHolder.appendChild(relationsControlsHolderContent);
+					
+			var markerControlsHolder = document.createElement('DIV');
+			markerControlsHolder.className = 'mapControls';
+			
+			var markerControlsHolderToggle = document.createElement('a');
+			markerControlsHolderToggle.href = '#';
+			markerControlsHolderToggle.id = 'relationsControlsHolder-toggle';
+			markerControlsHolderToggle.innerHTML = '<b>Visible pushpins</b>';
+			
+			var markerControlsHolderContent = document.createElement('DIV');
+			markerControlsHolderContent.innerHTML = '<div></br>'
+					+ '<p><input type="checkbox" onClick="toggleGroup(\'mentor\')" checked><img src="{{ STATIC_URL }}img/mentor.png" alt="Mentors" width="32" height="32" /></input>'
+					+ '<input type="checkbox" onClick="toggleGroup(\'student\')" checked><img src="{{ STATIC_URL }}img/student.png" alt="Students" width="32" height="32" /></input>'
+					+ '<input type="checkbox" onClick="toggleGroup(\'root\')" checked><img src="{{ STATIC_URL }}img/superuser.png" alt="Superusers" width="32" height="32" /></input>'
+					+ '<input type="checkbox" onClick="toggleGroup(\'event\')" checked><img src="{{ STATIC_URL }}img/event.png" alt="Events" width="32" height="32" /></input>'
+					+ '</div></p>';
+			
+			markerControlsHolder.appendChild(markerControlsHolderToggle);
+			markerControlsHolder.appendChild(markerControlsHolderContent);
+			
+			topCenterControlsHoleder.appendChild(markerControlsHolder);
+			topCenterControlsHoleder.appendChild(relationsControlsHolder);
+			
+			map.controls[google.maps.ControlPosition.TOP_CENTER].push(topCenterControlsHoleder);
+			
+			
+			$.get('{% url map_data %}', function(data, textStatus, jqXHR) {
+				data = JSON.parse(data) || {};
+				var u = data.users || [];
+	
+				for ( var i = 0, len = u.length; i < len; ++i) {
+					var user = u[i];
+									
+					var marker = new google.maps.Marker({
+						position : new google.maps.LatLng(user.lat, user.lng),
+						map : map,
+						icon : pushpins[user.icon],
+						clickable : false,
+						visible: true,
+						url : user.profile
+					});
+					google.maps.event.addListener(marker, 'click', function() {
+						//window.location = this.url;
+					});
+					markerGroups[user.icon].push(marker);
+				}
+	
+				var events = data.events || [];
+				for ( var i = 0, len = events.length; i < len; ++i) {
+					var event = events[i];
+					var marker = new google.maps.Marker({
+						position : new google.maps.LatLng(event.lat, event.lng),
+						map : map,
+						icon : pushpins['event'],
+						clickable : true,
+						visible: true,
+						url : event.event_details
+					});
+					google.maps.event.addListener(marker, 'click', function() {
+						window.location = this.url;
+					});
+					markerGroups["event"].push(marker);
+				}
+	
+				var relations = data.relations || [];
+				for ( var i = 0, len = relations.length; i < len; ++i) {
+					var relation = relations[i];
+					var path = [
+							new google.maps.LatLng(relation['lat1'],
+									relation['lng1']),
+							new google.maps.LatLng(relation['lat2'],
+									relation['lng2']) ]
+					var color = colors[relation['status']] || '#000000';
+					var line = new google.maps.Polyline({
+						path : path,
+						strokeColor : color,
+						strokeOpacity : 1.0,
+						strokeWeight : 2,
+						clickable : true
+					});
+					line.setMap(map);
+					
+					lines.push(line);
+					colorGroups[color].push(line);
+				}
+			});
+			
+			registerJqueryEvents(relationsControlsHolderContent, relationsControlsHolderToggle);
+			registerJqueryEvents(markerControlsHolderContent, markerControlsHolderToggle);
+		}
+</script>
+{% block extra_head %}{% endblock %}
 {% endblock %}
 
 {% block head_title %}
         {% blocktrans %}All locations{% endblocktrans %}
 {% endblock %}
 
-{% block body_onload_functions %}initialize(){% endblock %}
-
 {% block body %}
 <div id="map_canvas" style="width:800px; height:700px"></div>
+{% endblock %}
+
+{% block extra_body %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			initialize();
+	    });
+    </script>
 {% endblock %}

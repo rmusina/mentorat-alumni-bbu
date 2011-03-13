@@ -122,10 +122,9 @@ def map_data(request):
                                       'status':invitation.status})
                 except UserLocation.DoesNotExist:
                       pass                   
-            
+                    
         users.append({
-            'name': user.username,
-            'profile': reverse('profile_detail', kwargs={'username': user.username}),
+            'profile' : '',#reverse('profile_detail', kwargs={'username': user.username}),
             'lat': location.latitude,
             'lng': location.longitude,
             'icon': icon
@@ -136,7 +135,6 @@ def map_data(request):
         event = location.event
         
         events.append({
-            'name': user.username,
             'event_details': reverse('event_details', kwargs={'eventId': event.id}),
             'lat': location.latitude,
             'lng': location.longitude
