@@ -1,0 +1,9 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+
+{% block subnav %}
+<ul>
+	<li><a href="{% url locations_all %} ">{% trans "All locations" %}</a></li>
+    <li><a href="{% url locations_your %} ">{% trans "Your location" %}</a></li>
+</ul>
+{% endblock %}

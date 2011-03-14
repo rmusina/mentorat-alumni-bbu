@@ -1,0 +1,19 @@
+{% extends "profiles/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load group_tags %}
+{% load microblogging_tags %}
+{% load tagging_tags %}
+{% load photo_tags %}
+{% load threadedcommentstags %}
+
+
+{% block head_title %}{% blocktrans %}Mentoring agreements{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <h1>Mentoring Agreement</h1>
+    {% with mentor_form.helper as helper %}
+        {% uni_form mentor_form helper %}
+    {% endwith %}
+{% endblock %}

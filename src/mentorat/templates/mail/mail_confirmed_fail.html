@@ -1,0 +1,9 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% block body %}
+    {% blocktrans %}
+        Invalid confirmation token, either the email adress has already been confirmed or you have entered an invalid URL.
+    {% endblocktrans %}
+{% endblock body %}

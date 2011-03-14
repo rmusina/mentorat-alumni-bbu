@@ -1,0 +1,73 @@
+{% extends "profiles/base.html" %}
+
+{% load i18n %}
+{% load pagination_tags %}
+{% load humanize %}
+{% load profile_tags %}
+
+{% block head_title %}{% blocktrans %}All Profiles{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    <h1>{% trans "Users" %}</h1>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/search.js"></script>    
+    <form method="GET" action="">
+        <input type="hidden" name="field" value="" />
+        <input type="text" id="search" name="search" value="{{ search_terms }}" />
+        <input type="hidden" id="order" name="order" value="{{ order }}" />
+        <input type="submit" value="Search" onclick="search_button_pressed('profiles', this.form.field)"/>
+        {% if search_terms %}
+            <a href="{% clear_search_url request %}">Clear Search Terms</a>
+        {% endif %}
+    </form>
+    
+    {% if fields_of_interest %}
+        <p>
+        <select id="field_select" onchange="field_of_interest_changed('profiles', this.selectedIndex)">
+        <option>{% trans "Select a field of interest" %}</option>
+        {% for field in fields_of_interest %}
+            <option>{{ field.name }}</option>
+        {% endfor %}
+        </select>
+        {% if field %}
+        <script type="text/javascript">
+            var fs =  document.getElementById("field_select")
+            fs[{{ field }}].defaultSelected = true
+        </script>
+        {% endif %}
+        </p>
+    {% endif %}
+    {% if users %}
+        <p>{% trans "Order by:" %}
+            {% for category in categories %}
+                {% ifequal category order %}
+                    <a href="{% url profile_list %}?order={{ category }}&search={{ search_terms }}&field={{ field }}" style="text-transform: capitalize; font-weight: bold;">{% trans category %}</a>
+                {% else %}
+                    <a href="{% url profile_list %}?order={{ category }}&search={{ search_terms }}&field={{ field }}" style="text-transform: capitalize;">{% trans category %}</a>
+                {% endifequal %}
+            {% endfor %}
+        </p>
+        
+        {% autopaginate users %}
+        
+        {% ifequal order 'date'  %}
+            {% regroup users by user.date_joined.date as users_by_date_joined %}
+            {% for date in users_by_date_joined %}
+                <h2 class="join_date">{{ date.grouper|naturalday:_("MONTH_DAY_FORMAT")|capfirst }}</h2>
+                
+                {% for user in date.list %}
+                    {% show_profile user.user %}
+                {% endfor %}
+            {% endfor %}
+        {% else %}
+            {% for user in users %}
+                {% show_profile user.user %}
+            {% endfor %}
+        {% endifequal %}
+        
+        {% paginate %}
+        
+       {% else %}
+           <p>No profile were found.</p>
+      {% endif %}
+{% endblock %}

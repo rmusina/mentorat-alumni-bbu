@@ -1,0 +1,18 @@
+{% extends "profiles/base.html" %}
+
+{% load i18n %}
+{% load uni_form %}
+{% load group_tags %}
+{% load microblogging_tags %}
+{% load tagging_tags %}
+{% load photo_tags %}
+{% load threadedcommentstags %}
+
+
+{% block head_title %}{% blocktrans %}Mentoring agreements{% endblocktrans %}{% endblock %}
+
+{% block body %}
+    {% for friend in friends %}
+        <a href={% url mentoring_agreement friend.username %}>{% blocktrans %}Mentoring Agreement for {% endblocktrans %}{{ friend.username }}</a></br>
+    {% endfor %}
+{% endblock %}
