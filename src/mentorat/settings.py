@@ -5,6 +5,10 @@ import os.path
 import posixpath
 import pinax
 
+
+MENTORAT_SITE_ROOT = '/mentorat'
+
+
 PINAX_ROOT = os.path.abspath(os.path.dirname(pinax.__file__))
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
@@ -25,8 +29,8 @@ MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'mysql'    # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
 DATABASE_NAME = 'mentorat'       # Or path to database file if using sqlite3.
-DATABASE_USER = 'tephe'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'ciusztocei'         # Not used with sqlite3.
+DATABASE_USER = 'root'             # Not used with sqlite3.
+DATABASE_PASSWORD = 'root'         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
@@ -47,6 +51,7 @@ SITE_ID = 1
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
+
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -74,7 +79,7 @@ STATICFILES_DIRS = (
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
 # TODO: remove hack on launch
-ADMIN_MEDIA_PREFIX = "http://localhost:8000/site_media/static/admin/"
+ADMIN_MEDIA_PREFIX = MENTORAT_SITE_ROOT + "/media/admin/"
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 't5*mt1qfvkwbbk4^$_lx1k=#i+d1%=f4u-#4+4^r$&wm++#2jb'
@@ -190,8 +195,12 @@ INSTALLED_APPS = (
 
     # mentorship exclusive
     'mentorship_admin',
-    'mentoring_agreement',
     'surveys',
+
+    # South for database schema and data migration
+    # 'south',
+    'mail',
+    'tinymce',
 )
 
 # zamtools news app settings
@@ -223,12 +232,21 @@ ACCOUNT_OPEN_SIGNUP = True
 ACCOUNT_REQUIRED_EMAIL = False
 ACCOUNT_EMAIL_VERIFICATION = True
 
+DEFAULT_FROM_EMAIL="root@mentorat.alumni.ubbcluj.ro"
 EMAIL_CONFIRMATION_DAYS = 2
 EMAIL_DEBUG = DEBUG
-CONTACT_EMAIL = "feedback@example.com"
+CONTACT_EMAIL = "teamflux2009@gmail.com"
 SITE_NAME = "UBB Alumni"
 LOGIN_URL = "/account/login/"
 LOGIN_REDIRECT_URLNAME = "home"
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'testing@example.com'
+
 
 INTERNAL_IPS = (
     '127.0.0.1',
@@ -258,8 +276,6 @@ RESTRUCTUREDTEXT_FILTER_SETTINGS = {
     'strip_comments': True,
 }
 
-ALLOW_MENTORING_REQUESTS=True
-
 # if Django is running behind a proxy, we need to do things like use
 # HTTP_X_FORWARDED_FOR instead of REMOTE_ADDR. This setting is used
 # to inform apps of this fact
@@ -268,6 +284,20 @@ BEHIND_PROXY = False
 FORCE_LOWERCASE_TAGS = True
 
 WIKI_REQUIRES_LOGIN = True
+
+
+# Creu's stuff
+ALLOW_MENTORING_REQUESTS = True
+
+#TinyMCE settings follow
+TINYMCE_JS_URL = os.path.join(STATIC_ROOT, '/admin/tinymce/jscripts/tiny_mce/tiny_mce.js')
+TINYMCE_JS_ROOT = os.path.join(STATIC_ROOT, '/tinymce');
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,spellchecker,paste,searchreplace",
+    'theme': "advanced",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+}
 
 # Uncomment this line after signing up for a Yahoo Maps API key at the
 # following URL: https://developer.yahoo.com/wsregapp/
@@ -279,3 +309,7 @@ try:
     from local_settings import *
 except ImportError:
     pass
+
+
+
+
