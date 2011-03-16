@@ -8,7 +8,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.translation import ugettext
 
 from profiles.models import StudentProfile, MentorProfile, FieldOfInterest
-from friends.models import FriendshipManager, Friendship
+from friends.models import FriendshipManager, Friendship, MentoringAgreement
 from django.utils.translation import ugettext_lazy as _
 
 from mentoring_agreement.forms import MentoringAgreementForm
@@ -38,20 +38,33 @@ def agreement(request, username, template_name="profiles/agreement.html"):
             break
 
     ment_agr = friendship.mentoring_agreement
+    print ment_agr.objectives
 
     initial_dict = {}
-    if (len(ment_agr.objectives) == 3):
-        initial_dict['objective1'] = ment_agr.objectives[0]
-        initial_dict['objective2'] = ment_agr.objectives[1]
-        initial_dict['objective3'] = ment_agr.objectives[2]
+    if (len(ment_agr.objectives.all()) == 3):
+        initial_dict['objective1'] = ment_agr.objectives.all()[0].objective
+        initial_dict['objective2'] = ment_agr.objectives.all()[1].objective
+        initial_dict['objective3'] = ment_agr.objectives.all()[2].objective
+    if (len(ment_agr.communication_methods.all()) == 3):
+        initial_dict['communication1'] = ment_agr.communication_methods.all()[0].communication_method
+        initial_dict['communication2'] = ment_agr.communication_methods.all()[1].communication_method
+        initial_dict['communication3'] = ment_agr.communication_methods.all()[2].communication_method
+    if (len(ment_agr.activities.all()) == 3):
+        initial_dict['activity1'] = ment_agr.activities.all()[0].activity
+        initial_dict['activity2'] = ment_agr.activities.all()[1].activity
+        initial_dict['activity3'] = ment_agr.activities.all()[2].activity
 
     if (request.method == 'POST'):
         form = MentoringAgreementForm(request.user.username, username, request.POST)
         if form.is_valid():
+            print form.cleaned_data['objective1']
             friendship.mentoring_agreement.objectives = [form.cleaned_data['objective1'], form.cleaned_data['objective2'], form.cleaned_data['objective3']]
+            friendship.mentoring_agreement.communication_methods = [form.cleaned_data['communication1'], form.cleaned_data['communication2'], form.cleaned_data['communication3']]
+            friendship.mentoring_agreement.activities = [form.cleaned_data['activity1'], form.cleaned_data['activity2'], form.cleaned_data['activity3']]
+            friendship.mentoring_agreement.save()
             friendship.save()
     else:
-        form = MentoringAgreementForm(request.user.username, username, auto_id=False, initial=initial_dict)
+        form = MentoringAgreementForm(request.user.username, username, initial=initial_dict)
 
     helper = FormHelper()
 

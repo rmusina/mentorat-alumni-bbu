@@ -11,7 +11,7 @@ class MentoringAgreementForm(forms.Form):
     from_user = ''
     to_user = ''
 
-    objective1 = forms.CharField(required=False, label=('1.'), error_messages=error_messages_charfields, max_length=40)
+    objective1 = forms.CharField(widget=forms.TextInput(),required=False, label=('1.'), error_messages=error_messages_charfields, max_length=80)
     objective2 = forms.CharField(required=False, label=_('2.'), error_messages=error_messages_charfields, max_length=40)
     objective3 = forms.CharField(required=False, label=_('3.'), error_messages=error_messages_charfields, max_length=40)
 
@@ -34,11 +34,11 @@ class MentoringAgreementForm(forms.Form):
     helper = FormHelper()
     layout = Layout(
         # options fieldset
-        Fieldset("Urmatoarele obiective", 'objective1', 'objective2', 'objective3'),
-        Fieldset("Modalitati de comunicare si frecventa", 'communication1', 'communication2', 'communication3'),
-        Fieldset("Activities", 'activity1', 'activity2', 'activity3'),
-        Fieldset("Objective goals", 'objective_goals1', 'objective_goals2', 'objective_goals3'),
-        Fieldset("Possible problems", 'problem1', 'problem2', 'problem3')
+        Fieldset(_("We set to achieve the following goals during this mentorship session:"), 'objective1', 'objective2', 'objective3'),
+        Fieldset(_("Communication means and their frequency:"), 'communication1', 'communication2', 'communication3'),
+        Fieldset(_("Proposed activities:"), 'activity1', 'activity2', 'activity3'),
+        Fieldset(_("How will we know if our objectives are reached?"), 'objective_goals1', 'objective_goals2', 'objective_goals3'),
+        Fieldset(_("Possible problems:"), 'problem1', 'problem2', 'problem3')
     )
     helper.add_layout(layout)
     submit = Submit('save', 'Save Information')

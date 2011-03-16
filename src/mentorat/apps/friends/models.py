@@ -70,12 +70,24 @@ class FriendshipManager(models.Manager):
             friendship = self.filter(from_user=user2, to_user=user1)
         friendship.delete()
 
+class MentoringAgreementObjectives(models.Model):
+    objective = models.CharField(max_length=200)
+    agreement = models.ForeignKey('MentoringAgreement', related_name='objectives')
+class MentoringAgreementCommunicationMethods(models.Model):
+    communication_method = models.CharField(max_length=200)
+    agreement = models.ForeignKey('MentoringAgreement', related_name='communication_methods')
+class MentoringAgreementActivites(models.Model):
+    activity = models.CharField(max_length=200)
+    agreement = models.ForeignKey('MentoringAgreement', related_name='activities')
+class MentoringAgreementObjectiveGoals(models.Model):
+    objective_goal = models.CharField(max_length=200)
+    agreement = models.ForeignKey('MentoringAgreement', related_name='objective_goals')
+class MentoringAgreementProblems(models.Model):
+    problem = models.CharField(max_length=200)
+    agreement = models.ForeignKey('MentoringAgreement', related_name='problems')
+
 class MentoringAgreement(models.Model):
-    objectives = [] # objectives to reach during the mentorship
-    communication_methods = [] # list of communication methods
-    activities = [] # list of proposed activities
-    objective_goals = [] # how will the pair know if they reached their objectives
-    problems = [] # possible problems
+    pass
 
 class Friendship(models.Model):
     """
@@ -87,7 +99,8 @@ class Friendship(models.Model):
     from_user = models.ForeignKey(User, related_name="_unused_")
     # @@@ relationship types
     added = models.DateField(default=datetime.date.today)
-    mentoring_agreement = MentoringAgreement()
+    mentoring_agreement = models.OneToOneField('MentoringAgreement')
+
 
     objects = FriendshipManager()
 
