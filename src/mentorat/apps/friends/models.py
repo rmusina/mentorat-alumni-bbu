@@ -71,23 +71,90 @@ class FriendshipManager(models.Manager):
         friendship.delete()
 
 class MentoringAgreementObjectives(models.Model):
-    objective = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
     agreement = models.ForeignKey('MentoringAgreement', related_name='objectives')
 class MentoringAgreementCommunicationMethods(models.Model):
-    communication_method = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
     agreement = models.ForeignKey('MentoringAgreement', related_name='communication_methods')
 class MentoringAgreementActivites(models.Model):
-    activity = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
     agreement = models.ForeignKey('MentoringAgreement', related_name='activities')
 class MentoringAgreementObjectiveGoals(models.Model):
-    objective_goal = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
     agreement = models.ForeignKey('MentoringAgreement', related_name='objective_goals')
 class MentoringAgreementProblems(models.Model):
-    problem = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
     agreement = models.ForeignKey('MentoringAgreement', related_name='problems')
 
 class MentoringAgreement(models.Model):
-    pass
+    def get_values_as_dict(self):
+        values_dict = {}
+        if (len(self.objectives.all()) == 3):
+            values_dict['objective1'] = self.objectives.all()[0].description
+            values_dict['objective2'] = self.objectives.all()[1].description
+            values_dict['objective3'] = self.objectives.all()[2].description
+        if (len(self.communication_methods.all()) == 3):
+            values_dict['communication1'] = self.communication_methods.all()[0].description
+            values_dict['communication2'] = self.communication_methods.all()[1].description
+            values_dict['communication3'] = self.communication_methods.all()[2].description
+        if (len(self.activities.all()) == 3):
+            values_dict['activity1'] = self.activities.all()[0].description
+            values_dict['activity2'] = self.activities.all()[1].description
+            values_dict['activity3'] = self.activities.all()[2].description
+        if (len(self.objective_goals.all()) == 3):
+            values_dict['objective_goal1'] = self.objective_goals.all()[0].description
+            values_dict['objective_goal2'] = self.objective_goals.all()[1].description
+            values_dict['objective_goal3'] = self.objective_goals.all()[2].description
+        if (len(self.problems.all()) == 3):
+            values_dict['problem1'] = self.problems.all()[0].description
+            values_dict['problem2'] = self.problems.all()[1].description
+            values_dict['problem3'] = self.problems.all()[2].description
+        return values_dict
+    def save_from_dict(self, values_dict):
+        # Neo: There's got to be a better way then to write code so redundant
+        # Morpheus: I'm sorry Neo, it's what the Oracle predicted
+        # Zombocom: Welcome to Zombocom
+        if (len(self.objectives.all()) == 3):
+            self.objectives.all()[0].description = values_dict['objective1']
+            self.objectives.all()[1].description = values_dict['objective2']
+            self.objectives.all()[2].description = values_dict['objective3']
+        else:
+            self.objectives.create(description=values_dict['objective1']);
+            self.objectives.create(description=values_dict['objective2']);
+            self.objectives.create(description=values_dict['objective3']);
+        if (len(self.communication_methods.all()) == 3):
+            self.communication_methods.all()[0].description = values_dict['communication1']
+            self.communication_methods.all()[1].description = values_dict['communication2']
+            self.communication_methods.all()[2].description = values_dict['communication3']
+        else:
+            self.communication_methods.create(description=values_dict['communication1']);
+            self.communication_methods.create(description=values_dict['communication2']);
+            self.communication_methods.create(description=values_dict['communication3']);
+        if (len(self.activities.all()) == 3):
+            self.activities.all()[0].description = values_dict['activity1']
+            self.activities.all()[1].description = values_dict['activity2']
+            self.activities.all()[2].description = values_dict['activity3']
+        else:
+            self.activities.create(description=values_dict['activity1']);
+            self.activities.create(description=values_dict['activity2']);
+            self.activities.create(description=values_dict['activity3']);
+        if (len(self.objective_goals.all()) == 3):
+            self.objective_goals.all()[0].description = values_dict['objective_goal1']
+            self.objective_goals.all()[1].description = values_dict['objective_goal2']
+            self.objective_goals.all()[2].description = values_dict['objective_goal3']
+        else:
+            self.objective_goals.create(description=values_dict['objective_goal1']);
+            self.objective_goals.create(description=values_dict['objective_goal2']);
+            self.objective_goals.create(description=values_dict['objective_goal3']);
+        if (len(self.problems.all()) == 3):
+            self.problems.all()[0].description = values_dict['problem1']
+            self.problems.all()[1].description = values_dict['problem2']
+            self.problems.all()[2].description = values_dict['problem3']
+        else:
+            self.problems.create(description=values_dict['problem1']);
+            self.problems.create(description=values_dict['problem2']);
+            self.problems.create(description=values_dict['problem3']);
+        self.save()
 
 class Friendship(models.Model):
     """
@@ -99,8 +166,7 @@ class Friendship(models.Model):
     from_user = models.ForeignKey(User, related_name="_unused_")
     # @@@ relationship types
     added = models.DateField(default=datetime.date.today)
-    mentoring_agreement = models.OneToOneField('MentoringAgreement')
-
+    mentoring_agreement = models.OneToOneField('MentoringAgreement', blank=True, null=True, related_name='mentoring_agreement')
 
     objects = FriendshipManager()
 

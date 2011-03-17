@@ -37,34 +37,22 @@ def agreement(request, username, template_name="profiles/agreement.html"):
             friendship = f['friendship']
             break
 
+    # if there's no mentoring agreement then create one
+    if friendship.mentoring_agreement == None:
+        new_ma = MentoringAgreement()
+        new_ma.save()
+        friendship.mentoring_agreement = new_ma
+        friendship.save()
     ment_agr = friendship.mentoring_agreement
-    print ment_agr.objectives
 
-    initial_dict = {}
-    if (len(ment_agr.objectives.all()) == 3):
-        initial_dict['objective1'] = ment_agr.objectives.all()[0].objective
-        initial_dict['objective2'] = ment_agr.objectives.all()[1].objective
-        initial_dict['objective3'] = ment_agr.objectives.all()[2].objective
-    if (len(ment_agr.communication_methods.all()) == 3):
-        initial_dict['communication1'] = ment_agr.communication_methods.all()[0].communication_method
-        initial_dict['communication2'] = ment_agr.communication_methods.all()[1].communication_method
-        initial_dict['communication3'] = ment_agr.communication_methods.all()[2].communication_method
-    if (len(ment_agr.activities.all()) == 3):
-        initial_dict['activity1'] = ment_agr.activities.all()[0].activity
-        initial_dict['activity2'] = ment_agr.activities.all()[1].activity
-        initial_dict['activity3'] = ment_agr.activities.all()[2].activity
-
+    initial_dict = friendship.mentoring_agreement.get_values_as_dict()
     if (request.method == 'POST'):
-        form = MentoringAgreementForm(request.user.username, username, request.POST)
+        form = MentoringAgreementForm(request.POST)
         if form.is_valid():
-            print form.cleaned_data['objective1']
-            friendship.mentoring_agreement.objectives = [form.cleaned_data['objective1'], form.cleaned_data['objective2'], form.cleaned_data['objective3']]
-            friendship.mentoring_agreement.communication_methods = [form.cleaned_data['communication1'], form.cleaned_data['communication2'], form.cleaned_data['communication3']]
-            friendship.mentoring_agreement.activities = [form.cleaned_data['activity1'], form.cleaned_data['activity2'], form.cleaned_data['activity3']]
-            friendship.mentoring_agreement.save()
+            friendship.mentoring_agreement.save_from_dict(form.cleaned_data)
             friendship.save()
     else:
-        form = MentoringAgreementForm(request.user.username, username, initial=initial_dict)
+        form = MentoringAgreementForm(initial=initial_dict)
 
     helper = FormHelper()
 
