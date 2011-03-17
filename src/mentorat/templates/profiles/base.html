@@ -8,6 +8,7 @@
     {% if user.is_authenticated %}
         <ul>
             {% if not user.is_staff %}<li><a href="{% url profile_detail user.username %} ">{% trans "Your Profile" %}</a></li>{% endif %}
+            <li><a href="{% url mentoring_agreements %} ">{% trans "Agreements" %}</a></li>
             <li><a href="{% url profile_list %} ">{% trans "All Profiles" %}</a></li>
         </ul>
     {% else %}
