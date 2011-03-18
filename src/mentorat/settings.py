@@ -10,7 +10,7 @@ MENTORAT_SITE_ROOT = '/mentorat'
 
 
 PINAX_ROOT = os.path.abspath(os.path.dirname(pinax.__file__))
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+PROJECT_ROOT = '/home/scs/others/flux/Mentorat/trunk/src/mentorat/' #os.path.abspath(os.path.dirname(__file__))
 
 # tells Pinax to use the default theme
 PINAX_THEME = 'default'
@@ -29,10 +29,10 @@ MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'mysql'    # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
 DATABASE_NAME = 'mentorat'       # Or path to database file if using sqlite3.
-DATABASE_USER = 'root'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'root'         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+DATABASE_USER = 'mentorat'             # Not used with sqlite3.
+DATABASE_PASSWORD = 'stargateSG1'         # Not used with sqlite3.
+DATABASE_HOST = 'localhost'             # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT = '3306'             # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
 # http://www.postgresql.org/docs/8.1/static/datetime-keywords.html#DATETIME-TIMEZONE-SET-TABLE
@@ -52,22 +52,21 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = True
 
-
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'site_media', 'media')
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media_all') #'site_media', 'media')
 
 # URL that handles the media served from MEDIA_ROOT.
 # Example: "http://media.lawrence.com"
-MEDIA_URL = '/site_media/media/'
+MEDIA_URL = MENTORAT_SITE_ROOT + '/media/' # '/site_media/media/'
 
 # Absolute path to the directory that holds static files like app media.
 # Example: "/home/media/media.lawrence.com/apps/"
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'site_media', 'static')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'media_all')# 'site_media', 'static')
 
 # URL that handles the static files like app media.
 # Example: "http://media.lawrence.com"
-STATIC_URL = '/site_media/static/'
+STATIC_URL = MENTORAT_SITE_ROOT + '/media/' # '/site_media/static/'
 
 # Additional directories which hold static files
 STATICFILES_DIRS = (
@@ -240,14 +239,6 @@ SITE_NAME = "UBB Alumni"
 LOGIN_URL = "/account/login/"
 LOGIN_REDIRECT_URLNAME = "home"
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'testing@example.com'
-
-
 INTERNAL_IPS = (
     '127.0.0.1',
 )
@@ -298,6 +289,8 @@ TINYMCE_DEFAULT_CONFIG = {
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 10,
 }
+
+
 
 # Uncomment this line after signing up for a Yahoo Maps API key at the
 # following URL: https://developer.yahoo.com/wsregapp/

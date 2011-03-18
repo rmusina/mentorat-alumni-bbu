@@ -7,14 +7,8 @@ from friends.models import Contact, Friendship, JoinInvitation, \
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'email', 'user', 'added')
 
-class FriendshipMentoringAgreementInline(admin.TabularInline):
-    model = MentoringAgreement
-
 class FriendshipAdmin(admin.ModelAdmin):
     list_display = ('id', 'from_user', 'to_user', 'added',)
-    inlines = [
-        FriendshipMentoringAgreementInline,
-    ]
 
 class JoinInvitationAdmin(admin.ModelAdmin):
     list_display = ('id', 'from_user', 'contact', 'status')
@@ -27,18 +21,23 @@ class FriendshipInvitationHistoryAdmin(admin.ModelAdmin):
 
 class MentoringAgreementObjectivesInline(admin.TabularInline):
     model = MentoringAgreementObjectives
+    extra = 0
 
 class MentoringAgreementCommunicationMethodsInline(admin.TabularInline):
     model = MentoringAgreementCommunicationMethods
+    extra = 0
 
 class MentoringAgreementProblemsInline(admin.TabularInline):
     model = MentoringAgreementProblems
+    extra = 0
 
 class MentoringAgreementActivitesInline(admin.TabularInline):
     model = MentoringAgreementActivites
+    extra = 0
 
 class MentoringAgreementObjectiveGoalsInline(admin.TabularInline):
     model = MentoringAgreementObjectiveGoals
+    extra = 0
 
 class MentoringAgreementAdmin(admin.ModelAdmin):
     inlines = [

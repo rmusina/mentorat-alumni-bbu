@@ -8,30 +8,30 @@ error_messages_charfields = { 'required': _('This field is required'), 'max_leng
                               'min_length': _('You input is too short') }
 
 class MentoringAgreementForm(forms.Form):
-    objective1 = forms.CharField(widget=forms.TextInput(),required=False, label=("1."), error_messages=error_messages_charfields, max_length=80)
-    objective2 = forms.CharField(required=False, label=_('2.'), error_messages=error_messages_charfields, max_length=40)
-    objective3 = forms.CharField(required=False, label=_('3.'), error_messages=error_messages_charfields, max_length=40)
+    objective1 = forms.CharField(widget=forms.TextInput(),required=False, label=("1."), error_messages=error_messages_charfields, max_length=199)
+    objective2 = forms.CharField(required=False, label=_('2.'), error_messages=error_messages_charfields, max_length=199)
+    objective3 = forms.CharField(required=False, label=_('3.'), error_messages=error_messages_charfields, max_length=199)
 
-    communication1 = forms.CharField(required=False, label=_('1.'), error_messages=error_messages_charfields, max_length=40)
-    communication2 = forms.CharField(required=False, label=_('2.'), error_messages=error_messages_charfields, max_length=40)
-    communication3 = forms.CharField(required=False, label=_('3.'), error_messages=error_messages_charfields, max_length=40)
+    communication1 = forms.CharField(required=False, label=_('1.'), error_messages=error_messages_charfields, max_length=199)
+    communication2 = forms.CharField(required=False, label=_('2.'), error_messages=error_messages_charfields, max_length=199)
+    communication3 = forms.CharField(required=False, label=_('3.'), error_messages=error_messages_charfields, max_length=199)
 
-    activity1 = forms.CharField(required=False, label=_('1.'), error_messages=error_messages_charfields, max_length=40)
-    activity2 = forms.CharField(required=False, label=_('2.'), error_messages=error_messages_charfields, max_length=40)
-    activity3 = forms.CharField(required=False, label=_('3.'), error_messages=error_messages_charfields, max_length=40)
+    activity1 = forms.CharField(required=False, label=_('1.'), error_messages=error_messages_charfields, max_length=199)
+    activity2 = forms.CharField(required=False, label=_('2.'), error_messages=error_messages_charfields, max_length=199)
+    activity3 = forms.CharField(required=False, label=_('3.'), error_messages=error_messages_charfields, max_length=199)
 
-    objective_goal1 = forms.CharField(required=False, label=_('1.'), error_messages=error_messages_charfields, max_length=40)
-    objective_goal2 = forms.CharField(required=False, label=_('2.'), error_messages=error_messages_charfields, max_length=40)
-    objective_goal3 = forms.CharField(required=False, label=_('3.'), error_messages=error_messages_charfields, max_length=40)
+    objective_goal1 = forms.CharField(required=False, label=_('1.'), error_messages=error_messages_charfields, max_length=199)
+    objective_goal2 = forms.CharField(required=False, label=_('2.'), error_messages=error_messages_charfields, max_length=199)
+    objective_goal3 = forms.CharField(required=False, label=_('3.'), error_messages=error_messages_charfields, max_length=199)
 
-    problem1 = forms.CharField(required=False, label=_('1.'), error_messages=error_messages_charfields, max_length=40)
-    problem2 = forms.CharField(required=False, label=_('2.'), error_messages=error_messages_charfields, max_length=40)
-    problem3 = forms.CharField(required=False, label=_('3.'), error_messages=error_messages_charfields, max_length=40)
+    problem1 = forms.CharField(required=False, label=_('1.'), error_messages=error_messages_charfields, max_length=199)
+    problem2 = forms.CharField(required=False, label=_('2.'), error_messages=error_messages_charfields, max_length=199)
+    problem3 = forms.CharField(required=False, label=_('3.'), error_messages=error_messages_charfields, max_length=199)
 
     style = """
     <style>
         .textinput {
-            width: 600px;
+            width: 700px;
         }
         label { float: left; position: relative; text-align:left; width:200px; }
         input, textarea { margin-left: 140px; }
