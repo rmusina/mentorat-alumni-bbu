@@ -1,0 +1,1 @@
+Platform which aims to connect former BBU graduates with students, allowing them to develop and sustain a mentor-mentee relationship thus catalyzing student personal growth. 
